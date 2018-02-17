@@ -15,4 +15,14 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
+    <!-- Main menu options -->
+    <string-array name="main_dropdown_menu_items">
+        <item>World</item>
+        <item>Groups</item>
+        <item>Following</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
