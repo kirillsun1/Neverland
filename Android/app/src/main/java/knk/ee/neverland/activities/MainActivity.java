@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeBottomNavigationBar();
-        // openLoginActivity();
+        openLoginActivity();
     }
 
     private void initializeBottomNavigationBar() {
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        bottomNavigationViewEx.setCurrentItem(0);
     }
 
     private void setMainFragment(final Fragment fragment) {

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import knk.ee.neverland.R;
-import knk.ee.neverland.feed.FeedElementAdapter;
-import knk.ee.neverland.feed.FeedElement;
+import knk.ee.neverland.feedview.FeedElementAdapter;
+import knk.ee.neverland.feedview.FeedElement;
 
 public class FeedFragment extends Fragment {
     public FeedFragment() {

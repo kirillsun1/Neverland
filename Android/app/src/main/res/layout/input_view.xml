@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/quests_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/inputbox_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/inputbox_icon"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:contentDescription="TODO" />
+
+        <EditText
+            android:id="@+id/inputbox_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textColorLink="@color/colorPrimaryDark" />
+    </LinearLayout>
+</FrameLayout>
