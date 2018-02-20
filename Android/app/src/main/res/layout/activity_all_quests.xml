@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="knk.ee.neverland.activities.AllQuestsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/allquests_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:contentInsetLeft="10dp"
+            android:contentInsetRight="10dp"
+            android:contentInsetStart="10dp"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:contentInsetLeft="10dp"
+            app:contentInsetRight="10dp"
+            app:contentInsetStart="10dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <knk.ee.neverland.view.InputView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:visibility="visible"
+                app:inputBoxFontColor="@color/colorPrimaryDark"
+                app:inputBoxIcon="@android:drawable/ic_menu_search" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <ListView
+            android:id="@+id/allquests_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/background"
+            android:dividerHeight="5sp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

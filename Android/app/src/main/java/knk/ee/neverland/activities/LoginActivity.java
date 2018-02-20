@@ -3,6 +3,7 @@ package knk.ee.neverland.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mLoginView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = findViewById(R.id.login);
+        mLoginView = findViewById(R.id.login);
 
         mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -67,6 +68,21 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        findViewById(R.id.login_register).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(view.getContext(), RegistrationActivity.class), 1);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println(requestCode + " " + resultCode);
+        if (resultCode == 0) {
+            finish();
+        }
     }
 
     /**
@@ -80,11 +96,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mLoginView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String login = mLoginView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -97,14 +113,14 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        // Check for a valid login address.
+        if (TextUtils.isEmpty(login)) {
+            mLoginView.setError(getString(R.string.error_field_required));
+            focusView = mLoginView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        } else if (!isLoginValid(login)) {
+            mLoginView.setError(getString(R.string.error_invalid_login));
+            focusView = mLoginView;
             cancel = true;
         }
 
@@ -116,19 +132,19 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(login, password);
             mAuthTask.execute((Void) null);
         }
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isLoginValid(String login) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return login.length() > 1;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 1;
     }
 
     /**
@@ -178,11 +194,11 @@ public class LoginActivity extends AppCompatActivity {
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mLogin;
         private final String mPassword;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
+        UserLoginTask(String login, String password) {
+            mLogin = login;
             mPassword = password;
         }
 
@@ -192,14 +208,14 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
+                if (pieces[0].equals(mLogin)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }

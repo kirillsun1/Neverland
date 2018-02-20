@@ -18,6 +18,7 @@
             android:layout_marginTop="2dp"
             android:maxLines="1"
             android:text="Some Quest Name"
+            android:textSize="@dimen/standard_font_size"
             android:textStyle="bold" />
 
         <TextView
@@ -29,6 +30,7 @@
             android:layout_marginStart="5dp"
             android:gravity="left|right|center|fill"
             android:text="Some Quest Desc"
-            android:textAlignment="gravity" />
+            android:textAlignment="gravity"
+            android:textSize="@dimen/standard_font_size" />
     </LinearLayout>
 </FrameLayout>
