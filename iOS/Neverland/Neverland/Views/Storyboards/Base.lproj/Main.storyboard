@@ -723,7 +723,11 @@
                         <viewLayoutGuide key="safeArea" id="EoD-ok-X0j"/>
                     </view>
                     <navigationItem key="navigationItem" title="Voldemort" id="IGX-vt-VYe">
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="fFe-B8-Sqh"/>
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="fFe-B8-Sqh">
+                            <connections>
+                                <action selector="configBtnPressed:" destination="g49-S0-QLx" id="ncp-J2-ptu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Ky8-LK-4Hw" id="uSY-CD-dh9"/>

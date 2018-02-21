@@ -34,7 +34,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hnx-Pc-G8z">
                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="140"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K40-Mw-yFs">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USERNAME" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K40-Mw-yFs">
                                                         <rect key="frame" x="0.0" y="0.0" width="180" height="41.5"/>
                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,9 +91,11 @@
                     <connections>
                         <outlet property="logoHeightConstr" destination="lyf-Lr-Vjs" id="vy9-hy-2vv"/>
                         <outlet property="logoTopConstr" destination="TU8-Pe-2yw" id="Ivz-8d-RxG"/>
+                        <outlet property="passwordField" destination="TYu-Qb-Fs5" id="qZp-j0-LhH"/>
                         <outlet property="stackViewBotomOffsetConstr" destination="6ws-FG-4kE" id="TJE-0J-S4r"/>
                         <outlet property="stackViewHeightConstr" destination="lrn-QA-neN" id="5cc-BE-k1A"/>
                         <outlet property="stackViewWidthConstr" destination="Ure-P7-4wN" id="jO8-wv-7j4"/>
+                        <outlet property="userField" destination="K40-Mw-yFs" id="1El-yt-bY1"/>
                         <segue destination="x5B-nJ-RIU" kind="show" identifier="LoginSegue" id="nm4-hW-AoC"/>
                     </connections>
                 </viewController>
@@ -125,31 +127,31 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QG7-8P-2VH">
                                 <rect key="frame" x="53.5" y="72" width="213" height="234"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4x-A8-9TB">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LOGIN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4x-A8-9TB">
                                         <rect key="frame" x="0.0" y="0.0" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b07-LN-yeM">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b07-LN-yeM">
                                         <rect key="frame" x="0.0" y="34" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0C-cm-AF6">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FIRST NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0C-cm-AF6">
                                         <rect key="frame" x="0.0" y="68" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgI-hn-Mgd">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SECOND NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgI-hn-Mgd">
                                         <rect key="frame" x="0.0" y="102" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-I9-Uia">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-I9-Uia">
                                         <rect key="frame" x="0.0" y="136" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -241,6 +243,6 @@
         <image name="logo_nograd" width="351" height="351"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wbc-V0-g16"/>
+        <segue reference="nm4-hW-AoC"/>
     </inferredMetricsTieBreakers>
 </document>
