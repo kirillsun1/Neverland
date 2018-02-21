@@ -7,14 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
+		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
+		176635F420388B19003D76A8 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176635F320388B19003D76A8 /* RoundedImage.swift */; };
+		176755452039FD0100490BEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755442039FD0100490BEB /* Checkbox.swift */; };
+		176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755462039FF9D00490BEB /* RegistrerViewController.swift */; };
+		176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63162035BE2600DCAC3F /* AuthViewController.swift */; };
+		176E63192035BE4B00DCAC3F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63182035BE4B00DCAC3F /* ProfileViewController.swift */; };
+		176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E631A2035BE5400DCAC3F /* FeedViewController.swift */; };
+		176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E631C2035BE6A00DCAC3F /* SeachScreenViewController.swift */; };
+		176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E631F2035BE8000DCAC3F /* GroupsViewController.swift */; };
+		176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */; };
+		176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */; };
 		17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE72034640A00A4FC72 /* AppDelegate.swift */; };
-		17A56BEA2034640A00A4FC72 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE92034640A00A4FC72 /* FirstViewController.swift */; };
-		17A56BEC2034640A00A4FC72 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BEB2034640A00A4FC72 /* SecondViewController.swift */; };
 		17A56BEF2034640A00A4FC72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BED2034640A00A4FC72 /* Main.storyboard */; };
-		17A56BF12034640A00A4FC72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF02034640A00A4FC72 /* Assets.xcassets */; };
-		17A56BF42034640A00A4FC72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF22034640A00A4FC72 /* LaunchScreen.storyboard */; };
+		17A56BF42034640A00A4FC72 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF22034640A00A4FC72 /* Auth.storyboard */; };
 		17A56BFF2034640B00A4FC72 /* NeverlandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BFE2034640B00A4FC72 /* NeverlandTests.swift */; };
 		17A56C0A2034640B00A4FC72 /* NeverlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56C092034640B00A4FC72 /* NeverlandUITests.swift */; };
+		17E15A872038282000027634 /* NewQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A862038282000027634 /* NewQuestViewController.swift */; };
+		17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A88203828B500027634 /* QuestDetailedViewController.swift */; };
+		17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A8A20382A2500027634 /* QuestInfoCell.swift */; };
+		17FD829720374139004A33E7 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829620374139004A33E7 /* FeedCell.swift */; };
+		17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829920375FB5004A33E7 /* QuestCell.swift */; };
+		C013047877C178077CE31EE2 /* Pods_NeverlandTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6AC89EC62EB04AA7731387 /* Pods_NeverlandTests.framework */; };
+		C997E061E2205C90C680C2E6 /* Pods_Neverland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3CDEC6E87F45D9DD974BFD /* Pods_Neverland.framework */; };
+		E984A8B64E5CFD9F1821E332 /* Pods_NeverlandUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2ED15AC7D437E98ADAAD63 /* Pods_NeverlandUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +52,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		007368B7193B447D293D8F32 /* Pods-NeverlandTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.debug.xcconfig"; sourceTree = "<group>"; };
+		039967FE515E1539BA364656 /* Pods-NeverlandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.release.xcconfig"; sourceTree = "<group>"; };
+		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		176635F320388B19003D76A8 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
+		176755442039FD0100490BEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		176755462039FF9D00490BEB /* RegistrerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrerViewController.swift; sourceTree = "<group>"; };
+		176E63162035BE2600DCAC3F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		176E63182035BE4B00DCAC3F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		176E631A2035BE5400DCAC3F /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		176E631C2035BE6A00DCAC3F /* SeachScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachScreenViewController.swift; sourceTree = "<group>"; };
+		176E631F2035BE8000DCAC3F /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallangesViewController.swift; sourceTree = "<group>"; };
+		176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17A56BE42034640A00A4FC72 /* Neverland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neverland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56BE72034640A00A4FC72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		17A56BE92034640A00A4FC72 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		17A56BEB2034640A00A4FC72 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		17A56BEE2034640A00A4FC72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		17A56BF02034640A00A4FC72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		17A56BF32034640A00A4FC72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		17A56BF32034640A00A4FC72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		17A56BF52034640A00A4FC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17A56BFA2034640B00A4FC72 /* NeverlandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverlandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56BFE2034640B00A4FC72 /* NeverlandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverlandTests.swift; sourceTree = "<group>"; };
@@ -49,6 +77,18 @@
 		17A56C052034640B00A4FC72 /* NeverlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56C092034640B00A4FC72 /* NeverlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverlandUITests.swift; sourceTree = "<group>"; };
 		17A56C0B2034640B00A4FC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17E15A862038282000027634 /* NewQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestViewController.swift; sourceTree = "<group>"; };
+		17E15A88203828B500027634 /* QuestDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailedViewController.swift; sourceTree = "<group>"; };
+		17E15A8A20382A2500027634 /* QuestInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoCell.swift; sourceTree = "<group>"; };
+		17FD829620374139004A33E7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		17FD829920375FB5004A33E7 /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
+		809EDFEEEC5376C0CE79D22A /* Pods-Neverland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neverland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neverland/Pods-Neverland.release.xcconfig"; sourceTree = "<group>"; };
+		8C3CDEC6E87F45D9DD974BFD /* Pods_Neverland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neverland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C6AC89EC62EB04AA7731387 /* Pods_NeverlandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeverlandTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93825C63808762564C05BE72 /* Pods-NeverlandUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandUITests/Pods-NeverlandUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AAD522AEDC33965EE085D77E /* Pods-NeverlandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandUITests/Pods-NeverlandUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF1259D2715830E0E9415AEF /* Pods-Neverland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neverland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Neverland/Pods-Neverland.debug.xcconfig"; sourceTree = "<group>"; };
+		EC2ED15AC7D437E98ADAAD63 /* Pods_NeverlandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeverlandUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C997E061E2205C90C680C2E6 /* Pods_Neverland.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C013047877C178077CE31EE2 /* Pods_NeverlandTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +112,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E984A8B64E5CFD9F1821E332 /* Pods_NeverlandUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		176E63232035BEE200DCAC3F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		17A56BDB2034640A00A4FC72 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +133,8 @@
 				17A56BFD2034640B00A4FC72 /* NeverlandTests */,
 				17A56C082034640B00A4FC72 /* NeverlandUITests */,
 				17A56BE52034640A00A4FC72 /* Products */,
+				B0115300CDEF573AC79C3BA3 /* Pods */,
+				CFF6D8B01785D3A729B3265D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,11 +151,12 @@
 		17A56BE62034640A00A4FC72 /* Neverland */ = {
 			isa = PBXGroup;
 			children = (
+				176E63232035BEE200DCAC3F /* Services */,
 				17A56C1C203464B800A4FC72 /* Resources */,
 				17A56C1B203464AF00A4FC72 /* Networking */,
-				17A56C172034649E00A4FC72 /* Model */,
-				17A56C19203464A500A4FC72 /* View */,
-				17A56C1A203464A900A4FC72 /* Controller */,
+				17A56C172034649E00A4FC72 /* Models */,
+				17A56C19203464A500A4FC72 /* Views */,
+				17A56C1A203464A900A4FC72 /* Controllers */,
 				17A56BE72034640A00A4FC72 /* AppDelegate.swift */,
 				17A56BF52034640A00A4FC72 /* Info.plist */,
 			);
@@ -128,28 +181,39 @@
 			path = NeverlandUITests;
 			sourceTree = "<group>";
 		};
-		17A56C172034649E00A4FC72 /* Model */ = {
+		17A56C172034649E00A4FC72 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		17A56C19203464A500A4FC72 /* View */ = {
+		17A56C19203464A500A4FC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1754BA9620378E91008B2C44 /* CardView.swift */,
+				176635F320388B19003D76A8 /* RoundedImage.swift */,
+				176755442039FD0100490BEB /* Checkbox.swift */,
+				17FD829820375FA5004A33E7 /* Cells */,
 				17A56C1D203464D700A4FC72 /* Storyboards */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		17A56C1A203464A900A4FC72 /* Controller */ = {
+		17A56C1A203464A900A4FC72 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				17A56BE92034640A00A4FC72 /* FirstViewController.swift */,
-				17A56BEB2034640A00A4FC72 /* SecondViewController.swift */,
+				176E63162035BE2600DCAC3F /* AuthViewController.swift */,
+				176E63182035BE4B00DCAC3F /* ProfileViewController.swift */,
+				176E631A2035BE5400DCAC3F /* FeedViewController.swift */,
+				176E631C2035BE6A00DCAC3F /* SeachScreenViewController.swift */,
+				176E631F2035BE8000DCAC3F /* GroupsViewController.swift */,
+				176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */,
+				17E15A862038282000027634 /* NewQuestViewController.swift */,
+				17E15A88203828B500027634 /* QuestDetailedViewController.swift */,
+				176755462039FF9D00490BEB /* RegistrerViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		17A56C1B203464AF00A4FC72 /* Networking */ = {
@@ -162,7 +226,7 @@
 		17A56C1C203464B800A4FC72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				17A56BF02034640A00A4FC72 /* Assets.xcassets */,
+				176635F1203886CA003D76A8 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -171,9 +235,43 @@
 			isa = PBXGroup;
 			children = (
 				17A56BED2034640A00A4FC72 /* Main.storyboard */,
-				17A56BF22034640A00A4FC72 /* LaunchScreen.storyboard */,
+				17A56BF22034640A00A4FC72 /* Auth.storyboard */,
+				176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		17FD829820375FA5004A33E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				17FD829620374139004A33E7 /* FeedCell.swift */,
+				17FD829920375FB5004A33E7 /* QuestCell.swift */,
+				17E15A8A20382A2500027634 /* QuestInfoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B0115300CDEF573AC79C3BA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF1259D2715830E0E9415AEF /* Pods-Neverland.debug.xcconfig */,
+				809EDFEEEC5376C0CE79D22A /* Pods-Neverland.release.xcconfig */,
+				007368B7193B447D293D8F32 /* Pods-NeverlandTests.debug.xcconfig */,
+				039967FE515E1539BA364656 /* Pods-NeverlandTests.release.xcconfig */,
+				AAD522AEDC33965EE085D77E /* Pods-NeverlandUITests.debug.xcconfig */,
+				93825C63808762564C05BE72 /* Pods-NeverlandUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CFF6D8B01785D3A729B3265D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C3CDEC6E87F45D9DD974BFD /* Pods_Neverland.framework */,
+				8C6AC89EC62EB04AA7731387 /* Pods_NeverlandTests.framework */,
+				EC2ED15AC7D437E98ADAAD63 /* Pods_NeverlandUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,9 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17A56C0E2034640B00A4FC72 /* Build configuration list for PBXNativeTarget "Neverland" */;
 			buildPhases = (
+				D6DB0101BB177E39FE225B68 /* [CP] Check Pods Manifest.lock */,
 				17A56BE02034640A00A4FC72 /* Sources */,
 				17A56BE12034640A00A4FC72 /* Frameworks */,
 				17A56BE22034640A00A4FC72 /* Resources */,
+				2EA3E4D174169564940E3074 /* [CP] Embed Pods Frameworks */,
+				620247F73E9DB287EE2432B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,9 +301,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17A56C112034640B00A4FC72 /* Build configuration list for PBXNativeTarget "NeverlandTests" */;
 			buildPhases = (
+				E71013C88E9D8022C0E1118E /* [CP] Check Pods Manifest.lock */,
 				17A56BF62034640B00A4FC72 /* Sources */,
 				17A56BF72034640B00A4FC72 /* Frameworks */,
 				17A56BF82034640B00A4FC72 /* Resources */,
+				FC4923A05FBC97D9CD79D77D /* [CP] Embed Pods Frameworks */,
+				4DF2E69789E1D6477CE7FF2E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,9 +322,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17A56C142034640B00A4FC72 /* Build configuration list for PBXNativeTarget "NeverlandUITests" */;
 			buildPhases = (
+				A60AB5F69BAFD26DB8A91915 /* [CP] Check Pods Manifest.lock */,
 				17A56C012034640B00A4FC72 /* Sources */,
 				17A56C022034640B00A4FC72 /* Frameworks */,
 				17A56C032034640B00A4FC72 /* Resources */,
+				91CB3DBA0D777229F8A7AD43 /* [CP] Embed Pods Frameworks */,
+				F98B434DC551B3B7C4E90849 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,9 +390,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A56BF42034640A00A4FC72 /* LaunchScreen.storyboard in Resources */,
-				17A56BF12034640A00A4FC72 /* Assets.xcassets in Resources */,
+				17A56BF42034640A00A4FC72 /* Auth.storyboard in Resources */,
 				17A56BEF2034640A00A4FC72 /* Main.storyboard in Resources */,
+				176635F2203886CB003D76A8 /* Assets.xcassets in Resources */,
+				176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,14 +413,165 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2EA3E4D174169564940E3074 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Neverland/Pods-Neverland-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DF2E69789E1D6477CE7FF2E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		620247F73E9DB287EE2432B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Neverland/Pods-Neverland-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91CB3DBA0D777229F8A7AD43 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NeverlandUITests/Pods-NeverlandUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A60AB5F69BAFD26DB8A91915 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D6DB0101BB177E39FE225B68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E71013C88E9D8022C0E1118E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F98B434DC551B3B7C4E90849 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NeverlandUITests/Pods-NeverlandUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC4923A05FBC97D9CD79D77D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		17A56BE02034640A00A4FC72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17A56BEC2034640A00A4FC72 /* SecondViewController.swift in Sources */,
+				17E15A872038282000027634 /* NewQuestViewController.swift in Sources */,
+				176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */,
+				176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */,
+				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
+				17FD829720374139004A33E7 /* FeedCell.swift in Sources */,
+				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
+				1754BA9720378E91008B2C44 /* CardView.swift in Sources */,
+				176E63192035BE4B00DCAC3F /* ProfileViewController.swift in Sources */,
+				17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */,
+				176635F420388B19003D76A8 /* RoundedImage.swift in Sources */,
+				176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */,
+				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
+				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,
-				17A56BEA2034640A00A4FC72 /* FirstViewController.swift in Sources */,
+				176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */,
+				176755452039FD0100490BEB /* Checkbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,12 +615,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		17A56BF22034640A00A4FC72 /* LaunchScreen.storyboard */ = {
+		17A56BF22034640A00A4FC72 /* Auth.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				17A56BF32034640A00A4FC72 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Auth.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -476,11 +735,13 @@
 		};
 		17A56C0F2034640B00A4FC72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF1259D2715830E0E9415AEF /* Pods-Neverland.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3374269S2;
 				INFOPLIST_FILE = Neverland/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.knk.Neverland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,11 +752,13 @@
 		};
 		17A56C102034640B00A4FC72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 809EDFEEEC5376C0CE79D22A /* Pods-Neverland.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3374269S2;
 				INFOPLIST_FILE = Neverland/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.knk.Neverland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -506,6 +769,7 @@
 		};
 		17A56C122034640B00A4FC72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 007368B7193B447D293D8F32 /* Pods-NeverlandTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -523,6 +787,7 @@
 		};
 		17A56C132034640B00A4FC72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 039967FE515E1539BA364656 /* Pods-NeverlandTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -540,6 +805,7 @@
 		};
 		17A56C152034640B00A4FC72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD522AEDC33965EE085D77E /* Pods-NeverlandUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -556,6 +822,7 @@
 		};
 		17A56C162034640B00A4FC72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93825C63808762564C05BE72 /* Pods-NeverlandUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
