@@ -14,6 +14,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(User.sharedInstance.userName)
+        print(User.sharedInstance.password)
 
         // Do any additional setup after loading the view.
         let width = (view.frame.size.width - 30) / 3
@@ -24,6 +27,14 @@ class ProfileViewController: UIViewController {
         collectionView.dataSource = self
     }
 
+    @IBAction func configBtnPressed(_ sender: Any) {
+        // later will be config menu, now log out func
+        User.sharedInstance.logout()
+        
+        let storyboard = UIStoryboard.init(name: "Auth", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        self.present(vc!, animated: true, completion: nil)
+    }
     
 
 }

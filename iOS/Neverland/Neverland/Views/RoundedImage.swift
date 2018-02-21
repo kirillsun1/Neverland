@@ -19,7 +19,7 @@ class RoundedImage: UIImageView {
     
     @IBInspectable var maskToBound = false {
         didSet {
-            layer.masksToBounds = false // what are fuck is this ??
+            layer.masksToBounds = false 
         }
     }
     
