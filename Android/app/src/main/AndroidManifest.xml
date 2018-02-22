@@ -10,17 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.LoginActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/LoginTheme"/>
+            android:name=".activities.AllQuestsActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activities.QuestActivity"
+            android:theme="@style/AppTheme.WithActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.AllQuestsActivity" />
+        </activity>
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:label="Registration"
+            android:parentActivityName=".activities.LoginActivity"
+            android:theme="@style/AppTheme.WithActionBar"/>
     </application>
 
 </manifest>
