@@ -1,5 +1,5 @@
 //
-//  ApiConnector.swift
+//  Hasher.swift
 //  Neverland
 //
 //  Created by Konstantin Saposnitsenko on 21/02/2018.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol ApiConnector {
+protocol Hashable {
     
-     func send(query: String) -> String
+    func hash(_ input: String) -> String
 }
-

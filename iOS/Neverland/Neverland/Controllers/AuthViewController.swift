@@ -11,8 +11,8 @@ import UIKit
 class AuthViewController: UIViewController {
 
     let user = User.sharedInstance
-    let apiAdapter = ApiAdapter(forApi: MockedApi())
-    var hasher: Hasher!
+    var hasher: Hashable!
+    let api = FakeAuthApi()
     
     @IBOutlet weak var stackViewWidthConstr: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeightConstr: NSLayoutConstraint!
@@ -48,8 +48,11 @@ class AuthViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let uname = user.userName, let pwd = user.password {
-            sendAuthRequest(uname: uname, pwd: pwd)
+        if let uname = user.userName, let token = user.token {
+            userField.text = uname
+            if api.isActive(token: token) {
+                performSegue(withIdentifier: "LoginSegue", sender: nil)
+            }
         }
     }
     
@@ -62,22 +65,21 @@ class AuthViewController: UIViewController {
         let imgNormalSize = stackViewHeightConstr.constant / 2.5
         imgSizes = (imgNormalSize * 0.75, imgNormalSize)
     }
-
     
     func sendAuthRequest(uname: String, pwd: String) {
         // pwd to be hashed here !!!!
         // let passwordHash = hasher.hash(pwd)
         
-        // cases:
-        // username does not exist -> alert
-        // ....
-        // password is incorrect -> alert
-        // ....
-        // ok -> update User class instance. Proceed further ...
-        user.userName = uname
-        user.password = pwd
-        
-        performSegue(withIdentifier: "LoginSegue", sender: nil)
+        let response = api.attemptLogin(withLogin: uname, password: pwd)
+        switch response.code {
+        case .Successful:
+                user.userName = uname
+                user.token = response.message
+                performSegue(withIdentifier: "LoginSegue", sender: nil)
+        case .Error:
+                // TODO!!!!
+                print("Wrong data")
+        }
         
     }
     
@@ -89,11 +91,7 @@ class AuthViewController: UIViewController {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             let endFrameY = endFrame?.origin.y ?? 0
             let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            //
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            //
+            
             if endFrameY >= UIScreen.main.bounds.size.height {
                 self.stackViewBotomOffsetConstr.constant = defaultVerticalConstr
                 logoHeightConstr.constant = imgSizes.1
@@ -105,7 +103,7 @@ class AuthViewController: UIViewController {
             }
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
-                           options: animationCurve,
+                           options: .curveEaseIn,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }
