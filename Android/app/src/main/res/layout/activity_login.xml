@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <AutoCompleteTextView
-                android:id="@+id/login"
+                android:id="@+id/registration_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -62,7 +62,7 @@
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/registration_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

@@ -9,7 +9,7 @@
     tools:context="knk.ee.neverland.activities.RegistrationActivity">
 
     <AutoCompleteTextView
-        android:id="@+id/login"
+        android:id="@+id/registration_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -23,7 +23,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/registration_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -40,7 +40,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/registration_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -56,7 +56,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/second_name"
+        android:id="@+id/registration_second_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -72,7 +72,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/registration_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -84,12 +84,12 @@
         android:imeActionId="6"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionUnspecified"
-        android:maxLines="1"
         android:inputType="textEmailAddress"
+        android:maxLines="1"
         android:singleLine="true" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/registration_agree_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="I agree blah blah, developers do not want to get into prison"
@@ -97,7 +97,7 @@
         android:textSize="@dimen/standard_font_size" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/registration_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register" />

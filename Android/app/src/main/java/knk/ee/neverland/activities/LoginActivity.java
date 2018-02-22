@@ -3,7 +3,9 @@ package knk.ee.neverland.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,18 +21,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import knk.ee.neverland.R;
+import knk.ee.neverland.exceptions.LoginFailedException;
+import knk.ee.neverland.fakeapi.FakeAPISingleton;
 
 public class LoginActivity extends AppCompatActivity {
-
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -40,13 +34,18 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
 
     @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mLoginView = findViewById(R.id.login);
+        mLoginView = findViewById(R.id.registration_login);
 
-        mPasswordView = findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.registration_password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -79,8 +78,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println(requestCode + " " + resultCode);
-        if (resultCode == 0) {
+        if (resultCode == RegistrationActivity.SUCCESSFUL_REGISTRATION) {
+            String key = data.getStringExtra("key");
+            replaceKeyInSystem(key);
             finish();
         }
     }
@@ -138,18 +138,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isLoginValid(String login) {
-        //TODO: Replace this with your own logic
-        return login.length() > 1;
+        return login.matches("^[a-z0-9_-]{6,16}$");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 1;
+        return password.matches("^[a-z0-9_-]{6,18}$");
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -183,9 +178,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        System.exit(0);
+    private void replaceKeyInSystem(String key) {
+        SharedPreferences sharedPreferences =
+                getSharedPreferences(getResources().getString(R.string.shared_pref_name),
+                        Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getResources().getString(R.string.authkey_address), key);
+        editor.apply();
     }
 
     /**
@@ -204,25 +203,12 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
             try {
-                // Simulate network access.
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
+                replaceKeyInSystem(FakeAPISingleton.getAuthInstance().attemptLogin(mLogin, mPassword));
+                return true;
+            } catch (LoginFailedException e) {
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mLogin)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
         }
 
         @Override

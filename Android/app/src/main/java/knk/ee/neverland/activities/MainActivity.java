@@ -1,5 +1,6 @@
 package knk.ee.neverland.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import knk.ee.neverland.R;
+import knk.ee.neverland.fakeapi.FakeAPISingleton;
 import knk.ee.neverland.fragments.FeedFragment;
 import knk.ee.neverland.fragments.GroupsFragment;
 import knk.ee.neverland.fragments.ProfileFragment;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeBottomNavigationBar();
-        openLoginActivity();
+        openLoginActivityIfNecessary();
     }
 
     private void initializeBottomNavigationBar() {
@@ -73,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_page_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void openLoginActivityIfNecessary() {
+        String key = getSharedPreferences(getResources().getString(R.string.shared_pref_name),
+                Context.MODE_PRIVATE).getString(getResources()
+                .getString(R.string.authkey_address), "");
+
+        if (key.isEmpty() || !FakeAPISingleton.getAuthInstance().isKeyActive(key)) {
+            System.out.println("Problems with key: [" + key + "]");
+            openLoginActivity();
+        }
     }
 
     private void openLoginActivity() {
