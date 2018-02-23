@@ -21,4 +21,15 @@ extension String {
         
         return hash.map { String(format: "%02x", $0) }.joined()
     }
+    
+    func matches(pattern: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let range = NSMakeRange(0, self.count)
+            return regex.firstMatch(in: self, options: .withoutAnchoringBounds, range: range) != nil
+        } catch {
+            print("\(error.localizedDescription)")
+            return false
+        }
+    }
 }
