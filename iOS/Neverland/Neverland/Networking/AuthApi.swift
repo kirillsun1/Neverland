@@ -11,7 +11,7 @@ import Foundation
 
 protocol AuthApi {
     
-    func attemptLogin(withLogin login: String, password: String) -> AuthApiResponse
+    func attemptLogin(withLogin login: String, passwordHash: String) -> AuthApiResponse
     func registerAccount(withData data: RegistrationData) -> AuthApiResponse
     func isActive(token: String) -> Bool
 }

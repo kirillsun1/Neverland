@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class AuthViewController: UIViewController {
 
     let user = User.sharedInstance
-    var hasher: Hashable!
     let api = FakeAuthApi()
     
     @IBOutlet weak var stackViewWidthConstr: NSLayoutConstraint!
@@ -38,6 +38,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordField.delegate = self
+        userField.delegate = self
         
         setConstraints()
         NotificationCenter.default.addObserver(self,
@@ -67,21 +68,23 @@ class AuthViewController: UIViewController {
     }
     
     func sendAuthRequest(uname: String, pwd: String) {
-        // pwd to be hashed here !!!!
-        // let passwordHash = hasher.hash(pwd)
+        guard let hash = pwd.neverlandDefaultHash else {
+            fatalError("Could not create pwd hash")
+        }
         
-        let response = api.attemptLogin(withLogin: uname, password: pwd)
+        let response = api.attemptLogin(withLogin: uname, passwordHash: hash)
         switch response.code {
         case .Successful:
                 user.userName = uname
                 user.token = response.message
                 performSegue(withIdentifier: "LoginSegue", sender: nil)
         case .Error:
-                // TODO!!!!
-                print("Wrong data")
+                SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
         }
         
     }
+    
+    
     
     
     // TODO: Make this only happen by login screen text fields. Not NSNot. observer !!!!!
@@ -116,12 +119,12 @@ class AuthViewController: UIViewController {
 extension AuthViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        guard let uname = userField.text, let pwd = textField.text else {
+        guard let uname = userField.text, let pwd = textField.text, !uname.isEmpty, !pwd.isEmpty else {
             return false
         }
         
+        textField.resignFirstResponder()
         sendAuthRequest(uname: uname, pwd: pwd)
-        
         return true
     }
 }

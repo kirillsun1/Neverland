@@ -13,8 +13,8 @@ class FakeAuthApi: AuthApi {
     static var registeredUsers = [UserData]()
     static var activeKeys = ["BCD"]
     
-    func attemptLogin(withLogin login: String, password: String) -> AuthApiResponse {
-        if FakeAuthApi.registeredUsers.contains(where: {$0.login == login && $0.password == password}) {
+    func attemptLogin(withLogin login: String, passwordHash: String) -> AuthApiResponse {
+        if FakeAuthApi.registeredUsers.contains(where: {$0.login == login && $0.password == passwordHash}) {
             let key = generateKey()
             FakeAuthApi.activeKeys.append(key)
             print(FakeAuthApi.activeKeys)
@@ -30,7 +30,7 @@ class FakeAuthApi: AuthApi {
         }
         
         FakeAuthApi.registeredUsers.append(UserData(login: data.login, name: data.firstName, surname: data.secondName, email: data.email, password: data.password))
-        return attemptLogin(withLogin: data.login, password: data.password)
+        return attemptLogin(withLogin: data.login, passwordHash: data.password)
     }
     
     func isActive(token: String) -> Bool {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class RegistrerViewController: UIViewController {
 
@@ -24,7 +25,7 @@ class RegistrerViewController: UIViewController {
 
     }
     
-    // todo: button disabled design + alers
+    // todo: button disabled design + alerts
     // todo: make validation work !!!
     @IBAction func inputChanged() {
         registerBtn.isEnabled = isValid(loginLbl) &&
@@ -36,8 +37,13 @@ class RegistrerViewController: UIViewController {
     }
     
     @IBAction func registerPressed(_ sender: Any) {
+        dismissKeyboard()
+        guard let hash = pwdLabel.text!.neverlandDefaultHash else {
+            fatalError("Could not create hash of pwd while registering")
+        }
+        
         let response = FakeAuthApi().registerAccount(withData:
-            RegistrationData(login: loginLbl.text!, password: pwdLabel.text!,
+            RegistrationData(login: loginLbl.text!, password: hash,
                             firstName: nameLbl.text!, secondName: surnameLbl.text!,
                             email: emailLbl.text!)
         )
@@ -47,9 +53,19 @@ class RegistrerViewController: UIViewController {
             User.sharedInstance.userName = loginLbl.text!
             performSegue(withIdentifier: "LoginSegue", sender: nil)
         } else {
-            print("User taken")
+            SCLAlertView().showError("Registration error", subTitle: "Username is already taken.")
+
         }
         
+    }
+    
+    func dismissKeyboard() {
+        loginLbl.resignFirstResponder()
+        pwdLabel.resignFirstResponder()
+        nameLbl.resignFirstResponder()
+        surnameLbl.resignFirstResponder()
+        emailLbl.resignFirstResponder()
+
     }
     
     func isValid(_ field: UITextField) -> Bool {
