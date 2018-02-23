@@ -131,31 +131,46 @@
                                         <rect key="frame" x="0.0" y="0.0" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="1e8-2D-L2g"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b07-LN-yeM">
                                         <rect key="frame" x="0.0" y="34" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="2Yc-yj-8Od"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FIRST NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0C-cm-AF6">
                                         <rect key="frame" x="0.0" y="68" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="uO2-XO-oh6"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SECOND NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgI-hn-Mgd">
                                         <rect key="frame" x="0.0" y="102" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="family-name"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="zos-7v-spP"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-I9-Uia">
                                         <rect key="frame" x="0.0" y="136" width="213" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="cZu-8f-Re5"/>
+                                        </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-FM-lA8">
                                         <rect key="frame" x="0.0" y="170" width="200" height="30"/>
@@ -191,13 +206,16 @@
                                             <constraint firstItem="ZAx-yu-cwD" firstAttribute="top" secondItem="p4Y-FM-lA8" secondAttribute="top" id="WQg-7s-XOU"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drN-CD-GPi">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drN-CD-GPi">
                                         <rect key="frame" x="0.0" y="204" width="57" height="30"/>
                                         <state key="normal" title="Register">
                                             <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.38180803571428573" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <segue destination="x5B-nJ-RIU" kind="show" identifier="LoginSegue" id="wbc-V0-g16"/>
+                                            <action selector="registerPressed:" destination="JNM-jd-HMu" eventType="touchUpInside" id="xcr-gY-eCs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -233,6 +251,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9gq-Mh-5tw"/>
                     </view>
+                    <connections>
+                        <outlet property="agreementBtn" destination="G9E-kZ-dk1" id="3gw-7K-lSM"/>
+                        <outlet property="emailLbl" destination="e1x-I9-Uia" id="iAk-Fl-NKi"/>
+                        <outlet property="loginLbl" destination="G4x-A8-9TB" id="vwS-De-dCt"/>
+                        <outlet property="nameLbl" destination="B0C-cm-AF6" id="fwg-mu-Afz"/>
+                        <outlet property="pwdLabel" destination="b07-LN-yeM" id="ACB-1t-N2o"/>
+                        <outlet property="registerBtn" destination="drN-CD-GPi" id="lcf-5a-sm5"/>
+                        <outlet property="surnameLbl" destination="ZgI-hn-Mgd" id="WQJ-KN-GpB"/>
+                        <segue destination="x5B-nJ-RIU" kind="show" identifier="LoginSegue" id="XOr-Zs-oJc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYG-zR-ask" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,6 +271,6 @@
         <image name="logo_nograd" width="351" height="351"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nm4-hW-AoC"/>
+        <segue reference="XOr-Zs-oJc"/>
     </inferredMetricsTieBreakers>
 </document>
