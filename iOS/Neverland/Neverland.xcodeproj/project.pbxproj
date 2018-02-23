@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
+		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
 		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
 		176635F420388B19003D76A8 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176635F320388B19003D76A8 /* RoundedImage.swift */; };
 		176755452039FD0100490BEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755442039FD0100490BEB /* Checkbox.swift */; };
@@ -63,6 +64,7 @@
 		007368B7193B447D293D8F32 /* Pods-NeverlandTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.debug.xcconfig"; sourceTree = "<group>"; };
 		039967FE515E1539BA364656 /* Pods-NeverlandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.release.xcconfig"; sourceTree = "<group>"; };
 		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/Views/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
 		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176635F320388B19003D76A8 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		176755442039FD0100490BEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		17A56C19203464A500A4FC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				17579BDC20406177005F74B5 /* RegistrationField.swift */,
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
@@ -606,6 +609,7 @@
 				176635F420388B19003D76A8 /* RoundedImage.swift in Sources */,
 				176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */,
 				17CB3C4F203F7030006EF6D5 /* FakeAuthApi.swift in Sources */,
+				17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,

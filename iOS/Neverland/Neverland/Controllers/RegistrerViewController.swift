@@ -11,29 +11,36 @@ import SCLAlertView
 
 class RegistrerViewController: UIViewController {
 
-    @IBOutlet weak var loginLbl: UITextField!
-    @IBOutlet weak var pwdLabel: UITextField!
-    @IBOutlet weak var nameLbl: UITextField!
-    @IBOutlet weak var surnameLbl: UITextField!
-    @IBOutlet weak var emailLbl: UITextField!
+    @IBOutlet weak var loginLbl: RegistrationField!
+    @IBOutlet weak var pwdLabel: RegistrationField!
+    @IBOutlet weak var nameLbl: RegistrationField!
+    @IBOutlet weak var surnameLbl: RegistrationField!
+    @IBOutlet weak var emailLbl: RegistrationField!
+    
+    var textFields: [RegistrationField]!
+    
     @IBOutlet weak var agreementBtn: Checkbox!
     
     @IBOutlet weak var registerBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loginLbl.checkRegex = "^[a-zA-Z0-9]{4,12}$"
+        pwdLabel.checkRegex = "^[a-zA-Z0-9]{6,16}$"
+        nameLbl.checkRegex = "^\\w+$"
+        surnameLbl.checkRegex = "^\\w+$"
+        emailLbl.checkRegex = "^[^@]+@[^@]+\\.[a-zA-Z0-9]+$"
+        textFields = [loginLbl, pwdLabel, nameLbl, surnameLbl, emailLbl]
     }
     
-    // todo: button disabled design + alerts
-    // todo: make validation work !!!
     @IBAction func inputChanged() {
-        registerBtn.isEnabled = isValid(loginLbl) &&
-                                isValid(pwdLabel) &&
-                                isValid(nameLbl) &&
-                                isValid(surnameLbl) &&
-                                isValid(emailLbl) &&
-                                agreementBtn.isActive
+        var enabled = agreementBtn.isActive
+        for tf in textFields {
+            if !tf.isValid {
+                enabled = false
+            }
+        }
+        registerBtn.isEnabled = enabled
     }
     
     @IBAction func registerPressed(_ sender: Any) {
@@ -60,16 +67,9 @@ class RegistrerViewController: UIViewController {
     }
     
     func dismissKeyboard() {
-        loginLbl.resignFirstResponder()
-        pwdLabel.resignFirstResponder()
-        nameLbl.resignFirstResponder()
-        surnameLbl.resignFirstResponder()
-        emailLbl.resignFirstResponder()
-
-    }
-    
-    func isValid(_ field: UITextField) -> Bool {
-        return field.text != nil && !field.text!.isEmpty
+        textFields.forEach {
+            $0.resignFirstResponder()
+        }
     }
 
     @IBAction func regCancelled() {
