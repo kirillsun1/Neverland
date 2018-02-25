@@ -11,25 +11,23 @@ import Foundation
 class User {
     static let sharedInstance = User()
     let userDefaults: UserDefaults!
-    let apiAdapter: ApiAdapter!
     
     private init() {
         userDefaults = UserDefaults()
-        apiAdapter = ApiAdapter(forApi: MockedApi())
     }
     
     var userName: String? {
         get { return userDefaults.string(forKey: "username") }
         set { userDefaults.set(newValue, forKey: "username") }
     }
-    
-    var password: String? {
-        get { return userDefaults.string(forKey: "password") }
-        set { userDefaults.set(newValue, forKey: "password") }
+
+    var token: String? {
+        get { return userDefaults.string(forKey: "token") }
+        set { userDefaults.set(newValue, forKey: "token") }
     }
     
     func logout() {
         userName = nil
-        password = nil
+        token = nil
     }
 }

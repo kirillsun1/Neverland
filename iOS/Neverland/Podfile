@@ -7,6 +7,8 @@ target 'Neverland' do
 
   # Pods for Neverland
   pod 'DropDown'
+  pod 'SCLAlertView'
+  pod 'CommonCryptoModule', '~> 1.0.1'
 
   target 'NeverlandTests' do
     inherit! :search_paths

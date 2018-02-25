@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class AuthViewController: UIViewController {
 
     let user = User.sharedInstance
-    let apiAdapter = ApiAdapter(forApi: MockedApi())
-    var hasher: Hasher!
+    let api = FakeAuthApi()
     
     @IBOutlet weak var stackViewWidthConstr: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeightConstr: NSLayoutConstraint!
@@ -38,6 +38,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordField.delegate = self
+        userField.delegate = self
         
         setConstraints()
         NotificationCenter.default.addObserver(self,
@@ -48,8 +49,11 @@ class AuthViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let uname = user.userName, let pwd = user.password {
-            sendAuthRequest(uname: uname, pwd: pwd)
+        if let uname = user.userName, let token = user.token {
+            userField.text = uname
+            if api.isActive(token: token) {
+                performSegue(withIdentifier: "LoginSegue", sender: nil)
+            }
         }
     }
     
@@ -62,24 +66,25 @@ class AuthViewController: UIViewController {
         let imgNormalSize = stackViewHeightConstr.constant / 2.5
         imgSizes = (imgNormalSize * 0.75, imgNormalSize)
     }
-
     
     func sendAuthRequest(uname: String, pwd: String) {
-        // pwd to be hashed here !!!!
-        // let passwordHash = hasher.hash(pwd)
+        guard let hash = pwd.neverlandDefaultHash else {
+            fatalError("Could not create pwd hash")
+        }
         
-        // cases:
-        // username does not exist -> alert
-        // ....
-        // password is incorrect -> alert
-        // ....
-        // ok -> update User class instance. Proceed further ...
-        user.userName = uname
-        user.password = pwd
-        
-        performSegue(withIdentifier: "LoginSegue", sender: nil)
+        let response = api.attemptLogin(withLogin: uname, passwordHash: hash)
+        switch response.code {
+        case .Successful:
+                user.userName = uname
+                user.token = response.message
+                performSegue(withIdentifier: "LoginSegue", sender: nil)
+        case .Error:
+                SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
+        }
         
     }
+    
+    
     
     
     // TODO: Make this only happen by login screen text fields. Not NSNot. observer !!!!!
@@ -89,11 +94,7 @@ class AuthViewController: UIViewController {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             let endFrameY = endFrame?.origin.y ?? 0
             let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            //
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            //
+            
             if endFrameY >= UIScreen.main.bounds.size.height {
                 self.stackViewBotomOffsetConstr.constant = defaultVerticalConstr
                 logoHeightConstr.constant = imgSizes.1
@@ -105,7 +106,7 @@ class AuthViewController: UIViewController {
             }
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
-                           options: animationCurve,
+                           options: .curveEaseIn,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }
@@ -118,12 +119,12 @@ class AuthViewController: UIViewController {
 extension AuthViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        guard let uname = userField.text, let pwd = textField.text else {
+        guard let uname = userField.text, let pwd = textField.text, !uname.isEmpty, !pwd.isEmpty else {
             return false
         }
         
+        textField.resignFirstResponder()
         sendAuthRequest(uname: uname, pwd: pwd)
-        
         return true
     }
 }

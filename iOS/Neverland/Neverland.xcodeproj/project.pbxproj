@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
+		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
 		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
 		176635F420388B19003D76A8 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176635F320388B19003D76A8 /* RoundedImage.swift */; };
 		176755452039FD0100490BEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755442039FD0100490BEB /* Checkbox.swift */; };
@@ -24,15 +25,17 @@
 		17A56BF42034640A00A4FC72 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF22034640A00A4FC72 /* Auth.storyboard */; };
 		17A56BFF2034640B00A4FC72 /* NeverlandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BFE2034640B00A4FC72 /* NeverlandTests.swift */; };
 		17A56C0A2034640B00A4FC72 /* NeverlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56C092034640B00A4FC72 /* NeverlandUITests.swift */; };
+		17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ADF27720402FCE0061BA47 /* String+Extension.swift */; };
+		17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4A203F6D92006EF6D5 /* RegistrationData.swift */; };
+		17CB3C4D203F6F0B006EF6D5 /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */; };
+		17CB3C4F203F7030006EF6D5 /* FakeAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */; };
+		17CB3C51203F70AC006EF6D5 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C50203F70AC006EF6D5 /* UserData.swift */; };
+		17CB3C53203F7203006EF6D5 /* AuthApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C52203F7203006EF6D5 /* AuthApiResponse.swift */; };
 		17E15A872038282000027634 /* NewQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A862038282000027634 /* NewQuestViewController.swift */; };
 		17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A88203828B500027634 /* QuestDetailedViewController.swift */; };
 		17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A8A20382A2500027634 /* QuestInfoCell.swift */; };
 		17FB6953203DF88E008F9057 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6952203DF88E008F9057 /* User.swift */; };
-		17FB6955203DFA2B008F9057 /* ApiAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6954203DFA2B008F9057 /* ApiAdapter.swift */; };
-		17FB6957203DFA6D008F9057 /* ApiConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6956203DFA6D008F9057 /* ApiConnector.swift */; };
-		17FB6959203DFACA008F9057 /* MockedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6958203DFACA008F9057 /* MockedApi.swift */; };
 		17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */; };
-		17FB695E203E0A6F008F9057 /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695D203E0A6F008F9057 /* Hasher.swift */; };
 		17FD829720374139004A33E7 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829620374139004A33E7 /* FeedCell.swift */; };
 		17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829920375FB5004A33E7 /* QuestCell.swift */; };
 		C013047877C178077CE31EE2 /* Pods_NeverlandTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6AC89EC62EB04AA7731387 /* Pods_NeverlandTests.framework */; };
@@ -61,6 +64,7 @@
 		007368B7193B447D293D8F32 /* Pods-NeverlandTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.debug.xcconfig"; sourceTree = "<group>"; };
 		039967FE515E1539BA364656 /* Pods-NeverlandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverlandTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverlandTests/Pods-NeverlandTests.release.xcconfig"; sourceTree = "<group>"; };
 		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/Views/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
 		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176635F320388B19003D76A8 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		176755442039FD0100490BEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -83,15 +87,17 @@
 		17A56C052034640B00A4FC72 /* NeverlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56C092034640B00A4FC72 /* NeverlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverlandUITests.swift; sourceTree = "<group>"; };
 		17A56C0B2034640B00A4FC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17ADF27720402FCE0061BA47 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		17CB3C4A203F6D92006EF6D5 /* RegistrationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
+		17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
+		17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthApi.swift; sourceTree = "<group>"; };
+		17CB3C50203F70AC006EF6D5 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		17CB3C52203F7203006EF6D5 /* AuthApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApiResponse.swift; sourceTree = "<group>"; };
 		17E15A862038282000027634 /* NewQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestViewController.swift; sourceTree = "<group>"; };
 		17E15A88203828B500027634 /* QuestDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailedViewController.swift; sourceTree = "<group>"; };
 		17E15A8A20382A2500027634 /* QuestInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoCell.swift; sourceTree = "<group>"; };
 		17FB6952203DF88E008F9057 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		17FB6954203DFA2B008F9057 /* ApiAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAdapter.swift; sourceTree = "<group>"; };
-		17FB6956203DFA6D008F9057 /* ApiConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnector.swift; sourceTree = "<group>"; };
-		17FB6958203DFACA008F9057 /* MockedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedApi.swift; sourceTree = "<group>"; };
 		17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		17FB695D203E0A6F008F9057 /* Hasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
 		17FD829620374139004A33E7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		17FD829920375FB5004A33E7 /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
 		809EDFEEEC5376C0CE79D22A /* Pods-Neverland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neverland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neverland/Pods-Neverland.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,7 +140,6 @@
 		176E63232035BEE200DCAC3F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				17FB695D203E0A6F008F9057 /* Hasher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -199,6 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				17FB6952203DF88E008F9057 /* User.swift */,
+				17CB3C4A203F6D92006EF6D5 /* RegistrationData.swift */,
+				17CB3C50203F70AC006EF6D5 /* UserData.swift */,
+				17CB3C52203F7203006EF6D5 /* AuthApiResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 		17A56C19203464A500A4FC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				17579BDC20406177005F74B5 /* RegistrationField.swift */,
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
@@ -234,9 +243,8 @@
 		17A56C1B203464AF00A4FC72 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				17FB6954203DFA2B008F9057 /* ApiAdapter.swift */,
-				17FB6956203DFA6D008F9057 /* ApiConnector.swift */,
-				17FB6958203DFACA008F9057 /* MockedApi.swift */,
+				17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */,
+				17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */,
+				17ADF27720402FCE0061BA47 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -582,28 +591,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17FB695E203E0A6F008F9057 /* Hasher.swift in Sources */,
+				17CB3C4D203F6F0B006EF6D5 /* AuthApi.swift in Sources */,
 				17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */,
+				17CB3C53203F7203006EF6D5 /* AuthApiResponse.swift in Sources */,
 				17E15A872038282000027634 /* NewQuestViewController.swift in Sources */,
 				176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */,
 				176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */,
 				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
+				17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */,
 				17FD829720374139004A33E7 /* FeedCell.swift in Sources */,
 				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
 				1754BA9720378E91008B2C44 /* CardView.swift in Sources */,
 				17FB6953203DF88E008F9057 /* User.swift in Sources */,
 				176E63192035BE4B00DCAC3F /* ProfileViewController.swift in Sources */,
-				17FB6957203DFA6D008F9057 /* ApiConnector.swift in Sources */,
+				17CB3C51203F70AC006EF6D5 /* UserData.swift in Sources */,
 				17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */,
-				17FB6959203DFACA008F9057 /* MockedApi.swift in Sources */,
-				17FB6955203DFA2B008F9057 /* ApiAdapter.swift in Sources */,
 				176635F420388B19003D76A8 /* RoundedImage.swift in Sources */,
 				176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */,
+				17CB3C4F203F7030006EF6D5 /* FakeAuthApi.swift in Sources */,
+				17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,
 				176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */,
 				176755452039FD0100490BEB /* Checkbox.swift in Sources */,
+				17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

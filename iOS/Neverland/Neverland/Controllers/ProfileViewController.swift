@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         print(User.sharedInstance.userName)
-        print(User.sharedInstance.password)
+        //print(User.sharedInstance.password)
 
         // Do any additional setup after loading the view.
         let width = (view.frame.size.width - 30) / 3
