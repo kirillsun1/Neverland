@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -50,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-//    public void setKeys(Set<Key> keys) {
-//        this.keys = keys;
-//    }
+    public void setKeys(Set<Key> keys) {
+        this.keys = keys;
+    }
 }

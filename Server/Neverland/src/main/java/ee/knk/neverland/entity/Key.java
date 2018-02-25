@@ -11,18 +11,18 @@ public class Key {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_fk", nullable = false)
     private User user;
 
     @Column(name = "key_value", nullable = false)
     private String keyValue;
 
-    public long getUserId() {
-        return user.getId();
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {
