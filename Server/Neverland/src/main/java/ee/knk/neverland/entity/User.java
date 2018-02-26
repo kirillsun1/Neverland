@@ -2,11 +2,18 @@ package ee.knk.neverland.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
+
+    public User(String name, String password, String email) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+    }
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -20,8 +27,11 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "e-mail")
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "reg_time")
+    private LocalDateTime registerTime = LocalDateTime.now();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Key> keys;
@@ -56,5 +66,9 @@ public class User {
 
     public void setKeys(Set<Key> keys) {
         this.keys = keys;
+    }
+
+    public LocalDateTime getRegisterTime() {
+        return registerTime;
     }
 }
