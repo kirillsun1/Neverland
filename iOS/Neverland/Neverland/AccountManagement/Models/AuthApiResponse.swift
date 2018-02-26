@@ -10,13 +10,9 @@ import Foundation
 
 // todo: think about it !!
 
-enum ResponseCode: Int {
-    case Successful = 200
-    case Error = 400
-}
-
-struct AuthApiResponse {
+struct AuthApiResponse: ApiResponse {
     
     let code: ResponseCode
     let message: String?
+
 }

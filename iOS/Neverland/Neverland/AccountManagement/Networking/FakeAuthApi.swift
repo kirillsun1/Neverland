@@ -13,24 +13,26 @@ class FakeAuthApi: AuthApi {
     static var registeredUsers = [UserData]()
     static var activeKeys = ["BCD"]
     
-    func attemptLogin(withLogin login: String, passwordHash: String) -> AuthApiResponse {
+    func attemptLogin(withLogin login: String, passwordHash: String, onComplete: (AuthApiResponse) -> ()) {
         if FakeAuthApi.registeredUsers.contains(where: {$0.login == login && $0.password == passwordHash}) {
             let key = generateKey()
             FakeAuthApi.activeKeys.append(key)
             print(FakeAuthApi.activeKeys)
-            return AuthApiResponse(code: .Successful, message: key)
+            onComplete(AuthApiResponse(code: .Successful, message: key))
+            return
         }
         
-        return AuthApiResponse(code: .Error, message: "Invalid Data")
+        onComplete(AuthApiResponse(code: .Error, message: "Invalid Data"))
     }
     
-    func registerAccount(withData data: RegistrationData) -> AuthApiResponse {
+    func registerAccount(withData data: RegistrationData, onComplete: (AuthApiResponse) -> ()) {
         if FakeAuthApi.registeredUsers.contains(where: {$0.login == data.login}) {
-            return AuthApiResponse(code: .Error, message: nil)
+            onComplete(AuthApiResponse(code: .Error, message: nil))
+            return
         }
         
         FakeAuthApi.registeredUsers.append(UserData(login: data.login, name: data.firstName, surname: data.secondName, email: data.email, password: data.password))
-        return attemptLogin(withLogin: data.login, passwordHash: data.password)
+        attemptLogin(withLogin: data.login, passwordHash: data.password, onComplete: onComplete)
     }
     
     func isActive(token: String) -> Bool {

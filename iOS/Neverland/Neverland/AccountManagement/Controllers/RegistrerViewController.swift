@@ -49,19 +49,18 @@ class RegistrerViewController: UIViewController {
             fatalError("Could not create hash of pwd while registering")
         }
         
-        let response = FakeAuthApi().registerAccount(withData:
-            RegistrationData(login: loginLbl.text!, password: hash,
-                            firstName: nameLbl.text!, secondName: surnameLbl.text!,
-                            email: emailLbl.text!)
-        )
+        let rData = RegistrationData(login: loginLbl.text!,
+                                     password: hash, firstName: nameLbl.text!,
+                                     secondName: surnameLbl.text!, email: emailLbl.text!)
         
-        if response.code == .Successful {
-            User.sharedInstance.token = response.message
-            User.sharedInstance.userName = loginLbl.text!
-            performSegue(withIdentifier: "LoginSegue", sender: nil)
-        } else {
-            SCLAlertView().showError("Registration error", subTitle: "Username is already taken.")
-
+        FakeAuthApi().registerAccount(withData:rData) { response in
+            if response.code == .Successful {
+                User.sharedInstance.token = response.message
+                User.sharedInstance.userName = loginLbl.text!
+                performSegue(withIdentifier: "LoginSegue", sender: nil)
+            } else {
+                SCLAlertView().showError("Registration error", subTitle: "Username is already taken.")
+            }
         }
         
     }

@@ -15,8 +15,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(User.sharedInstance.userName)
-        //print(User.sharedInstance.password)
+        self.navigationItem.title = User.sharedInstance.userName!
 
         // Do any additional setup after loading the view.
         let width = (view.frame.size.width - 30) / 3
