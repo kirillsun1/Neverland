@@ -41,20 +41,21 @@ class AuthViewController: UIViewController {
         userField.delegate = self
         
         setConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         if let uname = user.userName, let token = user.token {
             userField.text = uname
             if api.isActive(token: token) {
                 performSegue(withIdentifier: "LoginSegue", sender: nil)
             }
         }
+        
     }
     
     func setConstraints() {
@@ -72,23 +73,18 @@ class AuthViewController: UIViewController {
             fatalError("Could not create pwd hash")
         }
         
-        let response = api.attemptLogin(withLogin: uname, passwordHash: hash)
-        switch response.code {
-        case .Successful:
-                user.userName = uname
-                user.token = response.message
-                performSegue(withIdentifier: "LoginSegue", sender: nil)
-        case .Error:
-                SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
+        api.attemptLogin(withLogin: uname, passwordHash: hash) { response in
+            switch response.code {
+            case .Successful:
+                    user.userName = uname
+                    user.token = response.message
+                    performSegue(withIdentifier: "LoginSegue", sender: nil)
+            case .Error:
+                    SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
+            }
         }
-        
     }
     
-    
-    
-    
-    // TODO: Make this only happen by login screen text fields. Not NSNot. observer !!!!!
-    // taken from stackoverflow + updated
     @objc func keyboardNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
@@ -110,6 +106,10 @@ class AuthViewController: UIViewController {
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        NotificationCenter.default.removeObserver(self)
     }
 
 
