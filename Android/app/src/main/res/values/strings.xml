@@ -28,5 +28,6 @@
 
     <string name="shared_pref_name">neverlandPreference</string>
     <string name="authkey_address">authKey</string>
+    <string name="authlogin_address">authLogin</string>
 
 </resources>

@@ -31,7 +31,7 @@
                 android:layout_height="40dp"
                 android:visibility="visible"
                 app:inputBoxFontColor="@color/colorPrimaryDark"
-                app:inputBoxIcon="@android:drawable/ic_menu_search" />
+                app:inputBoxIcon="@drawable/search_icon_24dp" />
 
         </android.support.v7.widget.Toolbar>
 

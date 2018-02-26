@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import knk.ee.neverland.R;
-import knk.ee.neverland.api.RegistrationData;
+import knk.ee.neverland.api.DefaultAPI;
+import knk.ee.neverland.pojos.RegistrationData;
 import knk.ee.neverland.exceptions.LoginFailedException;
 import knk.ee.neverland.exceptions.RegistrationFailedException;
-import knk.ee.neverland.fakeapi.FakeAPISingleton;
 
 public class RegistrationActivity extends AppCompatActivity {
     public static final int SUCCESSFUL_REGISTRATION = 1;
@@ -62,11 +62,11 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void register(RegistrationData registrationData) throws RegistrationFailedException {
-        FakeAPISingleton.getAuthInstance().registerAccount(registrationData);
+        DefaultAPI.getAuthAPIInstance().registerAccount(registrationData);
     }
 
     private String login(String login, String pass) throws LoginFailedException {
-        return FakeAPISingleton.getAuthInstance().attemptLogin(login, pass);
+        return DefaultAPI.getAuthAPIInstance().attemptLogin(login, pass);
     }
 
     private void showFailMessage(String message) {

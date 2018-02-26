@@ -21,8 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import knk.ee.neverland.R;
+import knk.ee.neverland.api.DefaultAPI;
 import knk.ee.neverland.exceptions.LoginFailedException;
-import knk.ee.neverland.fakeapi.FakeAPISingleton;
 
 public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
@@ -80,7 +80,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RegistrationActivity.SUCCESSFUL_REGISTRATION) {
             String key = data.getStringExtra("key");
-            replaceKeyInSystem(key);
+            String login = data.getStringExtra("login");
+            saveUserdataToTheSystemSettings(login, key);
             finish();
         }
     }
@@ -178,12 +179,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void replaceKeyInSystem(String key) {
+    private void saveUserdataToTheSystemSettings(String login, String key) {
         SharedPreferences sharedPreferences =
                 getSharedPreferences(getResources().getString(R.string.shared_pref_name),
                         Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getResources().getString(R.string.authkey_address), key);
+        editor.putString(getResources().getString(R.string.authlogin_address), login);
         editor.apply();
     }
 
@@ -204,7 +206,8 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                replaceKeyInSystem(FakeAPISingleton.getAuthInstance().attemptLogin(mLogin, mPassword));
+                saveUserdataToTheSystemSettings(mLogin,
+                        DefaultAPI.getAuthAPIInstance().attemptLogin(mLogin, mPassword));
                 return true;
             } catch (LoginFailedException e) {
                 return false;

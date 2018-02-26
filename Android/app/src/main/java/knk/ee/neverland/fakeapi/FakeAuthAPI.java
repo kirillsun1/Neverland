@@ -1,10 +1,13 @@
 package knk.ee.neverland.fakeapi;
 
+import com.google.common.hash.Hashing;
+
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 import knk.ee.neverland.api.AuthAPI;
-import knk.ee.neverland.api.RegistrationData;
+import knk.ee.neverland.pojos.RegistrationData;
 import knk.ee.neverland.exceptions.LoginFailedException;
 import knk.ee.neverland.exceptions.RegistrationFailedException;
 
@@ -12,7 +15,7 @@ public class FakeAuthAPI implements AuthAPI {
     private List<User> registeredUsers = new ArrayList<>();
     private List<String> workingKeys = new ArrayList<>();
 
-    FakeAuthAPI() {
+    public FakeAuthAPI() {
         workingKeys.add("ABC");
     }
 
@@ -68,11 +71,10 @@ public class FakeAuthAPI implements AuthAPI {
     }
 
     private String generateKey(User user) {
-        /*String line = String.format("[%s==%s]", user.login, user.password);
+        String line = String.format("[%s==%s]", user.login, user.password);
         return Hashing.sha256()
                 .hashString(line, StandardCharsets.UTF_8)
-                .toString();*/
-        return "ABC";
+                .toString();
     }
 
     private boolean loginIsCorrect(String login) {
@@ -88,7 +90,7 @@ public class FakeAuthAPI implements AuthAPI {
     }
 
     private boolean nameIsCorrect(String name) {
-        return name.matches("^[a-z ,.'-]+$");
+        return name.matches("^[A-Za-z ,.'-]+$");
     }
 
     private class User {

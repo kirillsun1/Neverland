@@ -2,6 +2,7 @@ package knk.ee.neverland.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +15,7 @@ import android.view.MenuItem;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import knk.ee.neverland.R;
-import knk.ee.neverland.fakeapi.FakeAPISingleton;
+import knk.ee.neverland.api.DefaultAPI;
 import knk.ee.neverland.fragments.FeedFragment;
 import knk.ee.neverland.fragments.GroupsFragment;
 import knk.ee.neverland.fragments.ProfileFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeBottomNavigationBar();
+        getAndSetAPIUserdata();
         openLoginActivityIfNecessary();
     }
 
@@ -77,13 +79,19 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void openLoginActivityIfNecessary() {
-        String key = getSharedPreferences(getResources().getString(R.string.shared_pref_name),
-                Context.MODE_PRIVATE).getString(getResources()
-                .getString(R.string.authkey_address), "");
+    private void getAndSetAPIUserdata() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getResources()
+                .getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
 
-        if (key.isEmpty() || !FakeAPISingleton.getAuthInstance().isKeyActive(key)) {
-            System.out.println("Problems with key: [" + key + "]");
+        String login = sharedPreferences.getString(getResources().getString(R.string.authkey_address), "");
+        ;
+        String key = sharedPreferences.getString(getResources().getString(R.string.authkey_address), "");
+
+        DefaultAPI.setUserData(login, key);
+    }
+
+    private void openLoginActivityIfNecessary() {
+        if (!DefaultAPI.isKeySet()) {
             openLoginActivity();
         }
     }

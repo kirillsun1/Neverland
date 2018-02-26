@@ -1,4 +1,4 @@
-package knk.ee.neverland.api;
+package knk.ee.neverland.pojos;
 
 public class RegistrationData {
     private String login;
