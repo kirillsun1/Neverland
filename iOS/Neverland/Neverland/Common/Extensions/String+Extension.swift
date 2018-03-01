@@ -14,8 +14,8 @@ extension String {
         guard let data = self.data(using: String.Encoding.utf8) else { return nil }
         
         let hash = data.withUnsafeBytes { (bytes: UnsafePointer<Data>) -> [UInt8] in
-            var hash: [UInt8] = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-            CC_SHA1(bytes, CC_LONG(data.count), &hash)
+            var hash: [UInt8] = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+            CC_SHA256(bytes, CC_LONG(data.count), &hash)
             return hash
         }
         
