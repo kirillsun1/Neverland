@@ -7,132 +7,185 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002B2A0787C614634B8B7513AC1A1EAE /* CommonCryptoBridge.h in Resources */ = {isa = PBXBuildFile; fileRef = 5BDACD20DE3E31FFEF74290323BB9AF9 /* CommonCryptoBridge.h */; };
-		02CAE638EF1CEEBD6F5740498F9CA3F8 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E6CD75CC6D16B046975C1834E7CE8 /* DropDown.swift */; };
-		098F056D90AF9CD3FD60D8A81DF043B6 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A51C45D44FED1BD78E7274431CA6F5 /* DropDownCell.swift */; };
+		002B2A0787C614634B8B7513AC1A1EAE /* CommonCryptoBridge.h in Resources */ = {isa = PBXBuildFile; fileRef = 94F3232AFF7CFE8366C4EF9F57822427 /* CommonCryptoBridge.h */; };
+		02CAE638EF1CEEBD6F5740498F9CA3F8 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F311991B3068CB7E72A81ACDC24FD0E /* DropDown.swift */; };
+		098F056D90AF9CD3FD60D8A81DF043B6 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29894962412D69EC893A03DAB7C6C0B1 /* DropDownCell.swift */; };
+		0C3C1C315E257BB3B529C002E2AFC969 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0B6C9B29144DBC9E05F7E6E2F7FD10 /* PopupDialog.swift */; };
+		19CA4D0BEB680A63F31B3014062147BB /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5649BC7A712C2A25523BD5AB4D45BF /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AC058F2C22CB0ACB3DC1704D64F9A22 /* Pods-NeverlandUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B49A67F98CCD4BF6CD3188BA6F8E80 /* Pods-NeverlandUITests-dummy.m */; };
-		2556FE4F8D0B0DD4E7F7A78466D1F204 /* module.modulemap in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C515C9C38EAD064835C39CBD89D09 /* module.modulemap */; };
-		2E7E74DF0C455B0BC43BFDD1D0163E64 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C1867B77F2963C3472231819388096DB /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C73CA869DE18FF1C45CB01DE30DB6F8 /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0148E66D6F6A93B7ED194397D274CF /* PopupDialogDefaultViewController.swift */; };
+		201CEA5A9950F1CD12886A5B48D91A0F /* SCLAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E07453BC81C3B7BED70A9E2FFB7B7D /* SCLAlertView-dummy.m */; };
+		2556FE4F8D0B0DD4E7F7A78466D1F204 /* module.modulemap in Resources */ = {isa = PBXBuildFile; fileRef = 054283168360800FB9063A31D762BBB4 /* module.modulemap */; };
+		2C34DF935B7D0B2DFB1305082B78E238 /* Pods-Neverland-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D9A5A3340B8647C275B61E6A3346935 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7BFCA54A7004669E96DDCCE31AC0E8 /* PopupDialogButton.swift */; };
+		2E7E74DF0C455B0BC43BFDD1D0163E64 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E21DC93F6B319F5CD959124237A35611 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E9CD6F441E6B30601549781F5DB2D12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		37C293AEA575D6E5186739D1B07805F2 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52DCA18EA36A317399632FFE18DD70A9 /* DropDownCell.xib */; };
-		3C14F3BC1E4D5191A586F79097CC7F7A /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F39DB4F168243FBC7C1FBD5125711B /* Empty.swift */; };
+		355A999BA3E6F6FD9DA66B5E6B264593 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD87625E82588EDC6A99903993B9E3D /* PopupDialog-dummy.m */; };
+		37C293AEA575D6E5186739D1B07805F2 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C940492D144AAD69391702ED43E47A4D /* DropDownCell.xib */; };
+		3C14F3BC1E4D5191A586F79097CC7F7A /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4FFB9C0F6A46E435C1CDF4551FE6BF /* Empty.swift */; };
 		3FA0B886B79777E35717E2A85F0AA7DA /* Pods-NeverlandTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF428276A92ACAF8EF410F8F4E6DF53 /* Pods-NeverlandTests-dummy.m */; };
-		442ADADA3215E1E5CA1557E708D4228C /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0990888B1B61F92718C62A94736A5B /* DropDown+Appearance.swift */; };
-		46D37CFBC5F713734870993F8E793725 /* CommonCryptoModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4B18794935049A3687CC59448E8A27 /* CommonCryptoModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4AA22A630ACECD527112741D0BDFF9A9 /* SCLAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 258CD3A41B0C86CFCB62BEEA8F6186F3 /* SCLAlertView-dummy.m */; };
-		5F5BEF5DCFD7CCB00A8AD0E5EE304529 /* SCLAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BCA536446E6B2008EE9B5B5CC980EC5 /* SCLAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9882DCBCA74AF213EBAFD02823449A2F /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961C261FCF5D843B6650CE641E35C6EA /* SCLAlertView.swift */; };
+		4202CDA23829ABA3E1EA33550108D478 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B614346C3B7B7CF163E6C9AA5ECFACD1 /* SCLExtensions.swift */; };
+		442ADADA3215E1E5CA1557E708D4228C /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C51E32EEEAD43CD976A02045036294D /* DropDown+Appearance.swift */; };
+		46D37CFBC5F713734870993F8E793725 /* CommonCryptoModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5CD9DCA0D644F60F45CB48057B13E8 /* CommonCryptoModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4715ABA5EEC111768D729AD5AD5AA7A9 /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D1F26CD4B827624D942A880493332FE /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4AA75ACCF7C60DBCA115EE478D469AD8 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231479E5BD9B4D579A36F7A059602A7 /* PopupDialogOverlayView.swift */; };
+		509B69957990F1D0F2D1A126B6FD368C /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE65F0EE82133C9DB2A8C0B5684CF712 /* PopupDialog+Keyboard.swift */; };
+		5169FF61EF129332C7E13379E2FE7369 /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FCD4C2418DCF2DD1008CC30948208 /* PopupDialogDefaultView.swift */; };
+		55E8D03E58CFD51AC1C90E455803E0A4 /* Pods-Neverland-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */; };
+		580EC4E3A36B853B157DF6068DD13C99 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF47314EDFB908EAEB188A3AE542EF00 /* PopupDialogContainerView.swift */; };
+		6DF1540963EE299018F9AA68DED0C93B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		73850588803B129754C292B8A3F44383 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01051B54F543DE09AEF8E78EC04C1521 /* PopupDialogDefaultButtons.swift */; };
+		771834944E4A80560CE1DF3C812527A8 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EAB9EA46EC9B93A7677A11462E842 /* FXBlurView.m */; };
+		8258A9FD431F577A2FE528A11FDA3183 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67E6F41709ECD49F5C1CF3C66BB84A /* UIImageView+Calculations.swift */; };
 		99B0EBCEE1711EFC491ED3424F55990E /* Pods-NeverlandTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 632F4248A0F4FAB79C0B19D50A3446B3 /* Pods-NeverlandTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D0221E27E37CDA9DF26DD3CFA56D75B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B509A0D38BD66135B5C67A55272A3 /* DPDKeyboardListener.swift */; };
-		9D7F0BD1417BF4E8DDFA7706990B5B63 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E9B281F2D25ECC9CC019553EAD947 /* SCLExtensions.swift */; };
-		9EC3C30F3BEFCC596E2D18CC79E89FB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		A2573B56B98F9CBF26DA1235D8A9BEA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		A401CF18D15DF246F40FAC4E8F06CBC7 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362742DEE4A2CB09B0309520B339F91 /* DPDUIView+Extension.swift */; };
-		A812E7811821F66B3B7499F6F1B513BA /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6BB7CBC568CEF4C410D665E2C980D /* DPDConstants.swift */; };
-		AC6581D9387744158B44BE683403C3BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 227C5530AB506E0FE27F62CCDA25C379 /* DropDown-dummy.m */; };
+		9CD6D0EDA16B72E6B6C767FDD1A04A63 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DB56A8B131D07EFDCEEBB4D0452F69 /* TransitionAnimator.swift */; };
+		9D0221E27E37CDA9DF26DD3CFA56D75B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73205B2AED136DB661673ADD022F6AA8 /* DPDKeyboardListener.swift */; };
+		9D097E046018024884A5CE8A2A00F5EA /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530B79FDA3D80800E4DCDB00B2186C8 /* SCLAlertView.swift */; };
+		A0B932AA7EB7A6939D8F82E6777C4BF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		A401CF18D15DF246F40FAC4E8F06CBC7 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44740418EE96C746574F784B81E82E2E /* DPDUIView+Extension.swift */; };
+		A812E7811821F66B3B7499F6F1B513BA /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6F59035C71352A6E0D6267995B530 /* DPDConstants.swift */; };
+		AC6581D9387744158B44BE683403C3BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A05F2E9FC996343878FDF8B88DB500F6 /* DropDown-dummy.m */; };
+		B4F4FA05D4D1EECD53DD4E93C14F6921 /* SCLAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 301E3EEFE39E9B0B186F0E45E8F51976 /* SCLAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6210381116AC81347DEFE02B4E09870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		B8198D2A2D313FBE68CDC852E5995AF6 /* Pods-Neverland-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7311197B0AA3038DDAEE61AC258E502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		C8AB3F99DE42D8744E7275037EE1F10E /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA284D5D1373C7386847387FA01970 /* UIView+Animations.swift */; };
+		D7FDF04F86C31A83AE08782781BA2DB6 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFCDB66479DC0AB60B8D59866485F37 /* TransitionAnimations.swift */; };
+		DBE20EB92C5ADDFA8D79DD71C6BBF140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		DEFC827F22751E16A49F2EEB16624BA1 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DB1B58B32909C53F94C686DFF3757 /* PresentationController.swift */; };
 		DFD6EAE25BC2ED46FA9630473565E3C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		E7A85FAEB370524A175C1E303C92456B /* Pods-Neverland-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */; };
-		EB6AAD0E3416E18F22F1835A15CC4A02 /* CommonCryptoModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B97E4EBB295985077EF8403C6CA69F0 /* CommonCryptoModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F041FD0A473A640D4B31604B71C6F201 /* CommonCryptoModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2CC1A2E94B303D91071AD35D38D0F5 /* CommonCryptoModule-dummy.m */; };
+		EB6AAD0E3416E18F22F1835A15CC4A02 /* CommonCryptoModule.h in Headers */ = {isa = PBXBuildFile; fileRef = E696FF11952710C8A434B36D1405C8DB /* CommonCryptoModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F041FD0A473A640D4B31604B71C6F201 /* CommonCryptoModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B929E0303959A8363B1B0E280D07A856 /* CommonCryptoModule-dummy.m */; };
 		F1FE71747A564B16CCD53E8A70033A4E /* Pods-NeverlandUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 339C6CCCA411410E30C9CAAC0006CD8B /* Pods-NeverlandUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE6658EA447A3991F74C7BCE769EE688 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AD8C894150B7300739F755C39B951 /* InteractiveTransition.swift */; };
+		FEDDC98E4F331A15B48E342E5897D98E /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75242B01707E45DFA5E8DCCDBABB990 /* UIViewController+Visibility.swift */; };
+		FF1B5DA880451AF1C6D72739AD9014DE /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D4727666DD7186D999BE7164086C9 /* PresentationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		072FE6735CC538FA0638172889BB5E59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5FA7C3EEA224AB6CD52AF0119639332C;
-			remoteInfo = SCLAlertView;
-		};
-		083FA3459E6C37A45B8C629437E33CB2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B3216DE436854387313ADD5163C5379;
-			remoteInfo = CommonCryptoModule;
-		};
-		ACCC78B846F14AF86F540783529A6409 /* PBXContainerItemProxy */ = {
+		5FC0C667326384E35A2488D824EE9A6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5168099F2EBFC99A707C03C9EADE01A5;
 			remoteInfo = DropDown;
 		};
+		7E8D3710DFE3A71EB60E0033C5CA406D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B48C39337AA50B82248CEB0A68B1C5CD;
+			remoteInfo = PopupDialog;
+		};
+		AB4F225FED467E02AA09639B9418FFCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BC0BA41B2E429B54695D2E87CFF947E;
+			remoteInfo = SCLAlertView;
+		};
+		EABA5636D8216B65810997D44D2A8C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3216DE436854387313ADD5163C5379;
+			remoteInfo = CommonCryptoModule;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05E4502FE7A5FF65EBD5F5FE4BC31C56 /* SCLAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-prefix.pch"; sourceTree = "<group>"; };
+		01051B54F543DE09AEF8E78EC04C1521 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		054283168360800FB9063A31D762BBB4 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = module.modulemap; path = CommonCryptoModule/CommonCryptoBridge/module.modulemap; sourceTree = "<group>"; };
+		0A20ED06FF17A086D0F707EA5FCE6A5D /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PopupDialog.modulemap; sourceTree = "<group>"; };
 		0C44937C08B28AA7D66966E180E73972 /* Pods-NeverlandTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NeverlandTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		181B509A0D38BD66135B5C67A55272A3 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
-		1A1CECB1F1136C663D02AF8266D2BF98 /* Pods_NeverlandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandTests.framework; path = "Pods-NeverlandTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E197AFEFADE92232D91EDB086ABD97F /* CommonCryptoModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CommonCryptoModule.framework; path = CommonCryptoModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		227C5530AB506E0FE27F62CCDA25C379 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
-		24866905E87AEC105BE7A866AF582761 /* CommonCryptoModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CommonCryptoModule.modulemap; sourceTree = "<group>"; };
-		258CD3A41B0C86CFCB62BEEA8F6186F3 /* SCLAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView-dummy.m"; sourceTree = "<group>"; };
-		2F4BBFC1A2D4035489931D2FD58A2160 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		30542122D6B117AF8492390B3AAA90AA /* SCLAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SCLAlertView.framework; path = SCLAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C51E32EEEAD43CD976A02045036294D /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		0C7BFCA54A7004669E96DDCCE31AC0E8 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
+		14C2BB4802B53FA30A3F2E44F120A59D /* DropDown.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.xcconfig; sourceTree = "<group>"; };
+		1C909969DC70C47B7EEF0445D657C6D4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D9AD8C894150B7300739F755C39B951 /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
+		1E0148E66D6F6A93B7ED194397D274CF /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
+		1E5649BC7A712C2A25523BD5AB4D45BF /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
+		24914FCA898269D80F2826BA49D2CA1E /* SCLAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-prefix.pch"; sourceTree = "<group>"; };
+		26BF4CEB58C8DDFCE2D83FDC5662F016 /* CommonCryptoModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CommonCryptoModule.modulemap; sourceTree = "<group>"; };
+		29894962412D69EC893A03DAB7C6C0B1 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		301E3EEFE39E9B0B186F0E45E8F51976 /* SCLAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-umbrella.h"; sourceTree = "<group>"; };
+		31B5E51C9C827D549FBFC01987324804 /* Pods_NeverlandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandTests.framework; path = "Pods-NeverlandTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Neverland-dummy.m"; sourceTree = "<group>"; };
 		339C6CCCA411410E30C9CAAC0006CD8B /* Pods-NeverlandUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NeverlandUITests-umbrella.h"; sourceTree = "<group>"; };
-		3A2CC1A2E94B303D91071AD35D38D0F5 /* CommonCryptoModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CommonCryptoModule-dummy.m"; sourceTree = "<group>"; };
 		3A8C1CFE93A72350F72CA9DC337E801B /* Pods-NeverlandUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandUITests-resources.sh"; sourceTree = "<group>"; };
+		3AD400489BEB8E413FD25733042B0567 /* CommonCryptoModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CommonCryptoModule.framework; path = CommonCryptoModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B7863122AA2C4F1263D1F9257E8FCFD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D5CD9DCA0D644F60F45CB48057B13E8 /* CommonCryptoModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-umbrella.h"; sourceTree = "<group>"; };
+		3DD910BA7D5BD5611CB20150BBF99F86 /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
+		3E4AEB619F323376EFE2D398D5869F89 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
 		425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Neverland.debug.xcconfig"; sourceTree = "<group>"; };
-		46F4BA490F861E384DEDB80B2A606C34 /* SCLAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SCLAlertView.modulemap; sourceTree = "<group>"; };
+		42DA284D5D1373C7386847387FA01970 /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
+		44740418EE96C746574F784B81E82E2E /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
 		47D2555BE80DE8AE46D1738DE429A825 /* Pods-Neverland.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Neverland.modulemap"; sourceTree = "<group>"; };
-		48A6BB7CBC568CEF4C410D665E2C980D /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		4B5F0C31F207BD168AF57D8E578B2FC6 /* Pods-Neverland-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Neverland-acknowledgements.plist"; sourceTree = "<group>"; };
-		4E7621585C4F4407A52D571092DC16E1 /* SCLAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SCLAlertView.xcconfig; sourceTree = "<group>"; };
+		4D2EAB9EA46EC9B93A7677A11462E842 /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
+		4E1DB1B58B32909C53F94C686DFF3757 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
+		4E5F752848917C44C01ADC8C87897532 /* SCLAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SCLAlertView.framework; path = SCLAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD87625E82588EDC6A99903993B9E3D /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
 		500CDE7390539DB73321102031FCC891 /* Pods-NeverlandUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandUITests-frameworks.sh"; sourceTree = "<group>"; };
-		52DCA18EA36A317399632FFE18DD70A9 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		51D2F8227608123660B592E55EC7C54C /* CommonCryptoModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-prefix.pch"; sourceTree = "<group>"; };
 		531AD7B28CCE2B316B00953DF2B27274 /* Pods-Neverland-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Neverland-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5BDACD20DE3E31FFEF74290323BB9AF9 /* CommonCryptoBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoBridge.h; path = CommonCryptoModule/CommonCryptoBridge/CommonCryptoBridge.h; sourceTree = "<group>"; };
+		5530B79FDA3D80800E4DCDB00B2186C8 /* SCLAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLAlertView.swift; path = SCLAlertView/SCLAlertView.swift; sourceTree = "<group>"; };
+		5D7D4727666DD7186D999BE7164086C9 /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
 		5EE22907DBAF9E5606D59EBFFBC307CA /* Pods-NeverlandTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandTests-resources.sh"; sourceTree = "<group>"; };
-		609E133AE0AB147ED96884022BFA7329 /* CommonCryptoModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-prefix.pch"; sourceTree = "<group>"; };
+		60994B92BFB73B56DE46786A02A60DA9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		632F4248A0F4FAB79C0B19D50A3446B3 /* Pods-NeverlandTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NeverlandTests-umbrella.h"; sourceTree = "<group>"; };
 		63551F0D64EB448BB64BBA5F62268A66 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6362742DEE4A2CB09B0309520B339F91 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
-		65F75E85C440F5CDA0E4E48606F0B921 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64B6F59035C71352A6E0D6267995B530 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6BCA536446E6B2008EE9B5B5CC980EC5 /* SCLAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-umbrella.h"; sourceTree = "<group>"; };
-		6D7C0C7B39B53BBFFF7B3A6BC2DFD646 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DropDown.modulemap; sourceTree = "<group>"; };
+		6D99D40034FB240BBAD22989C35CE8DD /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F67E6F41709ECD49F5C1CF3C66BB84A /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Calculations.swift"; path = "PopupDialog/Classes/UIImageView+Calculations.swift"; sourceTree = "<group>"; };
+		73205B2AED136DB661673ADD022F6AA8 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
 		77DE95F25BF10FE8F3CE3E0CA4FEA6A3 /* Pods-Neverland-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Neverland-frameworks.sh"; sourceTree = "<group>"; };
 		7BF428276A92ACAF8EF410F8F4E6DF53 /* Pods-NeverlandTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NeverlandTests-dummy.m"; sourceTree = "<group>"; };
 		7C6268B6FF0E4C539D33DB4A85D5CCC5 /* Pods-NeverlandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandTests.release.xcconfig"; sourceTree = "<group>"; };
+		7F311991B3068CB7E72A81ACDC24FD0E /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		7F6BFE7B2CEF70CE920D5263D596E5E8 /* Pods-NeverlandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		84A51C45D44FED1BD78E7274431CA6F5 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		87E3A5BAEA249E631A2F9FA5B4311959 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
 		8845CC3EABA03767E87BE5D85DB52D2A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E4B18794935049A3687CC59448E8A27 /* CommonCryptoModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-umbrella.h"; sourceTree = "<group>"; };
-		925C44AA73EB30BD64176A210003F732 /* DropDown.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.xcconfig; sourceTree = "<group>"; };
 		92D862FDD6E63250ECDD3CF55688B609 /* Pods-NeverlandTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NeverlandTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Neverland.release.xcconfig"; sourceTree = "<group>"; };
-		961C261FCF5D843B6650CE641E35C6EA /* SCLAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLAlertView.swift; path = SCLAlertView/SCLAlertView.swift; sourceTree = "<group>"; };
-		9AE7304ED1BDA61953DC80CD58325B42 /* Pods_NeverlandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandUITests.framework; path = "Pods-NeverlandUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B97E4EBB295985077EF8403C6CA69F0 /* CommonCryptoModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoModule.h; path = CommonCryptoModule/CommonCryptoModule.h; sourceTree = "<group>"; };
-		9C1C515C9C38EAD064835C39CBD89D09 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = module.modulemap; path = CommonCryptoModule/CommonCryptoBridge/module.modulemap; sourceTree = "<group>"; };
+		9445A1E9180C37805DF6C40366F297AA /* SCLAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SCLAlertView.xcconfig; sourceTree = "<group>"; };
+		94F3232AFF7CFE8366C4EF9F57822427 /* CommonCryptoBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoBridge.h; path = CommonCryptoModule/CommonCryptoBridge/CommonCryptoBridge.h; sourceTree = "<group>"; };
+		98E07453BC81C3B7BED70A9E2FFB7B7D /* SCLAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView-dummy.m"; sourceTree = "<group>"; };
+		992F88924D899B968F3C4884FD003641 /* Pods_Neverland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Neverland.framework; path = "Pods-Neverland.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D0B6C9B29144DBC9E05F7E6E2F7FD10 /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
+		9D0F0B2FFB65465217BACBFDABD45908 /* CommonCryptoModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CommonCryptoModule.xcconfig; sourceTree = "<group>"; };
+		9D1F26CD4B827624D942A880493332FE /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
 		9DC48908E42C9B1DC2B05C07AE2E0EB7 /* Pods-Neverland-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Neverland-resources.sh"; sourceTree = "<group>"; };
+		A05F2E9FC996343878FDF8B88DB500F6 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		A231479E5BD9B4D579A36F7A059602A7 /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
 		A3D4DD39A868AD97A8B472AA141C3FAC /* Pods-NeverlandTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandTests-frameworks.sh"; sourceTree = "<group>"; };
 		A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Neverland-umbrella.h"; sourceTree = "<group>"; };
-		AC0990888B1B61F92718C62A94736A5B /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
-		AC673FF8CC66CF8C6E1B5177D414BBE7 /* Pods_Neverland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Neverland.framework; path = "Pods-Neverland.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AFEDFE3947314D0249E647975294047B /* CommonCryptoModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CommonCryptoModule.xcconfig; sourceTree = "<group>"; };
-		BB4E9B281F2D25ECC9CC019553EAD947 /* SCLExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLExtensions.swift; path = SCLAlertView/SCLExtensions.swift; sourceTree = "<group>"; };
+		AE65F0EE82133C9DB2A8C0B5684CF712 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
+		B1CF71B8AF163A7800BAAF80F2DF15AD /* SCLAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SCLAlertView.modulemap; sourceTree = "<group>"; };
+		B614346C3B7B7CF163E6C9AA5ECFACD1 /* SCLExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLExtensions.swift; path = SCLAlertView/SCLExtensions.swift; sourceTree = "<group>"; };
+		B929E0303959A8363B1B0E280D07A856 /* CommonCryptoModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CommonCryptoModule-dummy.m"; sourceTree = "<group>"; };
+		BA04E1C731954C5FA6E43CC09C3D1F4E /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DropDown.modulemap; sourceTree = "<group>"; };
+		BA4FCD4C2418DCF2DD1008CC30948208 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
 		BD2CA97EE053706F9D1E41BA87624263 /* Pods-NeverlandUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C1867B77F2963C3472231819388096DB /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
-		C5301B5F7700AD19512C96582151458F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C940492D144AAD69391702ED43E47A4D /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		C9DB56A8B131D07EFDCEEBB4D0452F69 /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
 		D0E287D841F782C1A5BE6C0A6E4368B4 /* Pods-NeverlandUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NeverlandUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D75E6CD75CC6D16B046975C1834E7CE8 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
+		D3E80839A608A69107E88B12EAD1A292 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD2ED8A3ED8BED1529CDBB8FAF0EDB60 /* Pods_NeverlandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandUITests.framework; path = "Pods-NeverlandUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD4FFB9C0F6A46E435C1CDF4551FE6BF /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = CommonCryptoModule/Empty.swift; sourceTree = "<group>"; };
 		DEE524307396D6F0B541A570A772F118 /* Pods-NeverlandTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E07B329C358E82030E5A6C1D919E549B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21DC93F6B319F5CD959124237A35611 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		E696FF11952710C8A434B36D1405C8DB /* CommonCryptoModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoModule.h; path = CommonCryptoModule/CommonCryptoModule.h; sourceTree = "<group>"; };
 		E85927274EDF82492713A5493D192880 /* Pods-NeverlandUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NeverlandUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E8B49A67F98CCD4BF6CD3188BA6F8E80 /* Pods-NeverlandUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NeverlandUITests-dummy.m"; sourceTree = "<group>"; };
-		F075BECACB50962792F44B46D22B7E53 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		EEFCDB66479DC0AB60B8D59866485F37 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
+		EF47314EDFB908EAEB188A3AE542EF00 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
 		F12912C4DBA9DC283F7FC987F32618B4 /* Pods-NeverlandTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NeverlandTests.modulemap"; sourceTree = "<group>"; };
-		F3F39DB4F168243FBC7C1FBD5125711B /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = CommonCryptoModule/Empty.swift; sourceTree = "<group>"; };
-		F8A97DC6FEB7F3E8F9D49EABC11D2DC7 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F56B88973F3180F07421168AC52CB051 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PopupDialog.framework; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75242B01707E45DFA5E8DCCDBABB990 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
 		FDE78B374C333FC678844A7EF0756CD4 /* Pods-NeverlandUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NeverlandUITests.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,11 +206,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A9A1657002FAFB2A40AA49AA3FCAF2E1 /* Frameworks */ = {
+		B227EE73734839D5C054FBCE58D6F4B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EC3C30F3BEFCC596E2D18CC79E89FB6 /* Foundation.framework in Frameworks */,
+				6DF1540963EE299018F9AA68DED0C93B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,11 +222,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CFEBC6B6EA946FA1F3AC11E2CFDD6A50 /* Frameworks */ = {
+		E5BB5C486926CFF9795097F1FBFEEA06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2573B56B98F9CBF26DA1235D8A9BEA6 /* Foundation.framework in Frameworks */,
+				DBE20EB92C5ADDFA8D79DD71C6BBF140 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F260DFCC629F71423BDF577E950AE01D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0B932AA7EB7A6939D8F82E6777C4BF8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,45 +249,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08F39FA82DD6C28FC47584EE853A7A26 /* Support Files */ = {
+		1DE869E328F0E804EC77FD4A8EE603A9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				6D7C0C7B39B53BBFFF7B3A6BC2DFD646 /* DropDown.modulemap */,
-				925C44AA73EB30BD64176A210003F732 /* DropDown.xcconfig */,
-				227C5530AB506E0FE27F62CCDA25C379 /* DropDown-dummy.m */,
-				F075BECACB50962792F44B46D22B7E53 /* DropDown-prefix.pch */,
-				C1867B77F2963C3472231819388096DB /* DropDown-umbrella.h */,
-				C5301B5F7700AD19512C96582151458F /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DropDown";
-			sourceTree = "<group>";
-		};
-		23864F737DB2B724279FAA7AB8002399 /* DropDown */ = {
-			isa = PBXGroup;
-			children = (
-				48A6BB7CBC568CEF4C410D665E2C980D /* DPDConstants.swift */,
-				181B509A0D38BD66135B5C67A55272A3 /* DPDKeyboardListener.swift */,
-				6362742DEE4A2CB09B0309520B339F91 /* DPDUIView+Extension.swift */,
-				D75E6CD75CC6D16B046975C1834E7CE8 /* DropDown.swift */,
-				AC0990888B1B61F92718C62A94736A5B /* DropDown+Appearance.swift */,
-				84A51C45D44FED1BD78E7274431CA6F5 /* DropDownCell.swift */,
-				E743158ECEF4D207A94EE832816DB41C /* Resources */,
-				08F39FA82DD6C28FC47584EE853A7A26 /* Support Files */,
-			);
-			name = DropDown;
-			path = DropDown;
-			sourceTree = "<group>";
-		};
-		2FE31CD76EEFCD18CA9D372C0D814634 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				24866905E87AEC105BE7A866AF582761 /* CommonCryptoModule.modulemap */,
-				AFEDFE3947314D0249E647975294047B /* CommonCryptoModule.xcconfig */,
-				3A2CC1A2E94B303D91071AD35D38D0F5 /* CommonCryptoModule-dummy.m */,
-				609E133AE0AB147ED96884022BFA7329 /* CommonCryptoModule-prefix.pch */,
-				8E4B18794935049A3687CC59448E8A27 /* CommonCryptoModule-umbrella.h */,
-				65F75E85C440F5CDA0E4E48606F0B921 /* Info.plist */,
+				26BF4CEB58C8DDFCE2D83FDC5662F016 /* CommonCryptoModule.modulemap */,
+				9D0F0B2FFB65465217BACBFDABD45908 /* CommonCryptoModule.xcconfig */,
+				B929E0303959A8363B1B0E280D07A856 /* CommonCryptoModule-dummy.m */,
+				51D2F8227608123660B592E55EC7C54C /* CommonCryptoModule-prefix.pch */,
+				3D5CD9DCA0D644F60F45CB48057B13E8 /* CommonCryptoModule-umbrella.h */,
+				D3E80839A608A69107E88B12EAD1A292 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/CommonCryptoModule";
@@ -250,46 +281,70 @@
 			path = "Target Support Files/Pods-Neverland";
 			sourceTree = "<group>";
 		};
-		388DB0913EAC74416AE867BC2BDBB9E1 /* SCLAlertView */ = {
+		4121D8113C539FC18775B42249E6E9A5 /* SCLAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				961C261FCF5D843B6650CE641E35C6EA /* SCLAlertView.swift */,
-				BB4E9B281F2D25ECC9CC019553EAD947 /* SCLExtensions.swift */,
-				CD57F9E51C4627D0A47D62150D2F596D /* Support Files */,
+				5530B79FDA3D80800E4DCDB00B2186C8 /* SCLAlertView.swift */,
+				B614346C3B7B7CF163E6C9AA5ECFACD1 /* SCLExtensions.swift */,
+				B975209BEF0F9764937925B4442A89CF /* Support Files */,
 			);
 			name = SCLAlertView;
 			path = SCLAlertView;
 			sourceTree = "<group>";
 		};
-		3ECCE7C72EE5B0AB4E1DA932F033067D /* Resources */ = {
+		62F50D2D31B4CB9F910DC38C1C2C5699 /* PopupDialog */ = {
 			isa = PBXGroup;
 			children = (
-				5BDACD20DE3E31FFEF74290323BB9AF9 /* CommonCryptoBridge.h */,
-				9C1C515C9C38EAD064835C39CBD89D09 /* module.modulemap */,
+				9D1F26CD4B827624D942A880493332FE /* FXBlurView.h */,
+				4D2EAB9EA46EC9B93A7677A11462E842 /* FXBlurView.m */,
+				1D9AD8C894150B7300739F755C39B951 /* InteractiveTransition.swift */,
+				9D0B6C9B29144DBC9E05F7E6E2F7FD10 /* PopupDialog.swift */,
+				AE65F0EE82133C9DB2A8C0B5684CF712 /* PopupDialog+Keyboard.swift */,
+				0C7BFCA54A7004669E96DDCCE31AC0E8 /* PopupDialogButton.swift */,
+				EF47314EDFB908EAEB188A3AE542EF00 /* PopupDialogContainerView.swift */,
+				01051B54F543DE09AEF8E78EC04C1521 /* PopupDialogDefaultButtons.swift */,
+				BA4FCD4C2418DCF2DD1008CC30948208 /* PopupDialogDefaultView.swift */,
+				1E0148E66D6F6A93B7ED194397D274CF /* PopupDialogDefaultViewController.swift */,
+				A231479E5BD9B4D579A36F7A059602A7 /* PopupDialogOverlayView.swift */,
+				4E1DB1B58B32909C53F94C686DFF3757 /* PresentationController.swift */,
+				5D7D4727666DD7186D999BE7164086C9 /* PresentationManager.swift */,
+				EEFCDB66479DC0AB60B8D59866485F37 /* TransitionAnimations.swift */,
+				C9DB56A8B131D07EFDCEEBB4D0452F69 /* TransitionAnimator.swift */,
+				6F67E6F41709ECD49F5C1CF3C66BB84A /* UIImageView+Calculations.swift */,
+				42DA284D5D1373C7386847387FA01970 /* UIView+Animations.swift */,
+				F75242B01707E45DFA5E8DCCDBABB990 /* UIViewController+Visibility.swift */,
+				6956311770744590489B7B32D1E841E6 /* Support Files */,
 			);
-			name = Resources;
+			name = PopupDialog;
+			path = PopupDialog;
 			sourceTree = "<group>";
 		};
-		5CE61A2F48E4AC099EA0D0C990164D51 /* Pods */ = {
+		6956311770744590489B7B32D1E841E6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				77C91368A7C5EDA110865BEC7B15587E /* CommonCryptoModule */,
-				23864F737DB2B724279FAA7AB8002399 /* DropDown */,
-				388DB0913EAC74416AE867BC2BDBB9E1 /* SCLAlertView */,
+				3B7863122AA2C4F1263D1F9257E8FCFD /* Info.plist */,
+				0A20ED06FF17A086D0F707EA5FCE6A5D /* PopupDialog.modulemap */,
+				3E4AEB619F323376EFE2D398D5869F89 /* PopupDialog.xcconfig */,
+				4FD87625E82588EDC6A99903993B9E3D /* PopupDialog-dummy.m */,
+				3DD910BA7D5BD5611CB20150BBF99F86 /* PopupDialog-prefix.pch */,
+				1E5649BC7A712C2A25523BD5AB4D45BF /* PopupDialog-umbrella.h */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/PopupDialog";
 			sourceTree = "<group>";
 		};
-		77C91368A7C5EDA110865BEC7B15587E /* CommonCryptoModule */ = {
+		7B67689291B03645239B73C678C5E9E9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9B97E4EBB295985077EF8403C6CA69F0 /* CommonCryptoModule.h */,
-				F3F39DB4F168243FBC7C1FBD5125711B /* Empty.swift */,
-				3ECCE7C72EE5B0AB4E1DA932F033067D /* Resources */,
-				2FE31CD76EEFCD18CA9D372C0D814634 /* Support Files */,
+				BA04E1C731954C5FA6E43CC09C3D1F4E /* DropDown.modulemap */,
+				14C2BB4802B53FA30A3F2E44F120A59D /* DropDown.xcconfig */,
+				A05F2E9FC996343878FDF8B88DB500F6 /* DropDown-dummy.m */,
+				87E3A5BAEA249E631A2F9FA5B4311959 /* DropDown-prefix.pch */,
+				E21DC93F6B319F5CD959124237A35611 /* DropDown-umbrella.h */,
+				1C909969DC70C47B7EEF0445D657C6D4 /* Info.plist */,
 			);
-			name = CommonCryptoModule;
-			path = CommonCryptoModule;
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -297,23 +352,43 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				5CE61A2F48E4AC099EA0D0C990164D51 /* Pods */,
-				A68F6781C3A93A4277B3B058189CC5B0 /* Products */,
+				A578C786030A86D36E07C16029CE38C0 /* Pods */,
+				DE4E0A3D37765F27C84C3E12A33B4E42 /* Products */,
 				FCF8AB71691F9936945E6A18968C21AF /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		A68F6781C3A93A4277B3B058189CC5B0 /* Products */ = {
+		9092E487C6F5495148881D6FB877EA31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1E197AFEFADE92232D91EDB086ABD97F /* CommonCryptoModule.framework */,
-				F8A97DC6FEB7F3E8F9D49EABC11D2DC7 /* DropDown.framework */,
-				AC673FF8CC66CF8C6E1B5177D414BBE7 /* Pods_Neverland.framework */,
-				1A1CECB1F1136C663D02AF8266D2BF98 /* Pods_NeverlandTests.framework */,
-				9AE7304ED1BDA61953DC80CD58325B42 /* Pods_NeverlandUITests.framework */,
-				30542122D6B117AF8492390B3AAA90AA /* SCLAlertView.framework */,
+				C940492D144AAD69391702ED43E47A4D /* DropDownCell.xib */,
 			);
-			name = Products;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A578C786030A86D36E07C16029CE38C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF5821CD7E5D9B85A648039FC8CCFC5B /* CommonCryptoModule */,
+				BC4569C95E71871B642DD2618B95FD42 /* DropDown */,
+				62F50D2D31B4CB9F910DC38C1C2C5699 /* PopupDialog */,
+				4121D8113C539FC18775B42249E6E9A5 /* SCLAlertView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B975209BEF0F9764937925B4442A89CF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				60994B92BFB73B56DE46786A02A60DA9 /* Info.plist */,
+				B1CF71B8AF163A7800BAAF80F2DF15AD /* SCLAlertView.modulemap */,
+				9445A1E9180C37805DF6C40366F297AA /* SCLAlertView.xcconfig */,
+				98E07453BC81C3B7BED70A9E2FFB7B7D /* SCLAlertView-dummy.m */,
+				24914FCA898269D80F2826BA49D2CA1E /* SCLAlertView-prefix.pch */,
+				301E3EEFE39E9B0B186F0E45E8F51976 /* SCLAlertView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SCLAlertView";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -324,18 +399,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CD57F9E51C4627D0A47D62150D2F596D /* Support Files */ = {
+		BC4569C95E71871B642DD2618B95FD42 /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
-				2F4BBFC1A2D4035489931D2FD58A2160 /* Info.plist */,
-				46F4BA490F861E384DEDB80B2A606C34 /* SCLAlertView.modulemap */,
-				4E7621585C4F4407A52D571092DC16E1 /* SCLAlertView.xcconfig */,
-				258CD3A41B0C86CFCB62BEEA8F6186F3 /* SCLAlertView-dummy.m */,
-				05E4502FE7A5FF65EBD5F5FE4BC31C56 /* SCLAlertView-prefix.pch */,
-				6BCA536446E6B2008EE9B5B5CC980EC5 /* SCLAlertView-umbrella.h */,
+				64B6F59035C71352A6E0D6267995B530 /* DPDConstants.swift */,
+				73205B2AED136DB661673ADD022F6AA8 /* DPDKeyboardListener.swift */,
+				44740418EE96C746574F784B81E82E2E /* DPDUIView+Extension.swift */,
+				7F311991B3068CB7E72A81ACDC24FD0E /* DropDown.swift */,
+				0C51E32EEEAD43CD976A02045036294D /* DropDown+Appearance.swift */,
+				29894962412D69EC893A03DAB7C6C0B1 /* DropDownCell.swift */,
+				9092E487C6F5495148881D6FB877EA31 /* Resources */,
+				7B67689291B03645239B73C678C5E9E9 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SCLAlertView";
+			name = DropDown;
+			path = DropDown;
 			sourceTree = "<group>";
 		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
@@ -364,6 +441,20 @@
 			path = "Target Support Files/Pods-NeverlandUITests";
 			sourceTree = "<group>";
 		};
+		DE4E0A3D37765F27C84C3E12A33B4E42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AD400489BEB8E413FD25733042B0567 /* CommonCryptoModule.framework */,
+				6D99D40034FB240BBAD22989C35CE8DD /* DropDown.framework */,
+				992F88924D899B968F3C4884FD003641 /* Pods_Neverland.framework */,
+				31B5E51C9C827D549FBFC01987324804 /* Pods_NeverlandTests.framework */,
+				DD2ED8A3ED8BED1529CDBB8FAF0EDB60 /* Pods_NeverlandUITests.framework */,
+				F56B88973F3180F07421168AC52CB051 /* PopupDialog.framework */,
+				4E5F752848917C44C01ADC8C87897532 /* SCLAlertView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E33C65DD9337A372B251D6BA98E73F73 /* Pods-NeverlandTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,10 +473,11 @@
 			path = "Target Support Files/Pods-NeverlandTests";
 			sourceTree = "<group>";
 		};
-		E743158ECEF4D207A94EE832816DB41C /* Resources */ = {
+		E655540B7A5361881132D02671F29596 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				52DCA18EA36A317399632FFE18DD70A9 /* DropDownCell.xib */,
+				94F3232AFF7CFE8366C4EF9F57822427 /* CommonCryptoBridge.h */,
+				054283168360800FB9063A31D762BBB4 /* module.modulemap */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -398,6 +490,18 @@
 				DA85FD13A5057C65EC01A2AFE6A74131 /* Pods-NeverlandUITests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FF5821CD7E5D9B85A648039FC8CCFC5B /* CommonCryptoModule */ = {
+			isa = PBXGroup;
+			children = (
+				E696FF11952710C8A434B36D1405C8DB /* CommonCryptoModule.h */,
+				DD4FFB9C0F6A46E435C1CDF4551FE6BF /* Empty.swift */,
+				E655540B7A5361881132D02671F29596 /* Resources */,
+				1DE869E328F0E804EC77FD4A8EE603A9 /* Support Files */,
+			);
+			name = CommonCryptoModule;
+			path = CommonCryptoModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,19 +540,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E076DDA88B8B90299769F7161BEA1E7 /* Headers */ = {
+		AB148C21EA6C30D1D3971621B56454F0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8198D2A2D313FBE68CDC852E5995AF6 /* Pods-Neverland-umbrella.h in Headers */,
+				B4F4FA05D4D1EECD53DD4E93C14F6921 /* SCLAlertView-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B2CF5A77A120FC4768B1F398DAE11E04 /* Headers */ = {
+		C249B27479A80D14A8221060741029E4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F5BEF5DCFD7CCB00A8AD0E5EE304529 /* SCLAlertView-umbrella.h in Headers */,
+				2C34DF935B7D0B2DFB1305082B78E238 /* Pods-Neverland-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFFA13209F2EDA32257861AD6D7B068F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4715ABA5EEC111768D729AD5AD5AA7A9 /* FXBlurView.h in Headers */,
+				19CA4D0BEB680A63F31B3014062147BB /* PopupDialog-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +583,24 @@
 			);
 			name = CommonCryptoModule;
 			productName = CommonCryptoModule;
-			productReference = 1E197AFEFADE92232D91EDB086ABD97F /* CommonCryptoModule.framework */;
+			productReference = 3AD400489BEB8E413FD25733042B0567 /* CommonCryptoModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3BC0BA41B2E429B54695D2E87CFF947E /* SCLAlertView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31353D18E56F946C409753610AFDAB5C /* Build configuration list for PBXNativeTarget "SCLAlertView" */;
+			buildPhases = (
+				5F80AC4BF6EF8295B9F29B0212336F20 /* Sources */,
+				B227EE73734839D5C054FBCE58D6F4B3 /* Frameworks */,
+				AB148C21EA6C30D1D3971621B56454F0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCLAlertView;
+			productName = SCLAlertView;
+			productReference = 4E5F752848917C44C01ADC8C87897532 /* SCLAlertView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */ = {
@@ -488,24 +618,28 @@
 			);
 			name = DropDown;
 			productName = DropDown;
-			productReference = F8A97DC6FEB7F3E8F9D49EABC11D2DC7 /* DropDown.framework */;
+			productReference = 6D99D40034FB240BBAD22989C35CE8DD /* DropDown.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5FA7C3EEA224AB6CD52AF0119639332C /* SCLAlertView */ = {
+		ACAADB8092A07B042C2B0D40B44298F3 /* Pods-Neverland */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D33CE4667270DE50864BABF1B177E97 /* Build configuration list for PBXNativeTarget "SCLAlertView" */;
+			buildConfigurationList = 3CABA6F4F8551F57F2A4E9396DC35334 /* Build configuration list for PBXNativeTarget "Pods-Neverland" */;
 			buildPhases = (
-				A1F28881C0E89979B4F85907A8F7C903 /* Sources */,
-				A9A1657002FAFB2A40AA49AA3FCAF2E1 /* Frameworks */,
-				B2CF5A77A120FC4768B1F398DAE11E04 /* Headers */,
+				DBD39978502B938E9194C13667D91AB3 /* Sources */,
+				E5BB5C486926CFF9795097F1FBFEEA06 /* Frameworks */,
+				C249B27479A80D14A8221060741029E4 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				904A72A626DCE04A9596A1D5B09BA0F8 /* PBXTargetDependency */,
+				9EE4B35E1B5CB695EE11898B7963582F /* PBXTargetDependency */,
+				8584C889CBFC4D9AD22962A73C108303 /* PBXTargetDependency */,
+				32D89B6A3B5287EA5FA45706CD6AB610 /* PBXTargetDependency */,
 			);
-			name = SCLAlertView;
-			productName = SCLAlertView;
-			productReference = 30542122D6B117AF8492390B3AAA90AA /* SCLAlertView.framework */;
+			name = "Pods-Neverland";
+			productName = "Pods-Neverland";
+			productReference = 992F88924D899B968F3C4884FD003641 /* Pods_Neverland.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AD5CF0D635C867AF8489611422A92D0A /* Pods-NeverlandUITests */ = {
@@ -522,27 +656,24 @@
 			);
 			name = "Pods-NeverlandUITests";
 			productName = "Pods-NeverlandUITests";
-			productReference = 9AE7304ED1BDA61953DC80CD58325B42 /* Pods_NeverlandUITests.framework */;
+			productReference = DD2ED8A3ED8BED1529CDBB8FAF0EDB60 /* Pods_NeverlandUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B0E19B8660E45E882A6455D76872197D /* Pods-Neverland */ = {
+		B48C39337AA50B82248CEB0A68B1C5CD /* PopupDialog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87993045C34771A121AEDF41BBE396DB /* Build configuration list for PBXNativeTarget "Pods-Neverland" */;
+			buildConfigurationList = E6DC84B9DA4A26059BA2C412585B2FD6 /* Build configuration list for PBXNativeTarget "PopupDialog" */;
 			buildPhases = (
-				FA91EB787F06D9B67AB41519DFAA8115 /* Sources */,
-				CFEBC6B6EA946FA1F3AC11E2CFDD6A50 /* Frameworks */,
-				4E076DDA88B8B90299769F7161BEA1E7 /* Headers */,
+				2AA65FBEBCC88E52E5811C5021AD338F /* Sources */,
+				F260DFCC629F71423BDF577E950AE01D /* Frameworks */,
+				CFFA13209F2EDA32257861AD6D7B068F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C81C3AA8116A9DC25CB3E07C7E2996E2 /* PBXTargetDependency */,
-				3192C41F9ED9F69FB57E17006143E521 /* PBXTargetDependency */,
-				0B4D1758F491F1F2CCE6EF2853147113 /* PBXTargetDependency */,
 			);
-			name = "Pods-Neverland";
-			productName = "Pods-Neverland";
-			productReference = AC673FF8CC66CF8C6E1B5177D414BBE7 /* Pods_Neverland.framework */;
+			name = PopupDialog;
+			productName = PopupDialog;
+			productReference = F56B88973F3180F07421168AC52CB051 /* PopupDialog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E14F2BE2CD5D598444B73A3F58D81DB9 /* Pods-NeverlandTests */ = {
@@ -559,7 +690,7 @@
 			);
 			name = "Pods-NeverlandTests";
 			productName = "Pods-NeverlandTests";
-			productReference = 1A1CECB1F1136C663D02AF8266D2BF98 /* Pods_NeverlandTests.framework */;
+			productReference = 31B5E51C9C827D549FBFC01987324804 /* Pods_NeverlandTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -579,16 +710,17 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A68F6781C3A93A4277B3B058189CC5B0 /* Products */;
+			productRefGroup = DE4E0A3D37765F27C84C3E12A33B4E42 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */,
 				5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */,
-				B0E19B8660E45E882A6455D76872197D /* Pods-Neverland */,
+				ACAADB8092A07B042C2B0D40B44298F3 /* Pods-Neverland */,
 				E14F2BE2CD5D598444B73A3F58D81DB9 /* Pods-NeverlandTests */,
 				AD5CF0D635C867AF8489611422A92D0A /* Pods-NeverlandUITests */,
-				5FA7C3EEA224AB6CD52AF0119639332C /* SCLAlertView */,
+				B48C39337AA50B82248CEB0A68B1C5CD /* PopupDialog */,
+				3BC0BA41B2E429B54695D2E87CFF947E /* SCLAlertView */,
 			);
 		};
 /* End PBXProject section */
@@ -623,11 +755,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2AA65FBEBCC88E52E5811C5021AD338F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				771834944E4A80560CE1DF3C812527A8 /* FXBlurView.m in Sources */,
+				FE6658EA447A3991F74C7BCE769EE688 /* InteractiveTransition.swift in Sources */,
+				509B69957990F1D0F2D1A126B6FD368C /* PopupDialog+Keyboard.swift in Sources */,
+				355A999BA3E6F6FD9DA66B5E6B264593 /* PopupDialog-dummy.m in Sources */,
+				0C3C1C315E257BB3B529C002E2AFC969 /* PopupDialog.swift in Sources */,
+				2D9A5A3340B8647C275B61E6A3346935 /* PopupDialogButton.swift in Sources */,
+				580EC4E3A36B853B157DF6068DD13C99 /* PopupDialogContainerView.swift in Sources */,
+				73850588803B129754C292B8A3F44383 /* PopupDialogDefaultButtons.swift in Sources */,
+				5169FF61EF129332C7E13379E2FE7369 /* PopupDialogDefaultView.swift in Sources */,
+				1C73CA869DE18FF1C45CB01DE30DB6F8 /* PopupDialogDefaultViewController.swift in Sources */,
+				4AA75ACCF7C60DBCA115EE478D469AD8 /* PopupDialogOverlayView.swift in Sources */,
+				DEFC827F22751E16A49F2EEB16624BA1 /* PresentationController.swift in Sources */,
+				FF1B5DA880451AF1C6D72739AD9014DE /* PresentationManager.swift in Sources */,
+				D7FDF04F86C31A83AE08782781BA2DB6 /* TransitionAnimations.swift in Sources */,
+				9CD6D0EDA16B72E6B6C767FDD1A04A63 /* TransitionAnimator.swift in Sources */,
+				8258A9FD431F577A2FE528A11FDA3183 /* UIImageView+Calculations.swift in Sources */,
+				C8AB3F99DE42D8744E7275037EE1F10E /* UIView+Animations.swift in Sources */,
+				FEDDC98E4F331A15B48E342E5897D98E /* UIViewController+Visibility.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		51B6A2EE911A6F7811B4D43E385BC261 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3FA0B886B79777E35717E2A85F0AA7DA /* Pods-NeverlandTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F80AC4BF6EF8295B9F29B0212336F20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				201CEA5A9950F1CD12886A5B48D91A0F /* SCLAlertView-dummy.m in Sources */,
+				9D097E046018024884A5CE8A2A00F5EA /* SCLAlertView.swift in Sources */,
+				4202CDA23829ABA3E1EA33550108D478 /* SCLExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,13 +806,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1F28881C0E89979B4F85907A8F7C903 /* Sources */ = {
+		DBD39978502B938E9194C13667D91AB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AA22A630ACECD527112741D0BDFF9A9 /* SCLAlertView-dummy.m in Sources */,
-				9882DCBCA74AF213EBAFD02823449A2F /* SCLAlertView.swift in Sources */,
-				9D7F0BD1417BF4E8DDFA7706990B5B63 /* SCLExtensions.swift in Sources */,
+				55E8D03E58CFD51AC1C90E455803E0A4 /* Pods-Neverland-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,41 +828,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA91EB787F06D9B67AB41519DFAA8115 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7A85FAEB370524A175C1E303C92456B /* Pods-Neverland-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0B4D1758F491F1F2CCE6EF2853147113 /* PBXTargetDependency */ = {
+		32D89B6A3B5287EA5FA45706CD6AB610 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SCLAlertView;
-			target = 5FA7C3EEA224AB6CD52AF0119639332C /* SCLAlertView */;
-			targetProxy = 072FE6735CC538FA0638172889BB5E59 /* PBXContainerItemProxy */;
+			target = 3BC0BA41B2E429B54695D2E87CFF947E /* SCLAlertView */;
+			targetProxy = AB4F225FED467E02AA09639B9418FFCD /* PBXContainerItemProxy */;
 		};
-		3192C41F9ED9F69FB57E17006143E521 /* PBXTargetDependency */ = {
+		8584C889CBFC4D9AD22962A73C108303 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = DropDown;
-			target = 5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */;
-			targetProxy = ACCC78B846F14AF86F540783529A6409 /* PBXContainerItemProxy */;
+			name = PopupDialog;
+			target = B48C39337AA50B82248CEB0A68B1C5CD /* PopupDialog */;
+			targetProxy = 7E8D3710DFE3A71EB60E0033C5CA406D /* PBXContainerItemProxy */;
 		};
-		C81C3AA8116A9DC25CB3E07C7E2996E2 /* PBXTargetDependency */ = {
+		904A72A626DCE04A9596A1D5B09BA0F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CommonCryptoModule;
 			target = 1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */;
-			targetProxy = 083FA3459E6C37A45B8C629437E33CB2 /* PBXContainerItemProxy */;
+			targetProxy = EABA5636D8216B65810997D44D2A8C74 /* PBXContainerItemProxy */;
+		};
+		9EE4B35E1B5CB695EE11898B7963582F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DropDown;
+			target = 5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */;
+			targetProxy = 5FC0C667326384E35A2488D824EE9A6A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0ACEC3434AADF8B952F0F1F30131D2F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 925C44AA73EB30BD64176A210003F732 /* DropDown.xcconfig */;
+			baseConfigurationReference = 14C2BB4802B53FA30A3F2E44F120A59D /* DropDown.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -730,9 +893,43 @@
 			};
 			name = Debug;
 		};
-		19234B5B6E0621DEC61852F5667DD554 /* Release */ = {
+		0C5CA0A0888B0C98F691781F385F7B05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E7621585C4F4407A52D571092DC16E1 /* SCLAlertView.xcconfig */;
+			baseConfigurationReference = 3E4AEB619F323376EFE2D398D5869F89 /* PopupDialog.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2F983D2ED457C68BEAA25F8AC0BD6477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9445A1E9180C37805DF6C40366F297AA /* SCLAlertView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -766,7 +963,7 @@
 		};
 		3009A94D32945A057BE0968ECCA31F9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 925C44AA73EB30BD64176A210003F732 /* DropDown.xcconfig */;
+			baseConfigurationReference = 14C2BB4802B53FA30A3F2E44F120A59D /* DropDown.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -798,9 +995,9 @@
 			};
 			name = Release;
 		};
-		48BC5678F36763094123898096931CDB /* Debug */ = {
+		4D08E47F4A878EB4341A958BEBE253E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E7621585C4F4407A52D571092DC16E1 /* SCLAlertView.xcconfig */;
+			baseConfigurationReference = 3E4AEB619F323376EFE2D398D5869F89 /* PopupDialog.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -814,96 +1011,19 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView/SCLAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SCLAlertView/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SCLAlertView/SCLAlertView.modulemap";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SCLAlertView;
+				PRODUCT_NAME = PopupDialog;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4E57F73ABFBE66B44B279C75D472D1A9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Neverland;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		59A2D6A4DCFA7E1F9DB4868A3E820549 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Neverland;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -958,9 +1078,47 @@
 			};
 			name = Debug;
 		};
+		68371BEA3F37E51E74401358F2C77B08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Neverland;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		6F74EF19AF9B4E4DBA3A418D538D2484 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFEDFE3947314D0249E647975294047B /* CommonCryptoModule.xcconfig */;
+			baseConfigurationReference = 9D0F0B2FFB65465217BACBFDABD45908 /* CommonCryptoModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -991,6 +1149,41 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		93460135450CD94C7B5ABF07645EA235 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9445A1E9180C37805DF6C40366F297AA /* SCLAlertView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView/SCLAlertView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SCLAlertView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SCLAlertView/SCLAlertView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SCLAlertView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		AFDD31F583DAE363CD418CAE11D9EDA9 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1071,6 +1264,45 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		C6385C1EAC697A5358ACD7C67B3D8FF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Neverland;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		D15FD206480D4AD22D2D48D7D65D0077 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1182,7 +1414,7 @@
 		};
 		FD2A85CFEFEBC5CF63E9AAC89A8174CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFEDFE3947314D0249E647975294047B /* CommonCryptoModule.xcconfig */;
+			baseConfigurationReference = 9D0F0B2FFB65465217BACBFDABD45908 /* CommonCryptoModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1227,29 +1459,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		31353D18E56F946C409753610AFDAB5C /* Build configuration list for PBXNativeTarget "SCLAlertView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93460135450CD94C7B5ABF07645EA235 /* Debug */,
+				2F983D2ED457C68BEAA25F8AC0BD6477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CABA6F4F8551F57F2A4E9396DC35334 /* Build configuration list for PBXNativeTarget "Pods-Neverland" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6385C1EAC697A5358ACD7C67B3D8FF7 /* Debug */,
+				68371BEA3F37E51E74401358F2C77B08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45143614893062803984DA50AB90C1D5 /* Build configuration list for PBXNativeTarget "DropDown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0ACEC3434AADF8B952F0F1F30131D2F9 /* Debug */,
 				3009A94D32945A057BE0968ECCA31F9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6D33CE4667270DE50864BABF1B177E97 /* Build configuration list for PBXNativeTarget "SCLAlertView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				48BC5678F36763094123898096931CDB /* Debug */,
-				19234B5B6E0621DEC61852F5667DD554 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		87993045C34771A121AEDF41BBE396DB /* Build configuration list for PBXNativeTarget "Pods-Neverland" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				59A2D6A4DCFA7E1F9DB4868A3E820549 /* Debug */,
-				4E57F73ABFBE66B44B279C75D472D1A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1277,6 +1509,15 @@
 			buildConfigurations = (
 				E1EB4A496ACDAB03916F8E17FF12F062 /* Debug */,
 				AFDD31F583DAE363CD418CAE11D9EDA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6DC84B9DA4A26059BA2C412585B2FD6 /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D08E47F4A878EB4341A958BEBE253E8 /* Debug */,
+				0C5CA0A0888B0C98F691781F385F7B05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

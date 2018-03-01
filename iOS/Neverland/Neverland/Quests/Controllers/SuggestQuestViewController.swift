@@ -12,27 +12,36 @@ import SCLAlertView
 class SuggestQuestViewController: UIViewController {
 
     @IBOutlet weak var saveBtn: UIButton!
-    @IBOutlet weak var questTitle: UITextField!
-    @IBOutlet weak var detailedText: UITextView!
+    @IBOutlet weak var questTitleLbl: UITextField!
+    @IBOutlet weak var detailedTextView: UITextView!
     
-    let MAX_QUEST_DESCRIPTION_COUNT = 250
-    let MAX_QUEST_TITLE_COUNT = 15
+    let MAX_QUEST_DESCRIPTION_COUNT = 480
+    let MAX_QUEST_TITLE_COUNT = 30
+    let MIN_QUEST_DESCRIPTION_COUNT = 10
+    let MIN_QUEST_TITLE_COUNT = 4
+
     let questApi = FakeQuestApi() // change when ready
     let groupId = 0 // get through segue.
     
+    var questTitle: String?
+    var questDescription: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailedText.delegate = self
+        detailedTextView.delegate = self
     }
 
     @IBAction func inputInfoChanged() {
-        saveBtn.isEnabled = questTitle.text != nil && questTitle.text!.count > 0 && questTitle.text!.count <= MAX_QUEST_TITLE_COUNT &&
-                            detailedText.text != nil && detailedText.text!.count > 0 && detailedText.text!.count <= MAX_QUEST_DESCRIPTION_COUNT
+        questTitle = questTitleLbl.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        questDescription = detailedTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        saveBtn.isEnabled = questTitle != nil && (questTitle!.matches(pattern: "^.{\(MIN_QUEST_TITLE_COUNT),\(MAX_QUEST_TITLE_COUNT)}$"))
+            && questDescription != nil && questDescription!.matches(pattern: "^.{\(MIN_QUEST_DESCRIPTION_COUNT),\(MAX_QUEST_DESCRIPTION_COUNT)}$")
     }
 
     
     @IBAction func savePressed() {
-        questApi.registerQuest(title: questTitle.text!, description: detailedText.text!, groupId: groupId) { response in
+        questApi.registerQuest(title: questTitleLbl.text!, description: detailedTextView.text!, groupId: groupId) { response in
             if response.code == .Successful {
                 self.navigationController?.popViewController(animated: true)
             } else {

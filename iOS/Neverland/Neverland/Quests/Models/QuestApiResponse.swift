@@ -11,4 +11,17 @@ import Foundation
 struct QuestApiResponse: ApiResponse {
     let code: ResponseCode
     let message: String?
+    var q = [Quest]() // delete later
+    var quests = [Quest]()
+    
+    init(code: ResponseCode, message: String?) {
+        self.code = code
+        self.message = message
+        q = FakeQuestApi().generateQuests() // delete later.
+    }
+    
+    mutating func fillQuestArray(from startIndex:Int, to endIndex: Int) {
+        self.quests = Array(q[startIndex ... endIndex])
+    }
+    
 }

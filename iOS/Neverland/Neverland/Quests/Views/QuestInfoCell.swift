@@ -17,6 +17,11 @@ class QuestInfoCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func fill(quest: Quest) {
+        questNameLbl.text = quest.title
+        questDescrView.text  = quest.description
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
