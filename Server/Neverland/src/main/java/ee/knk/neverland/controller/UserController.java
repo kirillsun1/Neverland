@@ -2,7 +2,6 @@ package ee.knk.neverland.controller;
 
 
 import ee.knk.neverland.answer_pojo.RegistrationLoginAnswer;
-import ee.knk.neverland.entity.Key;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value="/register", method=POST)
+    @RequestMapping(value="/register")
     public RegistrationLoginAnswer register(@RequestParam(value="username") String username, @RequestParam(value="password") String password, @RequestParam(value="email") String email) {
         if (userService.findUserByName(username)) {
             return new RegistrationLoginAnswer(RegistrationLoginConstants.FAILED, RegistrationLoginConstants.REGISTRATION_FAILED_MESSAGE);
