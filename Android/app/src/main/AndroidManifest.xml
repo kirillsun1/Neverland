@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="knk.ee.neverland">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +36,10 @@
             android:name=".activities.RegistrationActivity"
             android:label="Registration"
             android:parentActivityName=".activities.LoginActivity"
-            android:theme="@style/AppTheme.WithActionBar"/>
+            android:theme="@style/AppTheme.WithActionBar" />
+        <activity
+            android:name=".activities.CreateQuestActivity"
+            android:theme="@style/AppTheme.WithActionBar" />
     </application>
 
 </manifest>

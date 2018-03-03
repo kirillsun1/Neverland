@@ -9,28 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import knk.ee.neverland.R;
-
 public class QuestPictureAdapter extends BaseAdapter {
 
     private Context context;
 
     private final int[] someImages = new int[]{
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
+
     };
 
     public QuestPictureAdapter(Context context) {
