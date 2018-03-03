@@ -270,5 +270,8 @@ fastlane/test_output\
 \
 \
 # End of https://www.gitignore.io/api/swift,xcode,intellij,androidstudio}
+<<<<<<< HEAD
 Android/.idea/misc.xml
+=======
+>>>>>>> c409ad54ab89ba0e496b048e6f3453fac802a472
 Server/Neverland/src/main/resources/app.properties
