@@ -1,14 +1,20 @@
 package ee.knk.neverland;
 
 import ee.knk.neverland.config.AppInitializer;
-import ee.knk.neverland.config.DataConfig;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
 public class NeverlandApplication {
     public static void main(String[] args) {
-        SpringApplication.run(new Class<?>[] {NeverlandApplication.class, AppInitializer.class}, args);
+        ApplicationContext ctx = SpringApplication.run(NeverlandApplication.class, args);
     }
 
 }

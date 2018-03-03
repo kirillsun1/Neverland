@@ -8,6 +8,8 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+    public User() {
+    }
 
     public User(String name, String password, String email) {
         this.email = email;
@@ -33,8 +35,8 @@ public class User {
     @Column(name = "reg_time")
     private LocalDateTime registerTime = LocalDateTime.now();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Key> keys;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Token> tokens;
 
     public String getName() {
         return name;
@@ -64,11 +66,15 @@ public class User {
         return id;
     }
 
-    public void setKeys(Set<Key> keys) {
-        this.keys = keys;
+    public void setTokens(Set<Token> tokens) {
+        this.tokens = tokens;
     }
 
     public LocalDateTime getRegisterTime() {
         return registerTime;
+    }
+
+    public Set<Token> getTokens() {
+        return tokens;
     }
 }

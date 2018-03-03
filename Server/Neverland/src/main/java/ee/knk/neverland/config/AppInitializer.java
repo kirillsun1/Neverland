@@ -18,8 +18,6 @@ public class AppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 
-        ctx.register(DataConfig.class);
-
         servletContext.addListener(new ContextLoaderListener(ctx));
 
         ctx.setServletContext(servletContext);
