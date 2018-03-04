@@ -32,7 +32,8 @@ public class UserController {
     @RequestMapping(value="/register")
     public String register(@RequestParam(value="username") String username, @RequestParam(value="password") String password, @RequestParam(value="email") String email,
                            @RequestParam(value="firstname") String firstName, @RequestParam(value="secondname") String secondName) {
-        if (!(validator.loginIsCorrect(username) && validator.emailIsCorrect(email) && validator.nameIsCorrect(firstName) && validator.nameIsCorrect(secondName)) || userService.existsWithUsernameOrEmail(username, email)) {
+        if (!(validator.loginIsCorrect(username) && validator.emailIsCorrect(email) && validator.nameIsCorrect(firstName) && validator.nameIsCorrect(secondName))
+                || userService.existsWithUsernameOrEmail(username, email)) {
             return gson.toJson(new RegistrationLoginAnswer(RegistrationLoginConstants.FAILED));
         }
         User user = userService.addUser(new User(username, password, email, firstName, secondName));
