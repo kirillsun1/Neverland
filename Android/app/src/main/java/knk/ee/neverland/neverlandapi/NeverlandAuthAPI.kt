@@ -3,7 +3,7 @@ package knk.ee.neverland.neverlandapi
 import com.google.common.hash.Hashing
 import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
-import knk.ee.neverland.api.AuthAPIResponse
+import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.pojos.RegistrationData
 import java.net.HttpURLConnection
@@ -16,30 +16,32 @@ class NeverlandAuthAPI : AuthAPI {
     override fun attemptLogin(login: String, password: String): String {
         val gson = Gson()
         val data = getDataFromConnection("login",
-                params = mapOf(login to "login", password to "password"))
+                params = mapOf("username" to login, "password" to encodePassword(password)))
         val response = gson.fromJson(data, NeverlandAuthAPIResponses.AttemptLoginResponse::class.java)
 
-        if (!response.success) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED) // TODO: think about how to show errors
+        if (response.code != AuthAPIConstants.SUCCESS) {
+            throw AuthAPIException(response.code)
         }
 
-        return response.key!!
+        return response.token
     }
 
-    override fun registerAccount(registrationData: RegistrationData) {
+    override fun registerAccount(registrationData: RegistrationData): String {
         val gson = Gson()
         val data = getDataFromConnection("register",
                 params = registrationDataToMap(registrationData))
         val response = gson.fromJson(data, NeverlandAuthAPIResponses.RegistrationResponse::class.java)
 
-        if (!response.success) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED) // TODO: think about how to show errors
+        if (response.code != AuthAPIConstants.SUCCESS) {
+            throw AuthAPIException(response.code)
         }
+
+        return response.token
     }
 
-    override fun isKeyActive(key: String): Boolean {
+    override fun isTokenActive(token: String): Boolean {
         val gson = Gson()
-        val data = getDataFromConnection("keyactive", params = mapOf(key to "key"))
+        val data = getDataFromConnection("checktoken", params = mapOf("token" to token))
         val response = gson.fromJson(data, NeverlandAuthAPIResponses.IsKeyActiveResponse::class.java)
 
         return response.isActive
@@ -49,7 +51,7 @@ class NeverlandAuthAPI : AuthAPI {
         val stringBuilder = StringBuilder()
         var cur = 0
         params.forEach({
-            if (cur++ > 0) stringBuilder.append(",")
+            if (cur++ > 0) stringBuilder.append("&")
             stringBuilder.append(it.key).append("=").append(it.value)
         });
         return stringBuilder.toString()
@@ -58,22 +60,26 @@ class NeverlandAuthAPI : AuthAPI {
     private fun getDataFromConnection(requestName: String, method: String = "GET",
                                       params: Map<String, String>): String {
         val query = String.format("%s/%s?%s", API_LINK, requestName, joinParamsForLink(params))
+        println(query)
         val connection = URL(query).openConnection() as HttpURLConnection
         connection.requestMethod = method
         val code = connection.responseCode
-        if (code != HttpURLConnection.HTTP_OK) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
+
+        when (code) {
+            HttpURLConnection.HTTP_BAD_REQUEST -> throw AuthAPIException(AuthAPIConstants.CONNECTION_FAILED)
+            HttpURLConnection.HTTP_NOT_FOUND -> throw AuthAPIException(AuthAPIConstants.BAD_REQUEST_TO_API)
         }
+
         return connection.inputStream.bufferedReader().readText()
     }
 
     private fun registrationDataToMap(registrationData: RegistrationData): Map<String, String> {
         return mapOf(
-                registrationData.login to "login",
-                encodePassword(registrationData.password) to "password",
-                registrationData.email to "email",
-                registrationData.firstName to "firstname",
-                registrationData.secondName to "secondname")
+                "username" to registrationData.login,
+                "password" to encodePassword(registrationData.password),
+                "email" to registrationData.email)
+        // "firstname" to registrationData.firstName,
+        // "secondname" to registrationData.secondName)
     }
 
     private fun encodePassword(password: String): String {

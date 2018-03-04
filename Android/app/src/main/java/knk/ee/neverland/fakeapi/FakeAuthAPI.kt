@@ -2,7 +2,7 @@ package knk.ee.neverland.fakeapi
 
 import com.google.common.hash.Hashing
 import knk.ee.neverland.api.AuthAPI
-import knk.ee.neverland.api.AuthAPIResponse
+import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.pojos.RegistrationData
 import java.nio.charset.StandardCharsets
@@ -12,45 +12,24 @@ class FakeAuthAPI : AuthAPI {
     private val registeredUsers = ArrayList<User>()
     private val workingKeys = ArrayList<String>()
 
-    init {
-        workingKeys.add("ABC")
-    }
-
     @Throws(AuthAPIException::class)
     override fun attemptLogin(login: String, password: String): String {
         for (user in registeredUsers) {
             if (user.login == login && user.password == password) {
-                val key = generateKey(user)
-                workingKeys.add(key)
-                return key
+                return makeAndRegisterKey(user)
             }
         }
 
-        throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
+        throw AuthAPIException(AuthAPIConstants.FAILED)
     }
 
     @Throws(AuthAPIException::class)
-    override fun registerAccount(registrationData: RegistrationData) {
-        if (!loginIsCorrect(registrationData.login)) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
+    override fun registerAccount(registrationData: RegistrationData): String {
+        if (!loginIsCorrect(registrationData.login) || !passwordIsCorrect(registrationData.password)
+                || !nameIsCorrect(registrationData.firstName) || !nameIsCorrect(registrationData.secondName)
+                || !emailIsCorrect(registrationData.email)) {
+            throw AuthAPIException(AuthAPIConstants.FAILED)
         }
-
-        if (!passwordIsCorrect(registrationData.password)) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
-        }
-
-        if (!nameIsCorrect(registrationData.firstName)) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
-        }
-
-        if (!nameIsCorrect(registrationData.secondName)) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
-        }
-
-        if (!emailIsCorrect(registrationData.email)) {
-            throw AuthAPIException(AuthAPIResponse.REQUEST_FAILED)
-        }
-
         val user = User()
 
         user.login = registrationData.login
@@ -60,10 +39,12 @@ class FakeAuthAPI : AuthAPI {
         user.email = registrationData.email
 
         registeredUsers.add(user)
+
+        return makeAndRegisterKey(user)
     }
 
-    override fun isKeyActive(key: String): Boolean {
-        return workingKeys.contains(key)
+    override fun isTokenActive(token: String): Boolean {
+        return workingKeys.contains(token)
     }
 
     private fun generateKey(user: User): String {
@@ -71,6 +52,12 @@ class FakeAuthAPI : AuthAPI {
         return Hashing.sha256()
                 .hashString(line, StandardCharsets.UTF_8)
                 .toString()
+    }
+
+    private fun makeAndRegisterKey(user: User): String {
+        val key = generateKey(user)
+        workingKeys.add(key)
+        return generateKey(user)
     }
 
     private fun loginIsCorrect(login: String): Boolean {

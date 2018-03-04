@@ -8,7 +8,7 @@ interface AuthAPI {
     fun attemptLogin(login: String, password: String): String
 
     @Throws(AuthAPIException::class)
-    fun registerAccount(registrationData: RegistrationData)
+    fun registerAccount(registrationData: RegistrationData) : String
 
-    fun isKeyActive(key: String): Boolean
+    fun isTokenActive(token: String): Boolean
 }

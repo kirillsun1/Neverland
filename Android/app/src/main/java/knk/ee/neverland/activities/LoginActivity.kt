@@ -17,13 +17,14 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import knk.ee.neverland.R
+import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
 
 class LoginActivity : AppCompatActivity() {
     private var mAuthTask: UserLoginTask? = null
-
     // UI references.
     private var mLoginView: AutoCompleteTextView? = null
     private var mPasswordView: EditText? = null
@@ -37,6 +38,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        getAndSetAPIUserdata()
+        openMainActivityIfTokenIsSet()
+
         // Set up the login form.
         mLoginView = findViewById(R.id.registration_login)
 
@@ -48,7 +53,6 @@ class LoginActivity : AppCompatActivity() {
             }
             false
         })
-
         val mEmailSignInButton = findViewById<Button>(R.id.email_sign_in_button)
         mEmailSignInButton.setOnClickListener { attemptLogin() }
 
@@ -59,10 +63,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (resultCode == RegistrationActivity.SUCCESSFUL_REGISTRATION) {
-            val key = data.getStringExtra("key")
+        if (resultCode == AuthAPIConstants.SUCCESS) {
+            val token = data.getStringExtra("token")
             val login = data.getStringExtra("login")
-            saveUserdataToTheSystemSettings(login, key)
+            saveUserdataToTheSystemSettings(login, token)
             finish()
         }
     }
@@ -76,25 +80,20 @@ class LoginActivity : AppCompatActivity() {
         if (mAuthTask != null) {
             return
         }
-
         // Reset errors.
         mLoginView!!.error = null
         mPasswordView!!.error = null
-
         // Store values at the time of the login attempt.
         val login = mLoginView!!.text.toString()
         val password = mPasswordView!!.text.toString()
-
         var cancel = false
         var focusView: View? = null
-
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView!!.error = getString(R.string.error_invalid_password)
             focusView = mPasswordView
             cancel = true
         }
-
         // Check for a valid login address.
         if (TextUtils.isEmpty(login)) {
             mLoginView!!.error = getString(R.string.error_field_required)
@@ -167,39 +166,86 @@ class LoginActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    private fun showToast(message: String) {
+        val context = applicationContext
+        val duration = Toast.LENGTH_LONG
+        val toast = Toast.makeText(context, message, duration)
+        toast.show()
+    }
+
+    private fun getAndSetAPIUserdata() {
+        val sharedPreferences = getSharedPreferences(resources
+                .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
+
+        val login = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
+        val key = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
+
+        DefaultAPI.setUserData(login, key)
+    }
+
+    private fun openMainActivityIfTokenIsSet() {
+        if (DefaultAPI.isKeySet()) {
+            CheckTokenTask(DefaultAPI.userToken!!).execute()
+        }
+    }
+
+    private fun openMainActivity() {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
     @SuppressLint("StaticFieldLeak")
-    private inner class UserLoginTask internal constructor(private val mLogin: String, private val mPassword: String) : AsyncTask<Void, Void, Boolean>() {
-
-        override fun doInBackground(vararg params: Void): Boolean? {
+    private inner class UserLoginTask internal constructor(private val mLogin: String, private val mPassword: String) : AsyncTask<Void, Void, Int>() {
+        override fun doInBackground(vararg params: Void): Int? {
             try {
                 saveUserdataToTheSystemSettings(mLogin,
                         DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
-                return true
+                return AuthAPIConstants.SUCCESS
             } catch (e: AuthAPIException) {
-                return false
+                return e.code
             }
 
         }
 
-        override fun onPostExecute(success: Boolean?) {
+        override fun onPostExecute(code: Int?) {
             mAuthTask = null
             showProgress(false)
 
-            if (success!!) {
-                finish()
-            } else {
-                mPasswordView!!.error = getString(R.string.error_incorrect_password)
-                mPasswordView!!.requestFocus()
+            when (code) {
+                AuthAPIConstants.CONNECTION_FAILED -> showToast(getString(R.string.error_no_connection))
+                AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_field))
+                AuthAPIConstants.SUCCESS -> finish()
+                else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
             }
         }
 
         override fun onCancelled() {
             mAuthTask = null
             showProgress(false)
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private inner class CheckTokenTask(val token: String) : AsyncTask<Void, Void, Boolean>() {
+        override fun doInBackground(vararg p0: Void?): Boolean {
+            try {
+                return DefaultAPI.authAPI.isTokenActive(token)
+            } catch (_: AuthAPIException) {
+                return false
+            }
+        }
+
+        override fun onPostExecute(result: Boolean?) {
+            if (result!!) {
+                openMainActivity()
+            } else {
+                showToast(getString(R.string.error_invalid_token))
+            }
         }
     }
 }

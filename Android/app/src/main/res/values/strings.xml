@@ -3,17 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
     <string name="prompt_login">Login</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_login">This login is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
 
     <!-- Main menu options -->
@@ -23,11 +18,21 @@
         <item>Following</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="shared_pref_name">neverlandPreference</string>
     <string name="authkey_address">authKey</string>
     <string name="authlogin_address">authLogin</string>
+
+    <string name="error_no_connection">Connection failed</string>
+    <string name="error_incorrect_field">Incorrect login/password</string>
+    <string name="error_incorrect_fields">Some fields are incorrect</string>
+    <string name="error_invalid_login">This login is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_first_name">This first name is invalid</string>
+    <string name="error_invalid_second_name">This second name is invalid</string>
+    <string name="error_invalid_email">This email is invalid</string>
+
+    <string name="error_unexpected_code">Unexpected code:</string>
+    <string name="error_invalid_token">Login failed!</string>
+    <string name="error_invalid_api_request">Invalid request!</string>
 
 </resources>

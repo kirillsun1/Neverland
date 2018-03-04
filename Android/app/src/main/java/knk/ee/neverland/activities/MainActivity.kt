@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initializeBottomNavigationBar()
-        getAndSetAPIUserdata()
-        openLoginActivityIfNecessary()
     }
 
     private fun initializeBottomNavigationBar() {
@@ -53,26 +51,5 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_page_frame, fragment)
         fragmentTransaction.commit()
-    }
-
-    private fun getAndSetAPIUserdata() {
-        val sharedPreferences = getSharedPreferences(resources
-                .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
-
-        val login = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
-        val key = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
-
-        DefaultAPI.setUserData(login, key)
-    }
-
-    private fun openLoginActivityIfNecessary() {
-        if (!DefaultAPI.isKeySet) {
-            openLoginActivity()
-        }
-    }
-
-    private fun openLoginActivity() {
-        val loginIntent = Intent(this, LoginActivity::class.java)
-        startActivity(loginIntent)
     }
 }

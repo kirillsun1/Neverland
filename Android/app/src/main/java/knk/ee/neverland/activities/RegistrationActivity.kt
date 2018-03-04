@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
 import knk.ee.neverland.R
+import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.pojos.RegistrationData
@@ -20,9 +21,7 @@ class RegistrationActivity : AppCompatActivity() {
     private var firstNameBox: EditText? = null
     private var secondNameBox: EditText? = null
     private var emailBox: EditText? = null
-
     private var registerTask: RegisterTask? = null
-    private var loginTask: LoginTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,24 +58,18 @@ class RegistrationActivity : AppCompatActivity() {
         registerTask!!.execute()
     }
 
-    @Throws(AuthAPIException::class)
-    private fun login(login: String, pass: String) {
-        loginTask = LoginTask(login, pass)
-        loginTask!!.execute()
-    }
-
-    private fun showFailMessage(message: String) {
+    private fun showToast(message: String) {
         val context = applicationContext
         val duration = Toast.LENGTH_LONG
-
         val toast = Toast.makeText(context, message, duration)
         toast.show()
     }
 
-    private fun finishNow(key: String) {
+    private fun finishNow(login: String, token: String) {
         val intent = Intent()
-        intent.putExtra("key", key)
-        setResult(SUCCESSFUL_REGISTRATION, intent)
+        intent.putExtra("token", token)
+        intent.putExtra("login", login)
+        setResult(AuthAPIConstants.SUCCESS, intent)
         finish()
     }
 
@@ -86,8 +79,18 @@ class RegistrationActivity : AppCompatActivity() {
             return false
         }
 
+        if (!loginIsCorrect(loginBox!!.text.toString())) {
+            loginBox!!.error = getString(R.string.error_invalid_login)
+            return false
+        }
+
         if (passwordBox!!.text.isBlank()) {
             passwordBox!!.error = getString(R.string.error_field_required)
+            return false
+        }
+
+        if (!passwordIsCorrect(passwordBox!!.text.toString())) {
+            passwordBox!!.error = getString(R.string.error_invalid_password)
             return false
         }
 
@@ -96,8 +99,18 @@ class RegistrationActivity : AppCompatActivity() {
             return false
         }
 
+        if (!nameIsCorrect(firstNameBox!!.text.toString())) {
+            firstNameBox!!.error = getString(R.string.error_invalid_first_name)
+            return false
+        }
+
         if (secondNameBox!!.text.isBlank()) {
             secondNameBox!!.error = getString(R.string.error_field_required)
+            return false
+        }
+
+        if (!nameIsCorrect(secondNameBox!!.text.toString())) {
+            secondNameBox!!.error = getString(R.string.error_invalid_second_name)
             return false
         }
 
@@ -106,35 +119,51 @@ class RegistrationActivity : AppCompatActivity() {
             return false
         }
 
+        if (!emailIsCorrect(emailBox!!.text.toString())) {
+            emailBox!!.error = getString(R.string.error_invalid_email)
+            return false
+        }
+
         return true
     }
 
-    companion object {
-        val SUCCESSFUL_REGISTRATION = 1
+    private fun loginIsCorrect(login: String): Boolean {
+        return login.matches("^[a-z0-9_-]{6,16}$".toRegex())
+    }
+
+    private fun passwordIsCorrect(password: String): Boolean {
+        return password.matches("^[a-z0-9_-]{6,18}$".toRegex())
+    }
+
+    private fun emailIsCorrect(email: String): Boolean {
+        return email.matches("^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$".toRegex())
+    }
+
+    private fun nameIsCorrect(name: String): Boolean {
+        return name.matches("^[A-Za-z ,.'-]+$".toRegex())
     }
 
     @SuppressLint("StaticFieldLeak")
-    private inner class RegisterTask(val registrationData: RegistrationData) : AsyncTask<Void, Void, Boolean>() {
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            DefaultAPI.authAPI.registerAccount(registrationData)
-            return true // TODO: catch exceptions
-        }
+    private inner class RegisterTask(val registrationData: RegistrationData) : AsyncTask<Void, Void, Int>() {
+        private var token: String = ""
 
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                login(registrationData.login, registrationData.password)
+        override fun doInBackground(vararg p0: Void?): Int {
+            try {
+                token = DefaultAPI.authAPI.registerAccount(registrationData)
+                return AuthAPIConstants.SUCCESS
+            } catch (ex: AuthAPIException) {
+                return ex.code
             }
         }
-    }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class LoginTask(val login: String, val pass: String) : AsyncTask<Void, Void, String>() {
-        override fun doInBackground(vararg p0: Void?): String {
-            return DefaultAPI.authAPI.attemptLogin(login, pass)
-        }
-
-        override fun onPostExecute(result: String?) {
-            finishNow(result!!)
+        override fun onPostExecute(code: Int?) {
+            when (code) {
+                AuthAPIConstants.CONNECTION_FAILED -> showToast(getString(R.string.error_no_connection))
+                AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
+                AuthAPIConstants.SUCCESS -> finishNow(registrationData.login, token)
+                else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
+            }
         }
     }
 }
