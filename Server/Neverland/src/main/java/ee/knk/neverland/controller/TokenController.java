@@ -13,20 +13,24 @@ import java.time.LocalDateTime;
 @Controller
 class TokenController {
 
-    private final TokenService keyService;
+    private final TokenService tokenService;
 
-    public TokenController(TokenService keyService) {
-        this.keyService = keyService;
+    public TokenController(TokenService tokenService) {
+        this.tokenService = tokenService;
     }
 
+    boolean isRight(String token) {
+        return tokenService.isValid(token);
+
+    }
 
     String addKey(User user) {
-        String keyValue;
+        String tokenValue;
         do {
-            keyValue = generateValue(user.getName());
-        } while (keyService.checkToken(keyValue));
-        Token token = new Token(user, keyValue);
-        keyService.addToken(token);
+            tokenValue = generateValue(user.getUsername());
+        } while (tokenService.exists(tokenValue));
+        Token token = new Token(user, tokenValue);
+        tokenService.addToken(token);
         return token.getKeyValue();
     }
 

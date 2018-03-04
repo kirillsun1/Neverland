@@ -31,12 +31,18 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public boolean checkToken(String keyValue) {
-        return tokenRepository.exists(keyValue).isPresent();
+    public boolean exists(String tokenValue) {
+        return tokenRepository.exists(tokenValue).isPresent();
     }
 
     @Override
     public List<Token> getAll() {
         return tokenRepository.findAll();
     }
+
+    @Override
+    public boolean isValid(String tokenValue) {
+        return tokenRepository.isValid(tokenValue).isPresent();
+    }
+
 }

@@ -9,6 +9,7 @@ public interface TokenService {
 
     Token addToken(Token token);
     void cleanOutByUser(User user);
-    boolean checkToken(String keyText);
+    boolean exists(String tokenValue);
     List<Token> getAll();
+    boolean isValid(String tokenValue);
 }

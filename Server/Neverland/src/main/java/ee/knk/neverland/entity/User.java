@@ -11,10 +11,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password, String email) {
+    public User(String name, String password, String email, String firstName, String secondName) {
         this.email = email;
-        this.name = name;
+        this.username = name;
         this.password = password;
+        this.firstName = firstName;
+        this.secondName = secondName;
     }
 
     @Id
@@ -23,27 +25,33 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "name", nullable = false, unique = true)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "reg_time")
     private LocalDateTime registerTime = LocalDateTime.now();
 
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "second_name", nullable = false)
+    private String secondName;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Token> tokens;
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getPassword() {
@@ -76,5 +84,21 @@ public class User {
 
     public Set<Token> getTokens() {
         return tokens;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 }

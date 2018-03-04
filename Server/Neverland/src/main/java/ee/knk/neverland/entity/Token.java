@@ -27,8 +27,11 @@ public class Token {
     @JoinColumn(name = "user_fk", nullable = false)
     private User user;
 
-    @Column(name = "key_value", nullable = false)
+    @Column(name = "key_value", nullable = false, unique = true)
     private String keyValue;
+
+    @Column(name="active")
+    private boolean active = true;
 
     public User getUser() {
         return user;
@@ -40,5 +43,13 @@ public class Token {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
