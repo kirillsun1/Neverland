@@ -12,7 +12,7 @@ import SCLAlertView
 class AuthViewController: UIViewController {
 
     let user = User.sharedInstance
-    let api = FakeAuthApi()
+    let api = NLAuthApi()
     
     @IBOutlet weak var stackViewWidthConstr: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeightConstr: NSLayoutConstraint!
@@ -20,8 +20,8 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var logoTopConstr: NSLayoutConstraint!
     @IBOutlet weak var logoHeightConstr: NSLayoutConstraint!
 
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var userField: UITextField!
+    @IBOutlet weak var passwordField: RegistrationField!
+    @IBOutlet weak var userField: RegistrationField!
     
     var defaultVerticalConstr: CGFloat! {
         didSet {
@@ -40,6 +40,9 @@ class AuthViewController: UIViewController {
         passwordField.delegate = self
         userField.delegate = self
         
+        userField.checkRegex = "^[a-zA-Z0-9]{4,12}$"
+        passwordField.checkRegex = "^[a-zA-Z0-9]{6,16}$"
+
         setConstraints()
     }
     
@@ -51,9 +54,11 @@ class AuthViewController: UIViewController {
         
         if let uname = user.userName, let token = user.token {
             userField.text = uname
-            if api.isActive(token: token) {
-                performSegue(withIdentifier: "LoginSegue", sender: nil)
-            }
+            api.ifActive(token: token, onComplete: { response in
+                if response.code == .Successful {
+                    self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+                }
+            })
         }
         
     }
@@ -76,11 +81,11 @@ class AuthViewController: UIViewController {
         api.attemptLogin(withLogin: uname, passwordHash: hash) { response in
             switch response.code {
             case .Successful:
-                    user.userName = uname
-                    user.token = response.message
-                    performSegue(withIdentifier: "LoginSegue", sender: nil)
+                self.user.userName = uname
+                self.user.token = response.message
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
             case .Error:
-                    SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
+                SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
             }
         }
     }
@@ -117,9 +122,11 @@ class AuthViewController: UIViewController {
 
 
 extension AuthViewController: UITextFieldDelegate {
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        guard let uname = userField.text, let pwd = textField.text, !uname.isEmpty, !pwd.isEmpty else {
+        guard let uname = userField.text, let pwd = passwordField.text, passwordField.isValid, userField.isValid else {
             return false
         }
         

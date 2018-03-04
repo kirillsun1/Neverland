@@ -45,6 +45,7 @@
 		17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */; };
 		17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC63112044755A008668FC /* SuggestQuestViewController.swift */; };
 		17F93FD3204886580074D74A /* QuestAddPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD2204886580074D74A /* QuestAddPopup.swift */; };
+		17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD420488B9F0074D74A /* NLAuthApi.swift */; };
 		17FB6953203DF88E008F9057 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6952203DF88E008F9057 /* User.swift */; };
 		17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */; };
 		17FD829720374139004A33E7 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829620374139004A33E7 /* FeedCell.swift */; };
@@ -118,6 +119,7 @@
 		17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextView.swift; sourceTree = "<group>"; };
 		17EC63112044755A008668FC /* SuggestQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestQuestViewController.swift; sourceTree = "<group>"; };
 		17F93FD2204886580074D74A /* QuestAddPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAddPopup.swift; sourceTree = "<group>"; };
+		17F93FD420488B9F0074D74A /* NLAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLAuthApi.swift; sourceTree = "<group>"; };
 		17FB6952203DF88E008F9057 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		17FD829620374139004A33E7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */,
 				17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */,
+				17F93FD420488B9F0074D74A /* NLAuthApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
 				17F93FD3204886580074D74A /* QuestAddPopup.swift in Sources */,
 				17FD829720374139004A33E7 /* FeedCell.swift in Sources */,
+				17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */,
 				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
 				1754BA9720378E91008B2C44 /* CardView.swift in Sources */,
 				17FB6953203DF88E008F9057 /* User.swift in Sources */,

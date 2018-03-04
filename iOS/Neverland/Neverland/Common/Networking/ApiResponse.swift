@@ -13,6 +13,6 @@ protocol ApiResponse {
 }
 
 enum ResponseCode: Int {
-    case Successful = 200
-    case Error = 400
+    case Successful = 1
+    case Error = -1
 }

@@ -49,15 +49,17 @@ class RegistrerViewController: UIViewController {
             fatalError("Could not create hash of pwd while registering")
         }
         
+        // optionals can be force-unwrapped securely, cause to get into this function, all fields should be filled.
+        
         let rData = RegistrationData(login: loginLbl.text!,
                                      password: hash, firstName: nameLbl.text!,
                                      secondName: surnameLbl.text!, email: emailLbl.text!)
         
-        FakeAuthApi().registerAccount(withData:rData) { response in
+        NLAuthApi().registerAccount(withData:rData) { response in
             if response.code == .Successful {
                 User.sharedInstance.token = response.message
-                User.sharedInstance.userName = loginLbl.text!
-                performSegue(withIdentifier: "LoginSegue", sender: nil)
+                User.sharedInstance.userName = self.loginLbl.text!
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
             } else {
                 SCLAlertView().showError("Registration error", subTitle: "Username is already taken.")
             }

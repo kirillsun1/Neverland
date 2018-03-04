@@ -13,7 +13,7 @@ class FakeAuthApi: AuthApi {
     static var registeredUsers = [UserData]()
     static var activeKeys = ["BCD"]
     
-    func attemptLogin(withLogin login: String, passwordHash: String, onComplete: (AuthApiResponse) -> ()) {
+    func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ()) {
         if FakeAuthApi.registeredUsers.contains(where: {$0.login == login && $0.password == passwordHash}) {
             let key = generateKey()
             FakeAuthApi.activeKeys.append(key)
@@ -25,7 +25,7 @@ class FakeAuthApi: AuthApi {
         onComplete(AuthApiResponse(code: .Error, message: "Invalid Data"))
     }
     
-    func registerAccount(withData data: RegistrationData, onComplete: (AuthApiResponse) -> ()) {
+    func registerAccount(withData data: RegistrationData, onComplete: @escaping (AuthApiResponse) -> ()) {
         if FakeAuthApi.registeredUsers.contains(where: {$0.login == data.login}) {
             onComplete(AuthApiResponse(code: .Error, message: nil))
             return
@@ -35,8 +35,8 @@ class FakeAuthApi: AuthApi {
         attemptLogin(withLogin: data.login, passwordHash: data.password, onComplete: onComplete)
     }
     
-    func isActive(token: String) -> Bool {
-        return FakeAuthApi.activeKeys.contains(token)
+    func ifActive(token: String, onComplete: @escaping (AuthApiResponse)->()) {
+        //return FakeAuthApi.activeKeys.contains(token)
     }
     
     func generateKey() -> String {
