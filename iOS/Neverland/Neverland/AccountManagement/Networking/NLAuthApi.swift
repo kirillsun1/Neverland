@@ -22,9 +22,10 @@ class NLAuthApi: AuthApi {
                 onComplete(AuthApiResponse(code: .Error, message: nil))
             }
             
+            
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
-                
+
                 guard let codeInt = JSON.value(forKey: "code") as? Int,
                     let code = ResponseCode(rawValue: codeInt) else {
                     fatalError("Unknown server code. Debug this")

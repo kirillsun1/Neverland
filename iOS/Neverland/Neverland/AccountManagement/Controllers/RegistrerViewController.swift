@@ -25,11 +25,11 @@ class RegistrerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginLbl.checkRegex = "^[a-zA-Z0-9]{4,12}$"
-        pwdLabel.checkRegex = "^[a-zA-Z0-9]{6,16}$"
-        nameLbl.checkRegex = "^\\w+$"
-        surnameLbl.checkRegex = "^\\w+$"
-        emailLbl.checkRegex = "^[^@]+@[^@]+\\.[a-zA-Z0-9]+$"
+        loginLbl.checkRegex = "^[a-z0-9_-]{6,16}$$"
+        pwdLabel.checkRegex = "^[a-z0-9_-]{6,18}$"
+        nameLbl.checkRegex = "^[A-Za-z ,.'-]+$"
+        surnameLbl.checkRegex = "^[A-Za-z ,.'-]+$"
+        emailLbl.checkRegex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
         textFields = [loginLbl, pwdLabel, nameLbl, surnameLbl, emailLbl]
     }
     

@@ -40,8 +40,9 @@ class AuthViewController: UIViewController {
         passwordField.delegate = self
         userField.delegate = self
         
-        userField.checkRegex = "^[a-zA-Z0-9]{4,12}$"
-        passwordField.checkRegex = "^[a-zA-Z0-9]{6,16}$"
+        userField.checkRegex = "^[a-z0-9_-]{6,16}$"
+        
+        passwordField.checkRegex = "^[a-z0-9_-]{6,18}$"
 
         setConstraints()
     }
