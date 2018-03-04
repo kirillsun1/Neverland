@@ -3,25 +3,16 @@ package ee.knk.neverland.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tokens")
-public class Token {
-    public Token() {
-
-    }
-
-    public Token(User user, String keyValue) {
-        this.keyValue = keyValue;
-        this.user = user;
-    }
-
+@Table(name = "key")
+public class Key {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
     private Long id;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk", nullable = false)
@@ -34,11 +25,15 @@ public class Token {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getKeyValue() {
         return keyValue;
     }
 
-    public Long getId() {
-        return id;
+    public void setKeyValue(String keyValue) {
+        this.keyValue = keyValue;
     }
 }

@@ -2,20 +2,11 @@ package ee.knk.neverland.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-    public User() {
-    }
-
-    public User(String name, String password, String email) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-    }
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -29,14 +20,11 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "e-mail")
     private String email;
 
-    @Column(name = "reg_time")
-    private LocalDateTime registerTime = LocalDateTime.now();
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<Token> tokens;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Key> keys;
 
     public String getName() {
         return name;
@@ -66,15 +54,7 @@ public class User {
         return id;
     }
 
-    public void setTokens(Set<Token> tokens) {
-        this.tokens = tokens;
-    }
-
-    public LocalDateTime getRegisterTime() {
-        return registerTime;
-    }
-
-    public Set<Token> getTokens() {
-        return tokens;
+    public void setKeys(Set<Key> keys) {
+        this.keys = keys;
     }
 }
