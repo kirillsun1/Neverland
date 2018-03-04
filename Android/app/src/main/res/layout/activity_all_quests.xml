@@ -26,7 +26,7 @@
             app:contentInsetStart="10dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <knk.ee.neverland.view.InputView
+            <knk.ee.neverland.customviews.InputView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:visibility="visible"

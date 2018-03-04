@@ -19,7 +19,7 @@ object DefaultAPI {
             userToken = token
             userLogin = login
 
-            (questAPI as FakeQuestAPI).key = token
+            (questAPI as FakeQuestAPI).token = token
         }
     }
 }

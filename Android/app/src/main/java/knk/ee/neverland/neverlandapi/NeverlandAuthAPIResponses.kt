@@ -2,8 +2,7 @@ package knk.ee.neverland.neverlandapi
 
 class NeverlandAuthAPIResponses {
     data class IsKeyActiveResponse(
-            val token: String,
-            val isActive: Boolean
+            val code: Int
     )
 
     data class RegistrationResponse(

@@ -1,7 +1,7 @@
 package knk.ee.neverland.api
 
-import knk.ee.neverland.pojos.Quest
-import knk.ee.neverland.pojos.Solution
+import knk.ee.neverland.models.Quest
+import knk.ee.neverland.models.Solution
 
 interface QuestApi {
     fun submitNewQuest(quest: Quest)

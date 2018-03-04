@@ -6,4 +6,6 @@
     <color name="background">#EFEFEF</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="custom_fab_sheet_color">#ffffff</color>
+    <color name="custom_fab_color">#000000</color>
 </resources>

@@ -21,13 +21,6 @@ public class MyQuestElementAdapter extends BaseAdapter {
 
         questElementList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            questElementList.add(new MyQuestElement(
-                    "My quest",
-                    "Manor we shall merit by chief wound no or would. Oh towards between subject passage sending mention or it. Sight happy do burst fruit to woody begin at. Assurance perpetual he in oh determine as. The year paid met him does eyes same. Own marianne improved sociable not out. Thing do sight blush mr an. Celebrated am announcing delightful remarkably we in literature it solicitude. Design use say piqued any gay supply. Front sex match vexed her those great. "
-            ));
-        }
-
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

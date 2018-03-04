@@ -4,7 +4,7 @@ import com.google.common.hash.Hashing
 import knk.ee.neverland.api.AuthAPI
 import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.pojos.RegistrationData
+import knk.ee.neverland.models.RegistrationData
 import java.nio.charset.StandardCharsets
 import java.util.*
 

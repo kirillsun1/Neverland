@@ -8,7 +8,7 @@ import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.QuestAPIException
-import knk.ee.neverland.pojos.Quest
+import knk.ee.neverland.models.Quest
 
 class CreateQuestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

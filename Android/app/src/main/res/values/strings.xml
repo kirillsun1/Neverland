@@ -34,5 +34,6 @@
     <string name="error_unexpected_code">Unexpected code:</string>
     <string name="error_invalid_token">Login failed!</string>
     <string name="error_invalid_api_request">Invalid request!</string>
+    <string name="error_network_down">Network error</string>
 
 </resources>

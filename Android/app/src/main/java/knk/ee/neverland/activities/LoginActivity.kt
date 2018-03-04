@@ -39,9 +39,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        getAndSetAPIUserdata()
-        openMainActivityIfTokenIsSet()
-
         // Set up the login form.
         mLoginView = findViewById(R.id.registration_login)
 
@@ -67,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
             val token = data.getStringExtra("token")
             val login = data.getStringExtra("login")
             saveUserdataToTheSystemSettings(login, token)
-            finish()
+            openMainActivityAndFinishThisActivity()
         }
     }
 
@@ -119,11 +116,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isLoginValid(login: String): Boolean {
-        return login.matches("^[a-z0-9_-]{6,16}$".toRegex())
+        return login.matches(AuthAPIConstants.LOGIN_REGEX)
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.matches("^[a-z0-9_-]{6,18}$".toRegex())
+        return password.matches(AuthAPIConstants.PASSWORD_REGEX)
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -157,13 +154,21 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveUserdataToTheSystemSettings(login: String, key: String) {
+    private fun saveUserdataToTheSystemSettings(login: String, token: String) {
+        DefaultAPI.setUserData(login, token)
+
         val sharedPreferences = getSharedPreferences(resources.getString(R.string.shared_pref_name),
                 Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putString(resources.getString(R.string.authkey_address), key)
+        editor.putString(resources.getString(R.string.authkey_address), token)
         editor.putString(resources.getString(R.string.authlogin_address), login)
         editor.apply()
+    }
+
+    private fun openMainActivityAndFinishThisActivity() {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
+        finish()
     }
 
     private fun showToast(message: String) {
@@ -171,27 +176,6 @@ class LoginActivity : AppCompatActivity() {
         val duration = Toast.LENGTH_LONG
         val toast = Toast.makeText(context, message, duration)
         toast.show()
-    }
-
-    private fun getAndSetAPIUserdata() {
-        val sharedPreferences = getSharedPreferences(resources
-                .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
-
-        val login = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
-        val key = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
-
-        DefaultAPI.setUserData(login, key)
-    }
-
-    private fun openMainActivityIfTokenIsSet() {
-        if (DefaultAPI.isKeySet()) {
-            CheckTokenTask(DefaultAPI.userToken!!).execute()
-        }
-    }
-
-    private fun openMainActivity() {
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
     }
 
     /**
@@ -208,7 +192,6 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: AuthAPIException) {
                 return e.code
             }
-
         }
 
         override fun onPostExecute(code: Int?) {
@@ -216,10 +199,10 @@ class LoginActivity : AppCompatActivity() {
             showProgress(false)
 
             when (code) {
-                AuthAPIConstants.CONNECTION_FAILED -> showToast(getString(R.string.error_no_connection))
                 AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                AuthAPIConstants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
                 AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_field))
-                AuthAPIConstants.SUCCESS -> finish()
+                AuthAPIConstants.SUCCESS -> openMainActivityAndFinishThisActivity()
                 else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
             }
         }
@@ -227,25 +210,6 @@ class LoginActivity : AppCompatActivity() {
         override fun onCancelled() {
             mAuthTask = null
             showProgress(false)
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class CheckTokenTask(val token: String) : AsyncTask<Void, Void, Boolean>() {
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                return DefaultAPI.authAPI.isTokenActive(token)
-            } catch (_: AuthAPIException) {
-                return false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                openMainActivity()
-            } else {
-                showToast(getString(R.string.error_invalid_token))
-            }
         }
     }
 }

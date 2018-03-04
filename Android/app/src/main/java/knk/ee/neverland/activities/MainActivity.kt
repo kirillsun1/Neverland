@@ -1,21 +1,21 @@
 package knk.ee.neverland.activities
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
-import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.fragments.*
+import knk.ee.neverland.activities.fragments.FeedFragment
+import knk.ee.neverland.activities.fragments.GroupsFragment
+import knk.ee.neverland.activities.fragments.ProfileFragment
+import knk.ee.neverland.activities.fragments.QuestsFragment
+import knk.ee.neverland.activities.fragments.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initializeBottomNavigationBar()
     }
 

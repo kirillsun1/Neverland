@@ -13,7 +13,7 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.AuthAPIConstants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.pojos.RegistrationData
+import knk.ee.neverland.models.RegistrationData
 
 class RegistrationActivity : AppCompatActivity() {
     private var loginBox: AutoCompleteTextView? = null
@@ -128,19 +128,19 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun loginIsCorrect(login: String): Boolean {
-        return login.matches("^[a-z0-9_-]{6,16}$".toRegex())
+        return login.matches(AuthAPIConstants.LOGIN_REGEX)
     }
 
     private fun passwordIsCorrect(password: String): Boolean {
-        return password.matches("^[a-z0-9_-]{6,18}$".toRegex())
+        return password.matches(AuthAPIConstants.PASSWORD_REGEX)
     }
 
     private fun emailIsCorrect(email: String): Boolean {
-        return email.matches("^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$".toRegex())
+        return email.matches(AuthAPIConstants.EMAIL_REGEX)
     }
 
     private fun nameIsCorrect(name: String): Boolean {
-        return name.matches("^[A-Za-z ,.'-]+$".toRegex())
+        return name.matches(AuthAPIConstants.NAME_REGEX)
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -158,8 +158,8 @@ class RegistrationActivity : AppCompatActivity() {
 
         override fun onPostExecute(code: Int?) {
             when (code) {
-                AuthAPIConstants.CONNECTION_FAILED -> showToast(getString(R.string.error_no_connection))
                 AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                AuthAPIConstants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
                 AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
                 AuthAPIConstants.SUCCESS -> finishNow(registrationData.login, token)
                 else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))

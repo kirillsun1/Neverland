@@ -3,11 +3,11 @@ package knk.ee.neverland.fakeapi
 import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.api.QuestApi
 import knk.ee.neverland.exceptions.QuestAPIException
-import knk.ee.neverland.pojos.Quest
-import knk.ee.neverland.pojos.Solution
+import knk.ee.neverland.models.Quest
+import knk.ee.neverland.models.Solution
 
 class FakeQuestAPI : QuestApi {
-    var key: String = ""
+    var token: String = ""
 
     private val QUEST_NAME_MINIMUM_SYMBOLS: Int = 5
     private val QUEST_DESC_MINIMUM_SYMBOLS: Int = 5
