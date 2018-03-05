@@ -34,6 +34,7 @@
 		17A56BFF2034640B00A4FC72 /* NeverlandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BFE2034640B00A4FC72 /* NeverlandTests.swift */; };
 		17A56C0A2034640B00A4FC72 /* NeverlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56C092034640B00A4FC72 /* NeverlandUITests.swift */; };
 		17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ADF27720402FCE0061BA47 /* String+Extension.swift */; };
+		17B96E00204DC551001F22D2 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B96DFF204DC551001F22D2 /* Array+Extension.swift */; };
 		17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4A203F6D92006EF6D5 /* RegistrationData.swift */; };
 		17CB3C4D203F6F0B006EF6D5 /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */; };
 		17CB3C4F203F7030006EF6D5 /* FakeAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */; };
@@ -44,7 +45,7 @@
 		17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A8A20382A2500027634 /* QuestInfoCell.swift */; };
 		17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */; };
 		17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC63112044755A008668FC /* SuggestQuestViewController.swift */; };
-		17F93FD3204886580074D74A /* QuestAddPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD2204886580074D74A /* QuestAddPopup.swift */; };
+		17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */; };
 		17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD420488B9F0074D74A /* NLAuthApi.swift */; };
 		17FB6953203DF88E008F9057 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6952203DF88E008F9057 /* User.swift */; };
 		17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */; };
@@ -108,6 +109,7 @@
 		17A56C092034640B00A4FC72 /* NeverlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverlandUITests.swift; sourceTree = "<group>"; };
 		17A56C0B2034640B00A4FC72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17ADF27720402FCE0061BA47 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		17B96DFF204DC551001F22D2 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		17CB3C4A203F6D92006EF6D5 /* RegistrationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
 		17CB3C4C203F6F0B006EF6D5 /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
 		17CB3C4E203F7030006EF6D5 /* FakeAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthApi.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		17E15A8A20382A2500027634 /* QuestInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoCell.swift; sourceTree = "<group>"; };
 		17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextView.swift; sourceTree = "<group>"; };
 		17EC63112044755A008668FC /* SuggestQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestQuestViewController.swift; sourceTree = "<group>"; };
-		17F93FD2204886580074D74A /* QuestAddPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAddPopup.swift; sourceTree = "<group>"; };
+		17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLConfirmationPopupService.swift; sourceTree = "<group>"; };
 		17F93FD420488B9F0074D74A /* NLAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLAuthApi.swift; sourceTree = "<group>"; };
 		17FB6952203DF88E008F9057 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -228,7 +230,7 @@
 				17FD829920375FB5004A33E7 /* QuestCell.swift */,
 				17E15A8A20382A2500027634 /* QuestInfoCell.swift */,
 				17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */,
-				17F93FD2204886580074D74A /* QuestAddPopup.swift */,
+				17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,6 +432,7 @@
 			children = (
 				17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */,
 				17ADF27720402FCE0061BA47 /* String+Extension.swift */,
+				17B96DFF204DC551001F22D2 /* Array+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -748,8 +751,9 @@
 				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
 				17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */,
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
-				17F93FD3204886580074D74A /* QuestAddPopup.swift in Sources */,
+				17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */,
 				17FD829720374139004A33E7 /* FeedCell.swift in Sources */,
+				17B96E00204DC551001F22D2 /* Array+Extension.swift in Sources */,
 				17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */,
 				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
 				1754BA9720378E91008B2C44 /* CardView.swift in Sources */,

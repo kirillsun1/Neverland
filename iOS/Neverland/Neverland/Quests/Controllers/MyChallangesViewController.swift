@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class MyChallangesViewController: UIViewController {
 
@@ -17,6 +18,23 @@ class MyChallangesViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        configurePlusBtn()
+    }
+    
+    func configurePlusBtn() {
+        let actionButton = JJFloatingActionButton()
+        actionButton.buttonColor = UIColor.neverlandDarkColor
+        
+        actionButton.addItem(title: "Take quest", image: UIImage(named: "search_btn")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.performSegue(withIdentifier: "TakeQuestSegue", sender: nil)
+        }
+        
+        actionButton.addItem(title: "Suggest quest", image: UIImage(named: "add_btn")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.performSegue(withIdentifier: "CreateQuestSegue", sender: nil)
+        }
+
+        actionButton.display(inViewController: self)
     }
 
 }

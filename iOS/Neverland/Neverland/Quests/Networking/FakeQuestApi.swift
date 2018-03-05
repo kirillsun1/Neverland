@@ -17,7 +17,7 @@ class FakeQuestApi: QuestApi {
         var quests = [Quest]()
         let person = Person(id: 1, nickname: "Voldemort", photoURLString: "https://cdn.pinkvilla.com/files/styles/contentpreview/public/Albus-Dumbledore-Bollywood-Actor-Audition.jpg?itok=-ejADgE3")
         for i in 0 ..< 200 {
-            let q = Quest.init(title: "Quest # \(i)", description: "Some description here blah blah", creator: person, solution: [Solution]())
+            let q = Quest.init(id: i, title: "Quest # \(i)", groupId: 0, description: "Some description here blah blah", creator: person, solution: [Solution]())
             quests.append(q)
         }
         return quests

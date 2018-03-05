@@ -7,240 +7,297 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002B2A0787C614634B8B7513AC1A1EAE /* CommonCryptoBridge.h in Resources */ = {isa = PBXBuildFile; fileRef = 94E4B8B73EB8D6B76066B516DFF4BFF0 /* CommonCryptoBridge.h */; };
-		02CAE638EF1CEEBD6F5740498F9CA3F8 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E50529F417CF3B510661EF7965FFEC /* DropDown.swift */; };
-		03C8E5283AB4261BF0E7FEB834B3B474 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C54B5212CAF36F4B0A2756D035FC7B /* PopupDialogDefaultButtons.swift */; };
-		098F056D90AF9CD3FD60D8A81DF043B6 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407B473EC9CDEC2EC8BF4074A1D7F50 /* DropDownCell.swift */; };
-		0ACA785BE5424E23EDDD2A629B5292F8 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A415D8A53BAAC9DC31F76CA77FAD1A /* PopupDialogOverlayView.swift */; };
-		0B670A54C7B6D3B7B1FFFAB784977D73 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F410F8283E30DFB0BDA21AD6B6BE424 /* UIImageView+Calculations.swift */; };
-		0F24A9ECA9DC61E04CCEAE822A02CD91 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4961640F9621BDA6FCCF444FDB6453A /* UIViewController+Visibility.swift */; };
-		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E00BA98FE48A499F6C7EF4A884A4BBA /* Timeline.swift */; };
+		00217E98D166DF2D4EC3A75D50DDE397 /* JJActionItem+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ADBD466BA812140A8240139B7888B2 /* JJActionItem+Animations.swift */; };
+		002B2A0787C614634B8B7513AC1A1EAE /* CommonCryptoBridge.h in Resources */ = {isa = PBXBuildFile; fileRef = 6A84ED6EBBE8076A212BF6A6C4DECE59 /* CommonCryptoBridge.h */; };
+		02CAE638EF1CEEBD6F5740498F9CA3F8 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C988BA8A58362C21B6EDA3FC20EF1 /* DropDown.swift */; };
+		098F056D90AF9CD3FD60D8A81DF043B6 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5184AC5107F692B3212617ACFAC2CCA4 /* DropDownCell.swift */; };
+		0AD004BB197D2314CFA77E2EE7794DB8 /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA50CD83DA129F70C11A724F05EC5A31 /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D7D9102A262014EECE15FCCDDF7798C /* JJItemPopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE7C2B97BAADA22F8A725415320BAF /* JJItemPopAnimation.swift */; };
+		0E8188B35ED11E42D8BB8C611F74D0A8 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A35B0A39435C6039DE422E7B774DA39 /* PresentationController.swift */; };
+		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46F945BDD05D33C94B317EB5491C47 /* Timeline.swift */; };
 		1AC058F2C22CB0ACB3DC1704D64F9A22 /* Pods-NeverlandUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B49A67F98CCD4BF6CD3188BA6F8E80 /* Pods-NeverlandUITests-dummy.m */; };
-		1AC40E0B9513D90A8BC84F98B8BDA9DE /* Pods-Neverland-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C60D63B4ABE353EF625970DCFECE0478 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2472C49C457D096B849D767115EBD3BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		2556FE4F8D0B0DD4E7F7A78466D1F204 /* module.modulemap in Resources */ = {isa = PBXBuildFile; fileRef = 20D61055BABF3701F28BE0C599FDC7F2 /* module.modulemap */; };
-		29E46A42DFE14D474B47AC661ED0C324 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E6B2C46C0AD393382025F9B7619C331 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E648C7072603B2B32F2EFA579CBE632 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F67677545CE3F87D77303018F87B5 /* TransitionAnimations.swift */; };
-		2E7E74DF0C455B0BC43BFDD1D0163E64 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0460BCD6BBE7E4F736126A682609978C /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E9CD6F441E6B30601549781F5DB2D12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77036BDF6C9D536885FE4D7F9A386511 /* TaskDelegate.swift */; };
-		37C293AEA575D6E5186739D1B07805F2 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C194DB9E4A7E16433CE34C13188762 /* DropDownCell.xib */; };
-		3A37ED685A4F0C62F0BADCB1C7B6D21B /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A741EDECD012976FA28C1EAB6BF840 /* UIView+Animations.swift */; };
-		3C14F3BC1E4D5191A586F79097CC7F7A /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72FDCE2A8F5E1D9DC56178EE3A70DCE /* Empty.swift */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2686E6F1E20C8B09B27140BC58E044B /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C18FCBFADFE052AFF42BC35F265CCC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		1C916A7284F41E82914AFF520FBF993C /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1C06FE0051A614CDB03B7A74FE3EC6 /* PopupDialogDefaultView.swift */; };
+		1EF4EF9B5E0C19A2C601967DC0E2B092 /* SCLAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A19749FD84BBCFF5BB5909294340897D /* SCLAlertView-dummy.m */; };
+		2315F0CF21CFDEB0D908B9CEBE51D53D /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EED34FDECDD3124C1FEBED74A262BD /* PopupDialog+Keyboard.swift */; };
+		247DF4B015A48490C187F92BC4EB7126 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5FB1F72FD4CCC45951A08B00B2184 /* PopupDialogButton.swift */; };
+		2556FE4F8D0B0DD4E7F7A78466D1F204 /* module.modulemap in Resources */ = {isa = PBXBuildFile; fileRef = 62A92A8D79EBFE1DA6494E4F59E2B090 /* module.modulemap */; };
+		267D888E542894CDDF2BC9DDA35F4EFE /* UIColor+JJFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E3CC3CE5E088E28E77BBAC5BF2B71B /* UIColor+JJFloatingActionButton.swift */; };
+		285877442E773415B4EBF0F8EEF8337F /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48797F06E54921E5B438A097D6847071 /* PresentationManager.swift */; };
+		2E7E74DF0C455B0BC43BFDD1D0163E64 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F16D4EFFA56EB4F0E06DB5D859FCC04D /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E9CD6F441E6B30601549781F5DB2D12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE040F938435F847718D4ED9383B3EEB /* TaskDelegate.swift */; };
+		36756D13040AA65502CD279C3A669FA9 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9CE0B37E5C57F4D3754B1126433FFA /* SCLExtensions.swift */; };
+		36E058E87C96EAB0F176A0329AEEFEA9 /* JJFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EEC5679AA977CC3ACF6F720E2A733D /* JJFloatingActionButton.swift */; };
+		37C293AEA575D6E5186739D1B07805F2 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9E35F93E5BA1E8E23BAC4B769CF903 /* DropDownCell.xib */; };
+		3AD8447568C4E541E041ADA871CB8871 /* JJFloatingActionButton+Placement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A31A165117BE5917849BCEF6FFD98A /* JJFloatingActionButton+Placement.swift */; };
+		3C14F3BC1E4D5191A586F79097CC7F7A /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87131AAB9AFE4026CA744B4F5AA143 /* Empty.swift */; };
+		3CBD2F8C296FF059AC5ABA74E87B0F19 /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2118347CF6A749B5B4B7E07D50C1A0F /* PopupDialogDefaultViewController.swift */; };
 		3FA0B886B79777E35717E2A85F0AA7DA /* Pods-NeverlandTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF428276A92ACAF8EF410F8F4E6DF53 /* Pods-NeverlandTests-dummy.m */; };
-		42086D0F1D9774F1CD1E1A6D239CE83B /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CF6FC635198E9D16A5A9D3C059821C /* PopupDialog+Keyboard.swift */; };
-		42BBE42234FEFA68F116E2EDBE200A1B /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876A64A28365D10666ED7CB6AF89C05 /* SCLAlertView.swift */; };
-		442ADADA3215E1E5CA1557E708D4228C /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FAB878F4A4E2A0A079790A5DDF2BEB /* DropDown+Appearance.swift */; };
-		449C96817A04D22CCF68948B1933233D /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7FE31C81542799AA65D6C7836B79F /* InteractiveTransition.swift */; };
-		463A5F6BB0DB74F1F2888280A55AAE4B /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6794017F95A3FDFD18839193A25F84 /* PopupDialog.swift */; };
-		46D37CFBC5F713734870993F8E793725 /* CommonCryptoModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D70C4522A06B05FDB8243FDB9432250 /* CommonCryptoModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E4A828B8C87B67EE996C3E3F495B7F /* Request.swift */; };
-		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA084D9D6E9C8A02C1FB69EBBEE9F7 /* DispatchQueue+Alamofire.swift */; };
-		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89D6BD327A30186883DD38634BADE0 /* ServerTrustPolicy.swift */; };
-		63C8F287C2BCC246D0E5F8721A4F65F1 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BB8C10A4DC71191C8A86FD6244CC8 /* PopupDialog-dummy.m */; };
-		67C0DB38CDDFE5CB515E49D2F8A96251 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 771792AC09EC6842501F257494AE9C6D /* FXBlurView.m */; };
-		67C5D193B11A760250E057587EA52D34 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF0773B9B5A4B0876E7C37B89D2CA8 /* SCLExtensions.swift */; };
-		6C3709C738E21ED33184D64EDBB4CC89 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1811D43AEF14DE1F3A832DC6BD4FA /* TransitionAnimator.swift */; };
-		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9048E84A246D29CD8DD547D43DE18E /* SessionDelegate.swift */; };
-		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29055D887BA18F2F8C4812E8CA36BC1 /* Result.swift */; };
-		7ED7118DD06BCF3BD8873CACDA2EE5BC /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = E87AE74FD0469A58DB36B1E1DDEA6138 /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F25D90E7CD637C8143AA649B4BF506F /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60C066A92552529F4C8E5C7AE8C403 /* PopupDialogDefaultViewController.swift */; };
-		83DF1AC2E950D02A4F529AB31CEF0538 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A6B23257933192A446B22431DF57EB /* PopupDialogButton.swift */; };
-		872B991A4545CB0284B081BB19D43C8F /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC4B9473084F3AA3BBE300AE76FC25A /* PopupDialogDefaultView.swift */; };
+		442ADADA3215E1E5CA1557E708D4228C /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB78FD0FCF429FBC428AC2564AE46B /* DropDown+Appearance.swift */; };
+		462B5F6C17BA38761712C674DAB3A5A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		46D37CFBC5F713734870993F8E793725 /* CommonCryptoModule-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F7264425B736744B7BA8D2C5A5532BC5 /* CommonCryptoModule-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47A212AE220A49F581C25D79470C182A /* JJButtonRotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A56A8F08E65E3DF2A14EB9C1C5A5928 /* JJButtonRotationAnimation.swift */; };
+		50C953502FD2CF0D1F37D11560B0AF96 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FBC7A8226902DD11CE3DB03A766BF5 /* PopupDialogContainerView.swift */; };
+		50F67907B2946E151E6FD45D59F645BA /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C509B329EAC1A20607E90583FBB9716 /* SCLAlertView.swift */; };
+		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69DA10F17D5956183F1CE7B3B22480F /* Request.swift */; };
+		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349638AC11801F9EC8CDE4BE8757CD5 /* DispatchQueue+Alamofire.swift */; };
+		61E0C952425547E78BBE787C44156DF7 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2A86FCF6F24EE8DA38E4DBBDD4145 /* PopupDialogDefaultButtons.swift */; };
+		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B3F3923F1C012FC0A38D160E3FC31 /* ServerTrustPolicy.swift */; };
+		640561333915F8F9B5F7012FC32307FB /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35E40AC17F92E59F19199B1D79FEB86 /* UIViewController+Visibility.swift */; };
+		6B4217E7C80CF7389ED5ABA57C81A567 /* JJFloatingActionButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188CD50CBC598A1C9402DCD67E3781C /* JJFloatingActionButtonState.swift */; };
+		7114E2033560BE694A0B44C82813B090 /* JJButtonAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2772D833259C3B033327AE9462F224BA /* JJButtonAnimation.swift */; };
+		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		73D13809FBA6B3A00678DE7B738EC767 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC716A922F8385A83AA7156BFBC29C3D /* SessionDelegate.swift */; };
+		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA8696A4BE00E3CDBF23E2E2B055A0 /* Result.swift */; };
+		7F8CD95CA204301E0F4567C704CCD490 /* JJStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A5E1B0335D6EC0100D45F476184FBF /* JJStyles.swift */; };
+		8C83D4B9EB39A49F0E2A60D47E04A59A /* JJFloatingActionButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901858B1E23A87D9CE2882F4E9D35B8D /* JJFloatingActionButtonDelegate.swift */; };
+		90E659B85DDDB7A2EBD7136E669BBCF0 /* JJActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1302A0FCC296E1D92173476EFCEF94 /* JJActionItem.swift */; };
+		99551799DF4BB318E4ABF280702E9362 /* UIView+JJFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB988CDF8969211A88436B77240A2D82 /* UIView+JJFloatingActionButton.swift */; };
 		99B0EBCEE1711EFC491ED3424F55990E /* Pods-NeverlandTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 632F4248A0F4FAB79C0B19D50A3446B3 /* Pods-NeverlandTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D0221E27E37CDA9DF26DD3CFA56D75B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478EF8C3E46F6651B5A6BE6C8AD13D1E /* DPDKeyboardListener.swift */; };
-		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE8CD6979786D6711468BB46C8E0CA2 /* AFError.swift */; };
-		9F7557BD7AB501F696E4329BD7B5A250 /* Pods-Neverland-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */; };
-		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55381F4B7EA02B0F1F8E082F297CE2 /* NetworkReachabilityManager.swift */; };
-		A401CF18D15DF246F40FAC4E8F06CBC7 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277E4BF11E89F870D75048F16192DF2 /* DPDUIView+Extension.swift */; };
-		A812E7811821F66B3B7499F6F1B513BA /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDA4B3D21861C29AA36FB3F421A7962 /* DPDConstants.swift */; };
-		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CF9FAE892DD4B0B2FBD7F7A767147 /* Alamofire-dummy.m */; };
-		AC6581D9387744158B44BE683403C3BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BB0D161EFB5BAFFC733514568EA40 /* DropDown-dummy.m */; };
-		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16F51C9002D063FA21094EDE48F5F6 /* SessionManager.swift */; };
-		B6210381116AC81347DEFE02B4E09870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5100B7B6B377A906D9210AABDE477436 /* MultipartFormData.swift */; };
-		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A34A884B12030E8C9EBEC026ECFE2 /* Validation.swift */; };
-		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA9E9CC50151BCFF9757B99D8DD26B /* ParameterEncoding.swift */; };
-		C4C82D3653CD01175554CC1F85893A3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		C7311197B0AA3038DDAEE61AC258E502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		C7E006FF9D007E7A6B46178BB661B177 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E31FAD584412662FF258861CD79FEDD /* PresentationManager.swift */; };
-		C889FC77108E9ECA33F9BB4CF30C3B06 /* SCLAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B68992A85E42ECF4F5891F0A454D831 /* SCLAlertView-dummy.m */; };
-		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D20DBF3CAD909215952E3BB2B6A2F0 /* Response.swift */; };
-		DFD6EAE25BC2ED46FA9630473565E3C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		E0C63A046F56D080BE510B4208BCEBEB /* SCLAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BDC40B4EF004FD36716CDAB62B0454E /* SCLAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB6AAD0E3416E18F22F1835A15CC4A02 /* CommonCryptoModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F0A77D26153DD4C391ED0D7F2260811 /* CommonCryptoModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EF7BD1D31EC483652FB58C0151FDA605 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8B23269FA2F1B11C82AF1886076CE /* PresentationController.swift */; };
-		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E9E6E81E87D253EBB8FE7B1983BFF9 /* Notifications.swift */; };
-		F041FD0A473A640D4B31604B71C6F201 /* CommonCryptoModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0951F5ED66A3A4050DFAD496B79C284 /* CommonCryptoModule-dummy.m */; };
-		F0DE9712F056FD03B10DE77B5D2E7D49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		9D0221E27E37CDA9DF26DD3CFA56D75B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC10F657D5D879EFB0094D7130CDE7A9 /* DPDKeyboardListener.swift */; };
+		9D03B3DFBD6D0F98DF6BD5E7A4272F45 /* Pods-Neverland-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */; };
+		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DAA8FB286F898D961CCF897D0B1523 /* AFError.swift */; };
+		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20020D25B9F342C3FABEC86C9AA421B3 /* NetworkReachabilityManager.swift */; };
+		A401CF18D15DF246F40FAC4E8F06CBC7 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D21F0FEB8945F5094210418C804046 /* DPDUIView+Extension.swift */; };
+		A48BEF488712E4C05E42A91E3909E381 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8D5CC2AF38DF65DE6205D9BB5CA09 /* FXBlurView.m */; };
+		A812E7811821F66B3B7499F6F1B513BA /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314DC8BB4E3594447AA7846B50262FD5 /* DPDConstants.swift */; };
+		A8DD7910955426AD869D0E1848BAA078 /* JJCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0CDB6D8FAF8EF70EB25589B78D7550 /* JJCircleView.swift */; };
+		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 748D9461DE57A1C366AD2328EEF66CD2 /* Alamofire-dummy.m */; };
+		AC6581D9387744158B44BE683403C3BC /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 710154F7AE8DE2FDEE77B10EEB0C8B6E /* DropDown-dummy.m */; };
+		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FADB313EBAB69BBB25B6E02F28580B /* SessionManager.swift */; };
+		B033544284276A4E43EE4C8439BA547B /* Pods-Neverland-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5FE2A588137EA928FFEE0C694FE7A91 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF77AFF0EA42F231CC229D4169B818B /* PopupDialogOverlayView.swift */; };
+		B6210381116AC81347DEFE02B4E09870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB71B9B0C09A63D4783607869C16F3 /* MultipartFormData.swift */; };
+		B74B84845ECD124276EB69CB8E674A1E /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D1CFAAA619D40C78868AD2E8EAFBF /* TransitionAnimations.swift */; };
+		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4FD97A4B56A65BAA16BFC66CD47949 /* Validation.swift */; };
+		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F2514D2AF07518C9665BD5ADB3A947 /* ParameterEncoding.swift */; };
+		C1C8E3ACC4D50881824F29E16398B494 /* JJFloatingActionButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A727338D9A0873D83FACF9025C4E4 /* JJFloatingActionButton-dummy.m */; };
+		C4B18AF4B6CB199AE6A3CBAE04AEB8EB /* SCLAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA553D1F97417F824A1F0AA6BC44DD88 /* SCLAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7311197B0AA3038DDAEE61AC258E502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D48D5490B7E1B0DE98659FA34BB5E82 /* Response.swift */; };
+		CF044E5388D94759B9CE2F1B5E3F4BEF /* JJFloatingActionButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D68E671530DE721A0829FF2F67CB2BCB /* JJFloatingActionButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D225B6B155FFF1C31812A4DBC750F379 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F39B5B26B749DB8780CF7FC7D5CD8346 /* PopupDialog-dummy.m */; };
+		D4ED0C093CD7EBE6E7017897700C542A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
+		D82C7CBE4D3614A36A41C24EE762D344 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C65BB4A640B717B077141BCE574C165 /* TransitionAnimator.swift */; };
+		DFD6EAE25BC2ED46FA9630473565E3C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		E0E7F732BE1DE08E42C95B032228686A /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A0C5ADF7A9A4DEFB7618DA922900EB /* UIView+Animations.swift */; };
+		E22D2A6A15E8DFA23C10B1D115A04842 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		E55C67C1DD8753BD77DB09F29B155B87 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78F21C5CC911A2D3CAF45BF008563C /* InteractiveTransition.swift */; };
+		EB2CFB2FBF54BE50BE6D4A258C0F3474 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E63AA5814433A9493F1AF661A2C040 /* PopupDialog.swift */; };
+		EB6AAD0E3416E18F22F1835A15CC4A02 /* CommonCryptoModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E9325D88D6D503D6BDEB271405AF1B1 /* CommonCryptoModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECEB9FF22DD7B9AD7EBFBA9C8ACAE9C6 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E2EEE29C74AF029119F20EF29E27DA /* UIImageView+Calculations.swift */; };
+		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3FE257545BC52A9C15E7F9B844D6D4 /* Notifications.swift */; };
+		F041FD0A473A640D4B31604B71C6F201 /* CommonCryptoModule-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA14883FDECF29A912C19EB0B95E477 /* CommonCryptoModule-dummy.m */; };
 		F1FE71747A564B16CCD53E8A70033A4E /* Pods-NeverlandUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 339C6CCCA411410E30C9CAAC0006CD8B /* Pods-NeverlandUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F3B25F82E0C0818AE228C53570275CCB /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC20A543B7C7CCB8E703636356C99F1 /* PopupDialogContainerView.swift */; };
-		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F114AFFC19486F681538495C490067B /* ResponseSerialization.swift */; };
-		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19E75E06BB4AB3D33395E6686368A3 /* Alamofire.swift */; };
+		F388A1157A27F623C4F9610D935A8564 /* JJItemAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C02BE8D75FB16B849E45A11A01B07 /* JJItemAnimation.swift */; };
+		F3C8B7572F03B9172110838F65E53EF7 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BD3A35168CE008D2F56F84B6430A8F5 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D9168CE684998E704590C5BD02AF87 /* ResponseSerialization.swift */; };
+		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6B8AB34DCAE452C5D4A91D70F88C8 /* Alamofire.swift */; };
+		FFCD97EE69B84A6848B6AE4E5F06BCB6 /* JJButtonTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19FDD0BCA537E778D383350AABD4D8C /* JJButtonTransitionAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		046A10315D60F5013ED6EE0A632B9B42 /* PBXContainerItemProxy */ = {
+		149923B524BD4E896233FCC85C295A4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 02047DEAE656104A1609B68C8A9024CD;
+			remoteGlobalIDString = 73D12B3F89C34A9532AB02274AB76A40;
 			remoteInfo = PopupDialog;
 		};
-		252A40AC05CB2E4EC93D8FA7E2FD7A89 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E991EDB661DB9130DA75044A34E8E2DB;
-			remoteInfo = SCLAlertView;
-		};
-		5D57DC209AEF036A0495234299BCD48B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B3216DE436854387313ADD5163C5379;
-			remoteInfo = CommonCryptoModule;
-		};
-		6753E39BEAFDBE83376AE7634209D8A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5168099F2EBFC99A707C03C9EADE01A5;
-			remoteInfo = DropDown;
-		};
-		A971A3EEA022048915CBF195F430753D /* PBXContainerItemProxy */ = {
+		1D4EB37A1BB41253000690A657CC6118 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
 			remoteInfo = Alamofire;
 		};
+		52497268B3DB658936305EF605382B14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3216DE436854387313ADD5163C5379;
+			remoteInfo = CommonCryptoModule;
+		};
+		77741CEDA23682C10A9660B02E5B1B89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81CBA00C2476FCCCF5AE26A782CF5401;
+			remoteInfo = JJFloatingActionButton;
+		};
+		A1D180BF12CADC5ED8993F6BE37A6077 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5168099F2EBFC99A707C03C9EADE01A5;
+			remoteInfo = DropDown;
+		};
+		AF4900D17136E31835D33A65F38FC69A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F214C565FFEC76C712C24FC3B858E9DA;
+			remoteInfo = SCLAlertView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		028721E45D9E8D70ADD076EDDF8647AE /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		033F67677545CE3F87D77303018F87B5 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
-		0460BCD6BBE7E4F736126A682609978C /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
-		0BC4B9473084F3AA3BBE300AE76FC25A /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		0188CD50CBC598A1C9402DCD67E3781C /* JJFloatingActionButtonState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJFloatingActionButtonState.swift; path = Sources/JJFloatingActionButtonState.swift; sourceTree = "<group>"; };
+		02DC776192DEC91032D8D270071921C5 /* Pods_NeverlandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandTests.framework; path = "Pods-NeverlandTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0426E14C849922EEFAA44F6BC25328EC /* Pods_Neverland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Neverland.framework; path = "Pods-Neverland.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09857B116586D8BE77AD0F502EADF4C1 /* CommonCryptoModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CommonCryptoModule.modulemap; sourceTree = "<group>"; };
+		0C3C988BA8A58362C21B6EDA3FC20EF1 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		0C44937C08B28AA7D66966E180E73972 /* Pods-NeverlandTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NeverlandTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		0E891ACCB218C51E52FA59B1ADAE9799 /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
-		0F0A77D26153DD4C391ED0D7F2260811 /* CommonCryptoModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoModule.h; path = CommonCryptoModule/CommonCryptoModule.h; sourceTree = "<group>"; };
-		13C54B5212CAF36F4B0A2756D035FC7B /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
-		13F7FE31C81542799AA65D6C7836B79F /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
-		1AE167188AC80BA443F221038713DEA7 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DropDown.modulemap; sourceTree = "<group>"; };
-		20D61055BABF3701F28BE0C599FDC7F2 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = module.modulemap; path = CommonCryptoModule/CommonCryptoBridge/module.modulemap; sourceTree = "<group>"; };
-		22D13701A0CEDA01C9AE9CC1E372EA0A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		245BB0D161EFB5BAFFC733514568EA40 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
-		25E50529F417CF3B510661EF7965FFEC /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
-		27F90EB011F68DFF41466B4ACDA044AE /* DropDown.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.xcconfig; sourceTree = "<group>"; };
-		27FAB878F4A4E2A0A079790A5DDF2BEB /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
-		2876A64A28365D10666ED7CB6AF89C05 /* SCLAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLAlertView.swift; path = SCLAlertView/SCLAlertView.swift; sourceTree = "<group>"; };
-		29E4A828B8C87B67EE996C3E3F495B7F /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		29EA084D9D6E9C8A02C1FB69EBBEE9F7 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		2B19E75E06BB4AB3D33395E6686368A3 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		2E55381F4B7EA02B0F1F8E082F297CE2 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		2F114AFFC19486F681538495C490067B /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		31A669549AC1F58104F8852D342D755E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32D20DBF3CAD909215952E3BB2B6A2F0 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		0E0CDB6D8FAF8EF70EB25589B78D7550 /* JJCircleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJCircleView.swift; path = Sources/JJCircleView.swift; sourceTree = "<group>"; };
+		0EF77AFF0EA42F231CC229D4169B818B /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		11E898CA8BF931B390E5DB37F5702EE9 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16F2514D2AF07518C9665BD5ADB3A947 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		17ADBD466BA812140A8240139B7888B2 /* JJActionItem+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JJActionItem+Animations.swift"; path = "Sources/JJActionItem+Animations.swift"; sourceTree = "<group>"; };
+		17FADB313EBAB69BBB25B6E02F28580B /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		19B5FB1F72FD4CCC45951A08B00B2184 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
+		1A7CD11E922F8D22350AA73056413346 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		1C16902176F0ACC16BE2B9D47D2906BB /* DropDown.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.xcconfig; sourceTree = "<group>"; };
+		1DB91A31BA07A208C0A8E4B86D84CCC2 /* Pods_NeverlandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandUITests.framework; path = "Pods-NeverlandUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20020D25B9F342C3FABEC86C9AA421B3 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		21D6CAC007B2D5014FF876D18D7C2A88 /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
+		21E2EEE29C74AF029119F20EF29E27DA /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Calculations.swift"; path = "PopupDialog/Classes/UIImageView+Calculations.swift"; sourceTree = "<group>"; };
+		26C2A86FCF6F24EE8DA38E4DBBDD4145 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		2772D833259C3B033327AE9462F224BA /* JJButtonAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJButtonAnimation.swift; path = Sources/JJButtonAnimation.swift; sourceTree = "<group>"; };
+		289D1CFAAA619D40C78868AD2E8EAFBF /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
+		2A35B0A39435C6039DE422E7B774DA39 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
+		2C65BB4A640B717B077141BCE574C165 /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
+		2E9325D88D6D503D6BDEB271405AF1B1 /* CommonCryptoModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoModule.h; path = CommonCryptoModule/CommonCryptoModule.h; sourceTree = "<group>"; };
+		2F6D81B214D10A5CE6F3F90251936458 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30A5E1B0335D6EC0100D45F476184FBF /* JJStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJStyles.swift; path = Sources/JJStyles.swift; sourceTree = "<group>"; };
+		314DC8BB4E3594447AA7846B50262FD5 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
+		32E63AA5814433A9493F1AF661A2C040 /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
 		3367C7D655770B33A81C72F630A5C50F /* Pods-Neverland-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Neverland-dummy.m"; sourceTree = "<group>"; };
 		339C6CCCA411410E30C9CAAC0006CD8B /* Pods-NeverlandUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NeverlandUITests-umbrella.h"; sourceTree = "<group>"; };
-		3407B473EC9CDEC2EC8BF4074A1D7F50 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
-		3547A194AABF13BF1BA7175044748064 /* CommonCryptoModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CommonCryptoModule.xcconfig; sourceTree = "<group>"; };
+		35A0C5ADF7A9A4DEFB7618DA922900EB /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
+		35D21F0FEB8945F5094210418C804046 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		37EED34FDECDD3124C1FEBED74A262BD /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
+		38E3CC3CE5E088E28E77BBAC5BF2B71B /* UIColor+JJFloatingActionButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+JJFloatingActionButton.swift"; path = "Sources/UIColor+JJFloatingActionButton.swift"; sourceTree = "<group>"; };
+		39BF2850963644C787FFEF10943F32CA /* SCLAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SCLAlertView.modulemap; sourceTree = "<group>"; };
+		3A46F945BDD05D33C94B317EB5491C47 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		3A56A8F08E65E3DF2A14EB9C1C5A5928 /* JJButtonRotationAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJButtonRotationAnimation.swift; path = Sources/JJButtonRotationAnimation.swift; sourceTree = "<group>"; };
 		3A8C1CFE93A72350F72CA9DC337E801B /* Pods-NeverlandUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandUITests-resources.sh"; sourceTree = "<group>"; };
-		3AE8CD6979786D6711468BB46C8E0CA2 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		3BDC40B4EF004FD36716CDAB62B0454E /* SCLAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-umbrella.h"; sourceTree = "<group>"; };
 		425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Neverland.debug.xcconfig"; sourceTree = "<group>"; };
-		437F75C6022702451A3D54E47DB600AE /* CommonCryptoModule.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CommonCryptoModule.modulemap; sourceTree = "<group>"; };
-		478EF8C3E46F6651B5A6BE6C8AD13D1E /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
 		47D2555BE80DE8AE46D1738DE429A825 /* Pods-Neverland.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Neverland.modulemap"; sourceTree = "<group>"; };
-		48A741EDECD012976FA28C1EAB6BF840 /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
+		48797F06E54921E5B438A097D6847071 /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
+		48C6B8AB34DCAE452C5D4A91D70F88C8 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		48DAA8FB286F898D961CCF897D0B1523 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		49CB78FD0FCF429FBC428AC2564AE46B /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		4B1302A0FCC296E1D92173476EFCEF94 /* JJActionItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJActionItem.swift; path = Sources/JJActionItem.swift; sourceTree = "<group>"; };
 		4B5F0C31F207BD168AF57D8E578B2FC6 /* Pods-Neverland-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Neverland-acknowledgements.plist"; sourceTree = "<group>"; };
-		4E00BA98FE48A499F6C7EF4A884A4BBA /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		4EDA4B3D21861C29AA36FB3F421A7962 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
-		4F410F8283E30DFB0BDA21AD6B6BE424 /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Calculations.swift"; path = "PopupDialog/Classes/UIImageView+Calculations.swift"; sourceTree = "<group>"; };
+		4E3FE257545BC52A9C15E7F9B844D6D4 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		500CDE7390539DB73321102031FCC891 /* Pods-NeverlandUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandUITests-frameworks.sh"; sourceTree = "<group>"; };
-		5100B7B6B377A906D9210AABDE477436 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		5133F0A1E1E172923225DC8EF27E935D /* SCLAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SCLAlertView.xcconfig; sourceTree = "<group>"; };
+		5184AC5107F692B3212617ACFAC2CCA4 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		52A31A165117BE5917849BCEF6FFD98A /* JJFloatingActionButton+Placement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "JJFloatingActionButton+Placement.swift"; path = "Sources/JJFloatingActionButton+Placement.swift"; sourceTree = "<group>"; };
+		52D9168CE684998E704590C5BD02AF87 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		531AD7B28CCE2B316B00953DF2B27274 /* Pods-Neverland-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Neverland-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5D89D6BD327A30186883DD38634BADE0 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		5EAA9E9CC50151BCFF9757B99D8DD26B /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		5BA8D5CC2AF38DF65DE6205D9BB5CA09 /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
+		5D48D5490B7E1B0DE98659FA34BB5E82 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		5EE22907DBAF9E5606D59EBFFBC307CA /* Pods-NeverlandTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandTests-resources.sh"; sourceTree = "<group>"; };
+		603580165E91EFB81CD51B341DCD6500 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DropDown.modulemap; sourceTree = "<group>"; };
+		62A92A8D79EBFE1DA6494E4F59E2B090 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = module.modulemap; path = CommonCryptoModule/CommonCryptoBridge/module.modulemap; sourceTree = "<group>"; };
 		632F4248A0F4FAB79C0B19D50A3446B3 /* Pods-NeverlandTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NeverlandTests-umbrella.h"; sourceTree = "<group>"; };
 		63551F0D64EB448BB64BBA5F62268A66 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65001846F5E6AD6294604090FFCDFCB9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		66D8B23269FA2F1B11C82AF1886076CE /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
-		6B68992A85E42ECF4F5891F0A454D831 /* SCLAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView-dummy.m"; sourceTree = "<group>"; };
-		6E31FAD584412662FF258861CD79FEDD /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
-		74C194DB9E4A7E16433CE34C13188762 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
-		77036BDF6C9D536885FE4D7F9A386511 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		771792AC09EC6842501F257494AE9C6D /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
+		65CE57F319572C4F9DD926B57DDA4094 /* CommonCryptoModule.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CommonCryptoModule.xcconfig; sourceTree = "<group>"; };
+		6A84ED6EBBE8076A212BF6A6C4DECE59 /* CommonCryptoBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoBridge.h; path = CommonCryptoModule/CommonCryptoBridge/CommonCryptoBridge.h; sourceTree = "<group>"; };
+		6DBCEB7AF45740A5625C2019EA52F08D /* JJFloatingActionButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JJFloatingActionButton.xcconfig; sourceTree = "<group>"; };
+		6F1C06FE0051A614CDB03B7A74FE3EC6 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		710154F7AE8DE2FDEE77B10EEB0C8B6E /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		748D9461DE57A1C366AD2328EEF66CD2 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		74FBC7A8226902DD11CE3DB03A766BF5 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
 		77DE95F25BF10FE8F3CE3E0CA4FEA6A3 /* Pods-Neverland-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Neverland-frameworks.sh"; sourceTree = "<group>"; };
-		795A73A9F876E0D2217F1979BF72FD30 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BF428276A92ACAF8EF410F8F4E6DF53 /* Pods-NeverlandTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NeverlandTests-dummy.m"; sourceTree = "<group>"; };
+		7C509B329EAC1A20607E90583FBB9716 /* SCLAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLAlertView.swift; path = SCLAlertView/SCLAlertView.swift; sourceTree = "<group>"; };
 		7C6268B6FF0E4C539D33DB4A85D5CCC5 /* Pods-NeverlandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandTests.release.xcconfig"; sourceTree = "<group>"; };
-		7E6794017F95A3FDFD18839193A25F84 /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
-		7E6B2C46C0AD393382025F9B7619C331 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
-		7ED47506A5D07A319C379DF641A3B0A8 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PopupDialog.framework; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EEA8696A4BE00E3CDBF23E2E2B055A0 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		7F6BFE7B2CEF70CE920D5263D596E5E8 /* Pods-NeverlandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		7FCCEA2F214D0AE63B67B925BF325852 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
-		8437E4B0C165BC5FF9D1BAC29FF7150F /* SCLAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SCLAlertView.modulemap; sourceTree = "<group>"; };
-		84A6B23257933192A446B22431DF57EB /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
+		7F7F969943FFEE11D602B5BBB47D9F29 /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PopupDialog.modulemap; sourceTree = "<group>"; };
+		8349638AC11801F9EC8CDE4BE8757CD5 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		880976D672FF743038779E8DBB8C1B5D /* JJFloatingActionButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JJFloatingActionButton-prefix.pch"; sourceTree = "<group>"; };
 		8845CC3EABA03767E87BE5D85DB52D2A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D70C4522A06B05FDB8243FDB9432250 /* CommonCryptoModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-umbrella.h"; sourceTree = "<group>"; };
-		8E8CF9FAE892DD4B0B2FBD7F7A767147 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		900D349358150666D272C65F3066F951 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B738D1674FFDCB78FAE01002DB98DBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BD3A35168CE008D2F56F84B6430A8F5 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
+		8E7A46C21C62810FC8E1689E4EE40364 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		901858B1E23A87D9CE2882F4E9D35B8D /* JJFloatingActionButtonDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJFloatingActionButtonDelegate.swift; path = Sources/JJFloatingActionButtonDelegate.swift; sourceTree = "<group>"; };
+		90C83AFB72B51EA0276D6356BA6ABA0E /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
+		91CBC92A3AACFA34AE76E7196B8A3CCA /* SCLAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-prefix.pch"; sourceTree = "<group>"; };
 		92D862FDD6E63250ECDD3CF55688B609 /* Pods-NeverlandTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NeverlandTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Neverland.release.xcconfig"; sourceTree = "<group>"; };
-		94E4B8B73EB8D6B76066B516DFF4BFF0 /* CommonCryptoBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonCryptoBridge.h; path = CommonCryptoModule/CommonCryptoBridge/CommonCryptoBridge.h; sourceTree = "<group>"; };
+		96F9F13676450A7069E8928D957B8AAF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B4A727338D9A0873D83FACF9025C4E4 /* JJFloatingActionButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JJFloatingActionButton-dummy.m"; sourceTree = "<group>"; };
 		9DC48908E42C9B1DC2B05C07AE2E0EB7 /* Pods-Neverland-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Neverland-resources.sh"; sourceTree = "<group>"; };
-		A29055D887BA18F2F8C4812E8CA36BC1 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		A2E9E6E81E87D253EBB8FE7B1983BFF9 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		A19749FD84BBCFF5BB5909294340897D /* SCLAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView-dummy.m"; sourceTree = "<group>"; };
+		A2686E6F1E20C8B09B27140BC58E044B /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		A2EEC5679AA977CC3ACF6F720E2A733D /* JJFloatingActionButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJFloatingActionButton.swift; path = Sources/JJFloatingActionButton.swift; sourceTree = "<group>"; };
 		A3D4DD39A868AD97A8B472AA141C3FAC /* Pods-NeverlandTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NeverlandTests-frameworks.sh"; sourceTree = "<group>"; };
 		A3E500CA306CD909CC03AF2B546975A9 /* Pods-Neverland-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Neverland-umbrella.h"; sourceTree = "<group>"; };
-		A4961640F9621BDA6FCCF444FDB6453A /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
-		A5778C3DE5B969FADE22EFDBAB9C3E17 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
-		A642294C6CA799EFB168E901D49B8F39 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACC20A543B7C7CCB8E703636356C99F1 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
-		AE5A34A884B12030E8C9EBEC026ECFE2 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		BBDF0773B9B5A4B0876E7C37B89D2CA8 /* SCLExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLExtensions.swift; path = SCLAlertView/SCLExtensions.swift; sourceTree = "<group>"; };
-		BD16F51C9002D063FA21094EDE48F5F6 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		A69DA10F17D5956183F1CE7B3B22480F /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		A8EE7C2B97BAADA22F8A725415320BAF /* JJItemPopAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJItemPopAnimation.swift; path = Sources/JJItemPopAnimation.swift; sourceTree = "<group>"; };
+		AC716A922F8385A83AA7156BFBC29C3D /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		AE9CE0B37E5C57F4D3754B1126433FFA /* SCLExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLExtensions.swift; path = SCLAlertView/SCLExtensions.swift; sourceTree = "<group>"; };
+		B31CEB94238A9BBD8669A34E11CB0A0A /* CommonCryptoModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-prefix.pch"; sourceTree = "<group>"; };
+		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		BB988CDF8969211A88436B77240A2D82 /* UIView+JJFloatingActionButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+JJFloatingActionButton.swift"; path = "Sources/UIView+JJFloatingActionButton.swift"; sourceTree = "<group>"; };
+		BC9AC79CE62EECDF0EF19EA3FC11D573 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD2CA97EE053706F9D1E41BA87624263 /* Pods-NeverlandUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C163FB7CC494E5FFCD7767470EAC6A9E /* Pods_NeverlandUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandUITests.framework; path = "Pods-NeverlandUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C277E4BF11E89F870D75048F16192DF2 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
-		C56AE9F5AEC042E0BE0C837384E595F2 /* Pods_NeverlandTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NeverlandTests.framework; path = "Pods-NeverlandTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C60D63B4ABE353EF625970DCFECE0478 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		C81BB8C10A4DC71191C8A86FD6244CC8 /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
-		CF32EE914A0654E9D627F0E0A7D2A7F1 /* CommonCryptoModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CommonCryptoModule.framework; path = CommonCryptoModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F9063F72D4818F95640C6EF3E43190 /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		C18CF5897EE6FB46DF34C4A4DD4A7306 /* SCLAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SCLAlertView.xcconfig; sourceTree = "<group>"; };
+		C197CC8302C1E08CBB1A63ABDE6320B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C217122354A42EEA33E2BD001D38DF49 /* JJFloatingActionButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JJFloatingActionButton.modulemap; sourceTree = "<group>"; };
+		C38D50B12D431D669B35288CCAE0DC23 /* CommonCryptoModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CommonCryptoModule.framework; path = CommonCryptoModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5EFCF9F74C8FA008AD35B2AE88C1043 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		C92B3F3923F1C012FC0A38D160E3FC31 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		CE040F938435F847718D4ED9383B3EEB /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		CF87131AAB9AFE4026CA744B4F5AA143 /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = CommonCryptoModule/Empty.swift; sourceTree = "<group>"; };
 		D0E287D841F782C1A5BE6C0A6E4368B4 /* Pods-NeverlandUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NeverlandUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D0F1811D43AEF14DE1F3A832DC6BD4FA /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
-		DABA90C0E6E52A7714FD9C03A754400B /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PopupDialog.modulemap; sourceTree = "<group>"; };
+		D1969BDBEA53DCA9DE853D1028F91283 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PopupDialog.framework; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D19FDD0BCA537E778D383350AABD4D8C /* JJButtonTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJButtonTransitionAnimation.swift; path = Sources/JJButtonTransitionAnimation.swift; sourceTree = "<group>"; };
+		D27C02BE8D75FB16B849E45A11A01B07 /* JJItemAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JJItemAnimation.swift; path = Sources/JJItemAnimation.swift; sourceTree = "<group>"; };
+		D35E40AC17F92E59F19199B1D79FEB86 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		D3BAF516FA27804F51A6C679EF0D6B55 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68E671530DE721A0829FF2F67CB2BCB /* JJFloatingActionButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JJFloatingActionButton-umbrella.h"; sourceTree = "<group>"; };
+		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DBCCDA7F0DA40CC5B6112DD5A728CC64 /* JJFloatingActionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JJFloatingActionButton.framework; path = JJFloatingActionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCA14883FDECF29A912C19EB0B95E477 /* CommonCryptoModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CommonCryptoModule-dummy.m"; sourceTree = "<group>"; };
 		DEE524307396D6F0B541A570A772F118 /* Pods-NeverlandTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NeverlandTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DF78F21C5CC911A2D3CAF45BF008563C /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
+		E028FA78EF728A0AD7D522F6E931F47D /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07B329C358E82030E5A6C1D919E549B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4CF6FC635198E9D16A5A9D3C059821C /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
-		E4F6B8097D50A1425BA5E52ED5C246EF /* SCLAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SCLAlertView.framework; path = SCLAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2118347CF6A749B5B4B7E07D50C1A0F /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
 		E85927274EDF82492713A5493D192880 /* Pods-NeverlandUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NeverlandUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E87AE74FD0469A58DB36B1E1DDEA6138 /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
 		E8B49A67F98CCD4BF6CD3188BA6F8E80 /* Pods-NeverlandUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NeverlandUITests-dummy.m"; sourceTree = "<group>"; };
-		EA2D7BE9C304079B971FFA75A270D421 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED9048E84A246D29CD8DD547D43DE18E /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		EE60C066A92552529F4C8E5C7AE8C403 /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
-		F0951F5ED66A3A4050DFAD496B79C284 /* CommonCryptoModule-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CommonCryptoModule-dummy.m"; sourceTree = "<group>"; };
-		F0C9DA22B39531130647F1A876167AD0 /* SCLAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-prefix.pch"; sourceTree = "<group>"; };
+		EA50CD83DA129F70C11A724F05EC5A31 /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
+		EA553D1F97417F824A1F0AA6BC44DD88 /* SCLAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-umbrella.h"; sourceTree = "<group>"; };
+		EC10F657D5D879EFB0094D7130CDE7A9 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		EF9E35F93E5BA1E8E23BAC4B769CF903 /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
+		F0BB71B9B0C09A63D4783607869C16F3 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		F11219D1B4DB7F99874880CDCFD2D07D /* SCLAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SCLAlertView.framework; path = SCLAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12912C4DBA9DC283F7FC987F32618B4 /* Pods-NeverlandTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NeverlandTests.modulemap"; sourceTree = "<group>"; };
-		F1A415D8A53BAAC9DC31F76CA77FAD1A /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
-		F27CD7696F10D3E327212D215D8193D0 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4186C44B17D86811BF6528DC000020C /* CommonCryptoModule-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-prefix.pch"; sourceTree = "<group>"; };
-		F72FDCE2A8F5E1D9DC56178EE3A70DCE /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = CommonCryptoModule/Empty.swift; sourceTree = "<group>"; };
-		F8C188ABEED931C2FE6F6B3D4DA355B5 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		F9546E4452E6EF2CE7512E3F9C95689E /* Pods_Neverland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Neverland.framework; path = "Pods-Neverland.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F16D4EFFA56EB4F0E06DB5D859FCC04D /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		F39B5B26B749DB8780CF7FC7D5CD8346 /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
+		F7264425B736744B7BA8D2C5A5532BC5 /* CommonCryptoModule-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CommonCryptoModule-umbrella.h"; sourceTree = "<group>"; };
+		FC4FD97A4B56A65BAA16BFC66CD47949 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		FDE78B374C333FC678844A7EF0756CD4 /* Pods-NeverlandUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NeverlandUITests.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		02233522B9D3CAB90DE165907C31B170 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462B5F6C17BA38761712C674DAB3A5A8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE28484C632D94C9779E4E74AE0BD29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,11 +306,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44409B5B6975E487BB63BDA089B7FC25 /* Frameworks */ = {
+		6F65414DA62AC4F9267476FBAE61B928 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2472C49C457D096B849D767115EBD3BA /* Foundation.framework in Frameworks */,
+				1C18FCBFADFE052AFF42BC35F265CCC0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,14 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6210381116AC81347DEFE02B4E09870 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CACE14019F7FD6E3F4C7CF3D29D2B3F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C4C82D3653CD01175554CC1F85893A3A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +338,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C923AF12CBBDD74AD30A3A5463069F91 /* Frameworks */ = {
+		D54F770FB7A69919A242A1E55A604CEE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0DE9712F056FD03B10DE77B5D2E7D49 /* Foundation.framework in Frameworks */,
+				E22D2A6A15E8DFA23C10B1D115A04842 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCC6C73290468755831758CA3A285398 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D13809FBA6B3A00678DE7B738EC767 /* Foundation.framework in Frameworks */,
+				D4ED0C093CD7EBE6E7017897700C542A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,59 +366,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08A8A013E6F18B72D0CBEF626F87013B /* Support Files */ = {
+		31FD5693147CD8098A75DBFA313A6407 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				437F75C6022702451A3D54E47DB600AE /* CommonCryptoModule.modulemap */,
-				3547A194AABF13BF1BA7175044748064 /* CommonCryptoModule.xcconfig */,
-				F0951F5ED66A3A4050DFAD496B79C284 /* CommonCryptoModule-dummy.m */,
-				F4186C44B17D86811BF6528DC000020C /* CommonCryptoModule-prefix.pch */,
-				8D70C4522A06B05FDB8243FDB9432250 /* CommonCryptoModule-umbrella.h */,
-				31A669549AC1F58104F8852D342D755E /* Info.plist */,
+				8B738D1674FFDCB78FAE01002DB98DBD /* Info.plist */,
+				C217122354A42EEA33E2BD001D38DF49 /* JJFloatingActionButton.modulemap */,
+				6DBCEB7AF45740A5625C2019EA52F08D /* JJFloatingActionButton.xcconfig */,
+				9B4A727338D9A0873D83FACF9025C4E4 /* JJFloatingActionButton-dummy.m */,
+				880976D672FF743038779E8DBB8C1B5D /* JJFloatingActionButton-prefix.pch */,
+				D68E671530DE721A0829FF2F67CB2BCB /* JJFloatingActionButton-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/CommonCryptoModule";
-			sourceTree = "<group>";
-		};
-		1751320AB6F33D90F2DD669FC618DF39 /* SCLAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				2876A64A28365D10666ED7CB6AF89C05 /* SCLAlertView.swift */,
-				BBDF0773B9B5A4B0876E7C37B89D2CA8 /* SCLExtensions.swift */,
-				27F0527DFB322D7F7F0D04044650F448 /* Support Files */,
-			);
-			name = SCLAlertView;
-			path = SCLAlertView;
-			sourceTree = "<group>";
-		};
-		20B3E878EFD12E4DE41C00893D7BC3E9 /* DropDown */ = {
-			isa = PBXGroup;
-			children = (
-				4EDA4B3D21861C29AA36FB3F421A7962 /* DPDConstants.swift */,
-				478EF8C3E46F6651B5A6BE6C8AD13D1E /* DPDKeyboardListener.swift */,
-				C277E4BF11E89F870D75048F16192DF2 /* DPDUIView+Extension.swift */,
-				25E50529F417CF3B510661EF7965FFEC /* DropDown.swift */,
-				27FAB878F4A4E2A0A079790A5DDF2BEB /* DropDown+Appearance.swift */,
-				3407B473EC9CDEC2EC8BF4074A1D7F50 /* DropDownCell.swift */,
-				F2B45ABFB7DD61557891531EF3875FA8 /* Resources */,
-				8E2D6B53FE4B27DA4119FC13A00662B2 /* Support Files */,
-			);
-			name = DropDown;
-			path = DropDown;
-			sourceTree = "<group>";
-		};
-		27F0527DFB322D7F7F0D04044650F448 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA2D7BE9C304079B971FFA75A270D421 /* Info.plist */,
-				8437E4B0C165BC5FF9D1BAC29FF7150F /* SCLAlertView.modulemap */,
-				5133F0A1E1E172923225DC8EF27E935D /* SCLAlertView.xcconfig */,
-				6B68992A85E42ECF4F5891F0A454D831 /* SCLAlertView-dummy.m */,
-				F0C9DA22B39531130647F1A876167AD0 /* SCLAlertView-prefix.pch */,
-				3BDC40B4EF004FD36716CDAB62B0454E /* SCLAlertView-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SCLAlertView";
+			path = "../Target Support Files/JJFloatingActionButton";
 			sourceTree = "<group>";
 		};
 		386EEE91DBB6457CF5C22E36DD036D3A /* Pods-Neverland */ = {
@@ -381,165 +398,240 @@
 			path = "Target Support Files/Pods-Neverland";
 			sourceTree = "<group>";
 		};
-		409D48065327590B1B7BAAAA357E7BE3 /* Support Files */ = {
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				900D349358150666D272C65F3066F951 /* Info.plist */,
-				DABA90C0E6E52A7714FD9C03A754400B /* PopupDialog.modulemap */,
-				7FCCEA2F214D0AE63B67B925BF325852 /* PopupDialog.xcconfig */,
-				C81BB8C10A4DC71191C8A86FD6244CC8 /* PopupDialog-dummy.m */,
-				0E891ACCB218C51E52FA59B1ADAE9799 /* PopupDialog-prefix.pch */,
-				7E6B2C46C0AD393382025F9B7619C331 /* PopupDialog-umbrella.h */,
+				438B396F6B4147076630CAEFE34282C1 /* iOS */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/PopupDialog";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6B5160D5C4534336F6EC2FA2631189F2 /* CommonCryptoModule */ = {
+		43687FCADE0B6823D22FDDBE120479E5 /* CommonCryptoModule */ = {
 			isa = PBXGroup;
 			children = (
-				0F0A77D26153DD4C391ED0D7F2260811 /* CommonCryptoModule.h */,
-				F72FDCE2A8F5E1D9DC56178EE3A70DCE /* Empty.swift */,
-				F186E7A0746E991DA73D333B52CE1BEC /* Resources */,
-				08A8A013E6F18B72D0CBEF626F87013B /* Support Files */,
+				2E9325D88D6D503D6BDEB271405AF1B1 /* CommonCryptoModule.h */,
+				CF87131AAB9AFE4026CA744B4F5AA143 /* Empty.swift */,
+				5CD5C5370E84076EF6065B0A57F706B0 /* Resources */,
+				74ED4746A5A57C9700508DB8DF42B60C /* Support Files */,
 			);
 			name = CommonCryptoModule;
 			path = CommonCryptoModule;
 			sourceTree = "<group>";
 		};
-		789B237EE9D76317A91F9A43BB845CFB /* Pods */ = {
+		438B396F6B4147076630CAEFE34282C1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				910488B8D3FA135EBD45A03920C5F39D /* Alamofire */,
-				6B5160D5C4534336F6EC2FA2631189F2 /* CommonCryptoModule */,
-				20B3E878EFD12E4DE41C00893D7BC3E9 /* DropDown */,
-				C23912DA83DF77B9856AD9B9B7C9D340 /* PopupDialog */,
-				1751320AB6F33D90F2DD669FC618DF39 /* SCLAlertView */,
+				D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */,
+				B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */,
 			);
-			name = Pods;
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		542B893E62D0FAA66F0DAD10446D5BBC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C197CC8302C1E08CBB1A63ABDE6320B5 /* Info.plist */,
+				7F7F969943FFEE11D602B5BBB47D9F29 /* PopupDialog.modulemap */,
+				90C83AFB72B51EA0276D6356BA6ABA0E /* PopupDialog.xcconfig */,
+				F39B5B26B749DB8780CF7FC7D5CD8346 /* PopupDialog-dummy.m */,
+				21D6CAC007B2D5014FF876D18D7C2A88 /* PopupDialog-prefix.pch */,
+				8BD3A35168CE008D2F56F84B6430A8F5 /* PopupDialog-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PopupDialog";
+			sourceTree = "<group>";
+		};
+		565EB32F89CAA0A2F3B3026AEDCBC6E5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				603580165E91EFB81CD51B341DCD6500 /* DropDown.modulemap */,
+				1C16902176F0ACC16BE2B9D47D2906BB /* DropDown.xcconfig */,
+				710154F7AE8DE2FDEE77B10EEB0C8B6E /* DropDown-dummy.m */,
+				C0F9063F72D4818F95640C6EF3E43190 /* DropDown-prefix.pch */,
+				F16D4EFFA56EB4F0E06DB5D859FCC04D /* DropDown-umbrella.h */,
+				2F6D81B214D10A5CE6F3F90251936458 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
+			sourceTree = "<group>";
+		};
+		5CD5C5370E84076EF6065B0A57F706B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6A84ED6EBBE8076A212BF6A6C4DECE59 /* CommonCryptoBridge.h */,
+				62A92A8D79EBFE1DA6494E4F59E2B090 /* module.modulemap */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5FE4893298B9638369B4A522C461EED0 /* PopupDialog */ = {
+			isa = PBXGroup;
+			children = (
+				EA50CD83DA129F70C11A724F05EC5A31 /* FXBlurView.h */,
+				5BA8D5CC2AF38DF65DE6205D9BB5CA09 /* FXBlurView.m */,
+				DF78F21C5CC911A2D3CAF45BF008563C /* InteractiveTransition.swift */,
+				32E63AA5814433A9493F1AF661A2C040 /* PopupDialog.swift */,
+				37EED34FDECDD3124C1FEBED74A262BD /* PopupDialog+Keyboard.swift */,
+				19B5FB1F72FD4CCC45951A08B00B2184 /* PopupDialogButton.swift */,
+				74FBC7A8226902DD11CE3DB03A766BF5 /* PopupDialogContainerView.swift */,
+				26C2A86FCF6F24EE8DA38E4DBBDD4145 /* PopupDialogDefaultButtons.swift */,
+				6F1C06FE0051A614CDB03B7A74FE3EC6 /* PopupDialogDefaultView.swift */,
+				E2118347CF6A749B5B4B7E07D50C1A0F /* PopupDialogDefaultViewController.swift */,
+				0EF77AFF0EA42F231CC229D4169B818B /* PopupDialogOverlayView.swift */,
+				2A35B0A39435C6039DE422E7B774DA39 /* PresentationController.swift */,
+				48797F06E54921E5B438A097D6847071 /* PresentationManager.swift */,
+				289D1CFAAA619D40C78868AD2E8EAFBF /* TransitionAnimations.swift */,
+				2C65BB4A640B717B077141BCE574C165 /* TransitionAnimator.swift */,
+				21E2EEE29C74AF029119F20EF29E27DA /* UIImageView+Calculations.swift */,
+				35A0C5ADF7A9A4DEFB7618DA922900EB /* UIView+Animations.swift */,
+				D35E40AC17F92E59F19199B1D79FEB86 /* UIViewController+Visibility.swift */,
+				542B893E62D0FAA66F0DAD10446D5BBC /* Support Files */,
+			);
+			name = PopupDialog;
+			path = PopupDialog;
+			sourceTree = "<group>";
+		};
+		74ED4746A5A57C9700508DB8DF42B60C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				09857B116586D8BE77AD0F502EADF4C1 /* CommonCryptoModule.modulemap */,
+				65CE57F319572C4F9DD926B57DDA4094 /* CommonCryptoModule.xcconfig */,
+				DCA14883FDECF29A912C19EB0B95E477 /* CommonCryptoModule-dummy.m */,
+				B31CEB94238A9BBD8669A34E11CB0A0A /* CommonCryptoModule-prefix.pch */,
+				F7264425B736744B7BA8D2C5A5532BC5 /* CommonCryptoModule-umbrella.h */,
+				BC9AC79CE62EECDF0EF19EA3FC11D573 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CommonCryptoModule";
+			sourceTree = "<group>";
+		};
+		7B8BFA4DEC4A0C62C8576B0A5ED15F32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E028FA78EF728A0AD7D522F6E931F47D /* Alamofire.framework */,
+				C38D50B12D431D669B35288CCAE0DC23 /* CommonCryptoModule.framework */,
+				11E898CA8BF931B390E5DB37F5702EE9 /* DropDown.framework */,
+				DBCCDA7F0DA40CC5B6112DD5A728CC64 /* JJFloatingActionButton.framework */,
+				0426E14C849922EEFAA44F6BC25328EC /* Pods_Neverland.framework */,
+				02DC776192DEC91032D8D270071921C5 /* Pods_NeverlandTests.framework */,
+				1DB91A31BA07A208C0A8E4B86D84CCC2 /* Pods_NeverlandUITests.framework */,
+				D1969BDBEA53DCA9DE853D1028F91283 /* PopupDialog.framework */,
+				F11219D1B4DB7F99874880CDCFD2D07D /* SCLAlertView.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				789B237EE9D76317A91F9A43BB845CFB /* Pods */,
-				A0E8E98A8099B57147279F1E43BE84D1 /* Products */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				D99810A22AAE7FCFBED4F3E52456B8FD /* Pods */,
+				7B8BFA4DEC4A0C62C8576B0A5ED15F32 /* Products */,
 				FCF8AB71691F9936945E6A18968C21AF /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8E2D6B53FE4B27DA4119FC13A00662B2 /* Support Files */ = {
+		893A8B12055FEA7A998956F48525F9C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1AE167188AC80BA443F221038713DEA7 /* DropDown.modulemap */,
-				27F90EB011F68DFF41466B4ACDA044AE /* DropDown.xcconfig */,
-				245BB0D161EFB5BAFFC733514568EA40 /* DropDown-dummy.m */,
-				A5778C3DE5B969FADE22EFDBAB9C3E17 /* DropDown-prefix.pch */,
-				0460BCD6BBE7E4F736126A682609978C /* DropDown-umbrella.h */,
-				795A73A9F876E0D2217F1979BF72FD30 /* Info.plist */,
+				EF9E35F93E5BA1E8E23BAC4B769CF903 /* DropDownCell.xib */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/DropDown";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		910488B8D3FA135EBD45A03920C5F39D /* Alamofire */ = {
+		8CD3BE43A1A51EBA0E777B4968BBBBE1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3AE8CD6979786D6711468BB46C8E0CA2 /* AFError.swift */,
-				2B19E75E06BB4AB3D33395E6686368A3 /* Alamofire.swift */,
-				29EA084D9D6E9C8A02C1FB69EBBEE9F7 /* DispatchQueue+Alamofire.swift */,
-				5100B7B6B377A906D9210AABDE477436 /* MultipartFormData.swift */,
-				2E55381F4B7EA02B0F1F8E082F297CE2 /* NetworkReachabilityManager.swift */,
-				A2E9E6E81E87D253EBB8FE7B1983BFF9 /* Notifications.swift */,
-				5EAA9E9CC50151BCFF9757B99D8DD26B /* ParameterEncoding.swift */,
-				29E4A828B8C87B67EE996C3E3F495B7F /* Request.swift */,
-				32D20DBF3CAD909215952E3BB2B6A2F0 /* Response.swift */,
-				2F114AFFC19486F681538495C490067B /* ResponseSerialization.swift */,
-				A29055D887BA18F2F8C4812E8CA36BC1 /* Result.swift */,
-				5D89D6BD327A30186883DD38634BADE0 /* ServerTrustPolicy.swift */,
-				ED9048E84A246D29CD8DD547D43DE18E /* SessionDelegate.swift */,
-				BD16F51C9002D063FA21094EDE48F5F6 /* SessionManager.swift */,
-				77036BDF6C9D536885FE4D7F9A386511 /* TaskDelegate.swift */,
-				4E00BA98FE48A499F6C7EF4A884A4BBA /* Timeline.swift */,
-				AE5A34A884B12030E8C9EBEC026ECFE2 /* Validation.swift */,
-				CCEF1AF5764DAF529FBDBE15061577DF /* Support Files */,
-			);
-			name = Alamofire;
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		A0E8E98A8099B57147279F1E43BE84D1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A642294C6CA799EFB168E901D49B8F39 /* Alamofire.framework */,
-				CF32EE914A0654E9D627F0E0A7D2A7F1 /* CommonCryptoModule.framework */,
-				F27CD7696F10D3E327212D215D8193D0 /* DropDown.framework */,
-				F9546E4452E6EF2CE7512E3F9C95689E /* Pods_Neverland.framework */,
-				C56AE9F5AEC042E0BE0C837384E595F2 /* Pods_NeverlandTests.framework */,
-				C163FB7CC494E5FFCD7767470EAC6A9E /* Pods_NeverlandUITests.framework */,
-				7ED47506A5D07A319C379DF641A3B0A8 /* PopupDialog.framework */,
-				E4F6B8097D50A1425BA5E52ED5C246EF /* SCLAlertView.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C23912DA83DF77B9856AD9B9B7C9D340 /* PopupDialog */ = {
-			isa = PBXGroup;
-			children = (
-				E87AE74FD0469A58DB36B1E1DDEA6138 /* FXBlurView.h */,
-				771792AC09EC6842501F257494AE9C6D /* FXBlurView.m */,
-				13F7FE31C81542799AA65D6C7836B79F /* InteractiveTransition.swift */,
-				7E6794017F95A3FDFD18839193A25F84 /* PopupDialog.swift */,
-				E4CF6FC635198E9D16A5A9D3C059821C /* PopupDialog+Keyboard.swift */,
-				84A6B23257933192A446B22431DF57EB /* PopupDialogButton.swift */,
-				ACC20A543B7C7CCB8E703636356C99F1 /* PopupDialogContainerView.swift */,
-				13C54B5212CAF36F4B0A2756D035FC7B /* PopupDialogDefaultButtons.swift */,
-				0BC4B9473084F3AA3BBE300AE76FC25A /* PopupDialogDefaultView.swift */,
-				EE60C066A92552529F4C8E5C7AE8C403 /* PopupDialogDefaultViewController.swift */,
-				F1A415D8A53BAAC9DC31F76CA77FAD1A /* PopupDialogOverlayView.swift */,
-				66D8B23269FA2F1B11C82AF1886076CE /* PresentationController.swift */,
-				6E31FAD584412662FF258861CD79FEDD /* PresentationManager.swift */,
-				033F67677545CE3F87D77303018F87B5 /* TransitionAnimations.swift */,
-				D0F1811D43AEF14DE1F3A832DC6BD4FA /* TransitionAnimator.swift */,
-				4F410F8283E30DFB0BDA21AD6B6BE424 /* UIImageView+Calculations.swift */,
-				48A741EDECD012976FA28C1EAB6BF840 /* UIView+Animations.swift */,
-				A4961640F9621BDA6FCCF444FDB6453A /* UIViewController+Visibility.swift */,
-				409D48065327590B1B7BAAAA357E7BE3 /* Support Files */,
-			);
-			name = PopupDialog;
-			path = PopupDialog;
-			sourceTree = "<group>";
-		};
-		CCEF1AF5764DAF529FBDBE15061577DF /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				22D13701A0CEDA01C9AE9CC1E372EA0A /* Alamofire.modulemap */,
-				F8C188ABEED931C2FE6F6B3D4DA355B5 /* Alamofire.xcconfig */,
-				8E8CF9FAE892DD4B0B2FBD7F7A767147 /* Alamofire-dummy.m */,
-				028721E45D9E8D70ADD076EDDF8647AE /* Alamofire-prefix.pch */,
-				C60D63B4ABE353EF625970DCFECE0478 /* Alamofire-umbrella.h */,
-				65001846F5E6AD6294604090FFCDFCB9 /* Info.plist */,
+				C5EFCF9F74C8FA008AD35B2AE88C1043 /* Alamofire.modulemap */,
+				1A7CD11E922F8D22350AA73056413346 /* Alamofire.xcconfig */,
+				748D9461DE57A1C366AD2328EEF66CD2 /* Alamofire-dummy.m */,
+				8E7A46C21C62810FC8E1689E4EE40364 /* Alamofire-prefix.pch */,
+				A2686E6F1E20C8B09B27140BC58E044B /* Alamofire-umbrella.h */,
+				D3BAF516FA27804F51A6C679EF0D6B55 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+		92CA5AB8D5639F053DD3E7B6913B925F /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+				48DAA8FB286F898D961CCF897D0B1523 /* AFError.swift */,
+				48C6B8AB34DCAE452C5D4A91D70F88C8 /* Alamofire.swift */,
+				8349638AC11801F9EC8CDE4BE8757CD5 /* DispatchQueue+Alamofire.swift */,
+				F0BB71B9B0C09A63D4783607869C16F3 /* MultipartFormData.swift */,
+				20020D25B9F342C3FABEC86C9AA421B3 /* NetworkReachabilityManager.swift */,
+				4E3FE257545BC52A9C15E7F9B844D6D4 /* Notifications.swift */,
+				16F2514D2AF07518C9665BD5ADB3A947 /* ParameterEncoding.swift */,
+				A69DA10F17D5956183F1CE7B3B22480F /* Request.swift */,
+				5D48D5490B7E1B0DE98659FA34BB5E82 /* Response.swift */,
+				52D9168CE684998E704590C5BD02AF87 /* ResponseSerialization.swift */,
+				7EEA8696A4BE00E3CDBF23E2E2B055A0 /* Result.swift */,
+				C92B3F3923F1C012FC0A38D160E3FC31 /* ServerTrustPolicy.swift */,
+				AC716A922F8385A83AA7156BFBC29C3D /* SessionDelegate.swift */,
+				17FADB313EBAB69BBB25B6E02F28580B /* SessionManager.swift */,
+				CE040F938435F847718D4ED9383B3EEB /* TaskDelegate.swift */,
+				3A46F945BDD05D33C94B317EB5491C47 /* Timeline.swift */,
+				FC4FD97A4B56A65BAA16BFC66CD47949 /* Validation.swift */,
+				8CD3BE43A1A51EBA0E777B4968BBBBE1 /* Support Files */,
 			);
-			name = iOS;
+			name = Alamofire;
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		B2C19836D20C26BE8F04020F29877FA0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				96F9F13676450A7069E8928D957B8AAF /* Info.plist */,
+				39BF2850963644C787FFEF10943F32CA /* SCLAlertView.modulemap */,
+				C18CF5897EE6FB46DF34C4A4DD4A7306 /* SCLAlertView.xcconfig */,
+				A19749FD84BBCFF5BB5909294340897D /* SCLAlertView-dummy.m */,
+				91CBC92A3AACFA34AE76E7196B8A3CCA /* SCLAlertView-prefix.pch */,
+				EA553D1F97417F824A1F0AA6BC44DD88 /* SCLAlertView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SCLAlertView";
+			sourceTree = "<group>";
+		};
+		B6D62D24FAD95EE3E85862BC6275871E /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				314DC8BB4E3594447AA7846B50262FD5 /* DPDConstants.swift */,
+				EC10F657D5D879EFB0094D7130CDE7A9 /* DPDKeyboardListener.swift */,
+				35D21F0FEB8945F5094210418C804046 /* DPDUIView+Extension.swift */,
+				0C3C988BA8A58362C21B6EDA3FC20EF1 /* DropDown.swift */,
+				49CB78FD0FCF429FBC428AC2564AE46B /* DropDown+Appearance.swift */,
+				5184AC5107F692B3212617ACFAC2CCA4 /* DropDownCell.swift */,
+				893A8B12055FEA7A998956F48525F9C2 /* Resources */,
+				565EB32F89CAA0A2F3B3026AEDCBC6E5 /* Support Files */,
+			);
+			name = DropDown;
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		D1A34C7185FBEE5FBA4935E5CE885E01 /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				7C509B329EAC1A20607E90583FBB9716 /* SCLAlertView.swift */,
+				AE9CE0B37E5C57F4D3754B1126433FFA /* SCLExtensions.swift */,
+				B2C19836D20C26BE8F04020F29877FA0 /* Support Files */,
+			);
+			name = SCLAlertView;
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		D99810A22AAE7FCFBED4F3E52456B8FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92CA5AB8D5639F053DD3E7B6913B925F /* Alamofire */,
+				43687FCADE0B6823D22FDDBE120479E5 /* CommonCryptoModule */,
+				B6D62D24FAD95EE3E85862BC6275871E /* DropDown */,
+				F9B756361F7BEA726B81D25DC84E36DC /* JJFloatingActionButton */,
+				5FE4893298B9638369B4A522C461EED0 /* PopupDialog */,
+				D1A34C7185FBEE5FBA4935E5CE885E01 /* SCLAlertView */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		DA85FD13A5057C65EC01A2AFE6A74131 /* Pods-NeverlandUITests */ = {
@@ -578,21 +670,28 @@
 			path = "Target Support Files/Pods-NeverlandTests";
 			sourceTree = "<group>";
 		};
-		F186E7A0746E991DA73D333B52CE1BEC /* Resources */ = {
+		F9B756361F7BEA726B81D25DC84E36DC /* JJFloatingActionButton */ = {
 			isa = PBXGroup;
 			children = (
-				94E4B8B73EB8D6B76066B516DFF4BFF0 /* CommonCryptoBridge.h */,
-				20D61055BABF3701F28BE0C599FDC7F2 /* module.modulemap */,
+				4B1302A0FCC296E1D92173476EFCEF94 /* JJActionItem.swift */,
+				17ADBD466BA812140A8240139B7888B2 /* JJActionItem+Animations.swift */,
+				2772D833259C3B033327AE9462F224BA /* JJButtonAnimation.swift */,
+				3A56A8F08E65E3DF2A14EB9C1C5A5928 /* JJButtonRotationAnimation.swift */,
+				D19FDD0BCA537E778D383350AABD4D8C /* JJButtonTransitionAnimation.swift */,
+				0E0CDB6D8FAF8EF70EB25589B78D7550 /* JJCircleView.swift */,
+				A2EEC5679AA977CC3ACF6F720E2A733D /* JJFloatingActionButton.swift */,
+				52A31A165117BE5917849BCEF6FFD98A /* JJFloatingActionButton+Placement.swift */,
+				901858B1E23A87D9CE2882F4E9D35B8D /* JJFloatingActionButtonDelegate.swift */,
+				0188CD50CBC598A1C9402DCD67E3781C /* JJFloatingActionButtonState.swift */,
+				D27C02BE8D75FB16B849E45A11A01B07 /* JJItemAnimation.swift */,
+				A8EE7C2B97BAADA22F8A725415320BAF /* JJItemPopAnimation.swift */,
+				30A5E1B0335D6EC0100D45F476184FBF /* JJStyles.swift */,
+				38E3CC3CE5E088E28E77BBAC5BF2B71B /* UIColor+JJFloatingActionButton.swift */,
+				BB988CDF8969211A88436B77240A2D82 /* UIView+JJFloatingActionButton.swift */,
+				31FD5693147CD8098A75DBFA313A6407 /* Support Files */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		F2B45ABFB7DD61557891531EF3875FA8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				74C194DB9E4A7E16433CE34C13188762 /* DropDownCell.xib */,
-			);
-			name = Resources;
+			name = JJFloatingActionButton;
+			path = JJFloatingActionButton;
 			sourceTree = "<group>";
 		};
 		FCF8AB71691F9936945E6A18968C21AF /* Targets Support Files */ = {
@@ -617,6 +716,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18B88AEF2C4E358029E243014B7962E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AD004BB197D2314CFA77E2EE7794DB8 /* FXBlurView.h in Headers */,
+				F3C8B7572F03B9172110838F65E53EF7 /* PopupDialog-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1904CD5E5CEA9226AFC355E19C3EB159 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,11 +733,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2EC88D824AC7665B6938C70059F364CA /* Headers */ = {
+		1C5338A49AFE4CDA989C2AE4E438669B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC40E0B9513D90A8BC84F98B8BDA9DE /* Pods-Neverland-umbrella.h in Headers */,
+				B033544284276A4E43EE4C8439BA547B /* Pods-Neverland-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +757,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		583685389037C85744BDADDAE00F5864 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B18AF4B6CB199AE6A3CBAE04AEB8EB /* SCLAlertView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CB65EE8388FFD11C3AFEA2EA3D09D78 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF044E5388D94759B9CE2F1B5E3F4BEF /* JJFloatingActionButton-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4002B6E97835FDCCAA5963EFE09A3E0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -657,43 +781,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D6A79C01A3D179C392A13DA076EBBC4F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0C63A046F56D080BE510B4208BCEBEB /* SCLAlertView-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E3B95F05BB4A97A2B9E16B7E74FC12F8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7ED7118DD06BCF3BD8873CACDA2EE5BC /* FXBlurView.h in Headers */,
-				29E46A42DFE14D474B47AC661ED0C324 /* PopupDialog-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		02047DEAE656104A1609B68C8A9024CD /* PopupDialog */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DFEEAA3E6DD16C1D8935790971A1CB1F /* Build configuration list for PBXNativeTarget "PopupDialog" */;
-			buildPhases = (
-				9097E5860ED3A2A835F59775798D1FEE /* Sources */,
-				8CACE14019F7FD6E3F4C7CF3D29D2B3F /* Frameworks */,
-				E3B95F05BB4A97A2B9E16B7E74FC12F8 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PopupDialog;
-			productName = PopupDialog;
-			productReference = 7ED47506A5D07A319C379DF641A3B0A8 /* PopupDialog.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A825382FE6CB75BCE95AE224CE791A70 /* Build configuration list for PBXNativeTarget "CommonCryptoModule" */;
@@ -709,7 +799,30 @@
 			);
 			name = CommonCryptoModule;
 			productName = CommonCryptoModule;
-			productReference = CF32EE914A0654E9D627F0E0A7D2A7F1 /* CommonCryptoModule.framework */;
+			productReference = C38D50B12D431D669B35288CCAE0DC23 /* CommonCryptoModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2C7750213513E27B03199FBFF489B41A /* Pods-Neverland */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 642B7E90CF577E1892FC2D9EDCF52A66 /* Build configuration list for PBXNativeTarget "Pods-Neverland" */;
+			buildPhases = (
+				4BC0540CAFD7A994CDA808D825626641 /* Sources */,
+				6F65414DA62AC4F9267476FBAE61B928 /* Frameworks */,
+				1C5338A49AFE4CDA989C2AE4E438669B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16545880E561F9150C12EE2EF9FE9EDE /* PBXTargetDependency */,
+				BA1647CB86CA827DF612B30F06B20031 /* PBXTargetDependency */,
+				8991F06183CE304379B18DDC8AEA3D35 /* PBXTargetDependency */,
+				371CA6329E6F587B0CD54EA3F2D8C72B /* PBXTargetDependency */,
+				3BB06517788B8ECCD7DF16F39A56276E /* PBXTargetDependency */,
+				C9212602D791B1BAB69230990BA8422D /* PBXTargetDependency */,
+			);
+			name = "Pods-Neverland";
+			productName = "Pods-Neverland";
+			productReference = 0426E14C849922EEFAA44F6BC25328EC /* Pods_Neverland.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */ = {
@@ -727,7 +840,41 @@
 			);
 			name = DropDown;
 			productName = DropDown;
-			productReference = F27CD7696F10D3E327212D215D8193D0 /* DropDown.framework */;
+			productReference = 11E898CA8BF931B390E5DB37F5702EE9 /* DropDown.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		73D12B3F89C34A9532AB02274AB76A40 /* PopupDialog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F15D4C8A86FD13CE7FD0C85AD335EF66 /* Build configuration list for PBXNativeTarget "PopupDialog" */;
+			buildPhases = (
+				D256CE22F176DFCA4FA14104984BAEA7 /* Sources */,
+				02233522B9D3CAB90DE165907C31B170 /* Frameworks */,
+				18B88AEF2C4E358029E243014B7962E3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PopupDialog;
+			productName = PopupDialog;
+			productReference = D1969BDBEA53DCA9DE853D1028F91283 /* PopupDialog.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		81CBA00C2476FCCCF5AE26A782CF5401 /* JJFloatingActionButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750690FC6EAA50A479C170CD86F695DF /* Build configuration list for PBXNativeTarget "JJFloatingActionButton" */;
+			buildPhases = (
+				81BA698BA58F85C127AD591E98604516 /* Sources */,
+				FCC6C73290468755831758CA3A285398 /* Frameworks */,
+				7CB65EE8388FFD11C3AFEA2EA3D09D78 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JJFloatingActionButton;
+			productName = JJFloatingActionButton;
+			productReference = DBCCDA7F0DA40CC5B6112DD5A728CC64 /* JJFloatingActionButton.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
@@ -744,7 +891,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = A642294C6CA799EFB168E901D49B8F39 /* Alamofire.framework */;
+			productReference = E028FA78EF728A0AD7D522F6E931F47D /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AD5CF0D635C867AF8489611422A92D0A /* Pods-NeverlandUITests */ = {
@@ -761,29 +908,7 @@
 			);
 			name = "Pods-NeverlandUITests";
 			productName = "Pods-NeverlandUITests";
-			productReference = C163FB7CC494E5FFCD7767470EAC6A9E /* Pods_NeverlandUITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		CDE64F499E4CF7B6215A65BFB26699AD /* Pods-Neverland */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56A51C058F747B9E138C06460575C54B /* Build configuration list for PBXNativeTarget "Pods-Neverland" */;
-			buildPhases = (
-				4C38A9593192F7FCBA7A1716D112EA42 /* Sources */,
-				44409B5B6975E487BB63BDA089B7FC25 /* Frameworks */,
-				2EC88D824AC7665B6938C70059F364CA /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B39AD93F0EA8124F4775F354DE77B52B /* PBXTargetDependency */,
-				0E437DA93CF019F2D71B263BF30C720B /* PBXTargetDependency */,
-				E62B3ADA4DF7CD089D617180DA08F46B /* PBXTargetDependency */,
-				79CA6E3DA9D1DBCD379F2E894689C26E /* PBXTargetDependency */,
-				9E4709C41B94346B878B630CF3A79237 /* PBXTargetDependency */,
-			);
-			name = "Pods-Neverland";
-			productName = "Pods-Neverland";
-			productReference = F9546E4452E6EF2CE7512E3F9C95689E /* Pods_Neverland.framework */;
+			productReference = 1DB91A31BA07A208C0A8E4B86D84CCC2 /* Pods_NeverlandUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E14F2BE2CD5D598444B73A3F58D81DB9 /* Pods-NeverlandTests */ = {
@@ -800,16 +925,16 @@
 			);
 			name = "Pods-NeverlandTests";
 			productName = "Pods-NeverlandTests";
-			productReference = C56AE9F5AEC042E0BE0C837384E595F2 /* Pods_NeverlandTests.framework */;
+			productReference = 02DC776192DEC91032D8D270071921C5 /* Pods_NeverlandTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E991EDB661DB9130DA75044A34E8E2DB /* SCLAlertView */ = {
+		F214C565FFEC76C712C24FC3B858E9DA /* SCLAlertView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 088ED43BFE255B66DA867CD226E90857 /* Build configuration list for PBXNativeTarget "SCLAlertView" */;
+			buildConfigurationList = A20A05ECD6DC75D8DB8E437CF6967872 /* Build configuration list for PBXNativeTarget "SCLAlertView" */;
 			buildPhases = (
-				5CDFCBCA0B73378D377ED3C6A1EEA797 /* Sources */,
-				C923AF12CBBDD74AD30A3A5463069F91 /* Frameworks */,
-				D6A79C01A3D179C392A13DA076EBBC4F /* Headers */,
+				4DAC124DA774593F37F83BA20CDA058E /* Sources */,
+				D54F770FB7A69919A242A1E55A604CEE /* Frameworks */,
+				583685389037C85744BDADDAE00F5864 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -817,7 +942,7 @@
 			);
 			name = SCLAlertView;
 			productName = SCLAlertView;
-			productReference = E4F6B8097D50A1425BA5E52ED5C246EF /* SCLAlertView.framework */;
+			productReference = F11219D1B4DB7F99874880CDCFD2D07D /* SCLAlertView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -837,18 +962,19 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A0E8E98A8099B57147279F1E43BE84D1 /* Products */;
+			productRefGroup = 7B8BFA4DEC4A0C62C8576B0A5ED15F32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
 				1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */,
 				5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */,
-				CDE64F499E4CF7B6215A65BFB26699AD /* Pods-Neverland */,
+				81CBA00C2476FCCCF5AE26A782CF5401 /* JJFloatingActionButton */,
+				2C7750213513E27B03199FBFF489B41A /* Pods-Neverland */,
 				E14F2BE2CD5D598444B73A3F58D81DB9 /* Pods-NeverlandTests */,
 				AD5CF0D635C867AF8489611422A92D0A /* Pods-NeverlandUITests */,
-				02047DEAE656104A1609B68C8A9024CD /* PopupDialog */,
-				E991EDB661DB9130DA75044A34E8E2DB /* SCLAlertView */,
+				73D12B3F89C34A9532AB02274AB76A40 /* PopupDialog */,
+				F214C565FFEC76C712C24FC3B858E9DA /* SCLAlertView */,
 			);
 		};
 /* End PBXProject section */
@@ -908,11 +1034,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C38A9593192F7FCBA7A1716D112EA42 /* Sources */ = {
+		4BC0540CAFD7A994CDA808D825626641 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F7557BD7AB501F696E4329BD7B5A250 /* Pods-Neverland-dummy.m in Sources */,
+				9D03B3DFBD6D0F98DF6BD5E7A4272F45 /* Pods-Neverland-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DAC124DA774593F37F83BA20CDA058E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EF4EF9B5E0C19A2C601967DC0E2B092 /* SCLAlertView-dummy.m in Sources */,
+				50F67907B2946E151E6FD45D59F645BA /* SCLAlertView.swift in Sources */,
+				36756D13040AA65502CD279C3A669FA9 /* SCLExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,16 +1060,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5CDFCBCA0B73378D377ED3C6A1EEA797 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C889FC77108E9ECA33F9BB4CF30C3B06 /* SCLAlertView-dummy.m in Sources */,
-				42BBE42234FEFA68F116E2EDBE200A1B /* SCLAlertView.swift in Sources */,
-				67C5D193B11A760250E057587EA52D34 /* SCLExtensions.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		779E5D9D5F71C967C0CA09A8586EB6A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -942,28 +1068,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9097E5860ED3A2A835F59775798D1FEE /* Sources */ = {
+		81BA698BA58F85C127AD591E98604516 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67C0DB38CDDFE5CB515E49D2F8A96251 /* FXBlurView.m in Sources */,
-				449C96817A04D22CCF68948B1933233D /* InteractiveTransition.swift in Sources */,
-				42086D0F1D9774F1CD1E1A6D239CE83B /* PopupDialog+Keyboard.swift in Sources */,
-				63C8F287C2BCC246D0E5F8721A4F65F1 /* PopupDialog-dummy.m in Sources */,
-				463A5F6BB0DB74F1F2888280A55AAE4B /* PopupDialog.swift in Sources */,
-				83DF1AC2E950D02A4F529AB31CEF0538 /* PopupDialogButton.swift in Sources */,
-				F3B25F82E0C0818AE228C53570275CCB /* PopupDialogContainerView.swift in Sources */,
-				03C8E5283AB4261BF0E7FEB834B3B474 /* PopupDialogDefaultButtons.swift in Sources */,
-				872B991A4545CB0284B081BB19D43C8F /* PopupDialogDefaultView.swift in Sources */,
-				7F25D90E7CD637C8143AA649B4BF506F /* PopupDialogDefaultViewController.swift in Sources */,
-				0ACA785BE5424E23EDDD2A629B5292F8 /* PopupDialogOverlayView.swift in Sources */,
-				EF7BD1D31EC483652FB58C0151FDA605 /* PresentationController.swift in Sources */,
-				C7E006FF9D007E7A6B46178BB661B177 /* PresentationManager.swift in Sources */,
-				2E648C7072603B2B32F2EFA579CBE632 /* TransitionAnimations.swift in Sources */,
-				6C3709C738E21ED33184D64EDBB4CC89 /* TransitionAnimator.swift in Sources */,
-				0B670A54C7B6D3B7B1FFFAB784977D73 /* UIImageView+Calculations.swift in Sources */,
-				3A37ED685A4F0C62F0BADCB1C7B6D21B /* UIView+Animations.swift in Sources */,
-				0F24A9ECA9DC61E04CCEAE822A02CD91 /* UIViewController+Visibility.swift in Sources */,
+				00217E98D166DF2D4EC3A75D50DDE397 /* JJActionItem+Animations.swift in Sources */,
+				90E659B85DDDB7A2EBD7136E669BBCF0 /* JJActionItem.swift in Sources */,
+				7114E2033560BE694A0B44C82813B090 /* JJButtonAnimation.swift in Sources */,
+				47A212AE220A49F581C25D79470C182A /* JJButtonRotationAnimation.swift in Sources */,
+				FFCD97EE69B84A6848B6AE4E5F06BCB6 /* JJButtonTransitionAnimation.swift in Sources */,
+				A8DD7910955426AD869D0E1848BAA078 /* JJCircleView.swift in Sources */,
+				3AD8447568C4E541E041ADA871CB8871 /* JJFloatingActionButton+Placement.swift in Sources */,
+				C1C8E3ACC4D50881824F29E16398B494 /* JJFloatingActionButton-dummy.m in Sources */,
+				36E058E87C96EAB0F176A0329AEEFEA9 /* JJFloatingActionButton.swift in Sources */,
+				8C83D4B9EB39A49F0E2A60D47E04A59A /* JJFloatingActionButtonDelegate.swift in Sources */,
+				6B4217E7C80CF7389ED5ABA57C81A567 /* JJFloatingActionButtonState.swift in Sources */,
+				F388A1157A27F623C4F9610D935A8564 /* JJItemAnimation.swift in Sources */,
+				0D7D9102A262014EECE15FCCDDF7798C /* JJItemPopAnimation.swift in Sources */,
+				7F8CD95CA204301E0F4567C704CCD490 /* JJStyles.swift in Sources */,
+				267D888E542894CDDF2BC9DDA35F4EFE /* UIColor+JJFloatingActionButton.swift in Sources */,
+				99551799DF4BB318E4ABF280702E9362 /* UIView+JJFloatingActionButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D256CE22F176DFCA4FA14104984BAEA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A48BEF488712E4C05E42A91E3909E381 /* FXBlurView.m in Sources */,
+				E55C67C1DD8753BD77DB09F29B155B87 /* InteractiveTransition.swift in Sources */,
+				2315F0CF21CFDEB0D908B9CEBE51D53D /* PopupDialog+Keyboard.swift in Sources */,
+				D225B6B155FFF1C31812A4DBC750F379 /* PopupDialog-dummy.m in Sources */,
+				EB2CFB2FBF54BE50BE6D4A258C0F3474 /* PopupDialog.swift in Sources */,
+				247DF4B015A48490C187F92BC4EB7126 /* PopupDialogButton.swift in Sources */,
+				50C953502FD2CF0D1F37D11560B0AF96 /* PopupDialogContainerView.swift in Sources */,
+				61E0C952425547E78BBE787C44156DF7 /* PopupDialogDefaultButtons.swift in Sources */,
+				1C916A7284F41E82914AFF520FBF993C /* PopupDialogDefaultView.swift in Sources */,
+				3CBD2F8C296FF059AC5ABA74E87B0F19 /* PopupDialogDefaultViewController.swift in Sources */,
+				B5FE2A588137EA928FFEE0C694FE7A91 /* PopupDialogOverlayView.swift in Sources */,
+				0E8188B35ED11E42D8BB8C611F74D0A8 /* PresentationController.swift in Sources */,
+				285877442E773415B4EBF0F8EEF8337F /* PresentationManager.swift in Sources */,
+				B74B84845ECD124276EB69CB8E674A1E /* TransitionAnimations.swift in Sources */,
+				D82C7CBE4D3614A36A41C24EE762D344 /* TransitionAnimator.swift in Sources */,
+				ECEB9FF22DD7B9AD7EBFBA9C8ACAE9C6 /* UIImageView+Calculations.swift in Sources */,
+				E0E7F732BE1DE08E42C95B032228686A /* UIView+Animations.swift in Sources */,
+				640561333915F8F9B5F7012FC32307FB /* UIViewController+Visibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,42 +1133,48 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0E437DA93CF019F2D71B263BF30C720B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CommonCryptoModule;
-			target = 1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */;
-			targetProxy = 5D57DC209AEF036A0495234299BCD48B /* PBXContainerItemProxy */;
-		};
-		79CA6E3DA9D1DBCD379F2E894689C26E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PopupDialog;
-			target = 02047DEAE656104A1609B68C8A9024CD /* PopupDialog */;
-			targetProxy = 046A10315D60F5013ED6EE0A632B9B42 /* PBXContainerItemProxy */;
-		};
-		9E4709C41B94346B878B630CF3A79237 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SCLAlertView;
-			target = E991EDB661DB9130DA75044A34E8E2DB /* SCLAlertView */;
-			targetProxy = 252A40AC05CB2E4EC93D8FA7E2FD7A89 /* PBXContainerItemProxy */;
-		};
-		B39AD93F0EA8124F4775F354DE77B52B /* PBXTargetDependency */ = {
+		16545880E561F9150C12EE2EF9FE9EDE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = A971A3EEA022048915CBF195F430753D /* PBXContainerItemProxy */;
+			targetProxy = 1D4EB37A1BB41253000690A657CC6118 /* PBXContainerItemProxy */;
 		};
-		E62B3ADA4DF7CD089D617180DA08F46B /* PBXTargetDependency */ = {
+		371CA6329E6F587B0CD54EA3F2D8C72B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JJFloatingActionButton;
+			target = 81CBA00C2476FCCCF5AE26A782CF5401 /* JJFloatingActionButton */;
+			targetProxy = 77741CEDA23682C10A9660B02E5B1B89 /* PBXContainerItemProxy */;
+		};
+		3BB06517788B8ECCD7DF16F39A56276E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PopupDialog;
+			target = 73D12B3F89C34A9532AB02274AB76A40 /* PopupDialog */;
+			targetProxy = 149923B524BD4E896233FCC85C295A4A /* PBXContainerItemProxy */;
+		};
+		8991F06183CE304379B18DDC8AEA3D35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DropDown;
 			target = 5168099F2EBFC99A707C03C9EADE01A5 /* DropDown */;
-			targetProxy = 6753E39BEAFDBE83376AE7634209D8A6 /* PBXContainerItemProxy */;
+			targetProxy = A1D180BF12CADC5ED8993F6BE37A6077 /* PBXContainerItemProxy */;
+		};
+		BA1647CB86CA827DF612B30F06B20031 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonCryptoModule;
+			target = 1B3216DE436854387313ADD5163C5379 /* CommonCryptoModule */;
+			targetProxy = 52497268B3DB658936305EF605382B14 /* PBXContainerItemProxy */;
+		};
+		C9212602D791B1BAB69230990BA8422D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SCLAlertView;
+			target = F214C565FFEC76C712C24FC3B858E9DA /* SCLAlertView */;
+			targetProxy = AF4900D17136E31835D33A65F38FC69A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0ACEC3434AADF8B952F0F1F30131D2F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27F90EB011F68DFF41466B4ACDA044AE /* DropDown.xcconfig */;
+			baseConfigurationReference = 1C16902176F0ACC16BE2B9D47D2906BB /* DropDown.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1052,43 +1207,9 @@
 			};
 			name = Debug;
 		};
-		3009A94D32945A057BE0968ECCA31F9A /* Release */ = {
+		0C16E5C1F01A3398CEC59C343FADA7A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27F90EB011F68DFF41466B4ACDA044AE /* DropDown.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DropDown/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = DropDown;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		49328DC273A0CE1F41A2B25435DE12D2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5133F0A1E1E172923225DC8EF27E935D /* SCLAlertView.xcconfig */;
+			baseConfigurationReference = C18CF5897EE6FB46DF34C4A4DD4A7306 /* SCLAlertView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1121,9 +1242,44 @@
 			};
 			name = Debug;
 		};
-		55EEAA7227C67D859C6392505B737EE8 /* Release */ = {
+		0DF25CD792E6F823A4589DB96B2F1197 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */;
+			baseConfigurationReference = 6DBCEB7AF45740A5625C2019EA52F08D /* JJFloatingActionButton.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JJFloatingActionButton/JJFloatingActionButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JJFloatingActionButton/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JJFloatingActionButton/JJFloatingActionButton.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = JJFloatingActionButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3009A94D32945A057BE0968ECCA31F9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C16902176F0ACC16BE2B9D47D2906BB /* DropDown.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1137,22 +1293,87 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DropDown/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
+				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Neverland;
+				PRODUCT_NAME = DropDown;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5056E028B086831920369692B41BEEA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90C83AFB72B51EA0276D6356BA6ABA0E /* PopupDialog.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		56406F47A6D6ADBF34C4A7B71939D280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90C83AFB72B51EA0276D6356BA6ABA0E /* PopupDialog.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1161,7 +1382,7 @@
 		};
 		5A920F1FCF095A15DBC53389015546B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8C188ABEED931C2FE6F6B3D4DA355B5 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 1A7CD11E922F8D22350AA73056413346 /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1193,40 +1414,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		5D389B147076C34E55E176D446B317E5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5133F0A1E1E172923225DC8EF27E935D /* SCLAlertView.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView/SCLAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SCLAlertView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SCLAlertView/SCLAlertView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SCLAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		643C76AA582046977B7877822ED7A258 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1276,9 +1463,43 @@
 			};
 			name = Debug;
 		};
-		68A3DD48AFCE07F2642A79CB0FAADC7E /* Debug */ = {
+		6CABA2E27F52EE70371D8F6B38591151 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FCCEA2F214D0AE63B67B925BF325852 /* PopupDialog.xcconfig */;
+			baseConfigurationReference = 6DBCEB7AF45740A5625C2019EA52F08D /* JJFloatingActionButton.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JJFloatingActionButton/JJFloatingActionButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JJFloatingActionButton/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JJFloatingActionButton/JJFloatingActionButton.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = JJFloatingActionButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6E4583D1846BFBBFE5ED84F88577A373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1292,19 +1513,23 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Neverland/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = PopupDialog;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Neverland;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1313,7 +1538,7 @@
 		};
 		6F74EF19AF9B4E4DBA3A418D538D2484 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3547A194AABF13BF1BA7175044748064 /* CommonCryptoModule.xcconfig */;
+			baseConfigurationReference = 65CE57F319572C4F9DD926B57DDA4094 /* CommonCryptoModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1345,9 +1570,9 @@
 			};
 			name = Release;
 		};
-		770D476AD4457413C94349FF5C230A96 /* Release */ = {
+		7FAEF6ADD6875B377BF76CA7C917E94B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FCCEA2F214D0AE63B67B925BF325852 /* PopupDialog.xcconfig */;
+			baseConfigurationReference = C18CF5897EE6FB46DF34C4A4DD4A7306 /* SCLAlertView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1361,14 +1586,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView/SCLAlertView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SCLAlertView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SCLAlertView/SCLAlertView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = PopupDialog;
+				PRODUCT_NAME = SCLAlertView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1415,16 +1640,16 @@
 			};
 			name = Release;
 		};
-		B47E48CF73CAD8A2666D28CA240663EA /* Debug */ = {
+		B76257FB09D755197B838D73DCA226E1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 425E498442954E5E23EC847F1054CCA1 /* Pods-Neverland.debug.xcconfig */;
+			baseConfigurationReference = 93CC90C6BB83A7D11F1264113E4F2A69 /* Pods-Neverland.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1437,7 +1662,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Neverland/Pods-Neverland.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1445,14 +1670,13 @@
 				PRODUCT_NAME = Pods_Neverland;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		C03B8870130C98D1B02B59D003687524 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1536,7 +1760,7 @@
 		};
 		E0407B57523C522425418F440403048D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8C188ABEED931C2FE6F6B3D4DA355B5 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 1A7CD11E922F8D22350AA73056413346 /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1642,7 +1866,7 @@
 		};
 		FD2A85CFEFEBC5CF63E9AAC89A8174CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3547A194AABF13BF1BA7175044748064 /* CommonCryptoModule.xcconfig */;
+			baseConfigurationReference = 65CE57F319572C4F9DD926B57DDA4094 /* CommonCryptoModule.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1678,15 +1902,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		088ED43BFE255B66DA867CD226E90857 /* Build configuration list for PBXNativeTarget "SCLAlertView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49328DC273A0CE1F41A2B25435DE12D2 /* Debug */,
-				5D389B147076C34E55E176D446B317E5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1714,11 +1929,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56A51C058F747B9E138C06460575C54B /* Build configuration list for PBXNativeTarget "Pods-Neverland" */ = {
+		642B7E90CF577E1892FC2D9EDCF52A66 /* Build configuration list for PBXNativeTarget "Pods-Neverland" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B47E48CF73CAD8A2666D28CA240663EA /* Debug */,
-				55EEAA7227C67D859C6392505B737EE8 /* Release */,
+				6E4583D1846BFBBFE5ED84F88577A373 /* Debug */,
+				B76257FB09D755197B838D73DCA226E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		750690FC6EAA50A479C170CD86F695DF /* Build configuration list for PBXNativeTarget "JJFloatingActionButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DF25CD792E6F823A4589DB96B2F1197 /* Debug */,
+				6CABA2E27F52EE70371D8F6B38591151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1728,6 +1952,15 @@
 			buildConfigurations = (
 				D15FD206480D4AD22D2D48D7D65D0077 /* Debug */,
 				E7DB5C4884BE4DC73AF9CBD2E6B68789 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A20A05ECD6DC75D8DB8E437CF6967872 /* Build configuration list for PBXNativeTarget "SCLAlertView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C16E5C1F01A3398CEC59C343FADA7A5 /* Debug */,
+				7FAEF6ADD6875B377BF76CA7C917E94B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1750,11 +1983,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DFEEAA3E6DD16C1D8935790971A1CB1F /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
+		F15D4C8A86FD13CE7FD0C85AD335EF66 /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				68A3DD48AFCE07F2642A79CB0FAADC7E /* Debug */,
-				770D476AD4457413C94349FF5C230A96 /* Release */,
+				5056E028B086831920369692B41BEEA8 /* Debug */,
+				56406F47A6D6ADBF34C4A7B71939D280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

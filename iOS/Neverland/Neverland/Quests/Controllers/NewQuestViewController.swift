@@ -16,6 +16,8 @@ class NewQuestViewController: UIViewController {
     var startScrollViewHeight: CGFloat!
     let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     let groupId = 0 // get through segue.
+    var deletedQuests = 0
+    var tableViewisUpdating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +37,26 @@ class NewQuestViewController: UIViewController {
        NLConfirmationPopupService().presentPopup(forQuest: quest, into: self)
     }
     
+    func removeQuest(quest: Quest) {
+        tableViewisUpdating = true
+        tableView.beginUpdates()
+        if let index = quests.index(of: quest) {
+            tableView.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: .automatic)
+            quests.remove(at: index)
+            deletedQuests += 1
+        }
+        tableView.endUpdates()
+        tableViewisUpdating = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         startScrollViewHeight = tableView.contentSize.height
     }
     
     func fetchNewQuests() {
-        FakeQuestApi().fetchQuests(from: quests.count, to: quests.count + 20, inGroup: groupId, onComplete: { response in
+        tableViewisUpdating = true
+        FakeQuestApi().fetchQuests(from: quests.count + deletedQuests, to: quests.count + deletedQuests + 20, inGroup: groupId, onComplete: { response in
+            tableView.beginUpdates()
             var indexes = [IndexPath]()
             for index in 0 ..< response.quests.count {
                 let q = response.quests[index]
@@ -50,6 +66,8 @@ class NewQuestViewController: UIViewController {
             tableView.insertRows(at: indexes, with: .automatic)
             
             spinner.stopAnimating()
+            tableView.endUpdates()
+            tableViewisUpdating = false
         })
     }
 
@@ -83,7 +101,9 @@ extension NewQuestViewController: UITableViewDataSource, UITableViewDelegate {
         }
             
         if threshold == scrollView.contentSize.height {
-            fetchNewQuests()
+            if !tableViewisUpdating {
+                fetchNewQuests()
+            }
         }
     }
 }
