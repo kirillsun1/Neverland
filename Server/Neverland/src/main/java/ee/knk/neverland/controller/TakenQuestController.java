@@ -35,7 +35,7 @@ public class TakenQuestController {
     }
 
     @RequestMapping(value="/takequest")
-    public String takeQuest(@RequestParam(value = "token") String token, @RequestParam(value = "qid") Long questId) {
+    public String takeQuest(@RequestParam(value="token") String token, @RequestParam(value="qid") Long questId) {
         Optional<User> userPk = tokenController.getTokenUser(token);
         if (!userPk.isPresent()) {
             return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
@@ -44,16 +44,16 @@ public class TakenQuestController {
         return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED));
     }
 
-    @RequestMapping(value="/getmyquests")
-    public String getQuestsTakenByUser(@RequestParam(value = "token") String token) {
-        Optional<User> userPk = tokenController.getTokenUser(token);
-        if (!userPk.isPresent()) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
-        }
-
-        List<TakenQuest> questPointers = takenQuestsService.getQuests(userPk.get());
-        return gson.toJson(getNeededInfoAboutQuests(questPointers));
-    }
+//    @RequestMapping(value="/getmyquests")
+//    public String getQuestsTakenByUser(@RequestParam(value = "token") String token) {
+//        Optional<User> userPk = tokenController.getTokenUser(token);
+//        if (!userPk.isPresent()) {
+//            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+//        }
+//
+//        List<TakenQuest> questPointers = takenQuestsService.getQuests(userPk.get());
+//        return gson.toJson(getNeededInfoAboutQuests(questPointers));
+//    }
 
     private QuestsAnswer getNeededInfoAboutQuests(List<TakenQuest> information) {
         QuestsAnswer answer = new QuestsAnswer();
