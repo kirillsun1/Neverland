@@ -28,7 +28,7 @@ public class QuestController {
         this.tokenController = new TokenController(tokenService);
     }
 
-    @RequestMapping(value="/submitquest", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    @RequestMapping(value="/submitquest", method = RequestMethod.POST, headers = {"Content-type=application/json;charset=UTF-8"})
     public String postQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
         Optional<User> userPk = tokenController.getTokenUser(token);
         if (!userPk.isPresent()) {
