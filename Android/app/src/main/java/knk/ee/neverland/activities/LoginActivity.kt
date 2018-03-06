@@ -19,7 +19,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import knk.ee.neverland.R
-import knk.ee.neverland.api.AuthAPIConstants
+import knk.ee.neverland.api.Constants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
 
@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (resultCode == AuthAPIConstants.SUCCESS) {
+        if (resultCode == Constants.SUCCESS) {
             val token = data.getStringExtra("token")
             val login = data.getStringExtra("login")
             saveUserdataToTheSystemSettings(login, token)
@@ -115,13 +115,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun isLoginValid(login: String): Boolean {
-        return login.matches(AuthAPIConstants.LOGIN_REGEX)
-    }
+    private fun isLoginValid(login: String): Boolean = login.matches(Constants.LOGIN_REGEX)
 
-    private fun isPasswordValid(password: String): Boolean {
-        return password.matches(AuthAPIConstants.PASSWORD_REGEX)
-    }
+    private fun isPasswordValid(password: String): Boolean = password.matches(Constants.PASSWORD_REGEX)
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {
@@ -188,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
             try {
                 saveUserdataToTheSystemSettings(mLogin,
                         DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
-                return AuthAPIConstants.SUCCESS
+                return Constants.SUCCESS
             } catch (e: AuthAPIException) {
                 return e.code
             }
@@ -199,10 +195,10 @@ class LoginActivity : AppCompatActivity() {
             showProgress(false)
 
             when (code) {
-                AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                AuthAPIConstants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_field))
-                AuthAPIConstants.SUCCESS -> openMainActivityAndFinishThisActivity()
+                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
+                Constants.FAILED -> showToast(getString(R.string.error_incorrect_field))
+                Constants.SUCCESS -> openMainActivityAndFinishThisActivity()
                 else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
             }
         }

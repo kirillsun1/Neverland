@@ -1,3 +1,3 @@
 package knk.ee.neverland.exceptions
 
-class QuestAPIException(message: String) : Exception(message)
+class QuestAPIException(val code: Int) : Exception()

@@ -81,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_note_add_black_24dp"
                     android:drawableStart="@drawable/ic_note_add_black_24dp"
+                    android:selectAllOnFocus="false"
                     android:text="Suggest quest" />
 
                 <TextView

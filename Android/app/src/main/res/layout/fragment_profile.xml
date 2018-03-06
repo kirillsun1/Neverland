@@ -60,7 +60,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="bottom|fill_horizontal"
                 android:layout_rowWeight="1"
-                android:text="9999"
+                android:text=" "
                 android:textAlignment="center"
                 android:textSize="@dimen/standard_font_size" />
 
@@ -71,7 +71,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="bottom|fill_horizontal"
                 android:layout_rowWeight="1"
-                android:text="9999"
+                android:text=" "
                 android:textAlignment="center"
                 android:textSize="@dimen/standard_font_size" />
 
@@ -82,7 +82,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="bottom|fill_horizontal"
                 android:layout_rowWeight="1"
-                android:text="42%"
+                android:text=" "
                 android:textAlignment="center"
                 android:textSize="@dimen/standard_font_size" />
 

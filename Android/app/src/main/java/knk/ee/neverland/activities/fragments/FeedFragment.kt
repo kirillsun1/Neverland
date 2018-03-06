@@ -27,4 +27,4 @@ class FeedFragment : Fragment() {
         val feedListView = view!!.findViewById<ListView>(R.id.feed_listview)
         feedListView.adapter = FeedElementAdapter(context, ArrayList())
     }
-}// Required empty public constructor
+}

@@ -1,12 +1,22 @@
 package knk.ee.neverland.models
 
+import com.google.gson.annotations.SerializedName
 import java.time.LocalDateTime
 
 class Quest {
-    private val id: Int = 0
-    var name: String? = null
-    var description: String? = null
-    private val creator: User? = null
-    private val timeCreated: LocalDateTime? = null
+    var id: Int = 0
+
+    @SerializedName("title")
+    var title: String = ""
+
+    @SerializedName("desc")
+    var description: String = ""
+
+    @SerializedName("author")
+    var creator: User = User()
+
+    // @SerializedName("time_created")
+    // var timeCreated: LocalDateTime? = null // TODO: Date for older api
+
     var groupID: Int = 0
 }

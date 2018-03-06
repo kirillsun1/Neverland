@@ -1,8 +1,8 @@
-package knk.ee.neverland.fakeapi
+package knk.ee.neverland.api.fakeapi
 
 import com.google.common.hash.Hashing
 import knk.ee.neverland.api.AuthAPI
-import knk.ee.neverland.api.AuthAPIConstants
+import knk.ee.neverland.api.Constants
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.models.RegistrationData
 import java.nio.charset.StandardCharsets
@@ -20,7 +20,7 @@ class FakeAuthAPI : AuthAPI {
             }
         }
 
-        throw AuthAPIException(AuthAPIConstants.FAILED)
+        throw AuthAPIException(Constants.FAILED)
     }
 
     @Throws(AuthAPIException::class)
@@ -28,7 +28,7 @@ class FakeAuthAPI : AuthAPI {
         if (!loginIsCorrect(registrationData.login) || !passwordIsCorrect(registrationData.password)
                 || !nameIsCorrect(registrationData.firstName) || !nameIsCorrect(registrationData.secondName)
                 || !emailIsCorrect(registrationData.email)) {
-            throw AuthAPIException(AuthAPIConstants.FAILED)
+            throw AuthAPIException(Constants.FAILED)
         }
         val user = User()
 
