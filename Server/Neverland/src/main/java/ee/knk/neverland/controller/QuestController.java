@@ -28,8 +28,8 @@ public class QuestController {
         this.tokenController = new TokenController(tokenService);
     }
 
-    @RequestMapping(value="/submitquest", method = RequestMethod.POST, headers = {"Content-type=application/x-www-form-urlencoded;charset=UTF-8"})
-    public String postQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
+    @RequestMapping(value="/submitquest")
+    public String submitQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
         Optional<User> userPk = tokenController.getTokenUser(token);
         if (!userPk.isPresent()) {
             return gson.toJson(new RegistrationLoginAnswer(RegistrationLoginConstants.FAILED));
