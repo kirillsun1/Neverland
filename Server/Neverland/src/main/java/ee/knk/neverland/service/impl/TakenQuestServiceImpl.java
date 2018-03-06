@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TakenQuestServiceImpl implements TakenQuestService {
@@ -32,5 +33,15 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     @Override
     public boolean checkIfQuestIsTaken(User user, Quest quest) {
         return !takenQuestsRepository.getQuestWithUser(user, quest).isPresent();
+    }
+
+    @Override
+    public Optional<TakenQuest> getQuestTakenByUser(User user, Quest quest) {
+        return takenQuestsRepository.getQuestWithUser(user, quest);
+    }
+
+    @Override
+    public void delete(Long takenQuestId) {
+        takenQuestsRepository.delete(takenQuestId);
     }
 }

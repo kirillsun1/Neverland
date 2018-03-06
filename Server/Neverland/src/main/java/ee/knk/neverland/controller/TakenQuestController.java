@@ -40,7 +40,7 @@ public class TakenQuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Quest quest = questController.getQuestById(questId);
-        if (!takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
+        if (takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_TAKEN));
         }
         takenQuestsService.takeQuest(new TakenQuest(user.get(), quest));
@@ -56,6 +56,22 @@ public class TakenQuestController {
 
         List<TakenQuest> questPointers = takenQuestsService.getQuests(user.get());
         return gson.toJson(getNeededInfoAboutQuests(questPointers));
+    }
+
+
+    @RequestMapping(value = "/dropquest")
+    public String deleteQuestFromMyQuests(@RequestParam(value="token") String token, @RequestParam(value="qid")Long questId) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        Quest quest = questController.getQuestById(questId);
+        Optional<TakenQuest> takenQuest = takenQuestsService.getQuestTakenByUser(user.get(), quest);
+        if (!takenQuest.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.QUEST_IS_NOT_TAKEN));
+        }
+        takenQuestsService.delete(takenQuest.get().getId());
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     private QuestsAnswer getNeededInfoAboutQuests(List<TakenQuest> information) {
