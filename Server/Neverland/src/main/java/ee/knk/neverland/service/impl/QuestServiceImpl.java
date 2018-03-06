@@ -6,6 +6,8 @@ import ee.knk.neverland.service.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuestServiceImpl implements QuestService {
 
@@ -20,5 +22,10 @@ public class QuestServiceImpl implements QuestService {
     @Override
     public Quest addQuest(Quest quest) {
         return questRepository.saveAndFlush(quest);
+    }
+
+    @Override
+    public List<Quest> getQuests() {
+        return questRepository.findAll();
     }
 }
