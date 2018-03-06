@@ -32,6 +32,9 @@ public class TakenQuest {
     @Setter
     private LocalDateTime timeQuestTaken = LocalDateTime.now();
 
+    public TakenQuest() {
+
+    }
     public TakenQuest(User user, Quest quest) {
         this.user = user;
         this.quest = quest;
