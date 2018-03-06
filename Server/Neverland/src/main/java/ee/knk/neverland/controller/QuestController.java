@@ -7,22 +7,25 @@ import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.TokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ee.knk.neverland.constants.RegistrationLoginConstants;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@Controller
+@RestController
 public class QuestController {
     private final QuestService questService;
     private final TokenController tokenController;
     private Gson gson = new Gson();
 
+    @Autowired
     public QuestController(QuestService questService, TokenService tokenService) {
         this.questService = questService;
         this.tokenController = new TokenController(tokenService);
