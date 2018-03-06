@@ -32,7 +32,7 @@ public class TakenQuestServiceImpl implements TakenQuestService {
 
     @Override
     public boolean checkIfQuestIsTaken(User user, Quest quest) {
-        return !takenQuestsRepository.getQuestWithUser(user, quest).isPresent();
+        return takenQuestsRepository.getQuestWithUser(user, quest).isPresent();
     }
 
     @Override
