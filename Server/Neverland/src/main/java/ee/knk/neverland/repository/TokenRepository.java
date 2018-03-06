@@ -13,9 +13,12 @@ public interface TokenRepository extends JpaRepository<Token, Long> {
     @Query("delete from Token token where token.user = :user")
     void clearUpOutOfDateKeys(@Param("user") User userFk);
 
-    @Query("select token from Token token where token.keyValue = :keyValue and token.active = true")
-    Optional<Token> isValid(@Param("keyValue") String keyValue);
+    @Query("select token from Token token where token.value = :value and token.active = true")
+    Optional<Token> isValid(@Param("value") String value);
 
-    @Query("select token from Token token where token.keyValue = :keyValue")
-    Optional<Token> exists(@Param("keyValue") String keyValue);
+    @Query("select token from Token token where token.value = :value")
+    Optional<Token> exists(@Param("value") String value);
+
+    @Query("select user from Token token where token.value = :value")
+    Optional<User> getTokenUser(@Param("value") String value);
 }

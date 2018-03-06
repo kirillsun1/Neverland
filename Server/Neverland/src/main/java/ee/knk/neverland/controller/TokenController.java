@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 class TokenController {
@@ -31,7 +32,7 @@ class TokenController {
         } while (tokenService.exists(tokenValue));
         Token token = new Token(user, tokenValue);
         tokenService.addToken(token);
-        return token.getKeyValue();
+        return token.getValue();
     }
 
     private String generateValue(String username) {
@@ -40,6 +41,10 @@ class TokenController {
         return Hashing.sha256()
                 .hashString(toEncode, StandardCharsets.UTF_8)
                 .toString();
+    }
+
+    Optional<User> getTokenUser(String value) {
+        return tokenService.getTokenUser(value);
     }
 
 

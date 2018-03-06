@@ -1,5 +1,7 @@
 package ee.knk.neverland.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,8 +14,8 @@ public class Token {
 
     }
 
-    public Token(User user, String keyValue) {
-        this.keyValue = keyValue;
+    public Token(User user, String value) {
+        this.value = value;
         this.user = user;
     }
 
@@ -25,31 +27,12 @@ public class Token {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk", nullable = false)
-    private User user;
+    @Getter @Setter private User user;
 
-    @Column(name = "key_value", nullable = false, unique = true)
-    private String keyValue;
+    @Column(name = "value", nullable = false, unique = true)
+    @Getter @Setter private String value;
 
     @Column(name="active")
-    private boolean active = true;
+    @Getter @Setter private boolean active = true;
 
-    public User getUser() {
-        return user;
-    }
-
-    public String getKeyValue() {
-        return keyValue;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }
