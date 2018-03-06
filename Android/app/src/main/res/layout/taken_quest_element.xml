@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/my_quests_quest_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:maxLines="1"
+        android:text="Name"
+        android:textSize="@dimen/standard_font_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/my_quests_time_taken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:text="Taken ..."
+        android:textSize="@dimen/standard_font_size" />
+
+</LinearLayout>

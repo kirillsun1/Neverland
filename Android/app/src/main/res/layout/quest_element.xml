@@ -1,36 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:rowCount="2">
+
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_column="0"
+        android:layout_row="0"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_gravity="fill"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_row="0"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/quests_quest_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="1dp"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="2dp"
             android:maxLines="1"
-            android:text="Some Quest Name"
             android:textSize="@dimen/standard_font_size"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/quests_quest_desc"
+            android:id="@+id/quests_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
-            android:gravity="left|right|center|fill"
-            android:text="Some Quest Desc"
-            android:textAlignment="gravity"
+            android:layout_marginTop="1dp"
             android:textSize="@dimen/standard_font_size" />
     </LinearLayout>
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/quests_quest_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="5dp"
+        android:layout_row="1"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/standard_font_size" />
+
+</GridLayout>

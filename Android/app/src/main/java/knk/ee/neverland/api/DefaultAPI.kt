@@ -1,7 +1,7 @@
 package knk.ee.neverland.api
 
-import knk.ee.neverland.fakeapi.FakeQuestAPI
-import knk.ee.neverland.neverlandapi.NeverlandAuthAPI
+import knk.ee.neverland.api.neverlandapi.NeverlandAuthAPI
+import knk.ee.neverland.api.neverlandapi.NeverlandQuestAPI
 
 object DefaultAPI {
     var userToken: String? = null
@@ -10,7 +10,7 @@ object DefaultAPI {
         private set
 
     val authAPI: AuthAPI = NeverlandAuthAPI()
-    val questAPI: QuestApi = FakeQuestAPI()
+    val questAPI: QuestApi = NeverlandQuestAPI()
 
     fun isKeySet(): Boolean = userToken != null && userLogin != null
 
@@ -19,7 +19,7 @@ object DefaultAPI {
             userToken = token
             userLogin = login
 
-            (questAPI as FakeQuestAPI).key = token
+            questAPI.token = userToken!!
         }
     }
 }

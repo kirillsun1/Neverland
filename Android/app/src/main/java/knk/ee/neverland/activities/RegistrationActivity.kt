@@ -10,10 +10,10 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
 import knk.ee.neverland.R
-import knk.ee.neverland.api.AuthAPIConstants
+import knk.ee.neverland.api.Constants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.pojos.RegistrationData
+import knk.ee.neverland.models.RegistrationData
 
 class RegistrationActivity : AppCompatActivity() {
     private var loginBox: AutoCompleteTextView? = null
@@ -69,7 +69,7 @@ class RegistrationActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra("token", token)
         intent.putExtra("login", login)
-        setResult(AuthAPIConstants.SUCCESS, intent)
+        setResult(Constants.SUCCESS, intent)
         finish()
     }
 
@@ -127,21 +127,14 @@ class RegistrationActivity : AppCompatActivity() {
         return true
     }
 
-    private fun loginIsCorrect(login: String): Boolean {
-        return login.matches("^[a-z0-9_-]{6,16}$".toRegex())
-    }
+    private fun loginIsCorrect(login: String): Boolean = login.matches(Constants.LOGIN_REGEX)
 
-    private fun passwordIsCorrect(password: String): Boolean {
-        return password.matches("^[a-z0-9_-]{6,18}$".toRegex())
-    }
+    private fun passwordIsCorrect(password: String): Boolean
+            = password.matches(Constants.PASSWORD_REGEX)
 
-    private fun emailIsCorrect(email: String): Boolean {
-        return email.matches("^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$".toRegex())
-    }
+    private fun emailIsCorrect(email: String): Boolean = email.matches(Constants.EMAIL_REGEX)
 
-    private fun nameIsCorrect(name: String): Boolean {
-        return name.matches("^[A-Za-z ,.'-]+$".toRegex())
-    }
+    private fun nameIsCorrect(name: String): Boolean = name.matches(Constants.NAME_REGEX)
 
     @SuppressLint("StaticFieldLeak")
     private inner class RegisterTask(val registrationData: RegistrationData) : AsyncTask<Void, Void, Int>() {
@@ -150,7 +143,7 @@ class RegistrationActivity : AppCompatActivity() {
         override fun doInBackground(vararg p0: Void?): Int {
             try {
                 token = DefaultAPI.authAPI.registerAccount(registrationData)
-                return AuthAPIConstants.SUCCESS
+                return Constants.SUCCESS
             } catch (ex: AuthAPIException) {
                 return ex.code
             }
@@ -158,10 +151,10 @@ class RegistrationActivity : AppCompatActivity() {
 
         override fun onPostExecute(code: Int?) {
             when (code) {
-                AuthAPIConstants.CONNECTION_FAILED -> showToast(getString(R.string.error_no_connection))
-                AuthAPIConstants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                AuthAPIConstants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
-                AuthAPIConstants.SUCCESS -> finishNow(registrationData.login, token)
+                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
+                Constants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
+                Constants.SUCCESS -> finishNow(registrationData.login, token)
                 else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
             }
         }

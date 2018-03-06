@@ -1,20 +1,22 @@
 package knk.ee.neverland.api
 
-import knk.ee.neverland.pojos.Quest
-import knk.ee.neverland.pojos.Solution
+import knk.ee.neverland.models.Proof
+import knk.ee.neverland.models.Quest
 
 interface QuestApi {
+    var token: String
+
     fun submitNewQuest(quest: Quest)
 
-    fun submitSolution(solution: Solution)
+    fun submitProof(proof: Proof)
+
+    fun takeQuest(id: Int)
+
+    fun dropQuest(id: Int)
 
     fun getQuest(id: Int): Quest
 
-    fun getAllQuests(feedScope: FeedScope): List<Quest>
+    fun getMyQuests(): List<Quest>
 
-    fun getAllQuests(groupID: Int): List<Quest>
-
-    fun getQuests(groupID: Int, from: Int, to: Int): List<Quest>
-
-    fun getQuests(scope: FeedScope, from: Int, to: Int): List<Quest>
+    fun getQuestsToTake(): List<Quest>
 }

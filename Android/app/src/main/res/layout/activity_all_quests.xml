@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,36 +10,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/allquests_toolbar"
+        <EditText
+            android:id="@+id/quest_search_bar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:contentInsetLeft="10dp"
-            android:contentInsetRight="10dp"
-            android:contentInsetStart="10dp"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:contentInsetLeft="10dp"
-            app:contentInsetRight="10dp"
-            app:contentInsetStart="10dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/inputbox_background"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawablePadding="5dp"
+            android:hint="Search"
+            android:maxLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/standard_font_size" />
 
-            <knk.ee.neverland.view.InputView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:visibility="visible"
-                app:inputBoxFontColor="@color/colorPrimaryDark"
-                app:inputBoxIcon="@drawable/search_icon_24dp" />
-
-        </android.support.v7.widget.Toolbar>
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Tap the quest to take it"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/standard_font_size"
+            android:textStyle="bold" />
 
         <ListView
-            android:id="@+id/allquests_listview"
+            android:id="@+id/all_quests_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/background"
-            android:dividerHeight="5sp" />
+            android:dividerHeight="3sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

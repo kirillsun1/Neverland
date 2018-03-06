@@ -5,6 +5,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_login">Sign in</string>
 
+    <string name="title_create_quest">Suggest quest</string>
+
     <string name="prompt_login">Login</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -34,5 +36,18 @@
     <string name="error_unexpected_code">Unexpected code:</string>
     <string name="error_invalid_token">Login failed!</string>
     <string name="error_invalid_api_request">Invalid request!</string>
+    <string name="error_network_down">Network error</string>
+
+    <string name="error_submit_failed">Submittion failed</string>
+    <string name="error_cannot_get_quests">Getting quests failed</string>
+    <string name="error_submit_quest_empty_fields">Flll necessary fields first</string>
+    <string name="error_submit_quest_field_length">Length is not correct</string>
+    <string name="error_failed_taking_quest">Failed to take a quest</string>
+    <string name="error_failed_getting_quests">Getting quests failed</string>
+
+    <string name="quest_author">By %s %s</string>
+    <string name="my_quests_taken_date_time">Created: %s</string>
+    <string name="error_failed_dropping_quest">Failed to drop quest!</string>
+    <string name="title_all_quests">Find quests</string>
 
 </resources>

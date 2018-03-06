@@ -1,37 +1,129 @@
 package knk.ee.neverland.activities
 
-import android.content.Intent
+import android.annotation.SuppressLint
+import android.content.DialogInterface
+import android.os.AsyncTask
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.AdapterView
+import android.widget.EditText
 import android.widget.ListView
+import android.widget.Toast
 import knk.ee.neverland.R
-import knk.ee.neverland.questview.QuestElement
+import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.QuestAPIException
+import knk.ee.neverland.models.Quest
 import knk.ee.neverland.questview.QuestElementAdapter
-import java.util.*
 
 class AllQuestsActivity : AppCompatActivity() {
+    private var questListAdapter: QuestElementAdapter? = null
+    private val updateQuestsTask = UpdateQuestsTask()
+
+    private var takingQuest: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_quests)
 
-        fillQuestsListWithDummyQuests()
+        initializeQuestsList()
+        updateQuestsTask.execute()
     }
 
-    private fun fillQuestsListWithDummyQuests() {
-        val questsListView = findViewById<ListView>(R.id.allquests_listview)
-        questsListView.adapter = QuestElementAdapter(this, ArrayList())
+    private fun initializeQuestsList() {
+        val questsListView = findViewById<ListView>(R.id.all_quests_listview)
 
-        questsListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-            val intent = Intent(applicationContext, QuestActivity::class.java)
+        questListAdapter = QuestElementAdapter(this)
+        questsListView.adapter = questListAdapter
 
-            val questElement = adapterView.getItemAtPosition(position) as QuestElement
+        questsListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (!takingQuest) {
+                askConfirmationAndTakeQuest(position)
+            }
+        }
 
-            intent.putExtra("questName", questElement.questName)
-            intent.putExtra("questDesc", questElement.questDescription)
+        findViewById<EditText>(R.id.quest_search_bar).addTextChangedListener(QuestTextWatcher())
+    }
 
-            startActivity(intent)
+    private fun askConfirmationAndTakeQuest(pos: Int) {
+        val quest = questListAdapter!!.getItem(pos)
+        val message = "Are you sure you want to take quest \"${quest.title}\"?"
+
+        AlertDialog.Builder(this)
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton("Yes", { dialogInterface: DialogInterface, _: Int ->
+                    takingQuest = true
+                    TakeQuestTask(quest.id, pos).execute()
+                    dialogInterface.cancel()
+                })
+                .setNegativeButton("No", { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.cancel()
+                })
+                .create()
+                .show()
+    }
+
+    private fun showToast(error: String) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private inner class UpdateQuestsTask : AsyncTask<Void, Void, Boolean>() {
+        private var questsListGot: List<Quest>? = null
+
+        override fun doInBackground(vararg p0: Void?): Boolean {
+            try {
+                questsListGot = DefaultAPI.questAPI.getQuestsToTake() // TODO: fix groups
+                return true
+            } catch (ex: QuestAPIException) {
+                return false
+            }
+        }
+
+        override fun onPostExecute(result: Boolean?) {
+            if (result!!) {
+                questListAdapter!!.addQuests(questsListGot!!)
+            } else {
+                showToast(getString(R.string.error_cannot_get_quests))
+            }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private inner class TakeQuestTask(val questID: Int, val positionInAdapter: Int) : AsyncTask<Void, Void, Boolean>() {
+        override fun doInBackground(vararg p0: Void?): Boolean {
+            try {
+                DefaultAPI.questAPI.takeQuest(questID)
+                return true
+            } catch (ex: QuestAPIException) {
+                return false
+            }
+        }
+
+        override fun onPostExecute(result: Boolean?) {
+            if (result!!) {
+                questListAdapter!!.removeQuest(positionInAdapter)
+                questListAdapter!!.notifyDataSetChanged()
+
+            } else {
+                showToast(getString(R.string.error_failed_taking_quest))
+            }
+            takingQuest = false
+        }
+    }
+
+    private inner class QuestTextWatcher : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            questListAdapter!!.filter.filter(p0.toString())
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
         }
     }
 }

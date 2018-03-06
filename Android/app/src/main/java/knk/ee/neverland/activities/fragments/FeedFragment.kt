@@ -1,4 +1,4 @@
-package knk.ee.neverland.fragments
+package knk.ee.neverland.activities.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -27,4 +27,4 @@ class FeedFragment : Fragment() {
         val feedListView = view!!.findViewById<ListView>(R.id.feed_listview)
         feedListView.adapter = FeedElementAdapter(context, ArrayList())
     }
-}// Required empty public constructor
+}

@@ -1,4 +1,4 @@
-package knk.ee.neverland.pojos
+package knk.ee.neverland.models
 
 class RegistrationData {
     var login: String = ""
