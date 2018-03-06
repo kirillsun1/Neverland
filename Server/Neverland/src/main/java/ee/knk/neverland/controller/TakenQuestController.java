@@ -40,7 +40,7 @@ public class TakenQuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Quest quest = questController.getQuestById(questId);
-        if (takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
+        if (!takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_TAKEN));
         }
         takenQuestsService.takeQuest(new TakenQuest(user.get(), quest));
