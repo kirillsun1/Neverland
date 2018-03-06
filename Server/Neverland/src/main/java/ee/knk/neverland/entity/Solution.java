@@ -17,7 +17,7 @@ public class Solution {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "quest_fk", nullable = false)
+    @JoinColumn(name = "user_fk", nullable = false)
     @Getter
     @Setter
     private User user;

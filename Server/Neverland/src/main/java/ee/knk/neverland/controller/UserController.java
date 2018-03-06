@@ -42,11 +42,11 @@ public class UserController {
 
     @RequestMapping(value="/login")
     public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
-        Optional<User> userOp = userService.findMatch(username, password);
-        if (!userOp.isPresent()) {
+        Optional<User> user = userService.findMatch(username, password);
+        if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
         }
-        String token = tokenController.addKey(userOp.get());
+        String token = tokenController.addKey(user.get());
         return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED, token));
     }
 

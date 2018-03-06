@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="users_quests")
+@Table(name="taken_quests")
 public class TakenQuest {
 
     @Id
@@ -21,15 +21,11 @@ public class TakenQuest {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk", nullable = false)
-    @Getter
-    @Setter
-    private User user;
+    @Getter @Setter private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "quest_fk", nullable = false)
-    @Getter
-    @Setter
-    private Quest quest;
+    @Getter @Setter private Quest quest;
 
     @Column(name = "taken_time")
     @Getter

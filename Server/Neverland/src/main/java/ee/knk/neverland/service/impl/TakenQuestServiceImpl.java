@@ -20,7 +20,7 @@ public class TakenQuestServiceImpl implements TakenQuestService {
 
     @Override
     public TakenQuest takeQuest(TakenQuest quest) {
-        return takenQuestsRepository.saveAndFlush(quest);
+        return takenQuestsRepository.save(quest);
     }
 
     @Override
