@@ -13,7 +13,7 @@ import ee.knk.neverland.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ee.knk.neverland.constants.RegistrationLoginConstants;
+import ee.knk.neverland.constants.Constants;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,16 +35,16 @@ public class QuestController {
     public String submitQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
         Optional<User> userPk = tokenController.getTokenUser(token);
         if (!userPk.isPresent()) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         questService.addQuest(new Quest(title, description, userPk.get(), groupId));
-        return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     @RequestMapping(value="/getquests")
     public String getQuests(@RequestParam(value="token") String token) {
         if (!tokenController.isValid(token)) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<Quest> quests = questService.getQuests();
         return gson.toJson(getNeededInfoAboutQuests(quests));

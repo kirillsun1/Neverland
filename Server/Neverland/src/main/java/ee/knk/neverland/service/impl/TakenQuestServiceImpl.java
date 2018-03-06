@@ -1,5 +1,6 @@
 package ee.knk.neverland.service.impl;
 
+import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.repository.TakenQuestRepository;
@@ -26,5 +27,10 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     @Override
     public List<TakenQuest> getQuests(User user) {
         return takenQuestsRepository.getTakenQuestsByUser(user);
+    }
+
+    @Override
+    public boolean checkIfQuestIsTaken(User user, Quest quest) {
+        return !takenQuestsRepository.getQuestWithUser(user, quest).isPresent();
     }
 }

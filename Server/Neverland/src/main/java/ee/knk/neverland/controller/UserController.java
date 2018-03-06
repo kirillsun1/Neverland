@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ee.knk.neverland.constants.RegistrationLoginConstants;
+import ee.knk.neverland.constants.Constants;
 
 
 import java.util.Optional;
@@ -34,28 +34,28 @@ public class UserController {
                            @RequestParam(value="firstname") String firstName, @RequestParam(value="secondname") String secondName) {
         if (!(validator.loginIsCorrect(username) && validator.emailIsCorrect(email) && validator.nameIsCorrect(firstName) && validator.nameIsCorrect(secondName))
                 || userService.existsWithUsernameOrEmail(username, email)) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         User user = userService.addUser(new User(username, password, email, firstName, secondName));
-        return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED, tokenController.addKey(user)));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED, tokenController.addKey(user)));
     }
 
     @RequestMapping(value="/login")
     public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         Optional<User> user = userService.findMatch(username, password);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         String token = tokenController.addKey(user.get());
-        return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED, token));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED, token));
     }
 
     @RequestMapping(value="/tokencheck")
     public String checkToken(@RequestParam(value="token") String token) {
         if (tokenController.isValid(token)) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED));
+            return gson.toJson(new StandardAnswer(Constants.SUCCEED));
         }
-        return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+        return gson.toJson(new StandardAnswer(Constants.FAILED));
     }
 
 }

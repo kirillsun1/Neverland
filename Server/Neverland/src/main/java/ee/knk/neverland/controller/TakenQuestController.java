@@ -5,7 +5,7 @@ import ee.knk.neverland.answer.QuestPojo;
 import ee.knk.neverland.answer.QuestsAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.UserPojo;
-import ee.knk.neverland.constants.RegistrationLoginConstants;
+import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,17 +37,21 @@ public class TakenQuestController {
     public String takeQuest(@RequestParam(value="token") String token, @RequestParam(value="qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        takenQuestsService.takeQuest(new TakenQuest(user.get(), questController.getQuestById(questId)));
-        return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED));
+        Quest quest = questController.getQuestById(questId);
+        if (takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
+            return gson.toJson(new StandardAnswer(Constants.QUEST_IS_TAKEN));
+        }
+        takenQuestsService.takeQuest(new TakenQuest(user.get(), quest));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     @RequestMapping(value="/getmyquests")
     public String getQuestsTakenByUser(@RequestParam(value = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
 
         List<TakenQuest> questPointers = takenQuestsService.getQuests(user.get());
