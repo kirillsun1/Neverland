@@ -3,9 +3,10 @@ package ee.knk.neverland.answer;
 import com.google.gson.annotations.SerializedName;
 
 public class UserPojo {
+    @SerializedName("user_name")
     public String username;
-    @SerializedName("f_name")
+    @SerializedName("first_name")
     public String firstName;
-    @SerializedName("s_name")
+    @SerializedName("second_name")
     public String secondName;
 }

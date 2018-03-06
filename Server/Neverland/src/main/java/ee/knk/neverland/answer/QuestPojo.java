@@ -5,11 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.time.LocalDateTime;
 
 public class QuestPojo {
+    public Long id;
     public String title;
     @SerializedName("desc")
     public String description;
-    @SerializedName("user")
+    @SerializedName("author")
     public UserPojo userInformation;
-    @SerializedName("time")
+    @SerializedName("time_created")
     public LocalDateTime addingTime;
+    @SerializedName("time_taken")
+    public LocalDateTime takenTime;
 }

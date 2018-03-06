@@ -28,4 +28,9 @@ public class QuestServiceImpl implements QuestService {
     public List<Quest> getQuests() {
         return questRepository.findAll();
     }
+
+    @Override
+    public Quest getQuestById(Long id) {
+        return questRepository.findOne(id);
+    }
 }

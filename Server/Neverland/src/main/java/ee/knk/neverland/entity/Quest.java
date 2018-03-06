@@ -25,7 +25,7 @@ public class Quest {
     @GeneratedValue
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    @Getter @Setter private Long id;
 
     @Column(name = "title", length = 35, nullable = false)
     @Getter @Setter private String title;
