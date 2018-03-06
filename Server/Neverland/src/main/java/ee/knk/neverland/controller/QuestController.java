@@ -9,6 +9,7 @@ import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.TokenService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ee.knk.neverland.constants.RegistrationLoginConstants;
 
@@ -27,7 +28,7 @@ public class QuestController {
         this.tokenController = new TokenController(tokenService);
     }
 
-    @RequestMapping(value="/submitquest", method = POST)
+    @RequestMapping(value="/submitquest", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public String postQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
         Optional<User> userPk = tokenController.getTokenUser(token);
         if (!userPk.isPresent()) {
