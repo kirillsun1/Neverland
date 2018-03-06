@@ -20,7 +20,7 @@ class TokenController {
         this.tokenService = tokenService;
     }
 
-    boolean isRight(String token) {
+    boolean isValid(String token) {
         return tokenService.isValid(token);
 
     }

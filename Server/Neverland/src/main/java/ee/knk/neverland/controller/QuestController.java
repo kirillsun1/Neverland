@@ -43,12 +43,11 @@ public class QuestController {
 
     @RequestMapping(value="/getquests")
     public String getQuests(@RequestParam(value="token") String token) {
-        Optional<User> userPk = tokenController.getTokenUser(token);
-        if (!userPk.isPresent()) {
+        if (!tokenController.isValid(token)) {
             return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
         }
         List<Quest> quests = questService.getQuests();
-        return gson.toJson(quests);
+        return gson.toJson(getNeededInfoAboutQuests(quests));
     }
 
     private QuestsAnswer getNeededInfoAboutQuests(List<Quest> information) {

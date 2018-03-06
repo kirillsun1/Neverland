@@ -52,7 +52,7 @@ public class UserController {
 
     @RequestMapping(value="/tokencheck")
     public String checkToken(@RequestParam(value="token") String token) {
-        if (tokenController.isRight(token)) {
+        if (tokenController.isValid(token)) {
             return gson.toJson(new StandardAnswer(RegistrationLoginConstants.SUCCEED));
         }
         return gson.toJson(new StandardAnswer(RegistrationLoginConstants.FAILED));
