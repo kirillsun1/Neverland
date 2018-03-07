@@ -46,4 +46,7 @@ public class Quest {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Solution> solutions;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<TakenQuest> setOfBeingTaken;
 }

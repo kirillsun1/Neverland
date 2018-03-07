@@ -7,9 +7,11 @@ import ee.knk.neverland.answer.QuestsAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.UserPojo;
 import ee.knk.neverland.entity.Quest;
+import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.TokenService;
+import ee.knk.neverland.tools.QuestPacker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,30 +46,18 @@ public class QuestController {
 
     @RequestMapping(value="/getquests")
     public String getQuests(@RequestParam(value="token") String token) {
-        if (!tokenController.isValid(token)) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<Quest> quests = questService.getQuests();
-        return gson.toJson(getNeededInfoAboutQuests(quests));
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(packer.packAllQuests(getQuests()));
     }
 
-    private QuestsAnswer getNeededInfoAboutQuests(List<Quest> information) {
-        QuestsAnswer answer = new QuestsAnswer();
-        for (Quest quest : information) {
-            UserPojo user = new UserPojo();
-            user.username = quest.getUser().getUsername();
-            user.firstName = quest.getUser().getFirstName();
-            user.secondName = quest.getUser().getSecondName();
-            QuestPojo neededData = new QuestPojo();
-            neededData.addingTime = quest.getTime();
-            neededData.title = quest.getTitle();
-            neededData.description = quest.getDescription();
-            neededData.userInformation = user;
-            neededData.id = quest.getId();
-            answer.quests.add(neededData);
-        }
-        return answer;
+    List<Quest> getQuests() {
+        return questService.getQuests();
     }
+
 
     Quest getQuestById(Long id) {
         return questService.getQuestById(id);
