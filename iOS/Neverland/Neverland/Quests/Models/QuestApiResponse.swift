@@ -17,7 +17,7 @@ struct QuestApiResponse: ApiResponse {
     init(code: ResponseCode, message: String?) {
         self.code = code
         self.message = message
-        q = FakeQuestApi().generateQuests() // delete later.
+//        q = FakeQuestApi().generateQuests() // delete later.
     }
     
     mutating func fillQuestArray(from startIndex:Int, to endIndex: Int) {

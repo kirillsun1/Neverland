@@ -300,6 +300,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="questName" destination="cfj-0I-R0T" id="Umm-uI-tuS"/>
+                                            <outlet property="questTakenDate" destination="jbY-wK-el8" id="EWL-jg-IIL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -340,9 +341,9 @@
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LVs-n0-QuJ">
                                 <rect key="frame" x="0.0" y="120" width="320" height="399"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="QuestInfoCell" rowHeight="205" id="SZY-ZI-rrp" customClass="QuestInfoCell" customModule="Neverland" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="205"/>
@@ -360,7 +361,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nfd-mx-K7g">
                                                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="44.5"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uii-sF-5gr" customClass="RoundedImage" customModule="Neverland" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uii-sF-5gr" customClass="RoundedImage" customModule="Neverland" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="44.5" height="44.5"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="Uii-sF-5gr" secondAttribute="height" multiplier="1:1" id="zBf-SC-Xow"/>
@@ -427,6 +428,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="creatorUsername" destination="0ma-mC-O0i" id="gFj-J7-Cx1"/>
                                             <outlet property="questDescrView" destination="Zts-D9-GrN" id="7FL-wA-Zh7"/>
                                             <outlet property="questNameLbl" destination="xLb-9K-Jwa" id="TS7-sQ-EgR"/>
                                         </connections>
@@ -518,10 +520,15 @@
                         <viewLayoutGuide key="safeArea" id="3rd-Se-wve"/>
                     </view>
                     <navigationItem key="navigationItem" title="Quest Name" id="Wpo-PY-0Eu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="GlE-kv-5Qw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="GlE-kv-5Qw">
+                            <connections>
+                                <action selector="deleteQuest" destination="vcs-v4-CGR" id="aj3-TJ-ixb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="photoCollectionView" destination="FqQ-Kd-pSM" id="vWo-za-ESs"/>
+                        <outlet property="questDescrView" destination="QBl-yP-j6s" id="dE5-Hc-uam"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdY-7o-cim" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -867,7 +874,7 @@
         <scene sceneID="uJv-aX-1Ep">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2La-Cu-geH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" image="stories_selected_icon" id="5ho-9g-gGc"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="home" id="5ho-9g-gGc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PPR-vM-HUi">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -886,7 +893,7 @@
         <scene sceneID="GOV-OK-HsQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6qJ-zF-MOe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Quests" image="emoji" id="rNS-Qh-t57"/>
+                    <tabBarItem key="tabBarItem" title="Quests" image="star" id="rNS-Qh-t57"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A8G-VI-YH5">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -942,11 +949,11 @@
     </scenes>
     <resources>
         <image name="1" width="717" height="462"/>
-        <image name="emoji" width="20" height="20"/>
+        <image name="home" width="24" height="28"/>
         <image name="img" width="1920" height="1080"/>
         <image name="img2" width="1000" height="667"/>
         <image name="profile_icon" width="20" height="20"/>
         <image name="settings" width="15" height="15"/>
-        <image name="stories_selected_icon" width="16" height="20"/>
+        <image name="star" width="25" height="23"/>
     </resources>
 </document>

@@ -14,9 +14,22 @@ struct Quest {
     var title: String
     var groupId: Int
     var description: String
+    var datePicked: Time?
     var creator: Person
-    var solution: [Solution]
+    //var solution: [Solution]
 
+}
+
+struct Time {
+    var day: Int?
+    var month: Int?
+    var year: Int?
+    
+    init(from time: NSDictionary?) {
+        day = time?.value(forKey: "day") as? Int
+        month = time?.value(forKey: "month") as? Int
+        year = time?.value(forKey: "year") as? Int
+    }
 }
 
 extension Quest: Equatable {

@@ -11,13 +11,19 @@ import PopupDialog
 
 class NewQuestViewController: UIViewController {
 
+    let refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var tableView: UITableView!
-    var quests = [Quest]()
+    var quests = [Quest]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var startScrollViewHeight: CGFloat!
     let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     let groupId = 0 // get through segue.
-    var deletedQuests = 0
-    var tableViewisUpdating = false
+//    var deletedQuests = 0
+//    var tableViewisUpdating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,50 +32,77 @@ class NewQuestViewController: UIViewController {
         spinner.hidesWhenStopped = true
         spinner.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
         
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = spinner
         
-        fetchNewQuests()
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        tableView.refreshControl = refreshControl
+        
+        fetchAllQuests()
     }
     
     func confirmationPopup(for quest: Quest) {
-       NLConfirmationPopupService().presentPopup(forQuest: quest, into: self)
+        NLConfirmationPopupService().presentPopup(forQuest: quest, into: self) {
+            NLQuestApi().takeQuest(qid: quest.id) { _ in
+                
+            }
+        }
+    }
+    
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
+        quests = []
+        fetchAllQuests()
     }
     
     func removeQuest(quest: Quest) {
-        tableViewisUpdating = true
         tableView.beginUpdates()
         if let index = quests.index(of: quest) {
             tableView.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: .automatic)
             quests.remove(at: index)
-            deletedQuests += 1
         }
         tableView.endUpdates()
-        tableViewisUpdating = false
+    }
+    
+    func fetchAllQuests() {
+        NLQuestApi().fetchAllQuestsWeShouldProbablyDeleteThisMethodLaterOmg { questsDictionary in
+            //print(questsDictionary)
+            for quest in questsDictionary {
+                let title = quest.value(forKey: "title") as! String
+                let description = quest.value(forKey: "desc") as! String
+                let id = quest.value(forKey: "id") as! Int
+                let author = Person(creatorData: quest.value(forKey: "author") as! NSDictionary)
+                let quest = Quest(id: id, title: title, groupId: 0, description: description, datePicked:nil, creator: author)
+                self.quests.append(quest)
+            }
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         startScrollViewHeight = tableView.contentSize.height
     }
     
-    func fetchNewQuests() {
-        tableViewisUpdating = true
-        FakeQuestApi().fetchQuests(from: quests.count + deletedQuests, to: quests.count + deletedQuests + 20, inGroup: groupId, onComplete: { response in
-            tableView.beginUpdates()
-            var indexes = [IndexPath]()
-            for index in 0 ..< response.quests.count {
-                let q = response.quests[index]
-                quests.append(q)
-                indexes.append(IndexPath.init(row: quests.count - 1, section: 0))
-            }
-            tableView.insertRows(at: indexes, with: .automatic)
-            
-            spinner.stopAnimating()
-            tableView.endUpdates()
-            tableViewisUpdating = false
-        })
-    }
+//    func fetchNewQuests() {
+////        tableViewisUpdating = true
+//        FakeQuestApi().fetchQuests(from: quests.count + deletedQuests, to: quests.count + deletedQuests + 20, inGroup: groupId, onComplete: { response in
+//            self.tableView.beginUpdates()
+//            var indexes = [IndexPath]()
+//            for index in 0 ..< response.quests.count {
+//                let q = response.quests[index]
+//                self.quests.append(q)
+//                indexes.append(IndexPath.init(row: self.quests.count - 1, section: 0))
+//            }
+//            self.tableView.insertRows(at: indexes, with: .automatic)
+//
+//            self.spinner.stopAnimating()
+//            self.tableView.endUpdates()
+//            self.tableViewisUpdating = false
+//        })
+//    }
 
 }
 
@@ -93,17 +126,17 @@ extension NewQuestViewController: UITableViewDataSource, UITableViewDelegate {
         confirmationPopup(for: quests[indexPath.row])
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let threshold = scrollView.contentOffset.y + scrollView.frame.size.height
-        
-        if threshold > scrollView.contentSize.height {
-            spinner.startAnimating()
-        }
-            
-        if threshold == scrollView.contentSize.height {
-            if !tableViewisUpdating {
-                fetchNewQuests()
-            }
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let threshold = scrollView.contentOffset.y + scrollView.frame.size.height
+//
+//        if threshold > scrollView.contentSize.height {
+//            spinner.startAnimating()
+//        }
+//
+//        if threshold == scrollView.contentSize.height {
+//            if !tableViewisUpdating {
+//                fetchNewQuests()
+//            }
+//        }
+//    }
 }

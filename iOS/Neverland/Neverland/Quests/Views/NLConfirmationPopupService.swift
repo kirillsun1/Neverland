@@ -16,7 +16,7 @@ class NLConfirmationPopupService {
         //configureAppearance()
     }
     
-    func presentPopup(forQuest quest: Quest, into viewController: UIViewController) {
+    func presentPopup(forQuest quest: Quest, into viewController: UIViewController, onComplete: @escaping ()->()) {
         let popup = PopupDialog(title: "TAKE QUEST", message: "Do you want to take \(quest.title)", image: nil)
         let cancel = CancelButton(title: "CANCEL") { }
         let confirm = DefaultButton(title: "ADD") {
@@ -25,7 +25,7 @@ class NLConfirmationPopupService {
             }
             
             vc.removeQuest(quest: quest)
-            print("Added")
+            onComplete()
         }
         
         popup.addButtons([cancel, confirm])

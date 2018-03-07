@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-//
+
 class NLAuthApi: AuthApi {
     
     let urlBase = "http://vrot.bounceme.net:8080"
@@ -47,6 +47,7 @@ class NLAuthApi: AuthApi {
         request.responseJSON { response in
             if response.error != nil {
                 onComplete(AuthApiResponse(code: .Error, message: nil))
+                SwiftSpinner.hide()
             }
             
             if let result = response.result.value {
@@ -71,9 +72,9 @@ class NLAuthApi: AuthApi {
         request.responseJSON { response in
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
-                guard let codeInt = JSON.value(forKey: "code") as? Int,
-                    let code = ResponseCode(rawValue: codeInt) else {
-                        fatalError("Unknown server code. Debug this")
+                let codeInt = JSON.value(forKey: "code") as? Int ?? -1
+                guard let code = ResponseCode(rawValue: codeInt) else {
+                    fatalError("Unknown server code. Debug this")
                 }
                 onComplete(AuthApiResponse(code: code, message: nil))
                 SwiftSpinner.hide()

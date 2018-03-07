@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ApiResponse {
-    //var code {get set}
+    
 }
 
 enum ResponseCode: Int {
