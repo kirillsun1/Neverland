@@ -1,5 +1,8 @@
 package ee.knk.neverland.entity;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Set;
@@ -7,19 +10,42 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+<<<<<<< HEAD
+    public User() {
+    }
+
+    public User(String name, String password, String email, String firstName, String secondName) {
+        this.email = email;
+        this.username = name;
+        this.password = password;
+        this.firstName = firstName;
+        this.secondName = secondName;
+    }
+=======
+>>>>>>> master
 
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    @Getter @Setter private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "name", nullable = false, unique = true)
+    @Getter @Setter private String username;
 
     @Column(name = "password", nullable = false)
-    private String password;
+    @Getter @Setter private String password;
 
+<<<<<<< HEAD
+    @Column(name = "email", nullable = false, unique = true)
+    @Getter @Setter private String email;
+
+    @Column(name = "reg_time")
+    @Getter private LocalDateTime registerTime = LocalDateTime.now();
+
+    @Column(name = "first_name", nullable = false)
+    @Getter @Setter private String firstName;
+=======
     @Column(name = "e-mail")
     private String email;
 
@@ -29,23 +55,18 @@ public class User {
     public String getName() {
         return name;
     }
+>>>>>>> master
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column(name = "second_name", nullable = false)
+    @Getter @Setter private String secondName;
 
-    public String getPassword() {
-        return password;
-    }
+<<<<<<< HEAD
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    @Getter private Set<Token> tokens;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter private Set<Quest> quests;
+=======
     public void setEmail(String email) {
         this.email = email;
     }
@@ -57,4 +78,5 @@ public class User {
     public void setKeys(Set<Key> keys) {
         this.keys = keys;
     }
+>>>>>>> master
 }

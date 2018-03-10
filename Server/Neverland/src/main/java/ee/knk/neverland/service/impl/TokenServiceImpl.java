@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TokenServiceImpl implements TokenService {
@@ -31,12 +32,23 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public boolean checkToken(String keyValue) {
-        return tokenRepository.exists(keyValue).isPresent();
+    public boolean exists(String tokenValue) {
+        return tokenRepository.exists(tokenValue).isPresent();
     }
 
     @Override
     public List<Token> getAll() {
         return tokenRepository.findAll();
     }
+
+    @Override
+    public boolean isValid(String tokenValue) {
+        return tokenRepository.isValid(tokenValue).isPresent();
+    }
+
+    @Override
+    public Optional<User> getTokenUser(String value) {
+        return tokenRepository.getTokenUser(value);
+    }
+
 }
