@@ -10,51 +10,32 @@ import Foundation
 import UIKit
 
 class FakeQuestApi: QuestApi {
-    
 
-    // called from QuestApi now.
-    func generateQuests() -> [Quest] {
-        var quests = [Quest]()
-        let person = Person(id: 1, nickname: "Voldemort", photoURLString: "https://cdn.pinkvilla.com/files/styles/contentpreview/public/Albus-Dumbledore-Bollywood-Actor-Audition.jpg?itok=-ejADgE3")
-        for i in 0 ..< 200 {
-            let q = Quest.init(title: "Quest # \(i)", description: "Some description here blah blah", creator: person, solution: [Solution]())
-            quests.append(q)
-        }
-        return quests
-    }
+    let fakeData = "some fake json data should be here if i'll want to test methods with fake api"
     
-    func registerQuest(title: String, description: String, groupId: Int, onComplete: (QuestApiResponse) -> ()) {
+    func registerQuest(title: String, description: String, groupId: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
         print("Registered \(title):\(description)")
         onComplete(QuestApiResponse.init(code: .Successful, message: nil))
     }
     
-    func fetchDetailedSolution(withId id: Int, onComplete: (QuestApiResponse) -> ()) {
-        
+    func fetchDetailedSolution(withId id: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
+        fatalError("Not implemented")
     }
     
-    func fetchQuests(from minValue: Int, to maxValue: Int, inGroup: Int, onComplete: (QuestApiResponse) -> ()) {
-        // group part will be implemented during 2nd iteration
-        
-        var response = QuestApiResponse.init(code: .Successful, message: nil)
-        let end = maxValue >= response.q.count ? response.q.count - 1 : maxValue
-        
-        if minValue >= end {
-            onComplete(QuestApiResponse.init(code: .Error, message: "No more entries"))
-        } else {
-            response.fillQuestArray(from: minValue, to: end)
-            onComplete(response)
-        }
-
-        
+    func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fatalError("Not implemented")
     }
     
-    func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: (QuestApiResponse) -> ()) {
-        
+    func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: @escaping (QuestApiResponse) -> ()) {
+        fatalError("Not implemented")
     }
     
-    func fetchQuests(from: Int, to: Int, inScope scope: QuestScope, onComplete: (QuestApiResponse) -> ()) {
-        // it'll be done during 2nd and 3rd iteration
+    func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fatalError("Not implemented yet")
     }
     
+    func dropQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
+        fatalError("Not implemented yet")
+    }
 
 }

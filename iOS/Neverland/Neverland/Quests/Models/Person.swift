@@ -10,7 +10,20 @@ import Foundation
 
 
 struct Person {
-    var id: Int
+    //var id: Int
     var nickname: String
-    var photoURLString: String
+    var firstName: String
+    var secondName: String
+    //var photoURLString: String
+    
+    init?(creatorData: NSDictionary?) {
+        
+        guard let creatorData = creatorData else {
+            return nil
+        }
+        
+        nickname = creatorData.value(forKey: "user_name") as! String
+        firstName = creatorData.value(forKey: "first_name") as! String
+        secondName = creatorData.value(forKey: "second_name") as! String
+    }
 }

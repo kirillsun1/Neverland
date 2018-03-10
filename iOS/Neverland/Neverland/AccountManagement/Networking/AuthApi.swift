@@ -8,11 +8,9 @@
 
 import Foundation
 
-// MAKE REAL API WORK IN DIFFERENT THREAD + SPINNER !!!
-
 protocol AuthApi {
     
-    func attemptLogin(withLogin login: String, passwordHash: String, onComplete: (AuthApiResponse) -> ())
-    func registerAccount(withData data: RegistrationData, onComplete: (AuthApiResponse) -> ())
-    func isActive(token: String) -> Bool
+    func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ())
+    func registerAccount(withData data: RegistrationData, onComplete: @escaping (AuthApiResponse) -> ())
+    func ifActive(token: String, onComplete: @escaping (AuthApiResponse)->())
 }

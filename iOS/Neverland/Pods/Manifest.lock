@@ -1,21 +1,30 @@
 PODS:
+  - Alamofire (4.6.0)
   - CommonCryptoModule (1.0.2)
   - DropDown (2.0.2)
+  - ESPullToRefresh (2.7)
+  - JJFloatingActionButton (0.7.2)
   - PopupDialog (0.6.2)
   - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
   - CommonCryptoModule (~> 1.0.1)
   - DropDown
+  - ESPullToRefresh (~> 2.7)
+  - JJFloatingActionButton
   - PopupDialog (~> 0.6)
   - SCLAlertView
 
 SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
   DropDown: 75562633a203f57a917021b4edb96c76f293b0ec
+  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  JJFloatingActionButton: 3b02d473e847f5120df8b6859d9b2811f4ec0821
   PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: db69f3ab8d57c9d56fd6a327478b7d0dcb68a77a
+PODFILE CHECKSUM: 36603949851e0d9afa841d063a4c587ce0438a94
 
 COCOAPODS: 1.2.1

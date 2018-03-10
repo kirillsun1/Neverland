@@ -12,6 +12,7 @@ class QuestInfoCell: UITableViewCell {
 
     @IBOutlet weak var questNameLbl: UILabel!
     @IBOutlet weak var questDescrView: UITextView!
+    @IBOutlet weak var creatorUsername: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +22,7 @@ class QuestInfoCell: UITableViewCell {
     func fill(quest: Quest) {
         questNameLbl.text = quest.title
         questDescrView.text  = quest.description
+        creatorUsername.text = "by \(quest.creator.nickname)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

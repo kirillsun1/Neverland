@@ -11,6 +11,9 @@ import UIKit
 class QuestDetailedViewController: UIViewController {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var questDescrView: UITextView!
+    
+    var quest: Quest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,16 @@ class QuestDetailedViewController: UIViewController {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         
+        self.navigationItem.title = quest?.title
+        self.questDescrView.text = quest?.description
+    }
+    
+    @IBAction func deleteQuest() {
+        if (quest == nil) { return }
+            
+        NLQuestApi().dropQuest(qid: quest!.id) { response in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
 }
@@ -30,7 +43,7 @@ class QuestDetailedViewController: UIViewController {
 // MARK: - CollectionViewProtocols
 extension QuestDetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -8,11 +8,8 @@
 
 import Foundation
 
-// todo: think about it !!
 
 struct AuthApiResponse: ApiResponse {
-    
     let code: ResponseCode
     let message: String?
-
 }

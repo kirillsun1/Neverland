@@ -10,12 +10,17 @@ import UIKit
 import PopupDialog
 
 class NewQuestViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
-    var quests = [Quest]()
+    var quests = [Quest]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var startScrollViewHeight: CGFloat!
     let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     let groupId = 0 // get through segue.
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,33 +29,55 @@ class NewQuestViewController: UIViewController {
         spinner.hidesWhenStopped = true
         spinner.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
         
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = spinner
         
-        fetchNewQuests()
+        
+        fetchAllQuests()
+        
+        self.tableView.es.addPullToRefresh {
+            [unowned self] in
+            
+            self.quests = []
+            self.fetchAllQuests()
+            
+            self.tableView.reloadData()
+            self.tableView.es.stopPullToRefresh(ignoreDate: true)
+            self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+        }
     }
     
     func confirmationPopup(for quest: Quest) {
-       NLConfirmationPopupService().presentPopup(forQuest: quest, into: self)
+        NLConfirmationPopupService().presentPopup(forQuest: quest, into: self) {
+            NLQuestApi().takeQuest(qid: quest.id) { _ in
+                
+            }
+        }
+    }
+    
+    func removeQuest(quest: Quest) {
+        tableView.beginUpdates()
+        if let index = quests.index(of: quest) {
+            tableView.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: .automatic)
+            quests.remove(at: index)
+        }
+        tableView.endUpdates()
+    }
+    
+    func fetchAllQuests() {
+        NLQuestApi().fetchQuests(inGroup: 0) { questsDictionary in
+            for questJson in questsDictionary {
+                if let quest = Quest(fromJSON: questJson) {
+                    self.quests.append(quest)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         startScrollViewHeight = tableView.contentSize.height
-    }
-    
-    func fetchNewQuests() {
-        FakeQuestApi().fetchQuests(from: quests.count, to: quests.count + 20, inGroup: groupId, onComplete: { response in
-            var indexes = [IndexPath]()
-            for index in 0 ..< response.quests.count {
-                let q = response.quests[index]
-                quests.append(q)
-                indexes.append(IndexPath.init(row: quests.count - 1, section: 0))
-            }
-            tableView.insertRows(at: indexes, with: .automatic)
-            
-            spinner.stopAnimating()
-        })
     }
 
 }
@@ -75,15 +102,17 @@ extension NewQuestViewController: UITableViewDataSource, UITableViewDelegate {
         confirmationPopup(for: quests[indexPath.row])
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let threshold = scrollView.contentOffset.y + scrollView.frame.size.height
-        
-        if threshold > scrollView.contentSize.height {
-            spinner.startAnimating()
-        }
-            
-        if threshold == scrollView.contentSize.height {
-            fetchNewQuests()
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let threshold = scrollView.contentOffset.y + scrollView.frame.size.height
+//
+//        if threshold > scrollView.contentSize.height {
+//            spinner.startAnimating()
+//        }
+//
+//        if threshold == scrollView.contentSize.height {
+//            if !tableViewisUpdating {
+//                fetchNewQuests()
+//            }
+//        }
+//    }
 }

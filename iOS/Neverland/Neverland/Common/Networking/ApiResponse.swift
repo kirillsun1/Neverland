@@ -9,10 +9,10 @@
 import Foundation
 
 protocol ApiResponse {
-    //var code {get set}
+    
 }
 
 enum ResponseCode: Int {
-    case Successful = 200
-    case Error = 400
+    case Successful = 1
+    case Error = -1
 }

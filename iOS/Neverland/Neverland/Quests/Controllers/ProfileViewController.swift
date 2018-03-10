@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController {
         
         self.navigationItem.title = User.sharedInstance.userName!
 
-        // Do any additional setup after loading the view.
         let width = (view.frame.size.width - 30) / 3
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
