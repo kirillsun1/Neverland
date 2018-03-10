@@ -38,7 +38,7 @@
 
     </LinearLayout>
 
-    <knk.ee.neverland.customviews.CustomFloatingActionButton
+    <knk.ee.neverland.views.CustomFloatingActionButton
         android:id="@+id/quests_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

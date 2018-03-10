@@ -1,4 +1,4 @@
-package knk.ee.neverland.feedview;
+package knk.ee.neverland.views.feedview;
 
 public class FeedElement {
     // TODO: FIX DUMMY CODE

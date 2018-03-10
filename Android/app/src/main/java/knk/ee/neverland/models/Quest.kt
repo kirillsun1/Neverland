@@ -1,7 +1,6 @@
 package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
 
 class Quest {
     var id: Int = 0

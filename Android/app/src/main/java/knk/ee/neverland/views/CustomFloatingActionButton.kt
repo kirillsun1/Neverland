@@ -1,4 +1,4 @@
-package knk.ee.neverland.customviews
+package knk.ee.neverland.views
 
 import android.content.Context
 import android.support.design.widget.FloatingActionButton

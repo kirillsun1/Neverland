@@ -19,7 +19,7 @@
     -->
 
     <TextView
-        android:id="@+id/quest_quest_desc"
+        android:id="@+id/quest_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -34,7 +34,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:enabled="false"
-        android:text="Submit proof" />
+        android:text="@string/quest_submit_proof_button" />
 
     <Button
         android:id="@+id/drop_quest"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:text="Drop quest" />
+        android:text="@string/quest_drop_quest_button" />
 
     <ProgressBar
         android:id="@+id/dropping_progress"
@@ -52,7 +52,6 @@
         android:visibility="gone" />
 
     <GridView
-
         android:id="@+id/quest_images"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -60,8 +59,6 @@
         android:horizontalSpacing="16dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="16dp">
-
-    </GridView>
+        android:verticalSpacing="16dp" />
 
 </LinearLayout>

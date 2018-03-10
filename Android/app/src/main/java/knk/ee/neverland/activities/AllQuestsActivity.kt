@@ -16,11 +16,10 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.questview.QuestElementAdapter
+import knk.ee.neverland.views.questview.QuestElementAdapter
 
 class AllQuestsActivity : AppCompatActivity() {
     private var questListAdapter: QuestElementAdapter? = null
-    private val updateQuestsTask = UpdateQuestsTask()
 
     private var takingQuest: Boolean = false
 
@@ -29,7 +28,7 @@ class AllQuestsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_quests)
 
         initializeQuestsList()
-        updateQuestsTask.execute()
+        UpdateQuestsTask().execute()
     }
 
     private fun initializeQuestsList() {
@@ -49,17 +48,17 @@ class AllQuestsActivity : AppCompatActivity() {
 
     private fun askConfirmationAndTakeQuest(pos: Int) {
         val quest = questListAdapter!!.getItem(pos)
-        val message = "Are you sure you want to take quest \"${quest.title}\"?"
+        val message = getString(R.string.taking_quest_confirmation).format(quest.title)
 
         AlertDialog.Builder(this)
                 .setMessage(message)
                 .setCancelable(true)
-                .setPositiveButton("Yes", { dialogInterface: DialogInterface, _: Int ->
+                .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
                     takingQuest = true
                     TakeQuestTask(quest.id, pos).execute()
                     dialogInterface.cancel()
                 })
-                .setNegativeButton("No", { dialogInterface: DialogInterface, _: Int ->
+                .setNegativeButton(getString(R.string.no), { dialogInterface: DialogInterface, _: Int ->
                     dialogInterface.cancel()
                 })
                 .create()
@@ -76,7 +75,7 @@ class AllQuestsActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg p0: Void?): Boolean {
             try {
-                questsListGot = DefaultAPI.questAPI.getQuestsToTake() // TODO: fix groups
+                questsListGot = DefaultAPI.questAPI.getQuestsToTake()
                 return true
             } catch (ex: QuestAPIException) {
                 return false
@@ -87,7 +86,7 @@ class AllQuestsActivity : AppCompatActivity() {
             if (result!!) {
                 questListAdapter!!.addQuests(questsListGot!!)
             } else {
-                showToast(getString(R.string.error_cannot_get_quests))
+                showToast(getString(R.string.error_failed_getting_quests))
             }
         }
     }

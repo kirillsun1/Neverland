@@ -29,8 +29,8 @@ class SplashActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences(resources
                 .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
 
-        val login = sharedPreferences.getString(resources.getString(R.string.authlogin_address), "")
-        val key = sharedPreferences.getString(resources.getString(R.string.authkey_address), "")
+        val login = sharedPreferences.getString(resources.getString(R.string.auth_login_address), "")
+        val key = sharedPreferences.getString(resources.getString(R.string.auth_key_address), "")
 
         DefaultAPI.setUserData(login, key)
     }

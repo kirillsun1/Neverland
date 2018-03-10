@@ -1,6 +1,5 @@
 package knk.ee.neverland.api.neverlandapi
 
-import com.google.gson.annotations.SerializedName
 import knk.ee.neverland.models.Quest
 
 class NeverlandAPIResponses {
@@ -26,24 +25,6 @@ class NeverlandAPIResponses {
             val code: Int,
             val quests: List<Quest>
     )
-
-/*    data class ResponseQuest(
-            val id: Int,
-            val title: String,
-            val desc: String,
-            @SerializedName("author")
-            val author: ResponseUser
-            // TODO: Time
-    )
-
-    data class ResponseUser(
-            @SerializedName("user_name")
-            val userName: String,
-            @SerializedName("first_name")
-            val firstName: String,
-            @SerializedName("second_name")
-            val secondName: String
-    )*/
 
     data class GetQuestAPIResponse(
             val code: Int,

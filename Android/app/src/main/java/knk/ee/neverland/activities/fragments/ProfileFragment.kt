@@ -10,7 +10,7 @@ import android.widget.TextView
 
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.questview.QuestPictureAdapter
+import knk.ee.neverland.views.questview.QuestPictureAdapter
 
 class ProfileFragment : Fragment() {
 
