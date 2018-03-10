@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.AsyncTask
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -20,6 +21,7 @@ import knk.ee.neverland.views.questview.QuestElementAdapter
 
 class AllQuestsActivity : AppCompatActivity() {
     private var questListAdapter: QuestElementAdapter? = null
+    private var questListSwiper: SwipeRefreshLayout? = null
 
     private var takingQuest: Boolean = false
 
@@ -32,7 +34,7 @@ class AllQuestsActivity : AppCompatActivity() {
     }
 
     private fun initializeQuestsList() {
-        val questsListView = findViewById<ListView>(R.id.all_quests_listview)
+        val questsListView = findViewById<ListView>(R.id.all_quests_list_view)
 
         questListAdapter = QuestElementAdapter(this)
         questsListView.adapter = questListAdapter
@@ -44,6 +46,12 @@ class AllQuestsActivity : AppCompatActivity() {
         }
 
         findViewById<EditText>(R.id.quest_search_bar).addTextChangedListener(QuestTextWatcher())
+
+        questListSwiper = findViewById<SwipeRefreshLayout>(R.id.all_quests_list_view_swiper)
+        questListSwiper!!.setOnRefreshListener {
+            questListSwiper!!.isRefreshing = true
+            UpdateQuestsTask().execute()
+        }
     }
 
     private fun askConfirmationAndTakeQuest(pos: Int) {
@@ -88,6 +96,8 @@ class AllQuestsActivity : AppCompatActivity() {
             } else {
                 showToast(getString(R.string.error_failed_getting_quests))
             }
+
+            questListSwiper!!.isRefreshing = false
         }
     }
 

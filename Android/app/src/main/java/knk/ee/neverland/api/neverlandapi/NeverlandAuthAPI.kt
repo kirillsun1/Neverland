@@ -3,10 +3,10 @@ package knk.ee.neverland.api.neverlandapi
 import com.google.common.hash.Hashing
 import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
-import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.models.RegistrationData
 import knk.ee.neverland.network.NetworkGetConnection
+import knk.ee.neverland.utils.Constants
 import java.net.HttpURLConnection
 import java.nio.charset.StandardCharsets
 
@@ -27,7 +27,7 @@ class NeverlandAuthAPI : AuthAPI {
         val data = NetworkGetConnection(API_LINK)
                 .setAction("login")
                 .addParam("username", login)
-                .addParam("password", password)
+                .addParam("password", encodePassword(password))
                 .onFailed(standardOnFailed)
                 .getContent()
 
