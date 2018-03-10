@@ -31,7 +31,7 @@ class NetworkPostConnection(private val link: String, private val action: String
         return this
     }
 
-    fun addText(test: String) : NetworkPostConnection {
+    fun addText(test: String): NetworkPostConnection {
         paramsBuilder.append(test)
         return this
     }

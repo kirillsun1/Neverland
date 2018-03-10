@@ -1,16 +1,13 @@
-package knk.ee.neverland.questview
+package knk.ee.neverland.views.questview
 
 import android.content.Context
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import knk.ee.neverland.R
-import knk.ee.neverland.api.Constants
 import knk.ee.neverland.models.Quest
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MyQuestElementAdapter(val context: Context) : BaseAdapter() {

@@ -21,10 +21,10 @@ import knk.ee.neverland.activities.AllQuestsActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.customviews.CustomFloatingActionButton
+import knk.ee.neverland.views.CustomFloatingActionButton
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.questview.MyQuestElementAdapter
+import knk.ee.neverland.views.questview.MyQuestElementAdapter
 
 class QuestsFragment : Fragment() {
     private var materialSheetFab: MaterialSheetFab<CustomFloatingActionButton>? = null

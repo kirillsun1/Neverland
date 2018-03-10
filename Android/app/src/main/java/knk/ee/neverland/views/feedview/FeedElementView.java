@@ -1,4 +1,4 @@
-package knk.ee.neverland.feedview;
+package knk.ee.neverland.views.feedview;
 
 import android.content.Context;
 import android.view.View;

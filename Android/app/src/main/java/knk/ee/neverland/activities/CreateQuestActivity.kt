@@ -11,10 +11,10 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import knk.ee.neverland.R
-import knk.ee.neverland.api.Constants
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.utils.Constants
 
 class CreateQuestActivity : AppCompatActivity() {
     private val questToSubmit: Quest = Quest()
@@ -28,9 +28,9 @@ class CreateQuestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_quest)
 
-        questTitleView = (findViewById<EditText>(R.id.quest_title))
-        questDescView = (findViewById<EditText>(R.id.quest_desc))
-        saveButton = findViewById<Button>(R.id.createquest_save)
+        questTitleView = (findViewById<EditText>(R.id.create_quest_title))
+        questDescView = (findViewById<EditText>(R.id.create_quest_desc))
+        saveButton = findViewById<Button>(R.id.create_quest_save)
         submittingProgress = findViewById(R.id.submitting_progress)
 
         blockSaveButton(false)

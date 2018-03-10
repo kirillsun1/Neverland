@@ -1,4 +1,4 @@
-package knk.ee.neverland.questview;
+package knk.ee.neverland.views.questview;
 
 import android.app.Activity;
 import android.content.Context;

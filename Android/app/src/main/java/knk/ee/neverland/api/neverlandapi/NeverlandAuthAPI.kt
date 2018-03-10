@@ -3,7 +3,7 @@ package knk.ee.neverland.api.neverlandapi
 import com.google.common.hash.Hashing
 import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
-import knk.ee.neverland.api.Constants
+import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.exceptions.AuthAPIException
 import knk.ee.neverland.models.RegistrationData
 import knk.ee.neverland.network.NetworkGetConnection

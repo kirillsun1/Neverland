@@ -13,7 +13,8 @@
         android:layout_height="50dp"
         android:layout_column="0"
         android:layout_row="0"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:contentDescription="@string/image_content_user_avatar" />
 
     <LinearLayout
         android:layout_width="wrap_content"

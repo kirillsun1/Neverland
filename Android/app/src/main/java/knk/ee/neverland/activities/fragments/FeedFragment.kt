@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import knk.ee.neverland.R
-import knk.ee.neverland.feedview.FeedElementAdapter
+import knk.ee.neverland.views.feedview.FeedElementAdapter
 import java.util.*
 
 class FeedFragment : Fragment() {
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeFeedListView()
@@ -19,7 +18,6 @@ class FeedFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_feed, container, false)
     }
 

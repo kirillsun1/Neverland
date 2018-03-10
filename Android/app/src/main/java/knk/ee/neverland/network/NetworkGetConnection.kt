@@ -1,6 +1,6 @@
 package knk.ee.neverland.network
 
-import knk.ee.neverland.api.Constants
+import knk.ee.neverland.utils.Constants
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.UnknownHostException

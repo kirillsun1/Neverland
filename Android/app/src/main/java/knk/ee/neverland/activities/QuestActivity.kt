@@ -18,7 +18,7 @@ import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.QuestAPIException
-import knk.ee.neverland.questview.QuestPictureAdapter
+import knk.ee.neverland.views.questview.QuestPictureAdapter
 
 class QuestActivity : AppCompatActivity() {
     private var droppingQuest: Boolean = false
@@ -37,7 +37,7 @@ class QuestActivity : AppCompatActivity() {
         val questDesc = intent.extras!!.getString("questDesc")
 
         title = questName
-        (findViewById<View>(R.id.quest_quest_desc) as TextView).text = questDesc
+        (findViewById<View>(R.id.quest_desc) as TextView).text = questDesc
         (findViewById<View>(R.id.quest_images) as GridView).adapter = pictureAdapter
 
         dropQuestButton = findViewById<Button>(R.id.drop_quest)
@@ -53,17 +53,15 @@ class QuestActivity : AppCompatActivity() {
     }
 
     private fun askConfirmationAndDropQuest(questID: Int) {
-        val message = "Are you sure you want to drop this quest?"
-
         AlertDialog.Builder(this)
-                .setMessage(message)
+                .setMessage(getString(R.string.dropping_quest_confirmation))
                 .setCancelable(true)
-                .setPositiveButton("Yes", { dialogInterface: DialogInterface, _: Int ->
+                .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
                     changeDroppingQuestProperty(true)
                     DropQuestTask(questID).execute()
                     dialogInterface.cancel()
                 })
-                .setNegativeButton("No", { dialogInterface: DialogInterface, _: Int ->
+                .setNegativeButton(R.string.no, { dialogInterface: DialogInterface, _: Int ->
                     dialogInterface.cancel()
                 })
                 .create()
