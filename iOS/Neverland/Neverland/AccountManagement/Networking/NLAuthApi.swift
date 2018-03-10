@@ -9,45 +9,31 @@
 import Foundation
 import Alamofire
 
-
+// todo
 class NLAuthApi: AuthApi {
     
     let urlBase = "http://vrot.bounceme.net:8080"
     
     func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ()) {
-        let request = Alamofire.request(urlBase+"/login", method: .get, parameters: ["username": login, "password": passwordHash])
-        SwiftSpinner.show("Connecting to server ... ")
-        request.responseJSON { response in
-            if response.error != nil {
-                onComplete(AuthApiResponse(code: .Error, message: nil))
-            }
-            
-            
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-
-                guard let codeInt = JSON.value(forKey: "code") as? Int,
-                    let code = ResponseCode(rawValue: codeInt) else {
-                    fatalError("Unknown server code. Debug this")
-                }
-                
-                onComplete(AuthApiResponse(code: code, message: JSON.value(forKey: "token") as? String))
-            }
-            
-            SwiftSpinner.hide()
-        }
+        makeAuthApiRequest(url: urlBase + "/login", params: ["username": login, "password": passwordHash], onComplete: onComplete)
     }
     
     func registerAccount(withData data: RegistrationData, onComplete: @escaping (AuthApiResponse) -> ()) {
+        makeAuthApiRequest(url: urlBase + "/register", params: ["username": data.login, "password": data.password, "email": data.email,
+                                               "firstname": data.firstName, "secondname": data.secondName], onComplete: onComplete)
+    }
+    
+    
+    func ifActive(token: String, onComplete: @escaping (AuthApiResponse)->()) {
+        makeAuthApiRequest(url: urlBase + "/tokencheck", params: ["token": token], onComplete: onComplete)
+    }
+    
+    func makeAuthApiRequest(url: String, params: [String:Any], onComplete: @escaping (AuthApiResponse) -> ()) {
         SwiftSpinner.show("Connecting to server ... ")
-        let request = Alamofire.request(urlBase+"/register", method: .get,
-                          parameters: ["username": data.login, "password": data.password, "email": data.email,
-                                       "firstname": data.firstName, "secondname": data.secondName])
-        
+        let request = Alamofire.request(url, method: .get, parameters: params)
         request.responseJSON { response in
             if response.error != nil {
                 onComplete(AuthApiResponse(code: .Error, message: nil))
-                SwiftSpinner.hide()
             }
             
             if let result = response.result.value {
@@ -59,29 +45,10 @@ class NLAuthApi: AuthApi {
                 }
                 
                 onComplete(AuthApiResponse(code: code, message: JSON.value(forKey: "token") as? String))
-                SwiftSpinner.hide()
             }
-        }
-    }
-    
-    func ifActive(token: String, onComplete: @escaping (AuthApiResponse)->()) {
-        SwiftSpinner.show("Connecting to server ... ")
-        let request = Alamofire.request(urlBase+"/tokencheck", method: .get,
-                                        parameters: ["token": token])
-        
-        request.responseJSON { response in
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                let codeInt = JSON.value(forKey: "code") as? Int ?? -1
-                guard let code = ResponseCode(rawValue: codeInt) else {
-                    fatalError("Unknown server code. Debug this")
-                }
-                onComplete(AuthApiResponse(code: code, message: nil))
-                SwiftSpinner.hide()
             
-            }
+            SwiftSpinner.hide()
         }
     }
-    
     
 }

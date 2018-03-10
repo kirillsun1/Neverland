@@ -29,6 +29,7 @@
 		176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E631F2035BE8000DCAC3F /* GroupsViewController.swift */; };
 		176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */; };
 		176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */; };
+		178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EEC812053E9B800D9EBCC /* FloatingButton.swift */; };
 		17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE72034640A00A4FC72 /* AppDelegate.swift */; };
 		17A56BEF2034640A00A4FC72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BED2034640A00A4FC72 /* Main.storyboard */; };
 		17A56BF42034640A00A4FC72 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF22034640A00A4FC72 /* Auth.storyboard */; };
@@ -99,6 +100,7 @@
 		176E631F2035BE8000DCAC3F /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallangesViewController.swift; sourceTree = "<group>"; };
 		176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		178EEC812053E9B800D9EBCC /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		17A56BE42034640A00A4FC72 /* Neverland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neverland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56BE72034640A00A4FC72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A56BEE2034640A00A4FC72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				17E15A8A20382A2500027634 /* QuestInfoCell.swift */,
 				17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */,
 				17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */,
+				178EEC812053E9B800D9EBCC /* FloatingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */,
 				176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */,
 				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
+				178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */,
 				17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */,
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
 				17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */,

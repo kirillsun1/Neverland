@@ -41,7 +41,6 @@ class AuthViewController: UIViewController {
         userField.delegate = self
         
         userField.checkRegex = "^[a-z0-9_-]{6,16}$"
-        
         passwordField.checkRegex = "^[a-z0-9_-]{6,18}$"
 
         setConstraints()
@@ -123,7 +122,6 @@ class AuthViewController: UIViewController {
 
 
 extension AuthViewController: UITextFieldDelegate {
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         

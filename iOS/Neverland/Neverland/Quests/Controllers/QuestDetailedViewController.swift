@@ -33,7 +33,7 @@ class QuestDetailedViewController: UIViewController {
     @IBAction func deleteQuest() {
         if (quest == nil) { return }
             
-        NLQuestApi().dropQuest(qid: quest!.id) {
+        NLQuestApi().dropQuest(qid: quest!.id) { response in
             self.navigationController?.popViewController(animated: true)
         }
     }

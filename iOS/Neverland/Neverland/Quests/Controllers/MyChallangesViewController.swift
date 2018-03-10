@@ -23,7 +23,7 @@ class MyChallangesViewController: UIViewController {
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         
-        configurePlusBtn()
+        FloatingButton().add(intoViewController: self)
         fetchMyQuests()
     }
     
@@ -40,35 +40,17 @@ class MyChallangesViewController: UIViewController {
         NLQuestApi().fetchMyQuests { questsDict in
             
             self.myQuests = []
-            
-            for quest in questsDict {
-                let title = quest.value(forKey: "title") as! String
-                let description = quest.value(forKey: "desc") as! String
-                let id = quest.value(forKey: "id") as! Int
-                let author = Person(creatorData: quest.value(forKey: "author") as! NSDictionary)
-                let time = Time(from: ((quest.value(forKey: "time_taken") as? NSDictionary)?.value(forKey: "date") as? NSDictionary))
-                let quest = Quest(id: id, title: title, groupId: 0, description: description, datePicked: time, creator: author)
-                self.myQuests.append(quest)
+
+            for questJSON in questsDict {
+                if let quest = Quest(fromJSON: questJSON) {
+                    self.myQuests.append(quest)
+                }
             }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
     }
     
-    func configurePlusBtn() {
-        let actionButton = JJFloatingActionButton()
-        actionButton.buttonColor = UIColor.neverlandDarkColor
-        
-        actionButton.addItem(title: "Take quest", image: UIImage(named: "search_btn")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.performSegue(withIdentifier: "TakeQuestSegue", sender: nil)
-        }
-        
-        actionButton.addItem(title: "Suggest quest", image: UIImage(named: "add_btn")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.performSegue(withIdentifier: "CreateQuestSegue", sender: nil)
-        }
-
-        actionButton.display(inViewController: self)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "QuestDetailed" {

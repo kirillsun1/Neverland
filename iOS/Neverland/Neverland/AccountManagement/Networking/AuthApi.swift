@@ -8,8 +8,6 @@
 
 import Foundation
 
-// MAKE REAL API WORK IN DIFFERENT THREAD + SPINNER !!!
-
 protocol AuthApi {
     
     func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ())

@@ -22,8 +22,7 @@ class NewQuestViewController: UIViewController {
     var startScrollViewHeight: CGFloat!
     let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     let groupId = 0 // get through segue.
-//    var deletedQuests = 0
-//    var tableViewisUpdating = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +66,11 @@ class NewQuestViewController: UIViewController {
     }
     
     func fetchAllQuests() {
-        NLQuestApi().fetchAllQuestsWeShouldProbablyDeleteThisMethodLaterOmg { questsDictionary in
-            //print(questsDictionary)
-            for quest in questsDictionary {
-                let title = quest.value(forKey: "title") as! String
-                let description = quest.value(forKey: "desc") as! String
-                let id = quest.value(forKey: "id") as! Int
-                let author = Person(creatorData: quest.value(forKey: "author") as! NSDictionary)
-                let quest = Quest(id: id, title: title, groupId: 0, description: description, datePicked:nil, creator: author)
-                self.quests.append(quest)
+        NLQuestApi().fetchQuests(inGroup: 0) { questsDictionary in
+            for questJson in questsDictionary {
+                if let quest = Quest(fromJSON: questJson) {
+                    self.quests.append(quest)
+                }
             }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
@@ -85,24 +80,6 @@ class NewQuestViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         startScrollViewHeight = tableView.contentSize.height
     }
-    
-//    func fetchNewQuests() {
-////        tableViewisUpdating = true
-//        FakeQuestApi().fetchQuests(from: quests.count + deletedQuests, to: quests.count + deletedQuests + 20, inGroup: groupId, onComplete: { response in
-//            self.tableView.beginUpdates()
-//            var indexes = [IndexPath]()
-//            for index in 0 ..< response.quests.count {
-//                let q = response.quests[index]
-//                self.quests.append(q)
-//                indexes.append(IndexPath.init(row: self.quests.count - 1, section: 0))
-//            }
-//            self.tableView.insertRows(at: indexes, with: .automatic)
-//
-//            self.spinner.stopAnimating()
-//            self.tableView.endUpdates()
-//            self.tableViewisUpdating = false
-//        })
-//    }
 
 }
 

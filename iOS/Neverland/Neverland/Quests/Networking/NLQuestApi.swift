@@ -14,114 +14,79 @@ class NLQuestApi: QuestApi {
     
     var urlBase: String = "http://vrot.bounceme.net:8080"
     
+    
+    //MARK: - Fetching quests.
+    
+    func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase+"/getquests", onComplete: onComplete)
+    }
+    
+    func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {
+        fetchingLogic(url: self.urlBase + "/getmyquests", onComplete: onComplete)
+    }
+    
+    func fetchingLogic(url: String, onComplete: @escaping ([NSDictionary])->()) {
+        let request = Alamofire.request(url, method: .get,
+                                        parameters: ["token": User.sharedInstance.token ?? ""])
+        
+        request.responseJSON { response in
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                let questsDict = JSON.value(forKey: "quests") as! [NSDictionary]
+                onComplete(questsDict)
+            }
+        }
+    }
+    
+    //MARK: - Action with quests
+
     func registerQuest(title: String, description: String, groupId: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
         SwiftSpinner.show("Connecting to server ... ")
-
+        
         let params = ["token": User.sharedInstance.token ?? " ",
                       "desc": description,
                       "title": title,
                       "gid": groupId] as [String : Any]
-        
-        let request = Alamofire.request(self.urlBase+"/submitquest", method: .get,
-                                        parameters: params)
-        
-        request.responseJSON { response in
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-//                guard let codeInt = JSON.value(forKey: "code") as? Int,
-//                    let code = ResponseCode(rawValue: codeInt) else {
-//                        fatalError("Unknown server code. Debug this")
-//                }
-                var code: ResponseCode
-                if JSON.value(forKey: "code") as? Int == 1 {
-                    code = ResponseCode.Successful
-                } else {
-                    code = ResponseCode.Error
-                }
-                
-                onComplete(QuestApiResponse(code: code, message: nil))
-                SwiftSpinner.hide()
-                
-            }
-        }
-    }
-    
-    func fetchQuests(from: Int, to: Int, inGroup: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError()
-    }
-    
-    func fetchQuests(from: Int, to: Int, inScope scope: QuestScope, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError()
-
-    }
-    
-    func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {
-        let request = Alamofire.request(self.urlBase+"/getmyquests", method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? ""])
-        
-        request.responseJSON { response in
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                print(JSON)
-                let questsDict = JSON.value(forKey: "quests") as! [NSDictionary]
-                onComplete(questsDict)
-            }
-        }
-    }
-    
-    func fetchAllQuestsWeShouldProbablyDeleteThisMethodLaterOmg(onComplete: @escaping ([NSDictionary])->()) {
-        let request = Alamofire.request(self.urlBase+"/getquests", method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? ""])
-        
-        request.responseJSON { response in
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                let questsDict = JSON.value(forKey: "quests") as! [NSDictionary]
-                onComplete(questsDict)
-            }
-        }
+        questActionLogic(url: self.urlBase+"/submitquest", params: params, onComplete: onComplete)
+        SwiftSpinner.hide()
     }
     
     func takeQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        let request = Alamofire.request(self.urlBase+"/takequest", method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? "",
-                                                     "qid": qid])
-        
+        questActionLogic(url: self.urlBase + "/takequest", params: ["token": User.sharedInstance.token ?? "",
+                                                                     "qid": qid], onComplete: onComplete)
+    }
+    
+    func dropQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
+        questActionLogic(url: self.urlBase + "/dropquest", params: ["token": User.sharedInstance.token ?? "",
+                                                            "qid": qid], onComplete: onComplete)
+    }
+    
+    func questActionLogic(url: String, params:[String:Any], onComplete: @escaping (QuestApiResponse) -> ()) {
+        let request = Alamofire.request(url, method: .get, parameters: params)
         request.responseJSON { response in
             if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                print(JSON)
-            } else {
-                print("ehh.. fail")
+                if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
+                    onComplete(QuestApiResponse(code: .Successful, message: nil))
+                } else {
+                    onComplete(QuestApiResponse(code: .Error, message: nil))
+                }
             }
         }
     }
     
-    func dropQuest(qid: Int, onComplete: @escaping () -> ()) {
-        let request = Alamofire.request(self.urlBase+"/dropquest", method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? "",
-                                                     "qid": qid])
-        
-        request.responseJSON { response in
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                print(JSON)
-                onComplete()
-            } else {
-                print("ehh.. fail")
-            }
-        }
-    }
+    //MARK: - Not implemented yet methods.
     
     func fetchDetailedSolution(withId id: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError()
+        fatalError("Not implemented yet")
     }
     
     func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError()
+        fatalError("Not implemented yet")
     }
     
-    
+    func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fatalError("Not implemented yet")
+    }
     
 }
 

@@ -15,14 +15,13 @@ class QuestCell: UITableViewCell {
        
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func fillWith(quest: Quest) {
         questName.text = quest.title
-        questTakenDate.text = "xx.xx.xxxx"
+        questTakenDate.text = "01.01.1990"
         if let time = quest.datePicked {
-            questTakenDate.text = "\(time.day ?? 0).\(time.month ?? 0).\(time.year ?? 0)"
+            questTakenDate.text = "\(time.day).\(time.month).\(time.year)"
         }
     }
 
