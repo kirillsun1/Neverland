@@ -76,7 +76,7 @@ class AllQuestsActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg p0: Void?): Boolean {
             try {
-                questsListGot = DefaultAPI.questAPI.getQuestsToTake() // TODO: fix groups
+                questsListGot = DefaultAPI.questAPI.getQuestsToTake()
                 return true
             } catch (ex: QuestAPIException) {
                 return false
