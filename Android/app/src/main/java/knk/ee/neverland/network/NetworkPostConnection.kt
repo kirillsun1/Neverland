@@ -3,58 +3,6 @@ package knk.ee.neverland.network
 import java.net.HttpURLConnection
 import java.net.URL
 
-class NetworkGetConnection(private val link: String) {
-    private var params: Int = 0
-    private var action: String = ""
-    private val paramsBuilder: StringBuilder = StringBuilder()
-    private var onFailed: (code: Int) -> Unit = {}
-
-    fun setAction(action: String): NetworkGetConnection {
-        this.action = action
-        return this
-    }
-
-    fun addParam(key: String, value: String): NetworkGetConnection {
-        if (params++ > 0) {
-            paramsBuilder.append("&")
-        }
-
-        paramsBuilder
-                .append(key)
-                .append("=")
-                .append(value)
-
-        return this
-    }
-
-    private fun makeURL(): URL {
-        val query = "$link/$action?$paramsBuilder"
-        println("GET Query: $query")
-        return URL(query)
-    }
-
-    private fun makeConnection(): HttpURLConnection {
-        return makeURL().openConnection() as HttpURLConnection
-    }
-
-    fun onFailed(action: (code: Int) -> Unit): NetworkGetConnection {
-        this.onFailed = action
-        return this
-    }
-
-    fun getContent(): String {
-        val connection = makeConnection()
-
-        if (connection.responseCode != HttpURLConnection.HTTP_OK) {
-            onFailed(connection.responseCode)
-        }
-
-        val data = connection.inputStream.bufferedReader().readText()
-        connection.disconnect()
-        return data
-    }
-}
-
 class NetworkPostConnection(private val link: String, private val action: String) {
     private var onFailed: (code: Int) -> Unit = {}
     private val connection: HttpURLConnection = URL("$link/$action").openConnection() as HttpURLConnection

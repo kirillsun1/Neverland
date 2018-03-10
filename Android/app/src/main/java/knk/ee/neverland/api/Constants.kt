@@ -17,6 +17,4 @@ object Constants {
     val QUEST_DESC_MINIMUM_SYMBOLS: Int = 5
     val QUEST_NAME_MAXIMUM_SYMBOLS: Int = 30
     val QUEST_DESC_MAXIMUM_SYMBOLS: Int = 480
-
-    val TIME_FORMAT = "dd.MM.yyyy"
 }

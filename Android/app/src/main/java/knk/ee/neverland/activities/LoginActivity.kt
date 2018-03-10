@@ -31,10 +31,6 @@ class LoginActivity : AppCompatActivity() {
     private var mProgressView: View? = null
     private var mLoginFormView: View? = null
 
-    override fun onBackPressed() {
-        System.exit(0)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -59,13 +55,17 @@ class LoginActivity : AppCompatActivity() {
         findViewById<View>(R.id.login_register).setOnClickListener { view -> startActivityForResult(Intent(view.context, RegistrationActivity::class.java), 1) }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Constants.SUCCESS) {
-            val token = data.getStringExtra("token")
+            val token = data!!.getStringExtra("token")
             val login = data.getStringExtra("login")
             saveUserdataToTheSystemSettings(login, token)
             openMainActivityAndFinishThisActivity()
         }
+    }
+
+    override fun onBackPressed() {
+        System.exit(0)
     }
 
     /**
@@ -168,10 +168,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        val context = applicationContext
-        val duration = Toast.LENGTH_LONG
-        val toast = Toast.makeText(context, message, duration)
-        toast.show()
+        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
     /**

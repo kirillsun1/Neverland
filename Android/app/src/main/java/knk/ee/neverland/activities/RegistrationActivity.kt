@@ -129,8 +129,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun loginIsCorrect(login: String): Boolean = login.matches(Constants.LOGIN_REGEX)
 
-    private fun passwordIsCorrect(password: String): Boolean
-            = password.matches(Constants.PASSWORD_REGEX)
+    private fun passwordIsCorrect(password: String): Boolean = password.matches(Constants.PASSWORD_REGEX)
 
     private fun emailIsCorrect(email: String): Boolean = email.matches(Constants.EMAIL_REGEX)
 
