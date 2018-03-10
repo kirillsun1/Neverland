@@ -8,33 +8,35 @@
 
 import UIKit
 import JJFloatingActionButton
+import ESPullToRefresh
 
 class MyChallangesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var myQuests = [Quest]()
-    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         
         FloatingButton().add(intoViewController: self)
         fetchMyQuests()
+        
+        self.tableView.es.addPullToRefresh {
+            [unowned self] in
+            self.fetchMyQuests()
+            self.tableView.reloadData()
+            self.tableView.es.stopPullToRefresh(ignoreDate: true)
+            self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         fetchMyQuests()
     }
-    
-    @objc func refresh(_ refreshControl: UIRefreshControl) {
-        fetchMyQuests()
-    }
-    
+
     
     func fetchMyQuests() {
         NLQuestApi().fetchMyQuests { questsDict in
@@ -47,7 +49,6 @@ class MyChallangesViewController: UIViewController {
                 }
             }
             self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
         }
     }
     

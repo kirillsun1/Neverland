@@ -18,7 +18,7 @@ class NLQuestApi: QuestApi {
     //MARK: - Fetching quests.
     
     func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
-        fetchingLogic(url: self.urlBase+"/getquests", onComplete: onComplete)
+        fetchingLogic(url: self.urlBase+"/getqueststotake", onComplete: onComplete)
     }
     
     func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {

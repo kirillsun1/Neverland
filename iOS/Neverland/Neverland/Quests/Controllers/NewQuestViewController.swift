@@ -10,8 +10,6 @@ import UIKit
 import PopupDialog
 
 class NewQuestViewController: UIViewController {
-
-    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
     var quests = [Quest]() {
@@ -36,11 +34,19 @@ class NewQuestViewController: UIViewController {
         tableView.delegate = self
         tableView.tableFooterView = spinner
         
-        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        
-        tableView.refreshControl = refreshControl
         
         fetchAllQuests()
+        
+        self.tableView.es.addPullToRefresh {
+            [unowned self] in
+            
+            self.quests = []
+            self.fetchAllQuests()
+            
+            self.tableView.reloadData()
+            self.tableView.es.stopPullToRefresh(ignoreDate: true)
+            self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+        }
     }
     
     func confirmationPopup(for quest: Quest) {
@@ -49,11 +55,6 @@ class NewQuestViewController: UIViewController {
                 
             }
         }
-    }
-    
-    @objc func refresh(_ refreshControl: UIRefreshControl) {
-        quests = []
-        fetchAllQuests()
     }
     
     func removeQuest(quest: Quest) {
@@ -72,8 +73,6 @@ class NewQuestViewController: UIViewController {
                     self.quests.append(quest)
                 }
             }
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
         }
     }
     

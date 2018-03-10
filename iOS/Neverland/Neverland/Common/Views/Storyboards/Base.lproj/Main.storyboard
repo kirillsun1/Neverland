@@ -353,13 +353,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBc-QM-2se" customClass="CardView" customModule="Neverland" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="4" width="0.0" height="197"/>
+                                                    <rect key="frame" x="0.0" y="4" width="320" height="197"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-uf-UIo">
-                                                            <rect key="frame" x="0.0" y="4" width="0.0" height="189"/>
+                                                            <rect key="frame" x="0.0" y="4" width="320" height="189"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nfd-mx-K7g">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="44.5"/>
+                                                                    <rect key="frame" x="5" y="0.0" width="310" height="44.5"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uii-sF-5gr" customClass="RoundedImage" customModule="Neverland" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="44.5" height="44.5"/>
@@ -368,10 +368,10 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="myW-6P-lMv">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="44.5"/>
+                                                                            <rect key="frame" x="52.5" y="0.0" width="257.5" height="44.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLb-9K-Jwa">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="22"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="257.5" height="22"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="22" id="eK9-a3-zam"/>
                                                                                     </constraints>
@@ -380,7 +380,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Voldemort" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ma-mC-O0i">
-                                                                                    <rect key="frame" x="0.0" y="23" width="0.0" height="21.5"/>
+                                                                                    <rect key="frame" x="0.0" y="23" width="257.5" height="21.5"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="22" id="iPz-U3-hG0"/>
                                                                                     </constraints>
@@ -393,7 +393,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zts-D9-GrN">
-                                                                    <rect key="frame" x="0.0" y="46.5" width="0.0" height="142.5"/>
+                                                                    <rect key="frame" x="2" y="46.5" width="316" height="142.5"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -474,8 +474,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqJ-v2-wYu">
+                                <rect key="frame" x="8" y="207" width="304" height="30"/>
+                                <state key="normal" title="Send Proof"/>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FqQ-Kd-pSM">
-                                <rect key="frame" x="5" y="207" width="310" height="312"/>
+                                <rect key="frame" x="5" y="245" width="310" height="274"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LOI-x8-RHH">
                                     <size key="itemSize" width="50" height="50"/>
@@ -509,12 +513,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="leading" secondItem="3rd-Se-wve" secondAttribute="leading" constant="5" id="0cs-1d-dpr"/>
+                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="top" secondItem="hqJ-v2-wYu" secondAttribute="bottom" constant="8" id="6k0-A9-4ZF"/>
                             <constraint firstItem="QBl-yP-j6s" firstAttribute="leading" secondItem="3rd-Se-wve" secondAttribute="leading" constant="5" id="FdJ-Qr-nqQ"/>
-                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="leading" secondItem="3rd-Se-wve" secondAttribute="leading" constant="5" id="OYL-sY-mRY"/>
-                            <constraint firstItem="3rd-Se-wve" firstAttribute="trailing" secondItem="FqQ-Kd-pSM" secondAttribute="trailing" constant="5" id="YDJ-kZ-AhA"/>
+                            <constraint firstItem="hqJ-v2-wYu" firstAttribute="leading" secondItem="3rd-Se-wve" secondAttribute="leading" constant="8" id="Pba-IB-W5K"/>
+                            <constraint firstItem="3rd-Se-wve" firstAttribute="trailing" secondItem="hqJ-v2-wYu" secondAttribute="trailing" constant="8" id="f45-iM-M1e"/>
                             <constraint firstItem="3rd-Se-wve" firstAttribute="trailing" secondItem="QBl-yP-j6s" secondAttribute="trailing" constant="5" id="fvu-os-cbZ"/>
-                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="top" secondItem="QBl-yP-j6s" secondAttribute="bottom" constant="8" id="sxG-la-Z7y"/>
-                            <constraint firstItem="3rd-Se-wve" firstAttribute="bottom" secondItem="FqQ-Kd-pSM" secondAttribute="bottom" id="voo-Ry-YuI"/>
+                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="bottom" secondItem="3rd-Se-wve" secondAttribute="bottom" id="g4N-Xk-rVs"/>
+                            <constraint firstItem="hqJ-v2-wYu" firstAttribute="top" secondItem="QBl-yP-j6s" secondAttribute="bottom" constant="8" id="nVJ-VH-IcO"/>
+                            <constraint firstItem="FqQ-Kd-pSM" firstAttribute="top" secondItem="hqJ-v2-wYu" secondAttribute="bottom" constant="8" id="rHY-3d-REN"/>
+                            <constraint firstItem="3rd-Se-wve" firstAttribute="trailing" secondItem="FqQ-Kd-pSM" secondAttribute="trailing" constant="5" id="wGO-yU-HJ2"/>
                             <constraint firstItem="QBl-yP-j6s" firstAttribute="top" secondItem="3rd-Se-wve" secondAttribute="top" constant="5" id="xCl-m1-boK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3rd-Se-wve"/>
@@ -533,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdY-7o-cim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="1537"/>
+            <point key="canvasLocation" x="1485" y="1536.9718309859154"/>
         </scene>
         <!--Suggest Quest View Controller-->
         <scene sceneID="Odq-tL-mVG">
@@ -707,9 +715,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iwV-kl-bRU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Groups" id="8LR-vS-ep1">
-                        <barButtonItem key="leftBarButtonItem" title="New Quest" id="oZt-vE-TS7"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Groups" id="8LR-vS-ep1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjW-MG-D9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
