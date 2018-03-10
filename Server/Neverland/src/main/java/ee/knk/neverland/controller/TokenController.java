@@ -9,25 +9,30 @@ import org.springframework.stereotype.Controller;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 class TokenController {
 
-    private final TokenService keyService;
+    private final TokenService tokenService;
 
-    public TokenController(TokenService keyService) {
-        this.keyService = keyService;
+    public TokenController(TokenService tokenService) {
+        this.tokenService = tokenService;
     }
 
+    boolean isValid(String token) {
+        return tokenService.isValid(token);
+
+    }
 
     String addKey(User user) {
-        String keyValue;
+        String tokenValue;
         do {
-            keyValue = generateValue(user.getName());
-        } while (keyService.checkToken(keyValue));
-        Token token = new Token(user, keyValue);
-        keyService.addToken(token);
-        return token.getKeyValue();
+            tokenValue = generateValue(user.getUsername());
+        } while (tokenService.exists(tokenValue));
+        Token token = new Token(user, tokenValue);
+        tokenService.addToken(token);
+        return token.getValue();
     }
 
     private String generateValue(String username) {
@@ -36,6 +41,10 @@ class TokenController {
         return Hashing.sha256()
                 .hashString(toEncode, StandardCharsets.UTF_8)
                 .toString();
+    }
+
+    Optional<User> getTokenUser(String value) {
+        return tokenService.getTokenUser(value);
     }
 
 
