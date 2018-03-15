@@ -42,6 +42,7 @@ class QuestElementAdapter(val context: Context) : BaseAdapter(), Filterable {
         questsList.clear()
         questsList.addAll(otherList)
         filteredList.addAll(otherList)
+        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {

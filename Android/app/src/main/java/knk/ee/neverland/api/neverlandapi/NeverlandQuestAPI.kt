@@ -27,15 +27,12 @@ class NeverlandQuestAPI : QuestApi {
     }
 
     override fun submitNewQuest(quest: Quest) {
-        // val senddata = NeverlandAPIResponses.SubmitQuestAPIRequest(token, quest.title, quest.description, quest.groupID)
-
         val data = NetworkGetConnection(API_LINK)
                 .setAction("submitquest")
                 .addParam("token", token)
                 .addParam("title", quest.title)
                 .addParam("desc", quest.description)
                 .addParam("gid", quest.groupID.toString())
-                // .addText(gson.toJson(senddata))
                 .onFailed(standardOnFailed)
                 .getContent()
 
@@ -115,7 +112,7 @@ class NeverlandQuestAPI : QuestApi {
 
     override fun getQuestsToTake(): List<Quest> {
         val data = NetworkGetConnection(API_LINK)
-                .setAction("getquests")
+                .setAction("getqueststotake")
                 .addParam("token", token)
                 .onFailed(standardOnFailed)
                 .getContent()
@@ -126,7 +123,6 @@ class NeverlandQuestAPI : QuestApi {
             throw QuestAPIException(response.code)
         }
 
-        // return makeQuestsFromResponseQuests(response.quests)
         return response.quests
     }
 }

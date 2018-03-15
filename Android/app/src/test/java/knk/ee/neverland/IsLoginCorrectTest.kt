@@ -65,4 +65,22 @@ class IsLoginCorrectTest {
         assertTrue(Utils.loginIsCorrect("hello_13"))
         assertTrue(Utils.loginIsCorrect("heldlo-456"))
     }
+
+    @Test
+    fun testUTF8SymbolsAreNotAllowed() {
+        assertFalse(Utils.loginIsCorrect("loginвпывп"))
+        assertFalse(Utils.loginIsCorrect("logвäädföüõ"))
+    }
+
+    @Test
+    fun testLoginWithUpperSymbolsIsNotCorrect() {
+        assertFalse(Utils.loginIsCorrect("notNormal_login1"))
+    }
+
+    /*
+    @Test
+    fun testLoginIsIncorrectIfContainsOnlyNumbers() {
+        assertFalse(Utils.loginIsCorrect("0123456789"))
+    }
+    */
 }
