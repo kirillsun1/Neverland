@@ -11,7 +11,7 @@ import UIKit
 
 class FakeQuestApi: QuestApi {
 
-    let fakeData = "some fake json data should be here if i'll want to test methods with fake api"
+    private let fakeData = "some fake json data should be here if i'll want to test methods with fake api"
     
     func registerQuest(title: String, description: String, groupId: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
         print("Registered \(title):\(description)")
@@ -26,8 +26,9 @@ class FakeQuestApi: QuestApi {
         fatalError("Not implemented")
     }
     
-    func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError("Not implemented")
+    func submitSolution(qid: Int, img: UIImage, comment: String?, onComplete: @escaping (QuestApiResponse) -> ()) {
+        print("Submited quest \(qid) with photo \(img.description)")
+        onComplete(QuestApiResponse(code: .Successful, message: nil))
     }
     
     func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ()) {

@@ -37,6 +37,16 @@ class QuestDetailedViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProofSegue" {
+            guard let vc = segue.destination as? ProofSubmitViewController else {
+                fatalError("oh-oh-oh. Something bad happened here :(")
+            }
+            
+            vc.quest = self.quest
+        }
+    }
 
 }
 

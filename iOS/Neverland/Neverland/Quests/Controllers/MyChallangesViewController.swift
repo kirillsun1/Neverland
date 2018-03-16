@@ -13,7 +13,7 @@ import ESPullToRefresh
 class MyChallangesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var myQuests = [Quest]()
+    private var myQuests = [Quest]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

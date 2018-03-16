@@ -20,7 +20,7 @@ protocol QuestApi {
     func fetchQuests(inGroup:Int, onComplete: @escaping ([NSDictionary]) -> ())
     func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ())
     func fetchDetailedSolution(withId id: Int, onComplete: @escaping (QuestApiResponse) -> ())
-    func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: @escaping (QuestApiResponse) -> ())
+    func submitSolution(qid: Int, img: UIImage, comment: String?, onComplete: @escaping (QuestApiResponse) -> ())
     func dropQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ())
 }
 

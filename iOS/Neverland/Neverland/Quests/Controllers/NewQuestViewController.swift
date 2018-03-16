@@ -12,13 +12,12 @@ import PopupDialog
 class NewQuestViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var quests = [Quest]() {
+    private var quests = [Quest]() {
         didSet {
             tableView.reloadData()
         }
     }
-    var startScrollViewHeight: CGFloat!
-    let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+    private let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     let groupId = 0 // get through segue.
 
     
@@ -74,10 +73,6 @@ class NewQuestViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        startScrollViewHeight = tableView.contentSize.height
     }
 
 }

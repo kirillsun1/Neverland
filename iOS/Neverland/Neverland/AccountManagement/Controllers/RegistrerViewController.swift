@@ -17,7 +17,7 @@ class RegistrerViewController: UIViewController {
     @IBOutlet weak var surnameLbl: RegistrationField!
     @IBOutlet weak var emailLbl: RegistrationField!
     
-    var textFields: [RegistrationField]!
+    private var textFields: [RegistrationField]!
     
     @IBOutlet weak var agreementBtn: Checkbox!
     

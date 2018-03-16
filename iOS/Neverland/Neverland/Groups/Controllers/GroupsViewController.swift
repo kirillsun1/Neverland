@@ -16,20 +16,22 @@ class GroupsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // TODO: DELETE LATER
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let d = segue.destination as? ProofSubmitViewController else {
+//            fatalError("Kaboom")
+//        }
+//
+//        d.quest = Quest(fromJSON: ["title": "title",
+//                                   "desc": "desc",
+//                                   "id": 1,
+//                                   "author":
+//                                        ["user_name": "kosapo",
+//                                         "first_name": "a",
+//                                         "second_name":"b"]
+//                                  ]
+//                        )
+//    }
 
 }

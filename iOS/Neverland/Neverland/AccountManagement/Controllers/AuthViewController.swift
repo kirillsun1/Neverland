@@ -11,8 +11,8 @@ import SCLAlertView
 
 class AuthViewController: UIViewController {
 
-    let user = User.sharedInstance
-    let api = NLAuthApi()
+    private let user = User.sharedInstance
+    private let api = NLAuthApi()
     
     @IBOutlet weak var stackViewWidthConstr: NSLayoutConstraint!
     @IBOutlet weak var stackViewHeightConstr: NSLayoutConstraint!
@@ -85,7 +85,7 @@ class AuthViewController: UIViewController {
                 self.user.token = response.message
                 self.performSegue(withIdentifier: "LoginSegue", sender: nil)
             case .Error:
-                SCLAlertView().showError("Authorization error", subTitle: "Username or password is incorrect.")
+                SCLAlertView().showError("Authorization error", subTitle: response.message ?? "Credentials are incorrect")
             }
         }
     }

@@ -10,8 +10,8 @@ import Foundation
 
 class FakeAuthApi: AuthApi {
 
-    static var registeredUsers = [UserData]()
-    static var activeKeys = ["BCD"]
+    private static var registeredUsers = [UserData]()
+    private static var activeKeys = ["BCD"]
     
     func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ()) {
         if FakeAuthApi.registeredUsers.contains(where: {$0.login == login && $0.password == passwordHash}) {

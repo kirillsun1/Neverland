@@ -1,30 +1,39 @@
 PODS:
   - Alamofire (4.6.0)
   - CommonCryptoModule (1.0.2)
+  - CropViewController (2.3.6)
   - DropDown (2.0.2)
   - ESPullToRefresh (2.7)
+  - ImagePicker (3.0.0)
   - JJFloatingActionButton (0.7.2)
   - PopupDialog (0.6.2)
   - SCLAlertView (0.7.0)
+  - WXImageCompress (0.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - CommonCryptoModule (~> 1.0.1)
+  - CropViewController
   - DropDown
   - ESPullToRefresh (~> 2.7)
+  - ImagePicker
   - JJFloatingActionButton
   - PopupDialog (~> 0.6)
   - SCLAlertView
+  - WXImageCompress
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
+  CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
   DropDown: 75562633a203f57a917021b4edb96c76f293b0ec
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
   JJFloatingActionButton: 3b02d473e847f5120df8b6859d9b2811f4ec0821
   PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  WXImageCompress: 4003213a788574c3e307faec0130359c52e43887
 
-PODFILE CHECKSUM: 36603949851e0d9afa841d063a4c587ce0438a94
+PODFILE CHECKSUM: 7847ec3e2a8a7ca2bf7808d70319c7ab2064f780
 
 COCOAPODS: 1.2.1

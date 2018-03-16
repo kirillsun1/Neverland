@@ -42,10 +42,10 @@ struct Time {
     var month: Int
     var year: Int
     
-    init(from time: NSDictionary?) {
-        day = (time?.value(forKey: "day") as? Int) ?? 1
-        month = (time?.value(forKey: "month") as? Int) ?? 1
-        year = (time?.value(forKey: "year") as? Int) ?? 1990
+    init(from json: NSDictionary?) {
+        day = (json?.value(forKey: "day") as? Int) ?? 1
+        month = (json?.value(forKey: "month") as? Int) ?? 1
+        year = (json?.value(forKey: "year") as? Int) ?? 1970
     }
 }
 
