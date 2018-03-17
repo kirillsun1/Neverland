@@ -20,7 +20,7 @@ class SuggestQuestViewController: UIViewController {
     let MIN_QUEST_DESCRIPTION_COUNT = 10
     let MIN_QUEST_TITLE_COUNT = 4
 
-    let questApi = FakeQuestApi() // change when ready
+    let questApi = NLQuestApi() // change when ready
     let groupId = 0 // get through segue.
     
     var questTitle: String?

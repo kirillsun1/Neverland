@@ -18,13 +18,8 @@ class RegistrationField: UITextField {
             !self.text!.isEmpty &&
             self.text!.matches(pattern: checkRegex)
         
-        if !result {
-            self.layer.borderWidth = 3.5
-            self.layer.borderColor = UIColor.red.cgColor
-        } else {
-            self.layer.borderWidth = 0.0
-            self.layer.borderColor = UIColor.clear.cgColor
-        }
+        self.layer.borderWidth = !result ? 3.5 : 0.0
+        self.layer.borderColor = !result ? UIColor.red.cgColor : UIColor.clear.cgColor
         
         return result
     }

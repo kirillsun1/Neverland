@@ -25,11 +25,11 @@ class RegistrerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginLbl.checkRegex = "^[a-zA-Z0-9]{4,12}$"
-        pwdLabel.checkRegex = "^[a-zA-Z0-9]{6,16}$"
-        nameLbl.checkRegex = "^\\w+$"
-        surnameLbl.checkRegex = "^\\w+$"
-        emailLbl.checkRegex = "^[^@]+@[^@]+\\.[a-zA-Z0-9]+$"
+        loginLbl.checkRegex = "^[a-z0-9_-]{6,16}$$"
+        pwdLabel.checkRegex = "^[a-z0-9_-]{6,18}$"
+        nameLbl.checkRegex = "^[A-Za-z ,.'-]+$"
+        surnameLbl.checkRegex = "^[A-Za-z ,.'-]+$"
+        emailLbl.checkRegex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
         textFields = [loginLbl, pwdLabel, nameLbl, surnameLbl, emailLbl]
     }
     
@@ -49,15 +49,17 @@ class RegistrerViewController: UIViewController {
             fatalError("Could not create hash of pwd while registering")
         }
         
+        // optionals can be force-unwrapped securely, cause to get into this function, all fields should be filled.
+        
         let rData = RegistrationData(login: loginLbl.text!,
                                      password: hash, firstName: nameLbl.text!,
                                      secondName: surnameLbl.text!, email: emailLbl.text!)
         
-        FakeAuthApi().registerAccount(withData:rData) { response in
+        NLAuthApi().registerAccount(withData:rData) { response in
             if response.code == .Successful {
                 User.sharedInstance.token = response.message
-                User.sharedInstance.userName = loginLbl.text!
-                performSegue(withIdentifier: "LoginSegue", sender: nil)
+                User.sharedInstance.userName = self.loginLbl.text!
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
             } else {
                 SCLAlertView().showError("Registration error", subTitle: "Username is already taken.")
             }

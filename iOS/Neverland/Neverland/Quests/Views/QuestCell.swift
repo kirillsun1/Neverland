@@ -11,10 +11,18 @@ import UIKit
 class QuestCell: UITableViewCell {
 
     @IBOutlet weak var questName: UILabel!
+    @IBOutlet weak var questTakenDate: UILabel!
        
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    func fillWith(quest: Quest) {
+        questName.text = quest.title
+        questTakenDate.text = "01.01.1990"
+        if let time = quest.datePicked {
+            questTakenDate.text = "\(time.day).\(time.month).\(time.year)"
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
