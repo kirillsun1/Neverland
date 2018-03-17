@@ -1,7 +1,7 @@
 package ee.knk.neverland.tools;
 
 import ee.knk.neverland.answer.QuestPojo;
-import ee.knk.neverland.answer.QuestsAnswer;
+import ee.knk.neverland.answer.QuestList;
 import ee.knk.neverland.answer.UserPojo;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
@@ -15,6 +15,7 @@ public class QuestPacker {
         user.username = quest.getUser().getUsername();
         user.firstName = quest.getUser().getFirstName();
         user.secondName = quest.getUser().getSecondName();
+        user.userId = quest.getUser().getId();
         QuestPojo neededData = new QuestPojo();
         neededData.addingTime = quest.getTime();
         neededData.title = quest.getTitle();
@@ -24,19 +25,19 @@ public class QuestPacker {
         return neededData;
     }
 
-    public QuestsAnswer packMyQuests(List<TakenQuest> information) {
-        QuestsAnswer answer = new QuestsAnswer();
+    public QuestList packMyQuests(List<TakenQuest> information) {
+        QuestList packedQuests = new QuestList();
         for (TakenQuest pointer : information) {
             Quest quest = pointer.getQuest();
             QuestPojo neededData = packQuest(quest);
             neededData.takenTime = pointer.getTimeQuestTaken();
-            answer.quests.add(neededData);
+            packedQuests.quests.add(neededData);
         }
-        return answer;
+        return packedQuests;
     }
 
-    public QuestsAnswer packAllQuests(List<Quest> information) {
-        QuestsAnswer answer = new QuestsAnswer();
+    public QuestList packAllQuests(List<Quest> information) {
+        QuestList answer = new QuestList();
         for (Quest quest : information) {
             answer.quests.add(packQuest(quest));
         }

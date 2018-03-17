@@ -27,6 +27,9 @@ public class TakenQuest {
     @JoinColumn(name = "quest_fk", nullable = false)
     @Getter @Setter private Quest quest;
 
+    @Column(name = "active")
+    @Getter @Setter private boolean active;
+
     @Column(name = "taken_time")
     @Getter
     @Setter
@@ -38,5 +41,6 @@ public class TakenQuest {
     public TakenQuest(User user, Quest quest) {
         this.user = user;
         this.quest = quest;
+        active = true;
     }
 }

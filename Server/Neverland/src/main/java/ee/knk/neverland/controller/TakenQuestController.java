@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.QuestsAnswer;
+import ee.knk.neverland.answer.QuestList;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Quest;
@@ -33,7 +33,7 @@ public class TakenQuestController {
         this.questController = questController;
     }
 
-    @RequestMapping(value="/takequest")
+    @RequestMapping(value="/takeQuest")
     public String takeQuest(@RequestParam(value="token") String token, @RequestParam(value="qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -48,7 +48,7 @@ public class TakenQuestController {
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
-    @RequestMapping(value="/getmyquests")
+    @RequestMapping(value="/getMyQuests")
     public String getQuestsTakenByUser(@RequestParam(value = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -61,7 +61,7 @@ public class TakenQuestController {
     }
 
 
-    @RequestMapping(value = "/dropquest")
+    @RequestMapping(value = "/dropQuest")
     public String deleteQuestFromMyQuests(@RequestParam(value="token") String token, @RequestParam(value="qid")Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -72,11 +72,11 @@ public class TakenQuestController {
         if (!takenQuest.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_NOT_TAKEN));
         }
-        takenQuestsService.delete(takenQuest.get().getId());
+        takenQuestsService.archive(takenQuest.get().getId());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
-    @RequestMapping(value="/getqueststotake")
+    @RequestMapping(value="/getQuestsToTake")
     public String getQuests(@RequestParam(value="token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -85,8 +85,7 @@ public class TakenQuestController {
         List<Quest> quests = questController.getQuests();
         QuestPacker packer = new QuestPacker();
         List<Quest> needed = getNewQuests(quests, user.get());
-        System.out.println("sth");
-        QuestsAnswer answer = packer.packAllQuests(needed);
+        QuestList answer = packer.packAllQuests(needed);
         return gson.toJson(answer);
     }
 

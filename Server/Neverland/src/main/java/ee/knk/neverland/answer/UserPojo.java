@@ -9,4 +9,6 @@ public class UserPojo {
     public String firstName;
     @SerializedName("second_name")
     public String secondName;
+    @SerializedName("u_id")
+    public Long userId;
 }

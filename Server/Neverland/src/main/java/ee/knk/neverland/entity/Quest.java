@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "quests")
 public class Quest {
     public Quest() {
 
@@ -45,7 +45,7 @@ public class Quest {
     @Getter @Setter private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Solution> solutions;
+    private Set<Proof> proofs;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @Getter @Setter private Set<TakenQuest> setOfBeingTaken;
