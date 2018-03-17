@@ -1,6 +1,6 @@
 package knk.ee.neverland.api
 
-import knk.ee.neverland.models.Proof
+import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.models.Quest
 
 interface QuestApi {
@@ -8,7 +8,7 @@ interface QuestApi {
 
     fun submitNewQuest(quest: Quest)
 
-    fun submitProof(proof: Proof)
+    fun submitProof(proof: ProofToSubmit)
 
     fun takeQuest(id: Int)
 

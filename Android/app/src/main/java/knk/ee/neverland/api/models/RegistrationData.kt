@@ -1,4 +1,4 @@
-package knk.ee.neverland.models
+package knk.ee.neverland.api.models
 
 class RegistrationData {
     var login: String = ""

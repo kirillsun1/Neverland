@@ -34,12 +34,19 @@
             android:textSize="@dimen/standard_font_size"
             android:textStyle="bold" />
 
-        <ListView
-            android:id="@+id/all_quests_listview"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/all_quests_list_view_swiper"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/background"
-            android:dividerHeight="3sp" />
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/all_quests_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/background"
+                android:dividerHeight="2sp" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

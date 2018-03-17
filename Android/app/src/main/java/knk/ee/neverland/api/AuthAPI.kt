@@ -1,7 +1,7 @@
 package knk.ee.neverland.api
 
+import knk.ee.neverland.api.models.RegistrationData
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.models.RegistrationData
 
 interface AuthAPI {
     @Throws(AuthAPIException::class)

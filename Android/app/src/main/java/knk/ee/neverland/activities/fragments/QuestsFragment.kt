@@ -21,9 +21,9 @@ import knk.ee.neverland.activities.AllQuestsActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.views.CustomFloatingActionButton
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.views.CustomFloatingActionButton
 import knk.ee.neverland.views.questview.MyQuestElementAdapter
 
 class QuestsFragment : Fragment() {
@@ -81,6 +81,8 @@ class QuestsFragment : Fragment() {
         intent.putExtra("questID", quest.id)
         intent.putExtra("questTitle", quest.title)
         intent.putExtra("questDesc", quest.description)
+        intent.putExtra("questAuthor", "${quest.creator.firstName} ${quest.creator.secondName}")
+        intent.putExtra("questCreatedDate", quest.timeCreated.toString())
 
         startActivity(intent)
     }

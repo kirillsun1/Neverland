@@ -44,7 +44,8 @@ class MyQuestElementAdapter(val context: Context) : BaseAdapter() {
         }
 
         viewHolder.questName!!.text = element.title
-        viewHolder.questTimeTaken!!.text = ""
+        viewHolder.questTimeTaken!!.text = context.getString(R.string.quest_taken_data)
+            .format(element.timeTaken.toString())
 
         return convertView
     }

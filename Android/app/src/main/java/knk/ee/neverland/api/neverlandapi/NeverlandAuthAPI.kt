@@ -3,8 +3,8 @@ package knk.ee.neverland.api.neverlandapi
 import com.google.common.hash.Hashing
 import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
+import knk.ee.neverland.api.models.RegistrationData
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.models.RegistrationData
 import knk.ee.neverland.network.NetworkGetConnection
 import knk.ee.neverland.utils.Constants
 import java.net.HttpURLConnection
@@ -64,7 +64,7 @@ class NeverlandAuthAPI : AuthAPI {
 
     override fun isTokenActive(token: String): Boolean {
         val data = NetworkGetConnection(API_LINK)
-                .setAction("tokencheck")
+            .setAction("tokenCheck")
                 .addParam("token", token)
                 .onFailed(standardOnFailed)
                 .getContent()

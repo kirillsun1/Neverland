@@ -15,17 +15,12 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <Spinner
+        <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/page_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:dropDownWidth="@dimen/main_spinner_dropdown_width"
-            android:entries="@array/main_dropdown_menu_items"
-            android:textColor="#ffffff"
-            android:textSize="22sp"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+            android:background="@android:color/transparent"
+            android:entries="@array/main_dropdown_menu_items" />
 
     </android.support.v7.widget.Toolbar>
 

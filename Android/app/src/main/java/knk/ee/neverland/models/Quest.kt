@@ -1,6 +1,7 @@
 package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
+import knk.ee.neverland.datetime.DateTime
 
 class Quest {
     var id: Int = 0
@@ -14,8 +15,11 @@ class Quest {
     @SerializedName("author")
     var creator: User = User()
 
-    // @SerializedName("time_created")
-    // var timeCreated: LocalDateTime? = null // TODO: Date for older api
+    @SerializedName("time_created")
+    var timeCreated: DateTime = DateTime()
+
+    @SerializedName("time_taken")
+    var timeTaken: DateTime = DateTime()
 
     var groupID: Int = 0
 }

@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.api.models.RegistrationData
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.models.RegistrationData
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
 
@@ -211,8 +211,8 @@ class RegistrationActivity : AppCompatActivity() {
                 Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
                 Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
                 Constants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
-                Constants.SUCCESS -> finishNow(registrationData.login, token)
-                else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
+                Constants.SUCCESS -> finish()
+                else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
             }
         }
     }
