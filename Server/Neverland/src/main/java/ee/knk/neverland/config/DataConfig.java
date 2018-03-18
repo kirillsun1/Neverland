@@ -30,8 +30,8 @@ public class DataConfig {
     @Bean
     MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("1000KB");
-        factory.setMaxRequestSize("1000KB");
+        factory.setMaxFileSize("5000KB");
+        factory.setMaxRequestSize("5000KB");
         return factory.createMultipartConfig();
     }
 
