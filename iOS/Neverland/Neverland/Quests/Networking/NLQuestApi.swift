@@ -29,14 +29,17 @@ class NLQuestApi: QuestApi {
     func fetchingLogic(url: String, onComplete: @escaping ([NSDictionary])->()) {
         let request = Alamofire.request(url, method: .get,
                                         parameters: ["token": User.sharedInstance.token ?? ""])
-        
-        request.responseJSON { response in
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+
+        request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
                 guard let questsDict = JSON.value(forKey: "quests") as? [NSDictionary] else {
                     return
                 }
-                onComplete(questsDict)
+                DispatchQueue.main.async {
+                    onComplete(questsDict)
+                }
             }
         }
     }
@@ -50,8 +53,10 @@ class NLQuestApi: QuestApi {
                       "desc": description,
                       "title": title,
                       "gid": groupId] as [String : Any]
-        questActionLogic(url: self.urlBase+"/submitQuest", params: params, onComplete: onComplete)
-        SwiftSpinner.hide()
+        questActionLogic(url: self.urlBase+"/submitQuest", params: params, onComplete: { response in
+            onComplete(response)
+            SwiftSpinner.hide()
+        })
     }
     
     func takeQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
@@ -60,18 +65,24 @@ class NLQuestApi: QuestApi {
     }
     
     func dropQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        questActionLogic(url: self.urlBase + "/dropquest", params: ["token": User.sharedInstance.token ?? "",
+        questActionLogic(url: self.urlBase + "/dropQuest", params: ["token": User.sharedInstance.token ?? "",
                                                             "qid": qid], onComplete: onComplete)
     }
     
     func questActionLogic(url: String, params:[String:Any], onComplete: @escaping (QuestApiResponse) -> ()) {
         let request = Alamofire.request(url, method: .get, parameters: params)
-        request.responseJSON { response in
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+
+        request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
                 if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
-                    onComplete(QuestApiResponse(code: .Successful, message: nil))
+                    DispatchQueue.main.async {
+                        onComplete(QuestApiResponse(code: .Successful, message: nil))
+                    }
                 } else {
-                    onComplete(QuestApiResponse(code: .Error, message: nil))
+                    DispatchQueue.main.async {
+                        onComplete(QuestApiResponse(code: .Error, message: nil))
+                    }
                 }
             }
         }

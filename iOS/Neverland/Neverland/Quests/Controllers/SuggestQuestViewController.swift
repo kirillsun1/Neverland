@@ -41,6 +41,7 @@ class SuggestQuestViewController: UIViewController {
 
     
     @IBAction func savePressed() {
+        view.endEditing(true)
         questApi.registerQuest(title: questTitleLbl.text!, description: detailedTextView.text!, groupId: groupId) { response in
             if response.code == .Successful {
                 self.navigationController?.popViewController(animated: true)
@@ -58,4 +59,6 @@ extension SuggestQuestViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         inputInfoChanged()
     }
+    
+
 }

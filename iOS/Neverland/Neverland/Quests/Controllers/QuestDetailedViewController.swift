@@ -12,8 +12,11 @@ class QuestDetailedViewController: UIViewController {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var questDescrView: UITextView!
+    @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var delBtn: UIBarButtonItem!
     
     var quest: Quest?
+    var finished = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,14 @@ class QuestDetailedViewController: UIViewController {
         
         self.navigationItem.title = quest?.title
         self.questDescrView.text = quest?.description
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        sendBtn.isHidden = finished
+        sendBtn.isEnabled = !finished
+        delBtn.isEnabled = !finished
+        if finished {  NLQuestApi().dropQuest(qid: quest!.id) { response in } }
     }
     
     @IBAction func deleteQuest() {

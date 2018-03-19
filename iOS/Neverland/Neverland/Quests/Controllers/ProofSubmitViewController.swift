@@ -42,6 +42,10 @@ class ProofSubmitViewController: UIViewController {
         print("img: \(imageView.description), comment: \(commentField.text!)")
         api.submitSolution(qid: quest.id, img: imageView.image!, comment: commentField.text) { response in
             if response.code == .Successful {
+                guard let detVC = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-2] as? QuestDetailedViewController else {
+                    fatalError()
+                }
+                detVC.finished = true
                 self.navigationController?.popViewController(animated: true)
             } else {
                 SCLAlertView().showError("Uploading error", subTitle: (response.message as? String) ?? "Proof was not uploaded")
