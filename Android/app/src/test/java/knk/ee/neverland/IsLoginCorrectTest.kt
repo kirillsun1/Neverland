@@ -28,12 +28,12 @@ class IsLoginCorrectTest {
 
     @Test
     fun testLoginIsCorrectIfMatchesLength() {
-        assertTrue(Utils.loginIsCorrect("4sym"))
-        assertTrue(Utils.loginIsCorrect("5syms"))
-        assertTrue(Utils.loginIsCorrect("_okok"))
+        assertTrue(Utils.loginIsCorrect("6symmm"))
+        assertTrue(Utils.loginIsCorrect("7symskk"))
+        assertTrue(Utils.loginIsCorrect("_okoklll"))
         assertTrue(Utils.loginIsCorrect("_okokokok"))
 
-        assertTrue(Utils.loginIsCorrect("aaaaaaaaaaaaaaaa")) // 16 syms ok!
+        assertTrue(Utils.loginIsCorrect("kirillsunodddddd")) // 16 syms ok!
     }
 
     @Test
@@ -73,14 +73,7 @@ class IsLoginCorrectTest {
     }
 
     @Test
-    fun testLoginWithUpperSymbolsIsNotCorrect() {
-        assertFalse(Utils.loginIsCorrect("notNormal_login1"))
-    }
-
-    /*
-    @Test
     fun testLoginIsIncorrectIfContainsOnlyNumbers() {
         assertFalse(Utils.loginIsCorrect("0123456789"))
     }
-    */
 }

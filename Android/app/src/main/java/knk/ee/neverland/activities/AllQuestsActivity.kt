@@ -15,6 +15,7 @@ import android.widget.ListView
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.views.questview.QuestElementAdapter
@@ -59,18 +60,18 @@ class AllQuestsActivity : AppCompatActivity() {
         val message = getString(R.string.taking_quest_confirmation).format(quest.title)
 
         AlertDialog.Builder(this)
-                .setMessage(message)
-                .setCancelable(true)
-                .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
-                    takingQuest = true
-                    TakeQuestTask(quest.id, pos).execute()
-                    dialogInterface.cancel()
-                })
-                .setNegativeButton(getString(R.string.no), { dialogInterface: DialogInterface, _: Int ->
-                    dialogInterface.cancel()
-                })
-                .create()
-                .show()
+            .setMessage(message)
+            .setCancelable(true)
+            .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
+                takingQuest = true
+                TakeQuestTask(quest.id, pos).execute()
+                dialogInterface.cancel()
+            })
+            .setNegativeButton(getString(R.string.no), { dialogInterface: DialogInterface, _: Int ->
+                dialogInterface.cancel()
+            })
+            .create()
+            .show()
     }
 
     private fun showToast(error: String) {
@@ -79,6 +80,7 @@ class AllQuestsActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class UpdateQuestsTask : AsyncTask<Void, Void, Boolean>() {
+
         private var questsListGot: List<Quest>? = null
 
         override fun doInBackground(vararg p0: Void?): Boolean {
@@ -86,6 +88,8 @@ class AllQuestsActivity : AppCompatActivity() {
                 questsListGot = DefaultAPI.questAPI.getQuestsToTake()
                 return true
             } catch (ex: QuestAPIException) {
+                return false
+            } catch (ex: NetworkException) {
                 return false
             }
         }
@@ -103,11 +107,14 @@ class AllQuestsActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class TakeQuestTask(val questID: Int, val positionInAdapter: Int) : AsyncTask<Void, Void, Boolean>() {
+
         override fun doInBackground(vararg p0: Void?): Boolean {
             try {
                 DefaultAPI.questAPI.takeQuest(questID)
                 return true
             } catch (ex: QuestAPIException) {
+                return false
+            } catch (ex: NetworkException) {
                 return false
             }
         }

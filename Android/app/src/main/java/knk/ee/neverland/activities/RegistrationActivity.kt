@@ -1,7 +1,6 @@
 package knk.ee.neverland.activities
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -14,6 +13,7 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.RegistrationData
 import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
 
@@ -69,18 +69,11 @@ class RegistrationActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    private fun finishNow(login: String, token: String) {
-        val intent = Intent()
-        intent.putExtra("token", token)
-        intent.putExtra("login", login)
-        setResult(Constants.SUCCESS, intent)
-        finish()
-    }
-
     private fun validateFields(): Boolean {
         resetErrors()
 
-        return validateLogin() && validatePassword() && validateNames() && validateEmail() && checkAgreement()
+        return validateLogin() && validatePassword() && validateNames() && validateEmail()
+            && checkAgreement()
     }
 
     private fun validateLogin(): Boolean {
@@ -195,23 +188,26 @@ class RegistrationActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class RegisterTask(val registrationData: RegistrationData) : AsyncTask<Void, Void, Int>() {
+
         private var token: String = ""
 
         override fun doInBackground(vararg p0: Void?): Int {
             try {
                 token = DefaultAPI.authAPI.registerAccount(registrationData)
-                return Constants.SUCCESS
+                return Constants.SUCCESS_CODE
             } catch (ex: AuthAPIException) {
+                return ex.code
+            } catch (ex: NetworkException) {
                 return ex.code
             }
         }
 
         override fun onPostExecute(code: Int?) {
             when (code) {
-                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                Constants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
-                Constants.SUCCESS -> finish()
+                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
+                Constants.FAIL_CODE -> showToast(getString(R.string.error_incorrect_fields))
+                Constants.SUCCESS_CODE -> finish()
                 else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
             }
         }

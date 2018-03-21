@@ -21,6 +21,7 @@ import knk.ee.neverland.activities.AllQuestsActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.views.CustomFloatingActionButton
@@ -64,7 +65,7 @@ class QuestsFragment : Fragment() {
 
         // Initialize material sheet FAB
         materialSheetFab = MaterialSheetFab<CustomFloatingActionButton>(fab, sheetView, overlay,
-                sheetColor, fabColor)
+            sheetColor, fabColor)
 
         view!!.findViewById<TextView>(R.id.fab_sheet_item_suggest_quest).setOnClickListener {
             openSuggestQuestActivity()
@@ -99,12 +100,13 @@ class QuestsFragment : Fragment() {
         materialSheetFab?.hideSheet()
     }
 
-    private fun showToast(message: String) {
+    private fun showMessage(message: String) {
         Toast.makeText(view!!.context, message, Toast.LENGTH_LONG).show()
     }
 
     @SuppressLint("StaticFieldLeak")
     private inner class GetMyQuestsTask : AsyncTask<Void, Void, Boolean>() {
+
         private var listOfQuests: List<Quest> = emptyList()
 
         override fun doInBackground(vararg p0: Void?): Boolean {
@@ -114,6 +116,8 @@ class QuestsFragment : Fragment() {
                 return true
             } catch (ex: QuestAPIException) {
                 return false
+            } catch (ex: NetworkException) {
+                return false
             }
         }
 
@@ -122,7 +126,9 @@ class QuestsFragment : Fragment() {
                 myQuestElementAdapter!!.questsList = listOfQuests
                 myQuestElementAdapter!!.notifyDataSetChanged()
             } else {
-                showToast(getString(R.string.error_failed_getting_quests))
+                if (isAdded) {
+                    showMessage(getString(R.string.error_failed_getting_quests))
+                }
             }
         }
     }

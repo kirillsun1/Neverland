@@ -5,47 +5,33 @@ import knk.ee.neverland.api.QuestApi
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.network.NetworkGetConnection
+import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody
-import java.net.HttpURLConnection
 
 class NeverlandQuestAPI : QuestApi {
     override var token: String = ""
 
     private val API_LINK = "http://vrot.bounceme.net:8080"
 
-    private val standardOnFailed = { code: Int ->
-        when (code) {
-            HttpURLConnection.HTTP_NOT_FOUND ->
-                throw QuestAPIException(Constants.BAD_REQUEST_TO_API)
-
-            HttpURLConnection.HTTP_INTERNAL_ERROR ->
-                throw QuestAPIException(Constants.BAD_REQUEST_TO_API)
-
-            else -> throw QuestAPIException(code)
-        }
-    }
-
     override fun submitNewQuest(quest: Quest) {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("submitQuest")
+        val link = URLLinkBuilder(API_LINK, "submitQuest")
             .addParam("token", token)
             .addParam("title", quest.title)
             .addParam("desc", quest.description)
             .addParam("gid", quest.groupID.toString())
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
     }
 
@@ -59,105 +45,100 @@ class NeverlandQuestAPI : QuestApi {
                 RequestBody.create(MediaType.parse("image"), proof.content))
             .build()
 
-        val urlString = URLLinkBuilder(API_LINK, "upload")
+        val link = URLLinkBuilder(API_LINK, "upload")
             .finish()
 
-        val request = Request.Builder()
-            .url(urlString)
-            .post(requestBody)
-            .build()
+        val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
 
-        val response = OkHttpClient().newCall(request).execute()
+        val responseObj = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
 
-        if (!response.isSuccessful) {
-            standardOnFailed(response.code())
-        }
-
-        val gson = Gson()
-        val responseBody = response.body()!!.string()
-        val responseObj = gson.fromJson(responseBody, NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
-
-        if (responseObj.code != Constants.SUCCESS) {
+        if (responseObj.code != Constants.SUCCESS_CODE) {
             throw QuestAPIException(responseObj.code)
         }
     }
 
     override fun takeQuest(id: Int) {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("takeQuest")
+        val link = URLLinkBuilder(API_LINK, "takeQuest")
             .addParam("token", token)
             .addParam("qid", id.toString())
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
     }
 
     override fun dropQuest(id: Int) {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("dropQuest")
+        val link = URLLinkBuilder(API_LINK, "dropQuest")
             .addParam("token", token)
             .addParam("qid", id.toString())
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
     }
 
     override fun getQuest(id: Int): Quest {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("getQuest")
+        val link = URLLinkBuilder(API_LINK, "getQuest")
             .addParam("token", token)
             .addParam("qid", id.toString())
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.GetQuestAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
 
-        return response.quest
+        return responseObject.quest
     }
 
     override fun getMyQuests(): List<Quest> {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("getMyQuests")
+        val link = URLLinkBuilder(API_LINK, "getMyQuests")
             .addParam("token", token)
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
 
-        return response.quests
+        return responseObject.quests
     }
 
     override fun getQuestsToTake(): List<Quest> {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("getQuestsToTake")
+        val link = URLLinkBuilder(API_LINK, "getQuestsToTake")
             .addParam("token", token)
-            .onFailed(standardOnFailed)
-            .getContent()
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        if (response.code != Constants.SUCCESS) {
-            throw QuestAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw QuestAPIException(responseObject.code)
         }
 
-        return response.quests
+        return responseObject.quests
     }
 }

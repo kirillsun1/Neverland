@@ -14,6 +14,7 @@ import com.esafirm.imagepicker.features.ImagePicker
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.ProofToSubmit
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.utils.Constants
 import java.io.File
@@ -93,18 +94,20 @@ class SubmitProofActivity : AppCompatActivity() {
             try {
                 submittingExecuted = true
                 DefaultAPI.questAPI.submitProof(makeProofToSubmit())
-                return Constants.SUCCESS
+                return Constants.SUCCESS_CODE
             } catch (ex: QuestAPIException) {
+                return ex.code
+            } catch (ex: NetworkException) {
                 return ex.code
             }
         }
 
         override fun onPostExecute(code: Int?) {
             when (code) {
-                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                Constants.FAILED -> showToast(getString(R.string.error_submitting_proof))
-                Constants.SUCCESS -> finish()
+                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
+                Constants.FAIL_CODE -> showToast(getString(R.string.error_submitting_proof))
+                Constants.SUCCESS_CODE -> finish()
                 else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
             }
 

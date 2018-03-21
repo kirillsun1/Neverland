@@ -53,7 +53,7 @@ class CustomFloatingActionButton : FloatingActionButton, AnimatedFab {
             // center of the FAB
             if (pivotX == 0f || pivotY == 0f) {
                 anim = ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f,
-                        Animation.RELATIVE_TO_SELF, 0.5f)
+                    Animation.RELATIVE_TO_SELF, 0.5f)
             } else {
                 anim = ScaleAnimation(0f, 1f, 0f, 1f, pivotX, pivotY)
             }
@@ -87,7 +87,7 @@ class CustomFloatingActionButton : FloatingActionButton, AnimatedFab {
 
     private fun setTranslation(translationX: Float, translationY: Float) {
         animate().setInterpolator(interpolator).setDuration(FAB_ANIM_DURATION.toLong())
-                .translationX(translationX).translationY(translationY)
+            .translationX(translationX).translationY(translationY)
     }
 
     companion object {

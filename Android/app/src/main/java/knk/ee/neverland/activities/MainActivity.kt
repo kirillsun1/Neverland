@@ -2,6 +2,7 @@ package knk.ee.neverland.activities
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
@@ -28,21 +29,21 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.setTextVisibility(true)
 
         bottomNavigationViewEx.onNavigationItemSelectedListener =
-                BottomNavigationView.OnNavigationItemSelectedListener { item ->
-                    when (item.itemId) {
-                        R.id.navigation_feed -> setMainFragment(FeedFragment())
+            BottomNavigationView.OnNavigationItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.navigation_feed -> setMainFragment(FeedFragment())
 
-                        R.id.navigation_quests -> setMainFragment(QuestsFragment())
+                    R.id.navigation_quests -> setMainFragment(QuestsFragment())
 
-                        R.id.navigation_search -> setMainFragment(SearchFragment())
+                    R.id.navigation_search -> setMainFragment(SearchFragment())
 
-                        R.id.navigation_groups -> setMainFragment(GroupsFragment())
+                    R.id.navigation_groups -> setMainFragment(GroupsFragment())
 
-                        R.id.navigation_profile -> setMainFragment(ProfileFragment())
-                    }
-
-                    true
+                    R.id.navigation_profile -> setMainFragment(ProfileFragment())
                 }
+
+                true
+            }
 
         bottomNavigationViewEx.currentItem = 0
     }

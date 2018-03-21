@@ -1,8 +1,9 @@
 package knk.ee.neverland.network
 
-class URLLinkBuilder(val link: String, val action: String) {
-    private var params: Int = 0
+class URLLinkBuilder(link: String, action: String) {
     private val paramsBuilder: StringBuilder = StringBuilder()
+
+    private var params: Int = 0
 
     init {
         paramsBuilder

@@ -78,10 +78,10 @@ class CreateQuestActivity : AppCompatActivity() {
     }
 
     private fun isQuestNameCorrect(name: String) = name.length >= Constants.QUEST_NAME_MINIMUM_SYMBOLS
-            && name.length <= Constants.QUEST_NAME_MAXIMUM_SYMBOLS
+        && name.length <= Constants.QUEST_NAME_MAXIMUM_SYMBOLS
 
     private fun isQuestDescCorrect(description: String) = description.length >= Constants.QUEST_DESC_MINIMUM_SYMBOLS
-            && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
+        && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
 
     private fun blockSaveButton(block: Boolean) {
         saveButton?.isEnabled = !block
@@ -91,10 +91,11 @@ class CreateQuestActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class SubmitQuestTask : AsyncTask<Void, Void, Int>() {
+
         override fun doInBackground(vararg p0: Void?): Int {
             try {
                 DefaultAPI.questAPI.submitNewQuest(questToSubmit)
-                return Constants.SUCCESS
+                return Constants.SUCCESS_CODE
             } catch (ex: QuestAPIException) {
                 return ex.code
             }
@@ -102,10 +103,10 @@ class CreateQuestActivity : AppCompatActivity() {
 
         override fun onPostExecute(code: Int?) {
             when (code) {
-                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                Constants.FAILED -> showToast(getString(R.string.error_submit_failed))
-                Constants.SUCCESS -> finish()
+                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
+                Constants.FAIL_CODE -> showToast(getString(R.string.error_submit_failed))
+                Constants.SUCCESS_CODE -> finish()
                 else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
             }
             blockSaveButton(false)

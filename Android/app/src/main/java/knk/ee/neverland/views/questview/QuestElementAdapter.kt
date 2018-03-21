@@ -74,7 +74,7 @@ class QuestElementAdapter(val context: Context) : BaseAdapter(), Filterable {
         viewHolder.questName!!.text = element.title
         viewHolder.questDesc!!.text = element.description
         viewHolder.questAuthor!!.text = context.getString(R.string.quest_author,
-                element.creator.firstName, element.creator.secondName)
+            element.creator.firstName, element.creator.secondName)
 
         return convertView!!
     }
@@ -89,7 +89,7 @@ class QuestElementAdapter(val context: Context) : BaseAdapter(), Filterable {
         override fun performFiltering(searchText: CharSequence?): FilterResults {
             val newList = questsList.filter {
                 it.title.toLowerCase().contains(searchText.toString().toLowerCase())
-                        || it.description.toLowerCase().contains(searchText.toString().toLowerCase())
+                    || it.description.toLowerCase().contains(searchText.toString().toLowerCase())
             }
 
             val filterResults = FilterResults()

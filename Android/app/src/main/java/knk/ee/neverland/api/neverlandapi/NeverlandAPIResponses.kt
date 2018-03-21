@@ -4,30 +4,30 @@ import knk.ee.neverland.models.Quest
 
 class NeverlandAPIResponses {
     data class IsKeyActiveResponse(
-            val code: Int
+        val code: Int
     )
 
     data class RegistrationResponse(
-            val code: Int,
-            val token: String
+        val code: Int,
+        val token: String
     )
 
     data class AttemptLoginResponse(
-            val code: Int,
-            val token: String
+        val code: Int,
+        val token: String
     )
 
     data class SimpleQuestAPIResponse(
-            val code: Int
+        val code: Int
     )
 
     data class GetQuestsAPIResponse(
-            val code: Int,
-            val quests: List<Quest>
+        val code: Int,
+        val quests: List<Quest>
     )
 
     data class GetQuestAPIResponse(
-            val code: Int,
-            val quest: Quest
+        val code: Int,
+        val quest: Quest
     )
 }

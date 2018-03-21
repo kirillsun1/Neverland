@@ -21,6 +21,7 @@ import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
 
@@ -57,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Constants.SUCCESS) {
+        if (resultCode == Constants.SUCCESS_CODE) {
             val token = data!!.getStringExtra("token")
             val login = data.getStringExtra("login")
             saveUserdataToTheSystemSettings(login, token)
@@ -117,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
 
         mLoginFormView!!.visibility = if (show) View.GONE else View.VISIBLE
         mLoginFormView!!.animate().setDuration(shortAnimTime.toLong()).alpha(
-                (if (show) 0 else 1).toFloat()).setListener(object : AnimatorListenerAdapter() {
+            (if (show) 0 else 1).toFloat()).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 mLoginFormView!!.visibility = if (show) View.GONE else View.VISIBLE
             }
@@ -125,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
 
         mProgressView!!.visibility = if (show) View.VISIBLE else View.GONE
         mProgressView!!.animate().setDuration(shortAnimTime.toLong()).alpha(
-                (if (show) 1 else 0).toFloat()).setListener(object : AnimatorListenerAdapter() {
+            (if (show) 1 else 0).toFloat()).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 mProgressView!!.visibility = if (show) View.VISIBLE else View.GONE
             }
@@ -136,7 +137,7 @@ class LoginActivity : AppCompatActivity() {
         DefaultAPI.setUserData(login, token)
 
         val sharedPreferences = getSharedPreferences(resources.getString(R.string.shared_pref_name),
-                Context.MODE_PRIVATE)
+            Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString(resources.getString(R.string.auth_key_address), token)
         editor.putString(resources.getString(R.string.auth_login_address), login)
@@ -155,13 +156,16 @@ class LoginActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class UserLoginTask internal constructor(private val mLogin: String, private val mPassword: String) : AsyncTask<Void, Void, Int>() {
+
         override fun doInBackground(vararg params: Void): Int? {
             try {
                 saveUserdataToTheSystemSettings(mLogin,
-                        DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
-                return Constants.SUCCESS
-            } catch (e: AuthAPIException) {
-                return e.code
+                    DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
+                return Constants.SUCCESS_CODE
+            } catch (ex: AuthAPIException) {
+                return ex.code
+            } catch (ex: NetworkException) {
+                return ex.code
             }
         }
 
@@ -170,10 +174,10 @@ class LoginActivity : AppCompatActivity() {
             showProgress(false)
 
             when (code) {
-                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                Constants.FAILED -> showToast(getString(R.string.error_incorrect_field))
-                Constants.SUCCESS -> openMainActivityAndFinishThisActivity()
+                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
+                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
+                Constants.FAIL_CODE -> showToast(getString(R.string.error_incorrect_field))
+                Constants.SUCCESS_CODE -> openMainActivityAndFinishThisActivity()
                 else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
             }
         }

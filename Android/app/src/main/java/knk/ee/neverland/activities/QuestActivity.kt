@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.esafirm.imagepicker.features.ImagePicker
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.views.questview.QuestPictureAdapter
 
@@ -128,6 +129,8 @@ class QuestActivity : AppCompatActivity() {
                 DefaultAPI.questAPI.dropQuest(questID)
                 return true
             } catch (ex: QuestAPIException) {
+                return false
+            } catch (ex: NetworkException) {
                 return false
             }
         }

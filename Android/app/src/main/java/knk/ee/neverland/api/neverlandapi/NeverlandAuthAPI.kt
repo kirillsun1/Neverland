@@ -4,79 +4,69 @@ import com.google.common.hash.Hashing
 import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
 import knk.ee.neverland.api.models.RegistrationData
+import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
 import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.network.NetworkGetConnection
+import knk.ee.neverland.network.NetworkRequester
+import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
-import java.net.HttpURLConnection
 import java.nio.charset.StandardCharsets
 
 class NeverlandAuthAPI : AuthAPI {
-    private val API_LINK = "http://vrot.bounceme.net:8080"
-
-    private val standardOnFailed = { code: Int ->
-        when (code) {
-            HttpURLConnection.HTTP_NOT_FOUND ->
-                throw AuthAPIException(Constants.BAD_REQUEST_TO_API)
-            HttpURLConnection.HTTP_INTERNAL_ERROR ->
-                throw AuthAPIException(Constants.BAD_REQUEST_TO_API)
-            else -> throw AuthAPIException(Constants.NETWORK_ERROR)
-        }
-    }
-
     override fun attemptLogin(login: String, password: String): String {
-        val data = NetworkGetConnection(API_LINK)
-                .setAction("login")
-                .addParam("username", login)
-                .addParam("password", encodePassword(password))
-                .onFailed(standardOnFailed)
-                .getContent()
+        val data = URLLinkBuilder(API_LINK, "login")
+            .addParam("username", login)
+            .addParam("password", encodePassword(password))
+            .finish()
 
-        val gson = Gson()
-        val response = gson.fromJson(data, NeverlandAPIResponses.AttemptLoginResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        if (response.code != Constants.SUCCESS) {
-            throw AuthAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.AttemptLoginResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw AuthAPIException(responseObject.code)
         }
 
-        return response.token
+        return responseObject.token
     }
 
     override fun registerAccount(registrationData: RegistrationData): String {
-        val data = NetworkGetConnection(API_LINK)
-                .setAction("register")
-                .addParam("username", registrationData.login)
-                .addParam("password", encodePassword(registrationData.password))
-                .addParam("firstname", registrationData.firstName)
-                .addParam("secondname", registrationData.secondName)
-                .addParam("email", registrationData.email)
-                .onFailed(standardOnFailed)
-                .getContent()
+        val data = URLLinkBuilder(API_LINK, "register")
+            .addParam("username", registrationData.login)
+            .addParam("password", encodePassword(registrationData.password))
+            .addParam("firstname", registrationData.firstName)
+            .addParam("secondname", registrationData.secondName)
+            .addParam("email", registrationData.email)
+            .finish()
 
-        val gson = Gson()
-        val response = gson.fromJson(data, NeverlandAPIResponses.RegistrationResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        if (response.code != Constants.SUCCESS) {
-            throw AuthAPIException(response.code)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.RegistrationResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw AuthAPIException(responseObject.code)
         }
 
-        return response.token
+        return responseObject.token
     }
 
     override fun isTokenActive(token: String): Boolean {
-        val data = NetworkGetConnection(API_LINK)
-            .setAction("tokenCheck")
-                .addParam("token", token)
-                .onFailed(standardOnFailed)
-                .getContent()
+        val data = URLLinkBuilder(API_LINK, "tokenCheck")
+            .addParam("token", token)
+            .finish()
 
-        val response = Gson().fromJson(data, NeverlandAPIResponses.IsKeyActiveResponse::class.java)
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        return response.code == Constants.SUCCESS
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.IsKeyActiveResponse::class.java)
+
+        return responseObject.code == Constants.SUCCESS_CODE
     }
 
     private fun encodePassword(password: String): String {
         return Hashing.sha256()
-                .hashString(password, StandardCharsets.UTF_8)
-                .toString();
+            .hashString(password, StandardCharsets.UTF_8)
+            .toString();
     }
 }
