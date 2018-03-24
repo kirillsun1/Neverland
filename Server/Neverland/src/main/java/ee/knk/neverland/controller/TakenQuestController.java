@@ -24,13 +24,15 @@ public class TakenQuestController {
     private final TakenQuestService takenQuestsService;
     private final TokenController tokenController;
     private final QuestController questController;
+    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController) {
+    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController, UserController userController) {
         this.takenQuestsService = takenQuestsService;
         this.tokenController = new TokenController(tokenService);
         this.questController = questController;
+        this.userController = userController;
     }
 
     @RequestMapping(value="/takeQuest")
@@ -40,8 +42,7 @@ public class TakenQuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Quest quest = questController.getQuestById(questId);
-        if (
-                takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
+        if (takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_TAKEN));
         }
         takenQuestsService.takeQuest(new TakenQuest(user.get(), quest));
@@ -72,7 +73,7 @@ public class TakenQuestController {
         if (!takenQuest.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_NOT_TAKEN));
         }
-        takenQuestsService.archive(takenQuest.get().getId());
+        takenQuestsService.delete(takenQuest.get().getId());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
@@ -106,6 +107,11 @@ public class TakenQuestController {
             counter = 0;
         }
         return notMyQuests;
+    }
+
+    void archiveTakenQuest(Quest quest, User user) {
+        Optional<TakenQuest> takenQuest = takenQuestsService.getQuestTakenByUser(user, quest);
+        takenQuest.ifPresent(item -> takenQuestsService.archive(item.getId()));
     }
 
 }

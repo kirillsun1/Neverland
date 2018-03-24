@@ -1,6 +1,5 @@
 package ee.knk.neverland.service.impl;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
@@ -44,5 +43,10 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     @Override
     public void archive(Long takenQuestId) {
         takenQuestsRepository.archive(takenQuestId);
+    }
+
+    @Override
+    public void delete(Long takenQuestId) {
+        takenQuestsRepository.delete(takenQuestId);
     }
 }

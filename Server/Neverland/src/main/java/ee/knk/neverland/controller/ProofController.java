@@ -23,18 +23,21 @@ public class ProofController {
     private final TokenController tokenController;
     private final ProofService proofService;
     private final QuestService questService;
+    private final TakenQuestController takenQuestController;
     private Gson gson = new Gson();
 
     @Autowired
-    public ProofController(TokenController tokenController, ProofService proofService, QuestService questService) {
+    public ProofController(TokenController tokenController, ProofService proofService, QuestService questService, TakenQuestController takenQuestController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
         this.questService = questService;
+        this.takenQuestController = takenQuestController;
     }
 
     void addProof(Long questId, User user, String path, String comment) {
         Quest quest = questService.getQuestById(questId);
         proofService.addProof(new Proof(user, quest, path, comment));
+        takenQuestController.archiveTakenQuest(quest, user);
     }
 
     @RequestMapping(value = "/getMyProofs")

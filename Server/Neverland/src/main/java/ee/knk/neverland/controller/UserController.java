@@ -58,4 +58,7 @@ public class UserController {
         return gson.toJson(new StandardAnswer(Constants.FAILED));
     }
 
+    User getUserById(Long id) {
+        return userService.findUser(id);
+    }
 }
