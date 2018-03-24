@@ -107,7 +107,7 @@ class SubmitProofActivity : AppCompatActivity() {
                 Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
                 Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
                 Constants.FAIL_CODE -> showToast(getString(R.string.error_submitting_proof))
-                Constants.SUCCESS_CODE -> finish()
+                Constants.SUCCESS_CODE -> finish() // TODO: Finish with success result?
                 else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
             }
 

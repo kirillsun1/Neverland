@@ -100,5 +100,7 @@
     <string name="proof_image_hint">Your proof image</string>
     <string name="error_submitting_proof">Failed to submit proof!</string>
     <string name="taken_quest_proof_sent_hint">Proof sent</string>
+    <string name="crop_image_title">Edit photo</string>
+    <string name="crop_image_error">Could not crop image</string>
 
 </resources>

@@ -19,7 +19,7 @@ class Quest {
     var timeCreated: DateTime = DateTime()
 
     @SerializedName("time_taken")
-    var timeTaken: DateTime = DateTime()
+    var timeTaken: DateTime? = null
 
     var groupID: Int = 0
 }
