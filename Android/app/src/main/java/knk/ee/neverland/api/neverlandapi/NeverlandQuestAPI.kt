@@ -35,29 +35,6 @@ class NeverlandQuestAPI : QuestApi {
         }
     }
 
-    override fun submitProof(proof: ProofToSubmit) {
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("token", token)
-            .addFormDataPart("qid", proof.questID.toString())
-            .addFormDataPart("comment", proof.comment)
-            .addFormDataPart("file", proof.content.name,
-                RequestBody.create(MediaType.parse("image"), proof.content))
-            .build()
-
-        val link = URLLinkBuilder(API_LINK, "upload")
-            .finish()
-
-        val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
-
-        val responseObj = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
-
-        if (responseObj.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObj.code)
-        }
-    }
-
     override fun takeQuest(id: Int) {
         val link = URLLinkBuilder(API_LINK, "takeQuest")
             .addParam("token", token)

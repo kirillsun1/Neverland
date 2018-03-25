@@ -93,7 +93,7 @@ class SubmitProofActivity : AppCompatActivity() {
         override fun doInBackground(vararg p0: Void?): Int {
             try {
                 submittingExecuted = true
-                DefaultAPI.questAPI.submitProof(makeProofToSubmit())
+                DefaultAPI.proofAPI.submitProof(makeProofToSubmit())
                 return Constants.SUCCESS_CODE
             } catch (ex: QuestAPIException) {
                 return ex.code

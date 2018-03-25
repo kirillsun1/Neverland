@@ -8,8 +8,6 @@ interface QuestApi {
 
     fun submitNewQuest(quest: Quest)
 
-    fun submitProof(proof: ProofToSubmit)
-
     fun takeQuest(id: Int)
 
     fun dropQuest(id: Int)

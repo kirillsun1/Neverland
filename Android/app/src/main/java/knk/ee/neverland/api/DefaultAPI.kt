@@ -1,7 +1,9 @@
 package knk.ee.neverland.api
 
 import knk.ee.neverland.api.neverlandapi.NeverlandAuthAPI
+import knk.ee.neverland.api.neverlandapi.NeverlandProofAPI
 import knk.ee.neverland.api.neverlandapi.NeverlandQuestAPI
+import knk.ee.neverland.api.neverlandapi.ProofAPI
 
 object DefaultAPI {
     var userToken: String? = null
@@ -11,6 +13,7 @@ object DefaultAPI {
 
     val authAPI: AuthAPI = NeverlandAuthAPI()
     val questAPI: QuestApi = NeverlandQuestAPI()
+    val proofAPI: ProofAPI = NeverlandProofAPI()
 
     fun isKeySet(): Boolean = userToken != null && userLogin != null
 
@@ -18,8 +21,11 @@ object DefaultAPI {
         if (!token.isEmpty() && !login.isEmpty()) {
             userToken = token
             userLogin = login
-
-            questAPI.token = userToken!!
         }
+    }
+
+    private fun writeTokenToAPIs() {
+        questAPI.token = userToken!!
+        proofAPI.token = userToken!!
     }
 }
