@@ -58,6 +58,9 @@ public class UserController {
         return gson.toJson(new StandardAnswer(Constants.FAILED));
     }
 
+    void setAvatar(Long id, String path) {
+        userService.setAvatar(id, path);
+    }
     User getUserById(Long id) {
         return userService.findUser(id);
     }

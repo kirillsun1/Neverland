@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProofRepository extends JpaRepository<Proof, Long> {
-    @Query("select proof from Proof proof where proof.user = :user")
+    @Query("select proof from Proof proof where proof.user = :user order by proof.id desc")
     List<Proof> getProofsByUser(@Param("user") User user);
-    @Query("select proof from Proof proof where proof.quest = :quest")
+    @Query("select proof from Proof proof where proof.quest = :quest order by proof.id desc")
     List<Proof> getProofsByQuest(@Param("quest") Quest quest);
 }

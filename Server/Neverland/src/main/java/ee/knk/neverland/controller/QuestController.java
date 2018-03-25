@@ -49,6 +49,17 @@ public class QuestController {
         return gson.toJson(packer.packAllQuests(getQuests()));
     }
 
+    @RequestMapping(value="/getAuthorsQuests")
+    public String getAuthorsQuests(@RequestParam(value="token") String token) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(packer.packAllQuests(questService.getAuthorsQuests(user.get())));
+    }
+
+
     List<Quest> getQuests() {
         return questService.getQuests();
     }

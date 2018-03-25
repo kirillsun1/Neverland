@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void setAvatar(Long id, String path) {
+        userRepository.setAvatar(path, id);
+    }
 }

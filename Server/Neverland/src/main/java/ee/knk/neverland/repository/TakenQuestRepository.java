@@ -14,10 +14,10 @@ import java.util.Optional;
 
 
 public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
-    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user")
+    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user order by takenQuest.id desc")
     List<TakenQuest> getTakenQuestsByUser(@Param("user") User user);
 
-    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.active = true")
+    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.active = true order by takenQuest.id desc")
     List<TakenQuest> getMyTakenQuests(@Param("user") User user);
 
     @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.quest = :quest and takenQuest.active = true")

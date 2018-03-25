@@ -16,6 +16,7 @@ public class QuestPacker {
         user.firstName = quest.getUser().getFirstName();
         user.secondName = quest.getUser().getSecondName();
         user.userId = quest.getUser().getId();
+        user.avatar = quest.getUser().getAvatarPath();
         QuestPojo neededData = new QuestPojo();
         neededData.addingTime = quest.getTime();
         neededData.title = quest.getTitle();

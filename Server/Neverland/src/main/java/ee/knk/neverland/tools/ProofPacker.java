@@ -28,6 +28,7 @@ public class ProofPacker {
         user.username = pointer.getUser().getUsername();
         user.firstName = pointer.getUser().getFirstName();
         user.secondName = pointer.getUser().getSecondName();
+        user.avatar = pointer.getUser().getAvatarPath();
         neededData.proofer = user;
         neededData.comment = pointer.getComment();
         neededData.id = pointer.getId();

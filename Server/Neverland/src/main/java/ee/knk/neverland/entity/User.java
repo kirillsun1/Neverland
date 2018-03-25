@@ -53,6 +53,9 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @Getter @Setter private Set<Quest> quests;
 
+    @Column(name="avatar")
+    @Getter @Setter private String avatarPath;
+
 //    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 //    @Getter @Setter private Set<Group> adminGroups;
 //

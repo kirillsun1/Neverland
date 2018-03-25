@@ -1,6 +1,7 @@
 package ee.knk.neverland.answer;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Setter;
 
 public class UserPojo {
     @SerializedName("user_name")
@@ -11,4 +12,6 @@ public class UserPojo {
     public String secondName;
     @SerializedName("u_id")
     public Long userId;
+    @SerializedName("avatar")
+    public String avatar;
 }

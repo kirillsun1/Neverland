@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select user from User user where user.username = :username or user.email = :email")
     Optional<User> exists(@Param("username") String username, @Param("email") String email);
 
+    @Query("update User user set user.avatarPath = :avatarPath where user.id = :id")
+    void setAvatar(@Param("avatarPath") String avatarPath, @Param("id") Long id);
 }
