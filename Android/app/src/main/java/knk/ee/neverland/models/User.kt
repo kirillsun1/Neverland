@@ -9,4 +9,8 @@ class User {
     var firstName: String = ""
     @SerializedName("second_name")
     var secondName: String = ""
+
+    override fun toString(): String {
+        return "$firstName $secondName"
+    }
 }

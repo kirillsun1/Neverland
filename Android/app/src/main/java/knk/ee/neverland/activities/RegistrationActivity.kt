@@ -12,7 +12,7 @@ import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.RegistrationData
-import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
@@ -59,7 +59,7 @@ class RegistrationActivity : AppCompatActivity() {
         return registrationData
     }
 
-    @Throws(AuthAPIException::class)
+    @Throws(APIException::class)
     private fun register(registrationData: RegistrationData) {
         registerTask = RegisterTask(registrationData)
         registerTask!!.execute()
@@ -195,7 +195,7 @@ class RegistrationActivity : AppCompatActivity() {
             try {
                 token = DefaultAPI.authAPI.registerAccount(registrationData)
                 return Constants.SUCCESS_CODE
-            } catch (ex: AuthAPIException) {
+            } catch (ex: APIException) {
                 return ex.code
             } catch (ex: NetworkException) {
                 return ex.code

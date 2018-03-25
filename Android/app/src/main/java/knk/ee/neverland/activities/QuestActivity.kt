@@ -22,8 +22,8 @@ import com.esafirm.imagepicker.features.ImagePicker
 import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
-import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.views.questview.QuestPictureAdapter
 import java.io.File
 
@@ -166,7 +166,7 @@ class QuestActivity : AppCompatActivity() {
             try {
                 DefaultAPI.questAPI.dropQuest(questID)
                 return true
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return false
             } catch (ex: NetworkException) {
                 return false

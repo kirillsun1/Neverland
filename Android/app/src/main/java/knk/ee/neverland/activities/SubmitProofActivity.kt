@@ -14,8 +14,8 @@ import com.esafirm.imagepicker.features.ImagePicker
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.ProofToSubmit
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
-import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.utils.Constants
 import java.io.File
 
@@ -95,7 +95,7 @@ class SubmitProofActivity : AppCompatActivity() {
                 submittingExecuted = true
                 DefaultAPI.proofAPI.submitProof(makeProofToSubmit())
                 return Constants.SUCCESS_CODE
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return ex.code
             } catch (ex: NetworkException) {
                 return ex.code

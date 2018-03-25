@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
 
 class SplashActivity : AppCompatActivity() {
@@ -61,7 +61,7 @@ class SplashActivity : AppCompatActivity() {
         override fun doInBackground(vararg p0: Void?): Boolean {
             try {
                 return DefaultAPI.authAPI.isTokenActive(token)
-            } catch (_: AuthAPIException) {
+            } catch (_: APIException) {
                 return false
             } catch (_: NetworkException) {
                 return false

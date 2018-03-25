@@ -4,7 +4,8 @@ import com.google.gson.Gson
 import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
-import knk.ee.neverland.exceptions.QuestAPIException
+import knk.ee.neverland.exceptions.APIException
+import knk.ee.neverland.models.Proof
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
@@ -34,12 +35,26 @@ class NeverlandProofAPI : ProofAPI {
             NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
 
         if (responseObj.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObj.code)
+            throw APIException(responseObj.code)
         }
     }
 
-    override fun getProofs(feedScope: FeedScope) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getProofs(feedScope: FeedScope): List<Proof> {
+        val link = URLLinkBuilder(API_LINK, "getAllProofs")
+            // TODO: consider feedScope
+            .addParam("token", token)
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.proofs
     }
 
 }

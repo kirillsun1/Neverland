@@ -2,15 +2,11 @@ package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
 import knk.ee.neverland.api.QuestApi
-import knk.ee.neverland.api.models.ProofToSubmit
-import knk.ee.neverland.exceptions.QuestAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 class NeverlandQuestAPI : QuestApi {
     override var token: String = ""
@@ -31,7 +27,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
     }
 
@@ -47,7 +43,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
     }
 
@@ -63,7 +59,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
     }
 
@@ -79,7 +75,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.GetQuestAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
 
         return responseObject.quest
@@ -96,7 +92,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
 
         return responseObject.quests
@@ -113,7 +109,7 @@ class NeverlandQuestAPI : QuestApi {
             NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw QuestAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
 
         return responseObject.quests

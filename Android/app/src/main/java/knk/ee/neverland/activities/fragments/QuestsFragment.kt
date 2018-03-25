@@ -21,8 +21,8 @@ import knk.ee.neverland.activities.AllQuestsActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
-import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.views.CustomFloatingActionButton
 import knk.ee.neverland.views.questview.MyQuestElementAdapter
@@ -106,7 +106,6 @@ class QuestsFragment : Fragment() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class GetMyQuestsTask : AsyncTask<Void, Void, Boolean>() {
-
         private var listOfQuests: List<Quest> = emptyList()
 
         override fun doInBackground(vararg p0: Void?): Boolean {
@@ -114,7 +113,7 @@ class QuestsFragment : Fragment() {
                 listOfQuests = DefaultAPI.questAPI.getMyQuests()
                 println(listOfQuests)
                 return true
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return false
             } catch (ex: NetworkException) {
                 return false

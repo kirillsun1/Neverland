@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/feed_proof_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="center"
@@ -63,7 +63,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/FeedAddRatingButton"
+                android:id="@+id/feed_rating_plus"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -83,7 +83,7 @@
                 android:progressDrawable="@drawable/feed_progress" />
 
             <ImageButton
-                android:id="@+id/FeedTakeRating"
+                android:id="@+id/feed_rating_minus"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

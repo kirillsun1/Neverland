@@ -21,6 +21,8 @@ object DefaultAPI {
         if (!token.isEmpty() && !login.isEmpty()) {
             userToken = token
             userLogin = login
+
+            writeTokenToAPIs()
         }
     }
 

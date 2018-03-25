@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import knk.ee.neverland.api.AuthAPI
 import knk.ee.neverland.api.models.RegistrationData
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
-import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
@@ -24,7 +24,7 @@ class NeverlandAuthAPI : AuthAPI {
             NeverlandAPIResponses.AttemptLoginResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw AuthAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
 
         return responseObject.token
@@ -45,7 +45,7 @@ class NeverlandAuthAPI : AuthAPI {
             NeverlandAPIResponses.RegistrationResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw AuthAPIException(responseObject.code)
+            throw APIException(responseObject.code)
         }
 
         return responseObject.token

@@ -1,5 +1,6 @@
 package knk.ee.neverland.api.neverlandapi
 
+import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 
 class NeverlandAPIResponses {
@@ -29,5 +30,10 @@ class NeverlandAPIResponses {
     data class GetQuestAPIResponse(
         val code: Int,
         val quest: Quest
+    )
+
+    data class GetProofsAPIResponse(
+        val code: Int,
+        val proofs: List<Proof>
     )
 }

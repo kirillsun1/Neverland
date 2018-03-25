@@ -20,7 +20,7 @@ import android.widget.TextView
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
@@ -162,7 +162,7 @@ class LoginActivity : AppCompatActivity() {
                 saveUserdataToTheSystemSettings(mLogin,
                     DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
                 return Constants.SUCCESS_CODE
-            } catch (ex: AuthAPIException) {
+            } catch (ex: APIException) {
                 return ex.code
             } catch (ex: NetworkException) {
                 return ex.code

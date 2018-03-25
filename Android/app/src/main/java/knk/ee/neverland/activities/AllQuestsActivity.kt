@@ -15,8 +15,8 @@ import android.widget.ListView
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.exceptions.NetworkException
-import knk.ee.neverland.exceptions.QuestAPIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.views.questview.QuestElementAdapter
 
@@ -87,7 +87,7 @@ class AllQuestsActivity : AppCompatActivity() {
             try {
                 questsListGot = DefaultAPI.questAPI.getQuestsToTake()
                 return true
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return false
             } catch (ex: NetworkException) {
                 return false
@@ -112,7 +112,7 @@ class AllQuestsActivity : AppCompatActivity() {
             try {
                 DefaultAPI.questAPI.takeQuest(questID)
                 return true
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return false
             } catch (ex: NetworkException) {
                 return false

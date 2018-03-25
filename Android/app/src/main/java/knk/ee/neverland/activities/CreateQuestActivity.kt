@@ -12,7 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.QuestAPIException
+import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.Constants
 
@@ -96,7 +96,7 @@ class CreateQuestActivity : AppCompatActivity() {
             try {
                 DefaultAPI.questAPI.submitNewQuest(questToSubmit)
                 return Constants.SUCCESS_CODE
-            } catch (ex: QuestAPIException) {
+            } catch (ex: APIException) {
                 return ex.code
             }
         }

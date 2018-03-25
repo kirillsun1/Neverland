@@ -103,4 +103,6 @@
     <string name="crop_image_title">Edit photo</string>
     <string name="crop_image_error">Could not crop image</string>
 
+    <string name="error_getting_proofs_failed">Failed getting proofs</string>
+
 </resources>
