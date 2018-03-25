@@ -8,7 +8,7 @@
 //import java.util.Set;
 //
 //@Entity
-//@Table
+//@Table(name = "group")
 //public class Group {
 //    @Id
 //    @GeneratedValue(generator = "increment")
@@ -16,7 +16,21 @@
 //    @Column(name = "id", nullable = false)
 //    private Long id;
 //
+//    @Column(name = "group_name")
+//    @Getter @Setter String name;
+//
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinColumn(name= "admin_id")
+//    @Getter @Setter private User admin;
+//
 //    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 //    @Getter @Setter private Set<Quest> quests;
+//
+//    @Column(name = "path")
+//    @Getter @Setter private String picturePath;
+//
+//    @ManyToMany(mappedBy = "subscriptions")
+//    @Getter @Setter private Set<User> followers;
 //}
-
+//
+//

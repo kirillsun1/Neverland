@@ -39,7 +39,7 @@ public class Quest {
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 //    @JoinColumn(name = "group_fk")
 //    @Getter @Setter private Group group;
-
+//
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk")
     @Getter @Setter private User user;

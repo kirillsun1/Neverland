@@ -30,7 +30,7 @@ public class FileUploadController {
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("token") String token, @RequestParam("qid") Long questId,
                                                  @RequestParam("file") MultipartFile file, @RequestParam("comment") String comment){
-        String standardPath = "/var/www/html/never_pictures/proofs/";
+        String standardPath = "http://vrot.bounceme.net:8081/never_pictures/proofs/";
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));

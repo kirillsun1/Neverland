@@ -10,6 +10,7 @@ import ee.knk.neverland.entity.User;
 import java.util.List;
 
 public class ProofPacker {
+    private QuestPacker questPacker = new QuestPacker();
     public ProofList packProofs(List<Proof> proofs) {
         ProofList packedProofs = new ProofList();
         for (Proof pointer : proofs) {
@@ -21,8 +22,7 @@ public class ProofPacker {
 
     private ProofPojo packProof(Proof pointer) {
         ProofPojo neededData = new ProofPojo();
-        neededData.questId = pointer.getQuest().getId();
-        neededData.questTitle = pointer.getQuest().getTitle();
+        neededData.quest = questPacker.packQuest(pointer.getQuest());
         UserPojo user = new UserPojo();
         user.userId = pointer.getUser().getId();
         user.username = pointer.getUser().getUsername();

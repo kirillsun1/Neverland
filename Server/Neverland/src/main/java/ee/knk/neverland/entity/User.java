@@ -1,5 +1,6 @@
 package ee.knk.neverland.entity;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,8 +48,20 @@ public class User {
     @Getter @Setter private String secondName;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    @Getter private Set<Token> tokens;
+    @Setter @Getter private Set<Token> tokens;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @Getter private Set<Quest> quests;
+    @Getter @Setter private Set<Quest> quests;
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @Getter @Setter private Set<Group> adminGroups;
+//
+//    @ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//            name = "subscriptions",
+//            joinColumns = { @JoinColumn(name = "group_name") },
+//            inverseJoinColumns = { @JoinColumn(name = "name") }
+//    )
+//    @Getter @Setter private Set<Group> subscriptions;
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class QuestPacker {
 
-    private QuestPojo packQuest(Quest quest) {
+    QuestPojo packQuest(Quest quest) {
         UserPojo user = new UserPojo();
         user.username = quest.getUser().getUsername();
         user.firstName = quest.getUser().getFirstName();

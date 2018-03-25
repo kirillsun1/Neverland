@@ -9,10 +9,8 @@ public class ProofPojo {
     public String comment;
     @SerializedName("pic_path")
     public String picturePath;
-    @SerializedName("q_title")
-    public String questTitle;
-    @SerializedName("q_id")
-    public Long questId;
+    @SerializedName("quest")
+    public QuestPojo quest;
     @SerializedName("proofer")
     public UserPojo proofer;
     @SerializedName("add_time")
