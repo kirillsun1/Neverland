@@ -19,26 +19,39 @@ class NLQuestApi: QuestApi {
     //MARK: - Fetching quests.
     
     func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
-        fetchingLogic(url: self.urlBase+"/getQuestsToTake", onComplete: onComplete)
+        fetchingLogic(url: self.urlBase+"/getQuestsToTake", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
     }
     
     func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {
-        fetchingLogic(url: self.urlBase + "/getMyQuests", onComplete: onComplete)
+        fetchingLogic(url: self.urlBase + "/getMyQuests", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
     }
     
-    func fetchingLogic(url: String, onComplete: @escaping ([NSDictionary])->()) {
+    func fetchProofsForQuest(withId id: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getQuestsProofs", params: ["token": User.sharedInstance.token ?? "", "qid": id], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchMyProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getMyProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchAllProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getAllProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchingLogic(url: String, params: [String: Any], onComplete: @escaping ([NSDictionary])->(), jsonKey: String = "quests") {
         let request = Alamofire.request(url, method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? ""])
+                                        parameters: params)
         let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
 
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
-                guard let questsDict = JSON.value(forKey: "quests") as? [NSDictionary] else {
+//                print(JSON)
+                guard let resultDict = JSON.value(forKey: jsonKey) as? [NSDictionary] else {
                     return
                 }
                 DispatchQueue.main.async {
-                    onComplete(questsDict)
+                    onComplete(resultDict)
                 }
             }
         }
@@ -75,6 +88,7 @@ class NLQuestApi: QuestApi {
 
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
+                //print(result as? NSDictionary)
                 if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
                     DispatchQueue.main.async {
                         onComplete(QuestApiResponse(code: .Successful, message: nil))
@@ -88,7 +102,7 @@ class NLQuestApi: QuestApi {
         }
     }
     
-    func submitSolution(qid: Int, img: UIImage, comment: String?, onComplete: @escaping (QuestApiResponse) -> ()) {
+    func submitProof(qid: Int, img: UIImage, comment: String?, onComplete: @escaping (QuestApiResponse) -> ()) {
         let img = img.wxCompress()
         let params = ["qid": String(qid), "token": User.sharedInstance.token ?? "", "comment": comment ?? ""]        
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -117,11 +131,6 @@ class NLQuestApi: QuestApi {
     }
     
     //MARK: - Not implemented yet methods.
-    
-    func fetchDetailedSolution(withId id: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError("Not implemented yet")
-    }
-    
     
     func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ()) {
         fatalError("Not implemented yet")

@@ -23,6 +23,12 @@ class FeedCell: UITableViewCell {
         // Initialization code
     
     }
+    
+    func fillWith(_ proof: Proof) {
+        self.userNameLbl.text = proof.proofer.nickname
+        self.questTitleLbl.text = proof.quest?.title ?? "Quest Title"
+        self.photoView.uploadImageFrom(url: proof.picPath)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -15,7 +15,12 @@ class QuestDetailedViewController: UIViewController {
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var delBtn: UIBarButtonItem!
     
-    var quest: Quest?
+    let api = NLQuestApi()
+    var quest: Quest? {
+        didSet {
+            photoCollectionView?.reloadData()
+        }
+    }
     var finished = false
     
     override func viewDidLoad() {
@@ -38,13 +43,17 @@ class QuestDetailedViewController: UIViewController {
         sendBtn.isHidden = finished
         sendBtn.isEnabled = !finished
         delBtn.isEnabled = !finished
-        if finished {  NLQuestApi().dropQuest(qid: quest!.id) { response in } }
+        if finished {  api.dropQuest(qid: quest!.id) { response in } }
+        
+        api.fetchProofsForQuest(withId: quest!.id, onComplete: { arr in
+            self.quest?.setProofs(arr)
+        })
     }
     
     @IBAction func deleteQuest() {
         if (quest == nil) { return }
             
-        NLQuestApi().dropQuest(qid: quest!.id) { response in
+        api.dropQuest(qid: quest!.id) { response in
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -64,12 +73,15 @@ class QuestDetailedViewController: UIViewController {
 // MARK: - CollectionViewProtocols
 extension QuestDetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.quest?.proofs.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? ProofPhotoCell else {
+            fatalError()
+        }
         
+        cell.setPic(urlString: quest!.proofs[indexPath.row].picPath )
         return cell
     }
     

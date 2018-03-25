@@ -10,19 +10,27 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    let questApi = NLQuestApi()
+    var proofs = [Proof]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = User.sharedInstance.userName!
-
-        let width = (view.frame.size.width - 30) / 3
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refreshProofs()
     }
 
     @IBAction func configBtnPressed(_ sender: Any) {
@@ -34,18 +42,32 @@ class ProfileViewController: UIViewController {
         self.present(vc!, animated: true, completion: nil)
     }
     
+    func refreshProofs() {
+        questApi.fetchMyProofs { arr in
+            self.proofs = Proof.createProofsArray(from: arr)
+        }
+    }
+    
 
 }
 
 // MARK: - CollectionViewProtocols
-extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return proofs.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // todo: Make that there are no space above&below pic
+        return self.view.frame.size.width + 25 + 45 + 6 + 4*2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? FeedCell else {
+            fatalError()
+        }
         
+        cell.fillWith(proofs[indexPath.row])
         return cell
     }
     

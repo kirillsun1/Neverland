@@ -38,6 +38,7 @@ class NLAuthApi: AuthApi {
             
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
+//                print(JSON)
                 
                 guard let codeInt = JSON.value(forKey: "code") as? Int,
                     let code = ResponseCode(rawValue: codeInt) else {
