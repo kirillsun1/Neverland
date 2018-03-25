@@ -104,5 +104,6 @@
     <string name="crop_image_error">Could not crop image</string>
 
     <string name="error_getting_proofs_failed">Failed getting proofs</string>
+    <string name="error_slow_network">Network is too slow</string>
 
 </resources>

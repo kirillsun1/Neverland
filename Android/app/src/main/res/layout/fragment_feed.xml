@@ -15,20 +15,20 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/page_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:entries="@array/main_dropdown_menu_items" />
-
     </android.support.v7.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/feed_listview"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/feed_list_swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/background"
-        android:dividerHeight="5sp" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/feed_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/background"
+            android:dividerHeight="5sp" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

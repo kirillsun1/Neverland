@@ -11,11 +11,7 @@ data class Proof(
     @SerializedName("pic_path")
     val imageLink: String,
 
-    // TODO: Replace with quest
-    @SerializedName("q_title")
-    val questName: String,
-    @SerializedName("q_id")
-    val questID: Int,
+    val quest: Quest,
 
     @SerializedName("proofer")
     val sender: User,

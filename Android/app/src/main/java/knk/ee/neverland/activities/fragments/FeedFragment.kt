@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,10 +21,18 @@ import knk.ee.neverland.views.feedview.FeedElementAdapter
 
 class FeedFragment : Fragment() {
     var feedElementAdapter: FeedElementAdapter? = null
+    var feedListSwipeLayout: SwipeRefreshLayout? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeFeedListView()
+
+        feedListSwipeLayout = view.findViewById(R.id.feed_list_swipe_layout)
+        feedListSwipeLayout!!.setOnRefreshListener({
+            feedListSwipeLayout!!.isRefreshing = true
+            GetProofsTask().execute()
+        })
+
         GetProofsTask().execute()
     }
 
@@ -39,28 +48,43 @@ class FeedFragment : Fragment() {
     }
 
     private fun showMessage(message: String) {
-        Toast.makeText(view!!.context, message, Toast.LENGTH_LONG).show()
+        if (isAdded) {
+            Toast.makeText(view!!.context, message, Toast.LENGTH_LONG).show()
+        }
     }
 
     @SuppressLint("StaticFieldLeak")
     private inner class GetProofsTask : AsyncTask<Void, Void, List<Proof>?>() {
 
+        private var networkErrorCode: Int? = null
+        private var apiErrorCode: Int? = null
+
         override fun doInBackground(vararg p0: Void?): List<Proof>? {
             try {
                 return DefaultAPI.proofAPI.getProofs(FeedScope.WORLD)
             } catch (ex: NetworkException) {
-                failWithNetworkException(ex.code)
+                networkErrorCode = ex.code
                 return null
             } catch (ex: APIException) {
-                failWithAPIException(ex.code)
+                apiErrorCode = ex.code
                 return null
             }
         }
 
         override fun onPostExecute(result: List<Proof>?) {
             if (result != null) {
-                feedElementAdapter!!.addProofs(result)
+                feedElementAdapter!!.updateList(result)
+            } else {
+                if (networkErrorCode != null) {
+                    failWithNetworkException(networkErrorCode!!)
+                }
+
+                if (apiErrorCode != null) {
+                    failWithAPIException(apiErrorCode!!)
+                }
             }
+
+            feedListSwipeLayout!!.isRefreshing = false
         }
 
         private fun failWithAPIException(code: Int) {
@@ -74,7 +98,7 @@ class FeedFragment : Fragment() {
             when (code) {
                 Constants.BAD_REQUEST_TO_API_CODE -> showMessage(getString(R.string.error_invalid_api_request))
                 Constants.NETWORK_ERROR_CODE -> showMessage(getString(R.string.error_network_down))
-                Constants.FAIL_CODE -> showMessage(getString(R.string.error_incorrect_field))
+                Constants.NETWORK_TIMEOUT -> showMessage(getString(R.string.error_slow_network))
                 else -> showMessage(String.format(getString(R.string.error_unexpected_code), code))
             }
         }

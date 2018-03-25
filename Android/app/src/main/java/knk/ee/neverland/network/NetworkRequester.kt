@@ -10,10 +10,16 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
 import java.util.concurrent.TimeUnit
+import kotlin.math.max
+import kotlin.math.min
 
 object NetworkRequester {
+    private val MAXIMUM_TIMEOUT_IN_MS = 10000
+    private val TIMEOUT_DELTA = 2500
+    private var currentTimeout = 5000
+
     fun makeGetRequestAndGetResponseBody(urlString: String,
-                                         defaultTimeoutInMilliSeconds: Int = 5000): String {
+                                         defaultTimeoutInMilliSeconds: Int = currentTimeout): String {
         try {
             val request = Request.Builder()
                 .url(URL(urlString))
@@ -31,12 +37,13 @@ object NetworkRequester {
 
             return response.body()!!.string()
         } catch (ex: SocketTimeoutException) {
+            increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
         }
     }
 
     fun makePostRequestAndGetResponseBody(urlString: String, requestBody: RequestBody,
-                                          defaultTimeoutInMilliSeconds: Int = 5000): String {
+                                          defaultTimeoutInMilliSeconds: Int = currentTimeout): String {
         try {
             val request = Request.Builder()
                 .url(urlString)
@@ -54,6 +61,7 @@ object NetworkRequester {
 
             return response.body()!!.string()
         } catch (ex: SocketTimeoutException) {
+            increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
         }
     }
@@ -67,5 +75,9 @@ object NetworkRequester {
                 else -> throw NetworkException(Constants.NETWORK_ERROR_CODE)
             }
         }
+    }
+
+    private fun increaseTimeout() {
+        currentTimeout = min(currentTimeout + TIMEOUT_DELTA, MAXIMUM_TIMEOUT_IN_MS)
     }
 }

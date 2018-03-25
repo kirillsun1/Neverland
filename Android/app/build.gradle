@@ -43,7 +43,6 @@ dependencies {
     compile 'com.google.guava:guava:24.0-android', {
         exclude group: 'com.google.code.findbugs'
     }
-    compile 'com.github.ganfra:material-spinner:2.0.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.android.support:cardview-v7:27.1.0'
     compile 'com.gordonwong:material-sheet-fab:1.2.1'
