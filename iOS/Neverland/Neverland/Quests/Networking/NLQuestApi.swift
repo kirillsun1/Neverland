@@ -9,31 +9,50 @@
 import Foundation
 import UIKit
 import Alamofire
+import WXImageCompress
 
 class NLQuestApi: QuestApi {
     
-    var urlBase: String = "http://vrot.bounceme.net:8080"
+    private var urlBase: String = "http://vrot.bounceme.net:8080"
     
     
     //MARK: - Fetching quests.
     
     func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
-        fetchingLogic(url: self.urlBase+"/getqueststotake", onComplete: onComplete)
+        fetchingLogic(url: self.urlBase+"/getQuestsToTake", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
     }
     
     func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {
-        fetchingLogic(url: self.urlBase + "/getmyquests", onComplete: onComplete)
+        fetchingLogic(url: self.urlBase + "/getMyQuests", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
     }
     
-    func fetchingLogic(url: String, onComplete: @escaping ([NSDictionary])->()) {
+    func fetchProofsForQuest(withId id: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getQuestsProofs", params: ["token": User.sharedInstance.token ?? "", "qid": id], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchMyProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getMyProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchAllProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getAllProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchingLogic(url: String, params: [String: Any], onComplete: @escaping ([NSDictionary])->(), jsonKey: String = "quests") {
         let request = Alamofire.request(url, method: .get,
-                                        parameters: ["token": User.sharedInstance.token ?? ""])
-        
-        request.responseJSON { response in
+                                        parameters: params)
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+
+        request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
-                let questsDict = JSON.value(forKey: "quests") as! [NSDictionary]
-                onComplete(questsDict)
+//                print(JSON)
+                guard let resultDict = JSON.value(forKey: jsonKey) as? [NSDictionary] else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    onComplete(resultDict)
+                }
             }
         }
     }
@@ -47,42 +66,71 @@ class NLQuestApi: QuestApi {
                       "desc": description,
                       "title": title,
                       "gid": groupId] as [String : Any]
-        questActionLogic(url: self.urlBase+"/submitquest", params: params, onComplete: onComplete)
-        SwiftSpinner.hide()
+        questActionLogic(url: self.urlBase+"/submitQuest", params: params, onComplete: { response in
+            onComplete(response)
+            SwiftSpinner.hide()
+        })
     }
     
     func takeQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        questActionLogic(url: self.urlBase + "/takequest", params: ["token": User.sharedInstance.token ?? "",
+        questActionLogic(url: self.urlBase + "/takeQuest", params: ["token": User.sharedInstance.token ?? "",
                                                                      "qid": qid], onComplete: onComplete)
     }
     
     func dropQuest(qid: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        questActionLogic(url: self.urlBase + "/dropquest", params: ["token": User.sharedInstance.token ?? "",
+        questActionLogic(url: self.urlBase + "/dropQuest", params: ["token": User.sharedInstance.token ?? "",
                                                             "qid": qid], onComplete: onComplete)
     }
     
     func questActionLogic(url: String, params:[String:Any], onComplete: @escaping (QuestApiResponse) -> ()) {
         let request = Alamofire.request(url, method: .get, parameters: params)
-        request.responseJSON { response in
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+
+        request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
+                //print(result as? NSDictionary)
                 if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
-                    onComplete(QuestApiResponse(code: .Successful, message: nil))
+                    DispatchQueue.main.async {
+                        onComplete(QuestApiResponse(code: .Successful, message: nil))
+                    }
                 } else {
-                    onComplete(QuestApiResponse(code: .Error, message: nil))
+                    DispatchQueue.main.async {
+                        onComplete(QuestApiResponse(code: .Error, message: nil))
+                    }
                 }
             }
         }
     }
     
+    func submitProof(qid: Int, img: UIImage, comment: String?, onComplete: @escaping (QuestApiResponse) -> ()) {
+        let img = img.wxCompress()
+        let params = ["qid": String(qid), "token": User.sharedInstance.token ?? "", "comment": comment ?? ""]        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(UIImageJPEGRepresentation(img, 1)!, withName: "file", fileName: "name.jpeg", mimeType: "image/jpeg")
+            for (key, value) in params {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, to:urlBase + "/upload")
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    if let result = response.result.value {
+                        print(result)
+                        if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
+                            onComplete(QuestApiResponse(code: .Successful, message: nil))
+                        } else {
+                            onComplete(QuestApiResponse(code: .Error, message: nil))
+                        }
+                    }
+                }
+            case .failure:
+                onComplete(QuestApiResponse(code: .Error, message: nil))
+            }
+        }
+    }
+    
     //MARK: - Not implemented yet methods.
-    
-    func fetchDetailedSolution(withId id: Int, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError("Not implemented yet")
-    }
-    
-    func submitSolution(forQuest quest: Int, photo: UIImage, onComplete: @escaping (QuestApiResponse) -> ()) {
-        fatalError("Not implemented yet")
-    }
     
     func fetchQuests(inScope scope: QuestScope, onComplete: @escaping ([NSDictionary]) -> ()) {
         fatalError("Not implemented yet")

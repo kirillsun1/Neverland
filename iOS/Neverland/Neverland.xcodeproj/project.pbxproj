@@ -10,12 +10,12 @@
 		170781EC204EC35E00A87182 /* NLQuestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170781EB204EC35E00A87182 /* NLQuestApi.swift */; };
 		1728CED620442E69005D9A63 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CED520442E69005D9A63 /* Quest.swift */; };
 		1728CED82044328E005D9A63 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CED72044328E005D9A63 /* Person.swift */; };
-		1728CEDA204433EB005D9A63 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CED9204433EB005D9A63 /* Solution.swift */; };
+		1728CEDA204433EB005D9A63 /* Proof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CED9204433EB005D9A63 /* Proof.swift */; };
 		1728CEDD204434ED005D9A63 /* QuestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEDC204434ED005D9A63 /* QuestApi.swift */; };
 		1728CEDF2044378C005D9A63 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEDE2044378C005D9A63 /* ApiResponse.swift */; };
 		1728CEE1204437F9005D9A63 /* QuestApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */; };
-		1728EDC12045B8D300300A1C /* FakeQuestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728EDC02045B8D300300A1C /* FakeQuestApi.swift */; };
 		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
+		1754DFC72067AB10006D4911 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754DFC62067AB10006D4911 /* Time.swift */; };
 		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
 		17579BE0204083EE005F74B5 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDF204083EE005F74B5 /* SwiftSpinner.swift */; };
 		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
@@ -30,6 +30,7 @@
 		176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */; };
 		176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */; };
 		178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EEC812053E9B800D9EBCC /* FloatingButton.swift */; };
+		179F4C3B2059A2C10084E095 /* ProofSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */; };
 		17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE72034640A00A4FC72 /* AppDelegate.swift */; };
 		17A56BEF2034640A00A4FC72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BED2034640A00A4FC72 /* Main.storyboard */; };
 		17A56BF42034640A00A4FC72 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BF22034640A00A4FC72 /* Auth.storyboard */; };
@@ -46,6 +47,8 @@
 		17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A88203828B500027634 /* QuestDetailedViewController.swift */; };
 		17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E15A8A20382A2500027634 /* QuestInfoCell.swift */; };
 		17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */; };
+		17EC569B2067FA1B0011327D /* ProofPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC569A2067FA1B0011327D /* ProofPhotoCell.swift */; };
+		17EC569D206807420011327D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC569C206807420011327D /* UIImageView+Extension.swift */; };
 		17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC63112044755A008668FC /* SuggestQuestViewController.swift */; };
 		17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */; };
 		17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD420488B9F0074D74A /* NLAuthApi.swift */; };
@@ -81,12 +84,12 @@
 		170781EB204EC35E00A87182 /* NLQuestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLQuestApi.swift; sourceTree = "<group>"; };
 		1728CED520442E69005D9A63 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		1728CED72044328E005D9A63 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		1728CED9204433EB005D9A63 /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
+		1728CED9204433EB005D9A63 /* Proof.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proof.swift; sourceTree = "<group>"; };
 		1728CEDC204434ED005D9A63 /* QuestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestApi.swift; sourceTree = "<group>"; };
 		1728CEDE2044378C005D9A63 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestApiResponse.swift; sourceTree = "<group>"; };
-		1728EDC02045B8D300300A1C /* FakeQuestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeQuestApi.swift; sourceTree = "<group>"; };
 		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		1754DFC62067AB10006D4911 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/AccountManagement/View/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
 		17579BDF204083EE005F74B5 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallangesViewController.swift; sourceTree = "<group>"; };
 		176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		178EEC812053E9B800D9EBCC /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProofSubmitViewController.swift; sourceTree = "<group>"; };
 		17A56BE42034640A00A4FC72 /* Neverland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neverland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56BE72034640A00A4FC72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A56BEE2034640A00A4FC72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		17E15A88203828B500027634 /* QuestDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailedViewController.swift; sourceTree = "<group>"; };
 		17E15A8A20382A2500027634 /* QuestInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoCell.swift; sourceTree = "<group>"; };
 		17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextView.swift; sourceTree = "<group>"; };
+		17EC569A2067FA1B0011327D /* ProofPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProofPhotoCell.swift; sourceTree = "<group>"; };
+		17EC569C206807420011327D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		17EC63112044755A008668FC /* SuggestQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestQuestViewController.swift; sourceTree = "<group>"; };
 		17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLConfirmationPopupService.swift; sourceTree = "<group>"; };
 		17F93FD420488B9F0074D74A /* NLAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLAuthApi.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 				17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */,
 				17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */,
 				178EEC812053E9B800D9EBCC /* FloatingButton.swift */,
+				17EC569A2067FA1B0011327D /* ProofPhotoCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				17E15A862038282000027634 /* NewQuestViewController.swift */,
 				17E15A88203828B500027634 /* QuestDetailedViewController.swift */,
 				17EC63112044755A008668FC /* SuggestQuestViewController.swift */,
+				179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 		1721765B2042F18400A1A2E2 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				17EC569E206808120011327D /* Views */,
 				1721765C2042F18C00A1A2E2 /* Controllers */,
 			);
 			path = Feed;
@@ -303,8 +312,9 @@
 			children = (
 				1728CED520442E69005D9A63 /* Quest.swift */,
 				1728CED72044328E005D9A63 /* Person.swift */,
-				1728CED9204433EB005D9A63 /* Solution.swift */,
+				1728CED9204433EB005D9A63 /* Proof.swift */,
 				1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */,
+				1754DFC62067AB10006D4911 /* Time.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				1728CEDC204434ED005D9A63 /* QuestApi.swift */,
-				1728EDC02045B8D300300A1C /* FakeQuestApi.swift */,
 				170781EB204EC35E00A87182 /* NLQuestApi.swift */,
 			);
 			path = Networking;
@@ -394,7 +403,6 @@
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
-				17FD829620374139004A33E7 /* FeedCell.swift */,
 				17A56C1D203464D700A4FC72 /* Storyboards */,
 			);
 			path = Views;
@@ -433,12 +441,21 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		17EC569E206808120011327D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				17FD829620374139004A33E7 /* FeedCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		17FB695A203DFFDF008F9057 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */,
 				17ADF27720402FCE0061BA47 /* String+Extension.swift */,
 				17B96DFF204DC551001F22D2 /* Array+Extension.swift */,
+				17EC569C206807420011327D /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -760,16 +777,17 @@
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
 				17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */,
 				17FD829720374139004A33E7 /* FeedCell.swift in Sources */,
+				179F4C3B2059A2C10084E095 /* ProofSubmitViewController.swift in Sources */,
 				17B96E00204DC551001F22D2 /* Array+Extension.swift in Sources */,
 				170781EC204EC35E00A87182 /* NLQuestApi.swift in Sources */,
 				17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */,
 				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
+				1754DFC72067AB10006D4911 /* Time.swift in Sources */,
 				1754BA9720378E91008B2C44 /* CardView.swift in Sources */,
 				17FB6953203DF88E008F9057 /* User.swift in Sources */,
 				1728CEE1204437F9005D9A63 /* QuestApiResponse.swift in Sources */,
 				1728CEDF2044378C005D9A63 /* ApiResponse.swift in Sources */,
 				176E63192035BE4B00DCAC3F /* ProfileViewController.swift in Sources */,
-				1728EDC12045B8D300300A1C /* FakeQuestApi.swift in Sources */,
 				17CB3C51203F70AC006EF6D5 /* UserData.swift in Sources */,
 				17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */,
 				176635F420388B19003D76A8 /* RoundedImage.swift in Sources */,
@@ -780,14 +798,16 @@
 				17579BE0204083EE005F74B5 /* SwiftSpinner.swift in Sources */,
 				1728CEDD204434ED005D9A63 /* QuestApi.swift in Sources */,
 				17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */,
+				17EC569D206807420011327D /* UIImageView+Extension.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,
 				176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */,
 				176755452039FD0100490BEB /* Checkbox.swift in Sources */,
+				17EC569B2067FA1B0011327D /* ProofPhotoCell.swift in Sources */,
 				1728CED620442E69005D9A63 /* Quest.swift in Sources */,
 				17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */,
-				1728CEDA204433EB005D9A63 /* Solution.swift in Sources */,
+				1728CEDA204433EB005D9A63 /* Proof.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

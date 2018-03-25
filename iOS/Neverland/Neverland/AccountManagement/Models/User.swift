@@ -10,7 +10,7 @@ import Foundation
 
 class User {
     static let sharedInstance = User()
-    let userDefaults: UserDefaults!
+    private let userDefaults: UserDefaults!
     
     private init() {
         userDefaults = UserDefaults()
