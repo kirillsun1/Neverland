@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.QuestsAnswer;
+import ee.knk.neverland.answer.QuestList;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Quest;
@@ -24,31 +24,32 @@ public class TakenQuestController {
     private final TakenQuestService takenQuestsService;
     private final TokenController tokenController;
     private final QuestController questController;
+    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController) {
+    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController, UserController userController) {
         this.takenQuestsService = takenQuestsService;
         this.tokenController = new TokenController(tokenService);
         this.questController = questController;
+        this.userController = userController;
     }
 
-    @RequestMapping(value="/takequest")
+    @RequestMapping(value="/takeQuest")
     public String takeQuest(@RequestParam(value="token") String token, @RequestParam(value="qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Quest quest = questController.getQuestById(questId);
-        if (
-                takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
+        if (takenQuestsService.checkIfQuestIsTaken(user.get(), quest)) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_TAKEN));
         }
         takenQuestsService.takeQuest(new TakenQuest(user.get(), quest));
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
-    @RequestMapping(value="/getmyquests")
+    @RequestMapping(value="/getMyQuests")
     public String getQuestsTakenByUser(@RequestParam(value = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -61,7 +62,7 @@ public class TakenQuestController {
     }
 
 
-    @RequestMapping(value = "/dropquest")
+    @RequestMapping(value = "/dropQuest")
     public String deleteQuestFromMyQuests(@RequestParam(value="token") String token, @RequestParam(value="qid")Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -76,7 +77,7 @@ public class TakenQuestController {
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
-    @RequestMapping(value="/getqueststotake")
+    @RequestMapping(value="/getQuestsToTake")
     public String getQuests(@RequestParam(value="token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -85,8 +86,7 @@ public class TakenQuestController {
         List<Quest> quests = questController.getQuests();
         QuestPacker packer = new QuestPacker();
         List<Quest> needed = getNewQuests(quests, user.get());
-        System.out.println("sth");
-        QuestsAnswer answer = packer.packAllQuests(needed);
+        QuestList answer = packer.packAllQuests(needed);
         return gson.toJson(answer);
     }
 
@@ -107,6 +107,11 @@ public class TakenQuestController {
             counter = 0;
         }
         return notMyQuests;
+    }
+
+    void archiveTakenQuest(Quest quest, User user) {
+        Optional<TakenQuest> takenQuest = takenQuestsService.getQuestTakenByUser(user, quest);
+        takenQuest.ifPresent(item -> takenQuestsService.archive(item.getId()));
     }
 
 }

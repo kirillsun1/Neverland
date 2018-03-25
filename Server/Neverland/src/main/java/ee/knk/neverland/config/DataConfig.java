@@ -2,6 +2,7 @@ package ee.knk.neverland.config;
 
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.annotation.Resource;
+import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan("ee.knk.neverland")
 @EnableWebMvc
+<<<<<<< HEAD
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("ee.knk.neverland.repository")
 public class DataConfig {
@@ -78,5 +81,20 @@ public class DataConfig {
     }
 
 
+=======
+@PropertySource("classpath:application.properties")
+@EnableJpaRepositories("ee.knk.neverland.repository")
+public class DataConfig {
+
+
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("5000KB");
+        factory.setMaxRequestSize("5000KB");
+        return factory.createMultipartConfig();
+    }
+
+>>>>>>> a76b7b8714db0e64173f14de85c7494d5a32b96e
 
 }

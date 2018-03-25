@@ -50,7 +50,7 @@ public class UserController {
         return gson.toJson(new StandardAnswer(Constants.SUCCEED, token));
     }
 
-    @RequestMapping(value="/tokencheck")
+    @RequestMapping(value="/tokenCheck")
     public String checkToken(@RequestParam(value="token") String token) {
         if (tokenController.isValid(token)) {
             return gson.toJson(new StandardAnswer(Constants.SUCCEED));
@@ -58,4 +58,7 @@ public class UserController {
         return gson.toJson(new StandardAnswer(Constants.FAILED));
     }
 
+    User getUserById(Long id) {
+        return userService.findUser(id);
+    }
 }
