@@ -52,7 +52,7 @@ public class FileUploadController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         String pathEnding = user.get().getUsername() + "_" + questId + ".jpg";
-        proofController.addProof(questId, user.get(), dbPath + pathEnding, comment);
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -60,6 +60,7 @@ public class FileUploadController {
                         new BufferedOutputStream(new FileOutputStream(new File(realPath + pathEnding)));
                 stream.write(bytes);
                 stream.close();
+                proofController.addProof(questId, user.get(), dbPath + pathEnding, comment);
                 return gson.toJson(new StandardAnswer(Constants.SUCCEED));
             } catch (Exception e) {
                 return gson.toJson(new StandardAnswer(Constants.FAILED));

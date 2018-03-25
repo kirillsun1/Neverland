@@ -26,8 +26,13 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     }
 
     @Override
-    public List<TakenQuest> getQuests(User user) {
+    public List<TakenQuest> getAllQuestsUserTook(User user) {
         return takenQuestsRepository.getTakenQuestsByUser(user);
+    }
+
+    @Override
+    public List<TakenQuest> getActiveQuestsUserTook(User user) {
+        return takenQuestsRepository.getMyTakenQuests(user);
     }
 
     @Override

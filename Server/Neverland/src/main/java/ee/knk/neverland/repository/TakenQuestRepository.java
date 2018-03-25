@@ -17,6 +17,9 @@ public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
     @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user")
     List<TakenQuest> getTakenQuestsByUser(@Param("user") User user);
 
+    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.active = true")
+    List<TakenQuest> getMyTakenQuests(@Param("user") User user);
+
     @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.quest = :quest and takenQuest.active = true")
     Optional<TakenQuest> getQuestWithUser(@Param("user") User user, @Param("quest") Quest quest);
 

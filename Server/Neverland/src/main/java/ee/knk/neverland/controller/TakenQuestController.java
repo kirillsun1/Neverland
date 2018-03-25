@@ -56,7 +56,7 @@ public class TakenQuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
 
-        List<TakenQuest> questPointers = takenQuestsService.getQuests(user.get());
+        List<TakenQuest> questPointers = takenQuestsService.getActiveQuestsUserTook(user.get());
         QuestPacker packer = new QuestPacker();
         return gson.toJson(packer.packMyQuests(questPointers));
     }
@@ -91,7 +91,7 @@ public class TakenQuestController {
     }
 
     private List<Quest> getNewQuests(List<Quest> allQuests, User user) {
-        List<TakenQuest> questPointers = takenQuestsService.getQuests(user);
+        List<TakenQuest> questPointers = takenQuestsService.getAllQuestsUserTook(user);
         List<Quest> notMyQuests = new ArrayList<>();
         int counter = 0;
         for(Quest quest : allQuests) {
