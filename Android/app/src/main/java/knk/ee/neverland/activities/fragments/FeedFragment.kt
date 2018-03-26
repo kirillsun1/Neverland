@@ -45,6 +45,7 @@ class FeedFragment : Fragment() {
         val feedListView = view!!.findViewById<ListView>(R.id.feed_listview)
         feedElementAdapter = FeedElementAdapter(context!!)
         feedListView.adapter = feedElementAdapter
+        // feedListView.emptyView = // TODO: !!!
     }
 
     private fun showMessage(message: String) {

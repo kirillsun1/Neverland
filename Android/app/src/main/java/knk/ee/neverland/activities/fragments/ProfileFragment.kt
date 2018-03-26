@@ -25,6 +25,6 @@ class ProfileFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.profile_login).text = DefaultAPI.userLogin
 
-        (view.findViewById<View>(R.id.profile_images) as GridView).adapter = QuestPictureAdapter(context)
+
     }
 }

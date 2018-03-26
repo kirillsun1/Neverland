@@ -6,7 +6,7 @@ import knk.ee.neverland.datetime.Date
 data class Proof(
     val id: Int,
 
-    val comment: String,
+    val comment: String?,
 
     @SerializedName("pic_path")
     val imageLink: String,

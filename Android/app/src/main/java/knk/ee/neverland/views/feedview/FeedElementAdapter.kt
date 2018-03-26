@@ -3,6 +3,8 @@ package knk.ee.neverland.views.feedview
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
@@ -44,6 +46,7 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
             viewHolder.userName = view.findViewById(R.id.feed_user_name)
             viewHolder.ratingBar = view.findViewById(R.id.feed_rating_bar)
             viewHolder.proofImage = view.findViewById(R.id.feed_proof_image)
+            viewHolder.comment = view.findViewById(R.id.feed_proof_comment)
 
             view.tag = viewHolder
         } else {
@@ -53,11 +56,14 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
         viewHolder.userName!!.text = element.sender.userName
         viewHolder.questName!!.text = element.quest.title
         viewHolder.ratingBar!!.progress = 77 // TODO: Rating
+        viewHolder.comment!!.visibility = if (element.comment == null
+            || element.comment.isBlank()) GONE else VISIBLE;
+        viewHolder.comment!!.text = element.comment
 
         Glide.with(view)
             .load(element.imageLink)
-            .transition(DrawableTransitionOptions.withCrossFade(
-                view.resources.getInteger(R.integer.feed_fade_animation_duration)))
+            .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
+                R.integer.feed_fade_animation_duration)))
             .into(viewHolder.proofImage!!)
 
         return view
@@ -75,5 +81,6 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
         internal var userAvatar: ImageView? = null
         internal var ratingBar: ProgressBar? = null
         internal var proofImage: ImageView? = null
+        internal var comment: TextView? = null
     }
 }
