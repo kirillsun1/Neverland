@@ -21,12 +21,14 @@ import java.util.Optional;
 public class QuestController {
     private final QuestService questService;
     private final TokenController tokenController;
+    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public QuestController(QuestService questService, TokenService tokenService) {
+    public QuestController(QuestService questService, TokenService tokenService, UserController userController) {
         this.questService = questService;
         this.tokenController = new TokenController(tokenService);
+        this.userController = userController;
     }
 
     @RequestMapping(value="/submitQuest")
@@ -50,13 +52,14 @@ public class QuestController {
     }
 
     @RequestMapping(value="/getAuthorsQuests")
-    public String getAuthorsQuests(@RequestParam(value="token") String token) {
+    public String getAuthorsQuests(@RequestParam(value="token") String token, @RequestParam(value="uid") Long userId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
+        User author = userController.getUserById(userId);
         QuestPacker packer = new QuestPacker();
-        return gson.toJson(packer.packAllQuests(questService.getAuthorsQuests(user.get())));
+        return gson.toJson(packer.packAllQuests(questService.getAuthorsQuests(author)));
     }
 
 
