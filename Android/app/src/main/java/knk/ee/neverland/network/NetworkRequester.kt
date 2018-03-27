@@ -9,6 +9,7 @@ import okhttp3.Response
 import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
+import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
@@ -39,6 +40,8 @@ object NetworkRequester {
         } catch (ex: SocketTimeoutException) {
             increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
+        } catch (ex: UnknownHostException) {
+            throw NetworkException(Constants.NETWORK_ERROR_CODE)
         }
     }
 
@@ -63,6 +66,8 @@ object NetworkRequester {
         } catch (ex: SocketTimeoutException) {
             increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
+        } catch (ex: UnknownHostException) {
+            throw NetworkException(Constants.NETWORK_ERROR_CODE)
         }
     }
 

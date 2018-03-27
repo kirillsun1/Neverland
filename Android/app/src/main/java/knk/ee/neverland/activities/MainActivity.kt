@@ -14,14 +14,7 @@ import knk.ee.neverland.activities.fragments.SearchFragment
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
-
-    private var feedFragment: FeedFragment? = null
-    private var questsFragment: QuestsFragment? = null
-    private var searchFragment: SearchFragment? = null
-    private var groupsFragment: GroupsFragment? = null
-    private var profileFragment: ProfileFragment? = null
-
-    private enum class Fragments {
+    enum class FragmentType {
         FEED, QUESTS, SEARCH, GROUPS, PROFILE
     }
 
@@ -42,15 +35,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.onNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.navigation_feed -> setMainFragment(Fragments.FEED)
+                    R.id.navigation_feed -> setMainFragment(FragmentType.FEED)
 
-                    R.id.navigation_quests -> setMainFragment(Fragments.QUESTS)
+                    R.id.navigation_quests -> setMainFragment(FragmentType.QUESTS)
 
-                    R.id.navigation_search -> setMainFragment(Fragments.SEARCH)
+                    R.id.navigation_search -> setMainFragment(FragmentType.SEARCH)
 
-                    R.id.navigation_groups -> setMainFragment(Fragments.GROUPS)
+                    R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
 
-                    R.id.navigation_profile -> setMainFragment(Fragments.PROFILE)
+                    R.id.navigation_profile -> setMainFragment(FragmentType.PROFILE)
                 }
 
                 true
@@ -59,25 +52,32 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.currentItem = 0
     }
 
-    private fun setMainFragment(fragment: Fragments) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_page_frame, getFragment(fragment), fragment.toString())
-            .commit()
+    private fun setMainFragment(fragmentType: FragmentType) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        var fragmentObject = fragmentManager.findFragmentByTag(fragmentType.toString())
+
+        if (fragmentObject == null) {
+            fragmentObject = createNewFragmentObject(fragmentType)
+        }
+
+        fragmentTransaction.replace(R.id.main_page_frame, fragmentObject, fragmentType.toString())
+        fragmentTransaction.addToBackStack(fragmentType.toString())
+        fragmentTransaction.commit()
     }
 
-    private fun getFragment(fragmentType: Fragments): Fragment {
-        // TODO: find a better way to prevent fragments from recreating
-
+    private fun createNewFragmentObject(fragmentType: FragmentType): Fragment {
         when (fragmentType) {
-            Fragments.FEED -> return FeedFragment()
+            FragmentType.FEED -> return FeedFragment()
 
-            Fragments.QUESTS -> return QuestsFragment()
+            FragmentType.QUESTS -> return QuestsFragment()
 
-            Fragments.SEARCH -> return SearchFragment()
+            FragmentType.SEARCH -> return SearchFragment()
 
-            Fragments.GROUPS -> return GroupsFragment()
+            FragmentType.GROUPS -> return GroupsFragment()
 
-            Fragments.PROFILE -> return ProfileFragment()
+            FragmentType.PROFILE -> return ProfileFragment()
 
             else -> throw IllegalArgumentException()
         }

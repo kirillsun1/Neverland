@@ -11,7 +11,11 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.GlideBuilder
+import com.bumptech.glide.GlideContext
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Proof
 
@@ -60,8 +64,9 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
             || element.comment.isBlank()) GONE else VISIBLE;
         viewHolder.comment!!.text = element.comment
 
-        Glide.with(view)
+        Glide.with(view.context)
             .load(element.imageLink)
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
             .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
                 R.integer.feed_fade_animation_duration)))
             .into(viewHolder.proofImage!!)

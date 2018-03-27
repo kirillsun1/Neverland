@@ -48,7 +48,7 @@ class AllQuestsActivity : AppCompatActivity() {
 
         findViewById<EditText>(R.id.quest_search_bar).addTextChangedListener(QuestTextWatcher())
 
-        questListSwiper = findViewById<SwipeRefreshLayout>(R.id.all_quests_list_view_swiper)
+        questListSwiper = findViewById(R.id.all_quests_list_view_swiper)
         questListSwiper!!.setOnRefreshListener {
             questListSwiper!!.isRefreshing = true
             UpdateQuestsTask().execute()
