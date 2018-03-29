@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0920"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98AD12AF68E6B96DDF7546D616BA05A8"
+               BlueprintIdentifier = "E23FDD96C3BBED587DA593E156C325C5"
                BuildableName = "Pods_Neverland.framework"
                BlueprintName = "Pods-Neverland"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98AD12AF68E6B96DDF7546D616BA05A8"
+            BlueprintIdentifier = "E23FDD96C3BBED587DA593E156C325C5"
             BuildableName = "Pods_Neverland.framework"
             BlueprintName = "Pods-Neverland"
             ReferencedContainer = "container:Pods.xcodeproj">

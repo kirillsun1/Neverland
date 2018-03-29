@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auth View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" customClass="AuthViewController" customModule="Neverland" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Viz-6q-WMe">
+                                <rect key="frame" x="40" y="119" width="240" height="330"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_nograd" translatesAutoresizingMaskIntoConstraints="NO" id="hgp-V1-Z2e">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="lyf-Lr-Vjs"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fIR-J3-uC8">
+                                        <rect key="frame" x="30" y="190" width="180" height="140"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hnx-Pc-G8z">
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="140"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USERNAME" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K40-Mw-yFs" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="41.5"/>
+                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="K40-Mw-yFs" secondAttribute="height" multiplier="179:41" id="Ht5-wn-Ltu"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="0.30980392159999998" green="0.2666666667" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="********" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TYu-Qb-Fs5" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="49.5" width="180" height="41"/>
+                                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="TYu-Qb-Fs5" secondAttribute="height" multiplier="179:41" id="bEn-lB-i0j"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="0.30980392159999998" green="0.2666666667" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-xG-zx9">
+                                                        <rect key="frame" x="0.0" y="98.5" width="180" height="41.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <state key="normal" title="Don't have an account? ">
+                                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <segue destination="JNM-jd-HMu" kind="show" identifier="RegSegue" id="Xd4-gM-wDw"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Hnx-Pc-G8z" firstAttribute="leading" secondItem="fIR-J3-uC8" secondAttribute="leading" id="1yn-ts-Pn0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hnx-Pc-G8z" secondAttribute="trailing" id="MJv-fu-bGT"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hgp-V1-Z2e" firstAttribute="top" secondItem="Viz-6q-WMe" secondAttribute="top" id="TU8-Pe-2yw"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ure-P7-4wN"/>
+                                    <constraint firstAttribute="height" constant="330" id="lrn-QA-neN"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30980392159999998" green="0.2666666667" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Viz-6q-WMe" secondAttribute="bottom" constant="119" id="6ws-FG-4kE"/>
+                            <constraint firstItem="Viz-6q-WMe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Ax-ts-sEb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="logoHeightConstr" destination="lyf-Lr-Vjs" id="vy9-hy-2vv"/>
+                        <outlet property="logoTopConstr" destination="TU8-Pe-2yw" id="Ivz-8d-RxG"/>
+                        <outlet property="passwordField" destination="TYu-Qb-Fs5" id="qZp-j0-LhH"/>
+                        <outlet property="stackViewBotomOffsetConstr" destination="6ws-FG-4kE" id="TJE-0J-S4r"/>
+                        <outlet property="stackViewHeightConstr" destination="lrn-QA-neN" id="5cc-BE-k1A"/>
+                        <outlet property="stackViewWidthConstr" destination="Ure-P7-4wN" id="jO8-wv-7j4"/>
+                        <outlet property="userField" destination="K40-Mw-yFs" id="1El-yt-bY1"/>
+                        <segue destination="x5B-nJ-RIU" kind="show" identifier="LoginSegue" id="nm4-hW-AoC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="hmX-9b-WQH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="x5B-nJ-RIU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJO-NW-pd6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="375"/>
+        </scene>
+        <!--Registrer View Controller-->
+        <scene sceneID="h28-LT-clZ">
+            <objects>
+                <viewController id="JNM-jd-HMu" customClass="RegistrerViewController" customModule="Neverland" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JFF-1A-aUN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="heE-2x-MGy">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QG7-8P-2VH">
+                                <rect key="frame" x="53.5" y="72" width="213" height="234"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4x-A8-9TB" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="213" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="nickname"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="1e8-2D-L2g"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b07-LN-yeM" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="34" width="213" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="2Yc-yj-8Od"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0C-cm-AF6" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="213" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="given-name"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="uO2-XO-oh6"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lastname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgI-hn-Mgd" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="102" width="213" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="family-name"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="zos-7v-spP"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-I9-Uia" customClass="RegistrationField" customModule="Neverland" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136" width="213" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
+                                        <connections>
+                                            <action selector="inputChanged" destination="JNM-jd-HMu" eventType="editingChanged" id="cZu-8f-Re5"/>
+                                        </connections>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-FM-lA8">
+                                        <rect key="frame" x="0.0" y="170" width="200.5" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9E-kZ-dk1" customClass="Checkbox" customModule="Neverland" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="30.5" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="EpM-i6-qUR"/>
+                                                    <constraint firstAttribute="height" constant="30" id="W5v-Te-pe9"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="toggleCheckbox:" destination="JNM-jd-HMu" eventType="touchUpInside" id="9pi-zO-i9g"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I agree blah blah, developers do not want to get into prison " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAx-yu-cwD">
+                                                <rect key="frame" x="38.5" y="0.0" width="162" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ZAx-yu-cwD" secondAttribute="trailing" id="Pom-t1-KsK"/>
+                                            <constraint firstAttribute="width" constant="200" id="Slr-w2-uhG"/>
+                                            <constraint firstItem="ZAx-yu-cwD" firstAttribute="top" secondItem="p4Y-FM-lA8" secondAttribute="top" id="WQg-7s-XOU"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drN-CD-GPi">
+                                        <rect key="frame" x="0.0" y="204" width="57" height="30"/>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.38180803571428573" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="registerPressed:" destination="JNM-jd-HMu" eventType="touchUpInside" id="xcr-gY-eCs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="e1x-I9-Uia" secondAttribute="trailing" id="5LQ-FT-IBu"/>
+                                    <constraint firstAttribute="width" secondItem="QG7-8P-2VH" secondAttribute="height" multiplier="10:11" id="7MF-J4-QWy"/>
+                                    <constraint firstAttribute="trailing" secondItem="G4x-A8-9TB" secondAttribute="trailing" id="A2B-OZ-rMa"/>
+                                    <constraint firstAttribute="trailing" secondItem="B0C-cm-AF6" secondAttribute="trailing" id="MFe-qc-nf7"/>
+                                    <constraint firstAttribute="trailing" secondItem="b07-LN-yeM" secondAttribute="trailing" id="Slw-9y-ns6"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZgI-hn-Mgd" secondAttribute="trailing" id="eUH-e7-2uw"/>
+                                </constraints>
+                            </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0St-gp-hde">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Registration" id="XSY-Sk-Tm3">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="9iC-Jn-0qT">
+                                            <connections>
+                                                <action selector="regCancelled" destination="JNM-jd-HMu" id="m4M-Du-WIL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30980392159999998" green="0.2666666667" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QG7-8P-2VH" firstAttribute="top" secondItem="0St-gp-hde" secondAttribute="bottom" constant="8" id="5Md-Lb-5S5"/>
+                            <constraint firstItem="0St-gp-hde" firstAttribute="top" secondItem="9gq-Mh-5tw" secondAttribute="top" id="FHV-5E-8Bi"/>
+                            <constraint firstItem="0St-gp-hde" firstAttribute="trailing" secondItem="9gq-Mh-5tw" secondAttribute="trailing" id="GMK-hZ-Dgu"/>
+                            <constraint firstItem="0St-gp-hde" firstAttribute="leading" secondItem="9gq-Mh-5tw" secondAttribute="leading" id="e8k-cu-knp"/>
+                            <constraint firstItem="QG7-8P-2VH" firstAttribute="centerX" secondItem="JFF-1A-aUN" secondAttribute="centerX" id="lFp-bv-47h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9gq-Mh-5tw"/>
+                    </view>
+                    <connections>
+                        <outlet property="agreementBtn" destination="G9E-kZ-dk1" id="3gw-7K-lSM"/>
+                        <outlet property="emailLbl" destination="e1x-I9-Uia" id="iAk-Fl-NKi"/>
+                        <outlet property="loginLbl" destination="G4x-A8-9TB" id="vwS-De-dCt"/>
+                        <outlet property="nameLbl" destination="B0C-cm-AF6" id="fwg-mu-Afz"/>
+                        <outlet property="pwdLabel" destination="b07-LN-yeM" id="ACB-1t-N2o"/>
+                        <outlet property="registerBtn" destination="drN-CD-GPi" id="lcf-5a-sm5"/>
+                        <outlet property="surnameLbl" destination="ZgI-hn-Mgd" id="WQJ-KN-GpB"/>
+                        <segue destination="x5B-nJ-RIU" kind="show" identifier="LoginSegue" id="XOr-Zs-oJc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYG-zR-ask" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873.75" y="826.05633802816908"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo_nograd" width="351" height="351"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nm4-hW-AoC"/>
+    </inferredMetricsTieBreakers>
+</document>

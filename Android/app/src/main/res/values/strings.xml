@@ -1,18 +1,109 @@
 <resources>
     <string name="app_name">Neverland</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
-    <string name="title_activity_login">Sign in</string>
+    <string name="menu_feed">Feed</string>
+    <string name="menu_quests">Quests</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_groups">Groups</string>
+    <string name="menu_profile">Profile</string>
 
-    <!-- Strings related to login -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="title_create_quest">Suggest quest</string>
+    <string name="title_all_quests">Find quests</string>
+
+
+    <!-- Login and registration errors -->
+    <string name="error_field_required">This field is required</string>
+    <string name="error_no_connection">Connection failed</string>
+    <string name="error_incorrect_field">Login/password is incorrect</string>
+    <string name="error_incorrect_fields">Check fields</string>
+
+    <!-- Data errors -->
+    <string name="error_invalid_login">This login is incorrect</string>
+    <string name="error_invalid_password">This password is incorrect</string>
+    <string name="error_invalid_first_name">This first name is incorrect</string>
+    <string name="error_invalid_second_name">This second name is incorrect</string>
+    <string name="error_invalid_email">This email is incorrect</string>
+
+    <string name="error_invalid_api_request">Update the app</string>
+    <string name="error_network_down">Unable to connect to the Internet</string>
+    <string name="error_invalid_token">Login failed!</string>
+    <string name="error_unexpected_code">Unexpected code: %d</string>
+
+    <!-- Quest errors -->
+    <string name="error_submit_failed">Submitting failed</string>
+    <string name="error_failed_taking_quest">Taking quest failed</string>
+    <string name="error_failed_getting_quests">Getting quests list failed</string>
+    <string name="error_failed_dropping_quest">Dropping quest failed!</string>
+
+    <string name="error_submit_quest_field_length">Length is too short</string>
+
+    <string name="quest_author">Author: %s %s</string>
+    <string name="quest_taken_data">Taken: %s</string>
+    <string name="my_quests_taken_date_time">Created: %s</string>
+
+    <!-- Main menu options -->
+    <string-array name="main_dropdown_menu_items">
+        <item>World</item>
+        <item>Groups</item>
+        <item>Following</item>
+    </string-array>
+
+    <!-- System -->
+    <string name="shared_pref_name">neverlandPreference</string>
+    <string name="auth_key_address">authKey</string>
+    <string name="auth_login_address">authLogin</string>
+
+    <!-- Confirmations -->
+    <string name="taking_quest_confirmation">Are you sure you want to take quest \"%s\"?</string>
+    <string name="dropping_quest_confirmation">Are you sure you want to drop this quest?</string>
+
+    <!-- all quests win -->
+    <string name="quest_search_bar_hint">Search</string>
+    <string name="all_quests_hint">Tap the quest to take it</string>
+    <string name="create_quest_quest_name_title">Quest title (4–30 symbols)</string>
+    <string name="create_quest_quest_desc_title">Detailed quest description (10–480 symbols)</string>
+    <string name="create_quest_submit_button">Submit quest</string>
+
+    <!-- login win -->
+    <string name="login_progress">Login progress</string>
     <string name="prompt_login">Login</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="login_register_hint">Don\'t have an account? Create one!</string>
+
+    <!-- registration win -->
+    <string name="registration_first_name">First name</string>
+    <string name="registration_second_name">Second name</string>
+    <string name="registration_email">Email</string>
+    <string name="registration_agree_message">I agree blah blah, developers do not want to get into prison</string>
+    <string name="registration_register_button">Register</string>
+    <string name="registration_password_repeat">Repeat password</string>
+
+    <string name="error_registration_password_are_not_the_same">Passwords are not the same!</string>
+    <string name="error_registration_did_not_agree">You must agree!</string>
+
+    <!-- quest detailed view -->
+    <string name="quest_submit_proof_button">Submit proof</string>
+    <string name="quest_drop_quest_button">Drop quest</string>
+
+    <string name="progress">Progress</string>
+    <string name="image_content_user_avatar">User avatar</string>
+
+    <string name="proof_select_image">Select proof image</string>
+    <string name="submit_quest_confirmation">Confirm</string>
+    <string name="proof_comment_hint">Comment</string>
+    <string name="proof_retake_picture">Retake</string>
+    <string name="proof_submit_button">Submit</string>
+    <string name="proof_image_hint">Your proof image</string>
+    <string name="error_submitting_proof">Failed to submit proof!</string>
+    <string name="taken_quest_proof_sent_hint">Proof sent</string>
+    <string name="crop_image_title">Edit photo</string>
+    <string name="crop_image_error">Could not crop image</string>
+
+    <string name="error_getting_proofs_failed">Failed getting proofs</string>
+    <string name="error_slow_network">Network is too slow</string>
+
 </resources>

@@ -7,6 +7,12 @@ target 'Neverland' do
 
   # Pods for Neverland
   pod 'DropDown'
+  pod 'PopupDialog', '~> 0.6'
+  pod 'SCLAlertView'
+  pod 'CommonCryptoModule', '~> 1.0.1'
+  pod 'Alamofire', '~> 4.5'
+  pod 'JJFloatingActionButton'
+  pod 'ESPullToRefresh', '~> 2.7'
 
   target 'NeverlandTests' do
     inherit! :search_paths

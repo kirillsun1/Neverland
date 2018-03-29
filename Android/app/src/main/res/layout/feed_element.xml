@@ -1,0 +1,138 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:rowCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/feed_user_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="5dp"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/feed_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/standard_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/feed_quest_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/standard_font_size" />
+        </LinearLayout>
+
+    </GridLayout>
+
+    <ProgressBar
+        android:id="@+id/feed_loading_image"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/feed_proof_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contextClickable="false"
+        android:cropToPadding="false"
+        android:scaleType="center"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+    <ImageButton
+        android:id="@+id/feed_rating_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        android:tint="@color/colorPrimaryDark"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feed_proof_image"
+        app:srcCompat="@drawable/ic_thumb_up_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/feed_rating_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        android:tint="@color/colorPrimaryDark"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/feed_rating_plus"
+        app:layout_constraintTop_toBottomOf="@+id/feed_proof_image"
+        app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
+
+    <ProgressBar
+        android:id="@+id/feed_rating_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:progress="79"
+        android:progressDrawable="@drawable/feed_progress"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toEndOf="@+id/feed_rating_minus"
+        app:layout_constraintTop_toBottomOf="@+id/feed_proof_image" />
+
+    <TextView
+        android:id="@+id/feed_proof_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:textSize="@dimen/standard_font_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feed_rating_bar"
+        app:layout_constraintVertical_bias="0.029" />
+
+</android.support.constraint.ConstraintLayout>
