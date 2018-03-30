@@ -18,6 +18,7 @@
 		1754DFC72067AB10006D4911 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754DFC62067AB10006D4911 /* Time.swift */; };
 		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
 		17579BE0204083EE005F74B5 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDF204083EE005F74B5 /* SwiftSpinner.swift */; };
+		175E4620206E20A800F67DB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E461F206E20A800F67DB2 /* SettingsViewController.swift */; };
 		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
 		176635F420388B19003D76A8 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176635F320388B19003D76A8 /* RoundedImage.swift */; };
 		176755452039FD0100490BEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755442039FD0100490BEB /* Checkbox.swift */; };
@@ -92,6 +93,7 @@
 		1754DFC62067AB10006D4911 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/AccountManagement/View/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
 		17579BDF204083EE005F74B5 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
+		175E461F206E20A800F67DB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176635F320388B19003D76A8 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		176755442039FD0100490BEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -336,6 +338,14 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		175E461E206E208600F67DB2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				175E461F206E20A800F67DB2 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		176E63232035BEE200DCAC3F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +378,7 @@
 		17A56BE62034640A00A4FC72 /* Neverland */ = {
 			isa = PBXGroup;
 			children = (
+				175E461E206E208600F67DB2 /* Settings */,
 				1721765D2042F19800A1A2E2 /* Groups */,
 				1721765B2042F18400A1A2E2 /* Feed */,
 				172176582042F12B00A1A2E2 /* Quests */,
@@ -800,6 +811,7 @@
 				17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */,
 				17EC569D206807420011327D /* UIImageView+Extension.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
+				175E4620206E20A800F67DB2 /* SettingsViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,
 				176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */,

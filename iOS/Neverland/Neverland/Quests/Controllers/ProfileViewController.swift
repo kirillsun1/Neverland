@@ -32,15 +32,6 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         refreshProofs()
     }
-
-    @IBAction func configBtnPressed(_ sender: Any) {
-        // later will be config menu, now log out func
-        User.sharedInstance.logout()
-        
-        let storyboard = UIStoryboard.init(name: "Auth", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
-        self.present(vc!, animated: true, completion: nil)
-    }
     
     func refreshProofs() {
         questApi.fetchMyProofs { arr in
