@@ -2,6 +2,7 @@ package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
 import knk.ee.neverland.api.FeedScope
+import knk.ee.neverland.api.ProofAPI
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
 import knk.ee.neverland.exceptions.APIException

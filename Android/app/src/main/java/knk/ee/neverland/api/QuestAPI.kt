@@ -2,7 +2,7 @@ package knk.ee.neverland.api
 
 import knk.ee.neverland.models.Quest
 
-interface QuestApi {
+interface QuestAPI {
     var token: String
 
     fun submitNewQuest(quest: Quest)

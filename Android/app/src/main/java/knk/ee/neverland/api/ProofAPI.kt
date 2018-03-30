@@ -1,6 +1,5 @@
-package knk.ee.neverland.api.neverlandapi
+package knk.ee.neverland.api
 
-import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.models.Proof
 

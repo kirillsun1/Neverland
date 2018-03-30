@@ -64,7 +64,7 @@ class QuestsFragment : Fragment() {
         val fabColor = ContextCompat.getColor(view!!.context, R.color.custom_fab_color)
 
         // Initialize material sheet FAB
-        materialSheetFab = MaterialSheetFab<CustomFloatingActionButton>(fab, sheetView, overlay,
+        materialSheetFab = MaterialSheetFab(fab, sheetView, overlay,
             sheetColor, fabColor)
 
         view!!.findViewById<TextView>(R.id.fab_sheet_item_suggest_quest).setOnClickListener {

@@ -1,14 +1,14 @@
 package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
-import knk.ee.neverland.api.QuestApi
+import knk.ee.neverland.api.QuestAPI
 import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 
-class NeverlandQuestAPI : QuestApi {
+class NeverlandQuestAPI : QuestAPI {
     override var token: String = ""
 
     private val API_LINK = "http://vrot.bounceme.net:8080"

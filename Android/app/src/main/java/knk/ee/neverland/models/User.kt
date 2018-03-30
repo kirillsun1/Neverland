@@ -10,6 +10,8 @@ class User {
     @SerializedName("second_name")
     var secondName: String = ""
 
+    var avatarLink: String = ""
+
     override fun toString(): String {
         return "$firstName $secondName"
     }

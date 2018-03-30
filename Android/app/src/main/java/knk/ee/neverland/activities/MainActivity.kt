@@ -1,5 +1,6 @@
 package knk.ee.neverland.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -8,14 +9,13 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.fragments.FeedFragment
 import knk.ee.neverland.activities.fragments.GroupsFragment
-import knk.ee.neverland.activities.fragments.ProfileFragment
 import knk.ee.neverland.activities.fragments.QuestsFragment
 import knk.ee.neverland.activities.fragments.SearchFragment
 import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
     enum class FragmentType {
-        FEED, QUESTS, SEARCH, GROUPS, PROFILE
+        FEED, QUESTS, SEARCH, GROUPS
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,13 +43,17 @@ class MainActivity : AppCompatActivity() {
 
                     R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
 
-                    R.id.navigation_profile -> setMainFragment(FragmentType.PROFILE)
+                    R.id.navigation_profile -> openUserProfile()
                 }
 
                 true
             }
 
         bottomNavigationViewEx.currentItem = 0
+    }
+
+    private fun openUserProfile() {
+        startActivity(Intent(this, ProfileActivity::class.java))
     }
 
     private fun setMainFragment(fragmentType: FragmentType) {
@@ -76,8 +80,6 @@ class MainActivity : AppCompatActivity() {
             FragmentType.SEARCH -> return SearchFragment()
 
             FragmentType.GROUPS -> return GroupsFragment()
-
-            FragmentType.PROFILE -> return ProfileFragment()
 
             else -> throw IllegalArgumentException()
         }

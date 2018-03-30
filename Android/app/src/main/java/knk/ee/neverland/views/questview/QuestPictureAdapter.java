@@ -13,9 +13,6 @@ public class QuestPictureAdapter extends BaseAdapter {
 
     private Context context;
 
-    private final int[] someImages = new int[]{
-
-    };
 
     public QuestPictureAdapter(Context context) {
         this.context = context;
@@ -23,12 +20,12 @@ public class QuestPictureAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return someImages.length;
+        return 0;
     }
 
     @Override
     public Object getItem(int i) {
-        return someImages[i];
+        return null;
     }
 
     @Override
@@ -39,7 +36,7 @@ public class QuestPictureAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(someImages[i]);
+        // imageView.setImageResource(someImages[i]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
