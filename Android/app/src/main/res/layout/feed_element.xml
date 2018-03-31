@@ -46,14 +46,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/standard_font_size"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/feed_quest_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/standard_font_size" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </GridLayout>
@@ -73,8 +71,7 @@
                 android:id="@+id/feed_proof_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="@dimen/standard_font_size" />
+                android:layout_margin="5dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,14 +82,14 @@
                     android:id="@+id/feed_rating_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Like"
+                    android:text="That's it!"
                     android:theme="@style/PrimaryFlatButton" />
 
                 <Button
                     android:id="@+id/feed_rating_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dislike"
+                    android:text="It's fake!"
                     android:theme="@style/PrimaryFlatButton" />
 
 

@@ -13,7 +13,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/create_quest_quest_name_title"
-        android:textSize="@dimen/standard_font_size"
         android:textStyle="bold" />
 
     <EditText
@@ -22,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/input_box_background"
-        android:textSize="@dimen/standard_font_size"
         android:inputType="text" />
 
     <TextView
@@ -33,7 +31,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/create_quest_quest_desc_title"
-        android:textSize="@dimen/standard_font_size"
         android:textStyle="bold" />
 
     <EditText
@@ -47,8 +44,7 @@
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/standard_font_size" />
+        android:textAlignment="gravity" />
 
     <Button
         android:id="@+id/create_quest_save"

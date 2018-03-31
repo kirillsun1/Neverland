@@ -2,15 +2,24 @@ package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
 
-class User {
-    @SerializedName("user_name")
-    var userName: String = ""
-    @SerializedName("first_name")
-    var firstName: String = ""
-    @SerializedName("second_name")
-    var secondName: String = ""
+data class User(
+    @SerializedName("u_id")
+    val id: Int,
 
-    var avatarLink: String = ""
+    @SerializedName("user_name")
+    val userName: String,
+
+    @SerializedName("first_name")
+    val firstName: String,
+
+    @SerializedName("second_name")
+    val secondName: String,
+
+    val avatarLink: String,
+    val rating: Double,
+    val following: Int,
+    val followers: Int
+) {
 
     override fun toString(): String {
         return "$firstName $secondName"

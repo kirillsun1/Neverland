@@ -12,12 +12,12 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.api.models.QuestToSubmit
 import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.Constants
 
 class CreateQuestActivity : AppCompatActivity() {
-    private val questToSubmit: Quest = Quest()
+    private var questToSubmit: QuestToSubmit? = null
 
     private var questTitleView: EditText? = null
     private var questDescView: EditText? = null
@@ -28,9 +28,9 @@ class CreateQuestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_quest)
 
-        questTitleView = (findViewById<EditText>(R.id.create_quest_title))
-        questDescView = (findViewById<EditText>(R.id.create_quest_desc))
-        saveButton = findViewById<Button>(R.id.create_quest_save)
+        questTitleView = (findViewById(R.id.create_quest_title))
+        questDescView = (findViewById(R.id.create_quest_desc))
+        saveButton = findViewById(R.id.create_quest_save)
         submittingProgress = findViewById(R.id.submitting_progress)
 
         blockSaveButton(false)
@@ -73,15 +73,17 @@ class CreateQuestActivity : AppCompatActivity() {
     }
 
     private fun setDataToTheQuestObject() {
-        questToSubmit.title = questTitleView!!.text.toString()
-        questToSubmit.description = questDescView!!.text.toString()
+        questToSubmit = QuestToSubmit(questTitleView!!.text.toString(),
+            questDescView!!.text.toString(), 0) // TODO: groupID!
     }
 
-    private fun isQuestNameCorrect(name: String) = name.length >= Constants.QUEST_NAME_MINIMUM_SYMBOLS
-        && name.length <= Constants.QUEST_NAME_MAXIMUM_SYMBOLS
+    private fun isQuestNameCorrect(name: String) =
+        name.length >= Constants.QUEST_NAME_MINIMUM_SYMBOLS
+                && name.length <= Constants.QUEST_NAME_MAXIMUM_SYMBOLS
 
-    private fun isQuestDescCorrect(description: String) = description.length >= Constants.QUEST_DESC_MINIMUM_SYMBOLS
-        && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
+    private fun isQuestDescCorrect(description: String) =
+        description.length >= Constants.QUEST_DESC_MINIMUM_SYMBOLS
+                && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
 
     private fun blockSaveButton(block: Boolean) {
         saveButton?.isEnabled = !block
@@ -94,7 +96,7 @@ class CreateQuestActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg p0: Void?): Int {
             try {
-                DefaultAPI.questAPI.submitNewQuest(questToSubmit)
+                DefaultAPI.questAPI.submitNewQuest(questToSubmit!!)
                 return Constants.SUCCESS_CODE
             } catch (ex: APIException) {
                 return ex.code

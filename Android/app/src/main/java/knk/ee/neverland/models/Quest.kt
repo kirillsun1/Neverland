@@ -3,23 +3,25 @@ package knk.ee.neverland.models
 import com.google.gson.annotations.SerializedName
 import knk.ee.neverland.datetime.DateTime
 
-class Quest {
-    var id: Int = 0
+data class Quest(
+    val id: Int,
 
     @SerializedName("title")
-    var title: String = ""
+    val title: String,
 
     @SerializedName("desc")
-    var description: String = ""
+    val description: String,
 
     @SerializedName("author")
-    var creator: User = User()
+    val creator: User,
 
     @SerializedName("time_created")
-    var timeCreated: DateTime = DateTime()
+    val timeCreated: DateTime,
 
     @SerializedName("time_taken")
-    var timeTaken: DateTime? = null
+    val timeTaken: DateTime?,
 
-    var groupID: Int = 0
+    val groupID: Int
+) {
+    fun isTaken() = timeTaken != null
 }

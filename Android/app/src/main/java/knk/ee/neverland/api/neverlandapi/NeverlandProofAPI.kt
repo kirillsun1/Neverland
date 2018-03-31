@@ -58,4 +58,7 @@ class NeverlandProofAPI : ProofAPI {
         return responseObject.proofs
     }
 
+    override fun getProofsByUserID(userID: Int): List<Proof> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

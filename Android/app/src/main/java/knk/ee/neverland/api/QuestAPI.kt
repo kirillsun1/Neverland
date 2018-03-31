@@ -1,11 +1,12 @@
 package knk.ee.neverland.api
 
+import knk.ee.neverland.api.models.QuestToSubmit
 import knk.ee.neverland.models.Quest
 
 interface QuestAPI {
     var token: String
 
-    fun submitNewQuest(quest: Quest)
+    fun submitNewQuest(quest: QuestToSubmit)
 
     fun takeQuest(id: Int)
 
@@ -16,4 +17,6 @@ interface QuestAPI {
     fun getMyQuests(): List<Quest>
 
     fun getQuestsToTake(): List<Quest>
+
+    fun getSuggestedByUserQuests(userID: Int): List<Quest>
 }

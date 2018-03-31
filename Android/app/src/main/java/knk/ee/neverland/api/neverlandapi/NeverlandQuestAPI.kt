@@ -2,6 +2,7 @@ package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
 import knk.ee.neverland.api.QuestAPI
+import knk.ee.neverland.api.models.QuestToSubmit
 import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.network.NetworkRequester
@@ -13,7 +14,7 @@ class NeverlandQuestAPI : QuestAPI {
 
     private val API_LINK = "http://vrot.bounceme.net:8080"
 
-    override fun submitNewQuest(quest: Quest) {
+    override fun submitNewQuest(quest: QuestToSubmit) {
         val link = URLLinkBuilder(API_LINK, "submitQuest")
             .addParam("token", token)
             .addParam("title", quest.title)
@@ -101,6 +102,24 @@ class NeverlandQuestAPI : QuestAPI {
     override fun getQuestsToTake(): List<Quest> {
         val link = URLLinkBuilder(API_LINK, "getQuestsToTake")
             .addParam("token", token)
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.quests
+    }
+
+    override fun getSuggestedByUserQuests(userID: Int): List<Quest> {
+        val link = URLLinkBuilder(API_LINK, "getSuggestedQuests")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
             .finish()
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)

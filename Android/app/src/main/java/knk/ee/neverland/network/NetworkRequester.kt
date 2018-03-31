@@ -11,7 +11,6 @@ import java.net.SocketTimeoutException
 import java.net.URL
 import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
-import kotlin.math.max
 import kotlin.math.min
 
 object NetworkRequester {
@@ -19,8 +18,10 @@ object NetworkRequester {
     private val TIMEOUT_DELTA = 2500
     private var currentTimeout = 5000
 
-    fun makeGetRequestAndGetResponseBody(urlString: String,
-                                         defaultTimeoutInMilliSeconds: Int = currentTimeout): String {
+    fun makeGetRequestAndGetResponseBody(
+        urlString: String,
+        defaultTimeoutInMilliSeconds: Int = currentTimeout
+    ): String {
         try {
             val request = Request.Builder()
                 .url(URL(urlString))
@@ -45,8 +46,10 @@ object NetworkRequester {
         }
     }
 
-    fun makePostRequestAndGetResponseBody(urlString: String, requestBody: RequestBody,
-                                          defaultTimeoutInMilliSeconds: Int = currentTimeout): String {
+    fun makePostRequestAndGetResponseBody(
+        urlString: String, requestBody: RequestBody,
+        defaultTimeoutInMilliSeconds: Int = currentTimeout
+    ): String {
         try {
             val request = Request.Builder()
                 .url(urlString)
