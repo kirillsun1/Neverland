@@ -1,8 +1,6 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
@@ -12,17 +10,15 @@ import android.text.TextWatcher
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.questview.QuestElementAdapter
 
 class AllQuestsActivity : AppCompatActivity() {
     private var questListAdapter: QuestElementAdapter? = null
-    private var questListSwiper: SwipeRefreshLayout? = null
+    private var questListSwipper: SwipeRefreshLayout? = null
 
     private var takingQuest: Boolean = false
 
@@ -31,7 +27,7 @@ class AllQuestsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_quests)
 
         initializeQuestsList()
-        UpdateQuestsTask().execute()
+        runUpdateQuestsTask(false)
     }
 
     private fun initializeQuestsList() {
@@ -48,10 +44,9 @@ class AllQuestsActivity : AppCompatActivity() {
 
         findViewById<EditText>(R.id.quest_search_bar).addTextChangedListener(QuestTextWatcher())
 
-        questListSwiper = findViewById(R.id.all_quests_list_view_swiper)
-        questListSwiper!!.setOnRefreshListener {
-            questListSwiper!!.isRefreshing = true
-            UpdateQuestsTask().execute()
+        questListSwipper = findViewById(R.id.all_quests_list_view_swiper)
+        questListSwipper!!.setOnRefreshListener {
+            runUpdateQuestsTask(true)
         }
     }
 
@@ -63,8 +58,7 @@ class AllQuestsActivity : AppCompatActivity() {
             .setMessage(message)
             .setCancelable(true)
             .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
-                takingQuest = true
-                TakeQuestTask(quest.id, pos).execute()
+                runTakeQuestTask(quest.id, pos)
                 dialogInterface.cancel()
             })
             .setNegativeButton(getString(R.string.no), { dialogInterface: DialogInterface, _: Int ->
@@ -74,60 +68,43 @@ class AllQuestsActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun showToast(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+    private fun runUpdateQuestsTask(updating: Boolean) {
+        APIAsyncRequest.Builder<List<Quest>>()
+            .before {
+                if (updating) {
+                    questListSwipper!!.isRefreshing = true
+                }
+            }
+            .request { DefaultAPI.questAPI.getQuestsToTake() }
+            .handleResult { questListAdapter!!.addQuests(it!!) }
+            .onAPIFailMessage { R.string.error_failed_getting_quests }
+            .setContext(this)
+            .showMessages(true)
+            .after {
+                questListSwipper!!.isRefreshing = false
+            }
+            .finish()
+            .execute()
+
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class UpdateQuestsTask : AsyncTask<Void, Void, Boolean>() {
-
-        private var questsListGot: List<Quest>? = null
-
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                questsListGot = DefaultAPI.questAPI.getQuestsToTake()
-                return true
-            } catch (ex: APIException) {
-                return false
-            } catch (ex: NetworkException) {
-                return false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                questListAdapter!!.addQuests(questsListGot!!)
-            } else {
-                showToast(getString(R.string.error_failed_getting_quests))
-            }
-
-            questListSwiper!!.isRefreshing = false
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class TakeQuestTask(val questID: Int, val positionInAdapter: Int) : AsyncTask<Void, Void, Boolean>() {
-
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                DefaultAPI.questAPI.takeQuest(questID)
-                return true
-            } catch (ex: APIException) {
-                return false
-            } catch (ex: NetworkException) {
-                return false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                questListAdapter!!.removeQuest(positionInAdapter)
-                questListAdapter!!.notifyDataSetChanged()
-
-            } else {
-                showToast(getString(R.string.error_failed_taking_quest))
-            }
-            takingQuest = false
+    private fun runTakeQuestTask(questID: Int, positionInAdapter: Int) {
+        if (!takingQuest) {
+            APIAsyncRequest.Builder<Boolean>()
+                .before { takingQuest = true }
+                .request {
+                    DefaultAPI.questAPI.takeQuest(questID)
+                    true
+                }
+                .onAPIFailMessage { R.string.error_failed_taking_quest }
+                .setContext(this)
+                .showMessages(true)
+                .after {
+                    questListAdapter!!.removeQuest(positionInAdapter)
+                    takingQuest = false
+                }
+                .finish()
+                .execute()
         }
     }
 

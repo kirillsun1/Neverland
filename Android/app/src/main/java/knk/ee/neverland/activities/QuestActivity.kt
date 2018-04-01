@@ -1,11 +1,9 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
@@ -22,8 +20,7 @@ import com.esafirm.imagepicker.features.ImagePicker
 import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.exceptions.NetworkException
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.questview.QuestPictureAdapter
 import java.io.File
 
@@ -53,13 +50,11 @@ class QuestActivity : AppCompatActivity() {
         (findViewById<View>(R.id.quest_created_date) as TextView).text = questCreatedDate
         (findViewById<View>(R.id.quest_images) as GridView).adapter = pictureAdapter
 
-        dropQuestButton = findViewById<Button>(R.id.drop_quest)
-        droppingProgress = findViewById<ProgressBar>(R.id.dropping_progress)
+        dropQuestButton = findViewById(R.id.drop_quest)
+        droppingProgress = findViewById(R.id.dropping_progress)
 
         dropQuestButton!!.setOnClickListener {
-            if (!droppingQuest) {
-                askConfirmationAndDropQuest(questID)
-            }
+            askConfirmationAndDropQuest(questID)
         }
 
         findViewById<Button>(R.id.submit_proof).setOnClickListener {
@@ -94,8 +89,7 @@ class QuestActivity : AppCompatActivity() {
             .setMessage(getString(R.string.dropping_quest_confirmation))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.yes), { dialogInterface: DialogInterface, _: Int ->
-                changeDroppingQuestProperty(true)
-                DropQuestTask(questID).execute()
+                runDropQuestTask(questID)
                 dialogInterface.cancel()
             })
             .setNegativeButton(R.string.no, { dialogInterface: DialogInterface, _: Int ->
@@ -159,27 +153,32 @@ class QuestActivity : AppCompatActivity() {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show()
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class DropQuestTask(val questID: Int) : AsyncTask<Void, Void, Boolean>() {
+    private fun runDropQuestTask(questID: Int) {
+        if (!droppingQuest) {
+            var success = false
 
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                DefaultAPI.questAPI.dropQuest(questID)
-                return true
-            } catch (ex: APIException) {
-                return false
-            } catch (ex: NetworkException) {
-                return false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                finish()
-            } else {
-                showToast(getString(R.string.error_failed_dropping_quest))
-            }
-            changeDroppingQuestProperty(false)
+            APIAsyncRequest.Builder<Boolean>()
+                .before {
+                    droppingQuest = true
+                    changeDroppingQuestProperty(true)
+                }
+                .request {
+                    DefaultAPI.questAPI.dropQuest(questID)
+                    success = true
+                    true
+                }
+                .onAPIFailMessage { R.string.error_failed_dropping_quest }
+                .setContext(this)
+                .showMessages(true)
+                .after {
+                    if (success) {
+                        finish()
+                    }
+                    changeDroppingQuestProperty(false)
+                    droppingQuest = false
+                }
+                .finish()
+                .execute()
         }
     }
 }

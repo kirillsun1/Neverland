@@ -1,22 +1,17 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.esafirm.imagepicker.features.ImagePicker
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.ProofToSubmit
-import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.exceptions.NetworkException
-import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.utils.APIAsyncRequest
 import java.io.File
 
 class SubmitProofActivity : AppCompatActivity() {
@@ -36,7 +31,7 @@ class SubmitProofActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.proof_submit).setOnClickListener {
             if (!submittingExecuted) {
-                SubmitProofTask().execute()
+                runSubmitProofTask(makeProofToSubmit())
             }
         }
 
@@ -83,35 +78,28 @@ class SubmitProofActivity : AppCompatActivity() {
     private fun makeProofToSubmit(): ProofToSubmit = ProofToSubmit(proofComment!!.text.toString(),
         imageFile!!, intent.extras!!.getInt("questID"))
 
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
-    }
+    private fun runSubmitProofTask(proofToSubmit: ProofToSubmit) {
+        if (!submittingExecuted) {
+            var success = false
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class SubmitProofTask() : AsyncTask<Void, Void, Int>() {
-
-        override fun doInBackground(vararg p0: Void?): Int {
-            try {
-                submittingExecuted = true
-                DefaultAPI.proofAPI.submitProof(makeProofToSubmit())
-                return Constants.SUCCESS_CODE
-            } catch (ex: APIException) {
-                return ex.code
-            } catch (ex: NetworkException) {
-                return ex.code
-            }
-        }
-
-        override fun onPostExecute(code: Int?) {
-            when (code) {
-                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
-                Constants.FAIL_CODE -> showToast(getString(R.string.error_submitting_proof))
-                Constants.SUCCESS_CODE -> finish() // TODO: Finish with success result?
-                else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
-            }
-
-            submittingExecuted = false
+            APIAsyncRequest.Builder<Boolean>()
+                .before { submittingExecuted = true }
+                .request {
+                    DefaultAPI.proofAPI.submitProof(proofToSubmit)
+                    success = true
+                    true
+                }
+                .onAPIFailMessage { R.string.error_submitting_proof }
+                .setContext(this)
+                .showMessages(true)
+                .after {
+                    submittingExecuted = false
+                    if (success) {
+                        finish() // TODO: Finish with success result?
+                    }
+                }
+                .finish()
+                .execute()
         }
     }
 }

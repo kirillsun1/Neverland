@@ -2,11 +2,9 @@ package knk.ee.neverland.activities
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -17,17 +15,13 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.exceptions.NetworkException
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
-    private var mAuthTask: UserLoginTask? = null
-    // UI references.
     private var mLoginView: AutoCompleteTextView? = null
     private var mPasswordView: EditText? = null
     private var mProgressView: View? = null
@@ -71,9 +65,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun attemptLogin() {
-        if (mAuthTask != null) {
-            return
-        }
         // Reset errors.
         mLoginView!!.error = null
         mPasswordView!!.error = null
@@ -106,9 +97,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true)
-            mAuthTask = UserLoginTask(login, password)
-            mAuthTask!!.execute(null as Void?)
+            runUserLoginTask(login, password)
         }
     }
 
@@ -150,42 +139,20 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class UserLoginTask internal constructor(private val mLogin: String, private val mPassword: String) : AsyncTask<Void, Void, Int>() {
-
-        override fun doInBackground(vararg params: Void): Int? {
-            try {
-                saveUserdataToTheSystemSettings(mLogin,
-                    DefaultAPI.authAPI.attemptLogin(mLogin, mPassword))
-                return Constants.SUCCESS_CODE
-            } catch (ex: APIException) {
-                return ex.code
-            } catch (ex: NetworkException) {
-                return ex.code
+    private fun runUserLoginTask(login: String, password: String) {
+        APIAsyncRequest.Builder<String>()
+            .before { showProgress(true) }
+            .request { DefaultAPI.authAPI.attemptLogin(login, password) }
+            .handleResult {
+                saveUserdataToTheSystemSettings(login, it!!)
+                openMainActivityAndFinishThisActivity()
             }
-        }
-
-        override fun onPostExecute(code: Int?) {
-            mAuthTask = null
-            showProgress(false)
-
-            when (code) {
-                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
-                Constants.FAIL_CODE -> showToast(getString(R.string.error_incorrect_field))
-                Constants.SUCCESS_CODE -> openMainActivityAndFinishThisActivity()
-                else -> showToast(String.format(getString(R.string.error_unexpected_code), code))
-            }
-        }
-
-        override fun onCancelled() {
-            mAuthTask = null
-            showProgress(false)
-        }
+            .setContext(this)
+            .onAPIFailMessage { R.string.error_incorrect_field }
+            .showMessages(true)
+            .after { showProgress(false) }
+            .finish()
+            .execute()
     }
 }
 

@@ -10,7 +10,7 @@ object Constants {
 
     val LOGIN_REGEX = "(?!^[0-9]*\$)^([-_a-zA-Z0-9]{6,16})\$".toRegex()
     val PASSWORD_REGEX = "^[a-zA-Z0-9_-]{6,18}\$".toRegex()
-    val EMAIL_REGEX = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})\$".toRegex()
+    val EMAIL_REGEX = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\$)".toRegex()
     val NAME_REGEX = "^[A-Za-z ,.'-]+\$".toRegex()
 
     const val QUEST_NAME_MINIMUM_SYMBOLS: Int = 5

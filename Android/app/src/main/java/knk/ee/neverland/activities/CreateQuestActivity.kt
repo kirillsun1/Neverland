@@ -1,7 +1,5 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
@@ -9,16 +7,13 @@ import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
-import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.QuestToSubmit
-import knk.ee.neverland.exceptions.APIException
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants
 
 class CreateQuestActivity : AppCompatActivity() {
-    private var questToSubmit: QuestToSubmit? = null
-
     private var questTitleView: EditText? = null
     private var questDescView: EditText? = null
     private var saveButton: Button? = null
@@ -37,9 +32,7 @@ class CreateQuestActivity : AppCompatActivity() {
 
         saveButton!!.setOnClickListener {
             if (validateFields()) {
-                setDataToTheQuestObject()
-                blockSaveButton(true)
-                SubmitQuestTask().execute()
+                runSubmitQuestTask(getQuestToSubmit())
             }
         }
     }
@@ -68,12 +61,8 @@ class CreateQuestActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showToast(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-    }
-
-    private fun setDataToTheQuestObject() {
-        questToSubmit = QuestToSubmit(questTitleView!!.text.toString(),
+    private fun getQuestToSubmit(): QuestToSubmit {
+        return QuestToSubmit(questTitleView!!.text.toString(),
             questDescView!!.text.toString(), 0) // TODO: groupID!
     }
 
@@ -91,27 +80,26 @@ class CreateQuestActivity : AppCompatActivity() {
         submittingProgress?.visibility = if (!block) GONE else VISIBLE
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class SubmitQuestTask : AsyncTask<Void, Void, Int>() {
+    private fun runSubmitQuestTask(questToSubmit: QuestToSubmit) {
+        var success = false
 
-        override fun doInBackground(vararg p0: Void?): Int {
-            try {
-                DefaultAPI.questAPI.submitNewQuest(questToSubmit!!)
-                return Constants.SUCCESS_CODE
-            } catch (ex: APIException) {
-                return ex.code
+        APIAsyncRequest.Builder<Boolean>()
+            .before { blockSaveButton(true) }
+            .request {
+                DefaultAPI.questAPI.submitNewQuest(questToSubmit)
+                success = true
+                true
             }
-        }
-
-        override fun onPostExecute(code: Int?) {
-            when (code) {
-                Constants.BAD_REQUEST_TO_API_CODE -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR_CODE -> showToast(getString(R.string.error_network_down))
-                Constants.FAIL_CODE -> showToast(getString(R.string.error_submit_failed))
-                Constants.SUCCESS_CODE -> finish()
-                else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
+            .onAPIFailMessage { R.string.error_submit_failed }
+            .setContext(this)
+            .showMessages(true)
+            .after {
+                blockSaveButton(false)
+                if (success) {
+                    finish()
+                }
             }
-            blockSaveButton(false)
-        }
+            .finish()
+            .execute()
     }
 }

@@ -9,9 +9,8 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.fragments.FeedFragment
 import knk.ee.neverland.activities.fragments.GroupsFragment
-import knk.ee.neverland.activities.fragments.QuestsFragment
+import knk.ee.neverland.activities.fragments.MyQuestsFragment
 import knk.ee.neverland.activities.fragments.SearchFragment
-import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
     enum class FragmentType {
@@ -33,21 +32,21 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.setTextVisibility(true)
 
         bottomNavigationViewEx.onNavigationItemSelectedListener =
-            BottomNavigationView.OnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.navigation_feed -> setMainFragment(FragmentType.FEED)
+                BottomNavigationView.OnNavigationItemSelectedListener { item ->
+                    when (item.itemId) {
+                        R.id.navigation_feed -> setMainFragment(FragmentType.FEED)
 
-                    R.id.navigation_quests -> setMainFragment(FragmentType.QUESTS)
+                        R.id.navigation_quests -> setMainFragment(FragmentType.QUESTS)
 
-                    R.id.navigation_search -> setMainFragment(FragmentType.SEARCH)
+                        R.id.navigation_search -> setMainFragment(FragmentType.SEARCH)
 
-                    R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
+                        R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
 
-                    R.id.navigation_profile -> openUserProfile()
+                        R.id.navigation_profile -> openUserProfile()
+                    }
+
+                    true
                 }
-
-                true
-            }
 
         bottomNavigationViewEx.currentItem = 0
     }
@@ -72,16 +71,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createNewFragmentObject(fragmentType: FragmentType): Fragment {
-        when (fragmentType) {
-            FragmentType.FEED -> return FeedFragment()
+        return when (fragmentType) {
+            FragmentType.FEED -> FeedFragment()
 
-            FragmentType.QUESTS -> return QuestsFragment()
+            FragmentType.QUESTS -> MyQuestsFragment()
 
-            FragmentType.SEARCH -> return SearchFragment()
+            FragmentType.SEARCH -> SearchFragment()
 
-            FragmentType.GROUPS -> return GroupsFragment()
-
-            else -> throw IllegalArgumentException()
+            FragmentType.GROUPS -> GroupsFragment()
         }
     }
 }

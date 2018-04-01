@@ -30,6 +30,7 @@ class URLLinkBuilder(link: String, action: String) {
     }
 
     fun finish(): String {
+        println(paramsBuilder.toString())
         return paramsBuilder.toString()
     }
 }

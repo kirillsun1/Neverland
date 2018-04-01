@@ -1,8 +1,6 @@
 package knk.ee.neverland.activities.fragments
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -13,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import com.gordonwong.materialsheetfab.DimOverlayFrameLayout
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import knk.ee.neverland.R
@@ -21,13 +18,12 @@ import knk.ee.neverland.activities.AllQuestsActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.APIException
-import knk.ee.neverland.exceptions.NetworkException
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.CustomFloatingActionButton
 import knk.ee.neverland.views.questview.MyQuestElementAdapter
 
-class QuestsFragment : Fragment() {
+class MyQuestsFragment : Fragment() {
     private var materialSheetFab: MaterialSheetFab<CustomFloatingActionButton>? = null
     private var myQuestElementAdapter: MyQuestElementAdapter? = null
 
@@ -43,11 +39,8 @@ class QuestsFragment : Fragment() {
         }
 
         setupFAB()
-    }
 
-    override fun onResume() {
-        super.onResume()
-        GetMyQuestsTask().execute()
+        runGetMyQuestsTask()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +69,20 @@ class QuestsFragment : Fragment() {
         }
     }
 
+
+    private fun runGetMyQuestsTask() {
+        APIAsyncRequest.Builder<List<Quest>>()
+            .request { DefaultAPI.questAPI.getMyQuests() }
+            .handleResult {
+                myQuestElementAdapter!!.questsList = it!!
+                myQuestElementAdapter!!.notifyDataSetChanged()
+            }
+            .setContext(view!!.context)
+            .showMessages(true)
+            .finish()
+            .execute()
+    }
+
     private fun openQuestActivity(quest: Quest) {
         val intent = Intent(view!!.context, QuestActivity::class.java)
 
@@ -98,37 +105,5 @@ class QuestsFragment : Fragment() {
         val findIntent = Intent(view!!.context, AllQuestsActivity::class.java)
         startActivity(findIntent)
         materialSheetFab?.hideSheet()
-    }
-
-    private fun showMessage(message: String) {
-        Toast.makeText(view!!.context, message, Toast.LENGTH_LONG).show()
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class GetMyQuestsTask : AsyncTask<Void, Void, Boolean>() {
-        private var listOfQuests: List<Quest> = emptyList()
-
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                listOfQuests = DefaultAPI.questAPI.getMyQuests()
-                println(listOfQuests)
-                return true
-            } catch (ex: APIException) {
-                return false
-            } catch (ex: NetworkException) {
-                return false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean?) {
-            if (result!!) {
-                myQuestElementAdapter!!.questsList = listOfQuests
-                myQuestElementAdapter!!.notifyDataSetChanged()
-            } else {
-                if (isAdded) {
-                    showMessage(getString(R.string.error_failed_getting_quests))
-                }
-            }
-        }
     }
 }
