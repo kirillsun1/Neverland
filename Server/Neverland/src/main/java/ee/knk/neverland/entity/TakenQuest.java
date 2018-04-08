@@ -11,6 +11,15 @@ import java.time.LocalDateTime;
 @Table(name="taken_quests")
 public class TakenQuest {
 
+    public TakenQuest() {
+
+    }
+    public TakenQuest(User user, Quest quest) {
+        this.user = user;
+        this.quest = quest;
+        active = true;
+    }
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -35,12 +44,4 @@ public class TakenQuest {
     @Setter
     private LocalDateTime timeQuestTaken = LocalDateTime.now();
 
-    public TakenQuest() {
-
-    }
-    public TakenQuest(User user, Quest quest) {
-        this.user = user;
-        this.quest = quest;
-        active = true;
-    }
 }

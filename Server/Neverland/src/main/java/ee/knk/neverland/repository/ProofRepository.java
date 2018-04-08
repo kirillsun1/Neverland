@@ -8,10 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProofRepository extends JpaRepository<Proof, Long> {
-    @Query("select proof from Proof proof where proof.user = :user order by proof.id desc")
+    @Query("SELECT proof FROM Proof proof WHERE proof.user = :user ORDER BY proof.id DESC")
     List<Proof> getProofsByUser(@Param("user") User user);
-    @Query("select proof from Proof proof where proof.quest = :quest order by proof.id desc")
+
+    @Query("SELECT proof FROM Proof proof WHERE proof.quest = :quest ORDER BY proof.id DESC")
     List<Proof> getProofsByQuest(@Param("quest") Quest quest);
+
+    @Query("SELECT proof FROM Proof proof WHERE proof.id = :id")
+    Optional<Proof> findOneIfExists(@Param("id") Long id);
 }

@@ -13,5 +13,6 @@ public interface UserService {
     Optional<User> findMatch(String username, String password);
     void delete(Long userId);
     List<User> getAll();
+
     void setAvatar(Long id, String path);
 }

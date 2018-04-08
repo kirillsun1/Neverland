@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface TakenQuestService {
     TakenQuest takeQuest(TakenQuest quest);
-    List<TakenQuest> getAllQuestsUserTook(User user);
+    List<Quest> getAllQuestsUserTook(User user);
     boolean checkIfQuestIsTaken(User user, Quest quest);
     Optional<TakenQuest> getQuestTakenByUser(User user, Quest quest);
     List<TakenQuest> getActiveQuestsUserTook(User user);

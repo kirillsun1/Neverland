@@ -15,10 +15,16 @@ public class Quest {
 
     }
 
-    public Quest(String title, String description, User user, Long group) {
+    public Quest(String title, String description, User user, Long deskId) {
         this.title = title;
         this.description = description;
         this.user = user;
+    }
+    public Quest(String title, String description, User user, PeopleGroup peopleGroup) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.peopleGroup = peopleGroup;
     }
 
     @Id
@@ -36,10 +42,10 @@ public class Quest {
     @Column(name = "add_time")
     @Getter @Setter private LocalDateTime time = LocalDateTime.now();
 
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinColumn(name = "group_fk")
-//    @Getter @Setter private Group group;
-//
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "group_fk")
+    @Getter @Setter private PeopleGroup peopleGroup;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk")
     @Getter @Setter private User user;

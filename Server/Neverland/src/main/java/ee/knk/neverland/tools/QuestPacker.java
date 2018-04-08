@@ -1,47 +1,46 @@
 package ee.knk.neverland.tools;
 
-import ee.knk.neverland.answer.QuestPojo;
-import ee.knk.neverland.answer.QuestList;
-import ee.knk.neverland.answer.UserPojo;
+import ee.knk.neverland.answer.pojo.Pojo;
+import ee.knk.neverland.answer.pojo.QuestPojo;
+import ee.knk.neverland.answer.pojo.QuestPojo.QuestPojoBuilder;
+import ee.knk.neverland.answer.pojo.UserPojo;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestPacker {
 
-    QuestPojo packQuest(Quest quest) {
-        UserPojo user = new UserPojo();
-        user.username = quest.getUser().getUsername();
-        user.firstName = quest.getUser().getFirstName();
-        user.secondName = quest.getUser().getSecondName();
-        user.userId = quest.getUser().getId();
-        user.avatar = quest.getUser().getAvatarPath();
-        QuestPojo neededData = new QuestPojo();
-        neededData.addingTime = quest.getTime();
-        neededData.title = quest.getTitle();
-        neededData.description = quest.getDescription();
-        neededData.userInformation = user;
-        neededData.id = quest.getId();
-        return neededData;
+    QuestPojo packQuest(Quest pointer) {
+        UserPacker userPacker = new UserPacker();
+        UserPojo author = userPacker.packUser(pointer.getUser());
+        QuestPojoBuilder builder = new QuestPojoBuilder();
+        return builder
+                .setId(pointer.getId())
+                .setTitle(pointer.getTitle())
+                .setDescription(pointer.getDescription())
+                .setAuthor(author)
+                .setAddingTime(pointer.getTime())
+                .getQuestPojo();
     }
 
-    public QuestList packMyQuests(List<TakenQuest> information) {
-        QuestList packedQuests = new QuestList();
-        for (TakenQuest pointer : information) {
+    public List<Pojo> packMyQuests(List<TakenQuest> takenQuests) {
+        List<Pojo> packedQuests = new ArrayList<>();
+        for (TakenQuest pointer : takenQuests) {
             Quest quest = pointer.getQuest();
             QuestPojo neededData = packQuest(quest);
-            neededData.takenTime = pointer.getTimeQuestTaken();
-            packedQuests.quests.add(neededData);
+            neededData.setTakenTime(pointer.getTimeQuestTaken());
+            packedQuests.add(neededData);
         }
         return packedQuests;
     }
 
-    public QuestList packAllQuests(List<Quest> information) {
-        QuestList answer = new QuestList();
-        for (Quest quest : information) {
-            answer.quests.add(packQuest(quest));
+    public List<Pojo> packAllQuests(List<Quest> quests) {
+        List<Pojo> packedQuests = new ArrayList<>();
+        for (Quest quest : quests) {
+            packedQuests.add(packQuest(quest));
         }
-        return answer;
+        return packedQuests;
     }
 }

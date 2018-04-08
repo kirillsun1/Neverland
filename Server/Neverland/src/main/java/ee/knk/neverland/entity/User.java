@@ -1,7 +1,5 @@
 package ee.knk.neverland.entity;
 
-import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -54,17 +52,17 @@ public class User {
     @Getter @Setter private Set<Quest> quests;
 
     @Column(name="avatar")
-    @Getter @Setter private String avatarPath;
+    @Getter @Setter private String avatar;
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @Getter @Setter private Set<Group> adminGroups;
-//
-//    @ManyToMany(cascade = { CascadeType.ALL })
-//    @JoinTable(
-//            name = "subscriptions",
-//            joinColumns = { @JoinColumn(name = "group_name") },
-//            inverseJoinColumns = { @JoinColumn(name = "name") }
-//    )
-//    @Getter @Setter private Set<Group> subscriptions;
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<PeopleGroup> adminPeopleGroups;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Subscription> subscriptions;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Comment> comments;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Vote> votes;
 }

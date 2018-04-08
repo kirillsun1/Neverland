@@ -1,5 +1,6 @@
 package ee.knk.neverland.service.impl;
 
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.repository.QuestRepository;
@@ -33,6 +34,11 @@ public class QuestServiceImpl implements QuestService {
     @Override
     public Quest getQuestById(Long id) {
         return questRepository.findOne(id);
+    }
+
+    @Override
+    public List<Quest> getGroupQuests(PeopleGroup group) {
+        return questRepository.getGroupQuests(group);
     }
 
     @Override

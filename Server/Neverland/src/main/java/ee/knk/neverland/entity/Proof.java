@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "proofs")
@@ -52,5 +53,9 @@ public class Proof {
     @Column(name = "add_time")
     @Getter @Setter private LocalDateTime time = LocalDateTime.now();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Comment> comments;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Vote> votes;
 }

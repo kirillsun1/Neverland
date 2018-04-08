@@ -1,8 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.ProofList;
-import ee.knk.neverland.answer.StandardAnswer;
+import ee.knk.neverland.answer.Answer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.Proof;
@@ -24,14 +23,20 @@ public class ProofController {
     private final ProofService proofService;
     private final QuestService questService;
     private final TakenQuestController takenQuestController;
+    private final UserController userController;
+    private final VoteController voteController;
     private Gson gson = new Gson();
 
     @Autowired
-    public ProofController(TokenController tokenController, ProofService proofService, QuestService questService, TakenQuestController takenQuestController) {
+    public ProofController(TokenController tokenController, ProofService proofService,
+                           QuestService questService, UserController userController,
+                           TakenQuestController takenQuestController, VoteController voteController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
         this.questService = questService;
         this.takenQuestController = takenQuestController;
+        this.userController = userController;
+        this.voteController = voteController;
     }
 
     void addProof(Long questId, User user, String path, String comment) {
@@ -44,10 +49,21 @@ public class ProofController {
     public String getUsersProofs(@RequestParam(name = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(Constants.FAILED));
+            return gson.toJson(new Answer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getUsersProofs(user.get());
-        ProofPacker packer = new ProofPacker();
+        ProofPacker packer = new ProofPacker(voteController, user.get());
+        return gson.toJson(packer.packProofs(proofs));
+    }
+
+    @RequestMapping(value = "/getUsersProofs")
+    public String getAnotherUsersProofs(@RequestParam(name = "token") String token, @RequestParam(name = "uid") Long id) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new Answer(Constants.FAILED));
+        }
+        List<Proof> proofs = proofService.getUsersProofs(userController.getUserById(id));
+        ProofPacker packer = new ProofPacker(voteController, user.get());
         return gson.toJson(packer.packProofs(proofs));
     }
 
@@ -55,10 +71,10 @@ public class ProofController {
     public String getQuestsProofs(@RequestParam(name = "token") String token, @RequestParam(name = "qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(Constants.FAILED));
+            return gson.toJson(new Answer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getQuestsProofs(questService.getQuestById(questId));
-        ProofPacker packer = new ProofPacker();
+        ProofPacker packer = new ProofPacker(voteController, user.get());
         return gson.toJson(packer.packProofs(proofs));
     }
 
@@ -66,10 +82,14 @@ public class ProofController {
     public String getAllProofs(@RequestParam(name = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(Constants.FAILED));
+            return gson.toJson(new Answer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getAllProofs();
-        ProofPacker packer = new ProofPacker();
+        ProofPacker packer = new ProofPacker(voteController, user.get());
         return gson.toJson(packer.packProofs(proofs));
+    }
+
+    Optional<Proof> getProofById(Long id) {
+        return proofService.getProofById(id);
     }
 }

@@ -14,17 +14,17 @@ import java.util.Optional;
 
 
 public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
-    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user order by takenQuest.id desc")
+    @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.user = :user ORDER BY takenQuest.id DESC")
     List<TakenQuest> getTakenQuestsByUser(@Param("user") User user);
 
-    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.active = true order by takenQuest.id desc")
+    @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.user = :user AND takenQuest.active = true ORDER BY takenQuest.id DESC")
     List<TakenQuest> getMyTakenQuests(@Param("user") User user);
 
-    @Query("select takenQuest from TakenQuest takenQuest where takenQuest.user = :user and takenQuest.quest = :quest and takenQuest.active = true")
+    @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.user = :user AND takenQuest.quest = :quest AND takenQuest.active = true")
     Optional<TakenQuest> getQuestWithUser(@Param("user") User user, @Param("quest") Quest quest);
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query("update TakenQuest takenQuest set takenQuest.active = false where takenQuest.id = :id")
+    @Query("UPDATE TakenQuest takenQuest SET takenQuest.active = false WHERE takenQuest.id = :id")
     void archive(@Param("id") Long id);
 }

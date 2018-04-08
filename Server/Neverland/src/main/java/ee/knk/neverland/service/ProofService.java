@@ -5,6 +5,7 @@ import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProofService {
 
@@ -13,4 +14,5 @@ public interface ProofService {
     List<Proof> getQuestsProofs(Quest quest);
 
     List<Proof> getAllProofs();
+    Optional<Proof> getProofById(Long id);
 }
