@@ -57,9 +57,9 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
 
         viewHolder.userName!!.text = element.sender.userName
         viewHolder.questName!!.text = element.quest.title
-        viewHolder.ratingBar!!.progress = 77 // TODO: Rating
-        viewHolder.comment!!.visibility = if (element.comment == null
-            || element.comment.isBlank()) GONE else VISIBLE;
+        viewHolder.ratingBar!!.max = element.votesFor + element.votesAgainst
+        viewHolder.ratingBar!!.progress = element.votesFor
+        viewHolder.comment!!.visibility = if (element.comment == null || element.comment.isBlank()) GONE else VISIBLE
         viewHolder.comment!!.text = element.comment
 
         Glide.with(view.context)
@@ -68,6 +68,13 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
             .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
                 R.integer.feed_fade_animation_duration)))
             .into(viewHolder.proofImage!!)
+
+        Glide.with(view.context)
+            .load(element.sender.avatarLink)
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+            .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
+                R.integer.feed_fade_animation_duration)))
+            .into(viewHolder.userAvatar!!)
 
         return view
     }

@@ -20,8 +20,6 @@ object Utils {
             doubleNumber /= 1000
         }
 
-        val decimalFormat = DecimalFormat("#.0")
-
-        return "${decimalFormat.format(doubleNumber)}$ks"
+        return "$doubleNumber$ks"
     }
 }

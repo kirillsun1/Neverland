@@ -15,6 +15,7 @@ data class User(
     @SerializedName("second_name")
     val secondName: String,
 
+    @SerializedName("avatar")
     val avatarLink: String,
     val rating: Double,
     val following: Int,

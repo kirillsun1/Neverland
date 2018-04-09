@@ -61,8 +61,8 @@
                 android:id="@+id/feed_proof_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 android:scaleType="center"
                 android:visibility="visible" />
@@ -91,7 +91,6 @@
                     android:layout_height="wrap_content"
                     android:text="It's fake!"
                     android:theme="@style/PrimaryFlatButton" />
-
 
                 <ProgressBar
                     android:id="@+id/feed_rating_bar"

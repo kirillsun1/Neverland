@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,8 @@ class MyQuestsFragment : Fragment() {
         listView.setOnItemClickListener { adapterView: AdapterView<*>, _: View, position: Int, _: Long ->
             openQuestActivity(adapterView.adapter.getItem(position) as Quest)
         }
+
+        view.findViewById<Toolbar>(R.id.quests_toolbar).title = getString(R.string.quests_fragment_title)
 
         setupFAB()
 

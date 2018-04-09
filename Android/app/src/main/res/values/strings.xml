@@ -107,7 +107,10 @@
     <string name="error_slow_network">Network is too slow</string>
 
     <string name="title_activity_profile">Profile</string>
-    
+
     <string name="error_getting_user_data">Could not get user data</string>
+    <string name="quests_fragment_title">Quests</string>
+    <string name="proof_submitted_message">Proof is submitted</string>
+    <string name="error_uploading_avatar">Failed</string>
 
 </resources>

@@ -8,7 +8,6 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import knk.ee.neverland.R
-import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 
 class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
@@ -49,7 +48,7 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
         viewHolder.questName!!.text = element.title
         viewHolder.questDesc!!.text = element.description
         viewHolder.takeQuestButton!!.setOnClickListener {
-            DefaultAPI.questAPI.takeQuest(element.id)
+            // DefaultAPI.questAPI.takeQuest(element.id)
         }
 
         return convertView

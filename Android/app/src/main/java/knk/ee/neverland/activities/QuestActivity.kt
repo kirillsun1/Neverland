@@ -16,15 +16,20 @@ import android.widget.GridView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.esafirm.imagepicker.features.ImagePicker
+import com.vansuita.pickimage.bundle.PickSetup
+import com.vansuita.pickimage.dialog.PickImageDialog
 import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.views.questview.QuestPictureAdapter
 import java.io.File
+import java.util.logging.Logger
 
 class QuestActivity : AppCompatActivity() {
+    private val logger = Logger.getLogger(QuestActivity::class.java.simpleName)
+
     private var droppingQuest: Boolean = false
 
     private var dropQuestButton: Button? = null
@@ -58,30 +63,29 @@ class QuestActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.submit_proof).setOnClickListener {
-            openSelectingProofImageActivity()
+            openSelectingImageActivity()
         }
 
         changeDroppingQuestProperty(false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            val image = ImagePicker.getImages(data).firstOrNull()
-            openCroppingActivity(image!!.path)
-        }
-
+        super.onActivityResult(requestCode, resultCode, data)
         if (croppingProofSuccessful(resultCode, requestCode)) {
             val resultUri = UCrop.getOutput(data!!)
             openSubmittingProofActivity(resultUri!!.path)
+            logger.fine("Cropping successful: ${resultUri.path}")
         }
 
         if (croppingProofFailed(requestCode, resultCode)) {
-            showToast(getString(R.string.crop_image_error))
+            showToast("${getString(R.string.crop_image_error)}: $resultCode")
+            logger.severe("Cropping failed with code [$resultCode]: ${UCrop.getError(data!!)}")
         }
 
-        // TODO: If proof was sent?
-
-        super.onActivityResult(requestCode, resultCode, data)
+        if (proofIsSubmitted(requestCode, resultCode)) {
+            showToast(getString(R.string.proof_submitted_message))
+            finish()
+        }
     }
 
     private fun askConfirmationAndDropQuest(questID: Int) {
@@ -107,18 +111,21 @@ class QuestActivity : AppCompatActivity() {
         droppingProgress!!.visibility = if (!dropping) GONE else VISIBLE
     }
 
-    private fun openSelectingProofImageActivity() {
-        val imageTitle = getString(R.string.proof_select_image)
+    private fun openSelectingImageActivity() {
+        val pickSetup = PickSetup()
 
-        ImagePicker.create(this)
-            .single()
-            .showCamera(true)
-            .theme(R.style.AppTheme_NoActionBar)
-            .toolbarImageTitle(imageTitle)
-            .start()
+        PickImageDialog
+            .build(pickSetup)
+            .setOnPickResult {
+                if (it.error == null) {
+                    startCroppingProof(it.path)
+                }
+            }
+            .setOnPickCancel { }
+            .show(this)
     }
 
-    private fun openCroppingActivity(path: String?) {
+    private fun startCroppingProof(path: String) {
         val options = UCrop.Options()
 
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
@@ -128,10 +135,23 @@ class QuestActivity : AppCompatActivity() {
         options.setActiveWidgetColor(colorPrimary)
         options.setToolbarTitle(getString(R.string.crop_image_title))
 
-        UCrop.of(Uri.fromFile(File(path)), Uri.fromFile(File(path + "_neverland")))
+        val proofImageFile = File(path)
+
+        val croppedImageFileName = getCroppedImagePath(path)
+        val croppedImageFile = File(croppedImageFileName)
+
+        logger.info("Trying to crop image [$path] to [$croppedImageFileName]")
+
+        UCrop.of(Uri.fromFile(proofImageFile), Uri.fromFile(croppedImageFile))
             .withAspectRatio(1F, 1F)
             .withOptions(options)
             .start(this)
+    }
+
+    private fun getCroppedImagePath(path: String): String {
+        val pathToDir = path.substring(0, path.lastIndexOf("/") + 1)
+        val pathFormat = path.substring(path.lastIndexOf(".") + 1)
+        return "${pathToDir}neverland_proof${System.nanoTime()}.$pathFormat"
     }
 
     private fun openSubmittingProofActivity(pathToImage: String) {
@@ -140,7 +160,7 @@ class QuestActivity : AppCompatActivity() {
         intent.putExtra("pathToImage", pathToImage)
         intent.putExtra("questID", questID)
 
-        startActivity(intent)
+        startActivityForResult(intent, Constants.SUBMITTING_PROOF_REQUEST_CODE)
     }
 
     private fun croppingProofSuccessful(resultCode: Int, requestCode: Int) =
@@ -149,8 +169,11 @@ class QuestActivity : AppCompatActivity() {
     private fun croppingProofFailed(requestCode: Int, resultCode: Int) =
         requestCode == UCrop.REQUEST_CROP && resultCode == UCrop.RESULT_ERROR
 
-    private fun showToast(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+    private fun proofIsSubmitted(requestCode: Int, resultCode: Int): Boolean =
+        requestCode == Constants.SUBMITTING_PROOF_REQUEST_CODE && resultCode == Constants.SUCCESS_CODE
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun runDropQuestTask(questID: Int) {

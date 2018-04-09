@@ -12,6 +12,7 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.utils.Constants
 import java.io.File
 
 class SubmitProofActivity : AppCompatActivity() {
@@ -75,6 +76,12 @@ class SubmitProofActivity : AppCompatActivity() {
             .start()
     }
 
+    private fun changeButtonsEnablePropertyWhenSubmittingExecutionChanges() {
+        val enabled = !submittingExecuted
+        findViewById<Button>(R.id.proof_retake_picture).isEnabled = enabled
+        findViewById<Button>(R.id.proof_submit).isEnabled = enabled
+    }
+
     private fun makeProofToSubmit(): ProofToSubmit = ProofToSubmit(proofComment!!.text.toString(),
         imageFile!!, intent.extras!!.getInt("questID"))
 
@@ -83,7 +90,10 @@ class SubmitProofActivity : AppCompatActivity() {
             var success = false
 
             APIAsyncRequest.Builder<Boolean>()
-                .before { submittingExecuted = true }
+                .before {
+                    submittingExecuted = true
+                    changeButtonsEnablePropertyWhenSubmittingExecutionChanges()
+                }
                 .request {
                     DefaultAPI.proofAPI.submitProof(proofToSubmit)
                     success = true
@@ -94,8 +104,10 @@ class SubmitProofActivity : AppCompatActivity() {
                 .showMessages(true)
                 .after {
                     submittingExecuted = false
+                    changeButtonsEnablePropertyWhenSubmittingExecutionChanges()
                     if (success) {
-                        finish() // TODO: Finish with success result?
+                        setResult(Constants.SUCCESS_CODE)
+                        finish()
                     }
                 }
                 .finish()

@@ -49,5 +49,7 @@ dependencies {
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.github.esafirm:android-image-picker:1.12.0'
-    implementation 'com.github.yalantis:ucrop:2.2.1-native'
+    implementation 'com.github.yalantis:ucrop:2.2.2-native'
+    implementation 'com.github.jrvansuita:PickImage:+'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

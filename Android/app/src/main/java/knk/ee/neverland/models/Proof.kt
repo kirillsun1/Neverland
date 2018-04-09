@@ -17,7 +17,14 @@ data class Proof(
     val sender: User,
 
     @SerializedName("add_time")
-    val dateSent: Date
+    val dateSent: Date,
 
-    // TODO: rating
+    @SerializedName("for")
+    val votesFor: Int,
+
+    @SerializedName("against")
+    val votesAgainst: Int,
+
+    @SerializedName("my_vote")
+    val myVote: Int
 )

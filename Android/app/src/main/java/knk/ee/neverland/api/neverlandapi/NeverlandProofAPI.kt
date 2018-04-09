@@ -48,17 +48,21 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
+        val responseObject = Gson().fromJson(responseBody, Array<Proof>::class.java)
 
-        if (responseObject.code != Constants.SUCCESS_CODE) {
-            throw APIException(responseObject.code)
-        }
-
-        return responseObject.proofs
+        return responseObject.toList()
     }
 
     override fun getProofsByUserID(userID: Int): List<Proof> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val link = URLLinkBuilder(API_LINK, "getUsersProofs")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = Gson().fromJson(responseBody, Array<Proof>::class.java)
+
+        return responseObject.toList()
     }
 }
