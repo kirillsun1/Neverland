@@ -17,13 +17,15 @@ public class FileUploadController {
     private final TokenController tokenController;
     private final ProofController proofController;
     private final GroupController groupController;
+    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public FileUploadController(TokenService tokenService, ProofController proofController, GroupController groupController) {
+    public FileUploadController(TokenService tokenService, UserController userController, ProofController proofController, GroupController groupController) {
         this.tokenController = new TokenController(tokenService);
         this.proofController = proofController;
         this.groupController = groupController;
+        this.userController = userController;
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
@@ -63,8 +65,11 @@ public class FileUploadController {
             return gson.toJson(new Answer(Constants.FAILED));
         }
         String pathEnding = user.get().getUsername() + ".jpg";
-
-        return writeFile(file, realPath + pathEnding, user.get().getId(), dbPath + pathEnding);
+        Answer answer = writeFile(file, realPath + pathEnding);
+        if (answer.getCode() == Constants.SUCCEED) {
+            userController.setAvatar(user.get().getId(), dbPath + pathEnding);
+        }
+        return gson.toJson(answer);
         }
 
     @RequestMapping(value="/uploadGroupAvatar", method=RequestMethod.POST)
@@ -76,10 +81,14 @@ public class FileUploadController {
             return gson.toJson(new Answer(Constants.FAILED));
         }
         String pathEnding = user.get().getUsername() + ".jpg";
-        return writeFile(file, realPath + pathEnding, user.get().getId(), dbPath + pathEnding);
+        Answer answer = writeFile(file, realPath + pathEnding);
+        if (answer.getCode() == Constants.SUCCEED) {
+            groupController.setAvatar(user.get().getId(), dbPath + pathEnding);
+        }
+        return gson.toJson(answer);
     }
 
-    private String writeFile(MultipartFile file, String realPath, Long userId, String dbPath) {
+    private Answer writeFile(MultipartFile file, String realPath) {
 
         if (!file.isEmpty()) {
             try {
@@ -88,13 +97,12 @@ public class FileUploadController {
                         new BufferedOutputStream(new FileOutputStream(new File(realPath)));
                 stream.write(bytes);
                 stream.close();
-                groupController.setAvatar(userId, dbPath);
-                return gson.toJson(new Answer(Constants.SUCCEED));
+                return new Answer(Constants.SUCCEED);
             } catch (Exception e) {
-                return gson.toJson(new Answer(Constants.FAILED));
+                return new Answer(Constants.FAILED);
             }
         } else {
-            return gson.toJson(new Answer(Constants.FILE_IS_EMPTY));
+            return new Answer(Constants.FILE_IS_EMPTY);
         }
     }
 }
