@@ -24,11 +24,13 @@ class UserSuggestedQuestsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileSuggestedQuestsFragment = ProfileSuggestedQuestsTabAdapter(view.context!!)
+        val userID = arguments!!.getInt("userID")
+
+        profileSuggestedQuestsFragment = ProfileSuggestedQuestsTabAdapter(view.context!!, userID)
 
         view.findViewById<ListView>(R.id.profile_list_view).adapter = profileSuggestedQuestsFragment
 
-        runLoadQuestTask(arguments!!.getInt("userID"))
+        runLoadQuestTask(userID)
     }
 
     private fun runLoadQuestTask(userID: Int) {

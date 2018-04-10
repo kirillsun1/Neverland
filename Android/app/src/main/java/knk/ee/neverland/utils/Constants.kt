@@ -13,6 +13,8 @@ object Constants {
 
     const val ELEMENT_NUMBER_TO_START_RECYCLING_FROM = 50
 
+    const val SELF_ID = -1
+
     val LOGIN_REGEX = "(?!^[0-9]*\$)^([-_a-zA-Z0-9]{6,16})\$".toRegex()
     val PASSWORD_REGEX = "^[a-zA-Z0-9_-]{6,18}\$".toRegex()
     val EMAIL_REGEX = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\$)".toRegex()

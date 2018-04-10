@@ -52,6 +52,12 @@ class TakenQuestsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_quests, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        runGetMyQuestsTask()
+    }
+
     private fun setupFAB() {
         val fab = view!!.findViewById(R.id.quests_menu) as CustomFloatingActionButton
         val sheetView = view!!.findViewById(R.id.fab_sheet) as CardView

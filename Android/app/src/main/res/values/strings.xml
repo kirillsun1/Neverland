@@ -117,5 +117,10 @@
     <string name="suggested_quests_tab_title">Suggested</string>
     <string name="profile_take_quest_button_label">Take this quest</string>
     <string name="feed_fragment_title">Feed</string>
+    <string name="error_quest_is_already_taken">Quest is already taken</string>
+
+    <string name="title_activity_create_group">Create group</string>
+    <string name="creating_group_confirmation">Are you sure you want to create group?</string>
+    <string name="groups_fragment_title">Groups</string>
 
 </resources>

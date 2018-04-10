@@ -1,5 +1,7 @@
 package knk.ee.neverland.api.neverlandapi
 
+import com.google.gson.annotations.SerializedName
+import knk.ee.neverland.models.Group
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 
@@ -24,6 +26,7 @@ class NeverlandAPIResponses {
 
     data class GetQuestsAPIResponse(
         val code: Int,
+        @SerializedName("elements")
         val quests: List<Quest>
     )
 
@@ -34,6 +37,13 @@ class NeverlandAPIResponses {
 
     data class GetProofsAPIResponse(
         val code: Int,
+        @SerializedName("elements")
         val proofs: List<Proof>
+    )
+
+    data class GetGroupsAPIResponse(
+        val code: Int,
+        @SerializedName("elements")
+        val groups: List<Group>
     )
 }

@@ -13,8 +13,9 @@ import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.datetime.DateTime
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.utils.Constants
 
-class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
+class ProfileSuggestedQuestsTabAdapter(val context: Context, val userID: Int) : BaseAdapter() {
 
     private val layoutInflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -54,7 +55,7 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
         return convertView
     }
 
-    private class ViewHolder {
+    private inner class ViewHolder {
         internal var questName: TextView? = null
         internal var questDesc: TextView? = null
         internal var takeQuestButton: Button? = null
@@ -79,12 +80,11 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
                         DefaultAPI.questAPI.takeQuest(quest.id)
                         true
                     }
-                    .onAPIFailMessage { R.string.error_failed_taking_quest }
+                    .onAPIFailMessage { R.string.error_quest_is_already_taken }
                     .setContext(context)
                     .showMessages(true)
                     .after {
                         takingQuest = false
-                        quest.timeTaken = DateTime() // TODO: update
                     }
                     .finish()
                     .execute()

@@ -1,6 +1,7 @@
 package knk.ee.neverland.api
 
 import knk.ee.neverland.api.neverlandapi.NeverlandAuthAPI
+import knk.ee.neverland.api.neverlandapi.NeverlandGroupAPI
 import knk.ee.neverland.api.neverlandapi.NeverlandProofAPI
 import knk.ee.neverland.api.neverlandapi.NeverlandQuestAPI
 import knk.ee.neverland.api.neverlandapi.NeverlandUserAPI
@@ -17,6 +18,7 @@ object DefaultAPI {
     val proofAPI: ProofAPI = NeverlandProofAPI()
     val userAPI: UserAPI = NeverlandUserAPI()
     val voteAPI: VoteAPI = NeverlandVoteAPI()
+    val groupAPI: GroupAPI = NeverlandGroupAPI()
 
     fun isKeySet(): Boolean = userToken != null && userLogin != null
 
@@ -34,5 +36,6 @@ object DefaultAPI {
         proofAPI.token = userToken!!
         userAPI.token = userToken!!
         voteAPI.token = userToken!!
+        groupAPI.token = userToken!!
     }
 }

@@ -89,13 +89,14 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody, Array<Quest>::class.java)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
-        /*if (responseObject.code != Constants.SUCCESS_CODE) {
+        if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
-        }*/
+        }
 
-        return responseObject.toList()
+        return responseObject.quests
     }
 
     override fun getQuestsToTake(): List<Quest> {
@@ -105,13 +106,14 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody, Array<Quest>::class.java)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
-        /*if (responseObject.code != Constants.SUCCESS_CODE) {
+        if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
-        }*/
+        }
 
-        return responseObject.toList()
+        return responseObject.quests
     }
 
     override fun getSuggestedByUserQuests(userID: Int): List<Quest> {
@@ -122,12 +124,13 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody, Array<Quest>::class.java)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
-        /*if (responseObject.code != Constants.SUCCESS_CODE) {
+        if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
-        }*/
+        }
 
-        return responseObject.toList()
+        return responseObject.quests
     }
 }

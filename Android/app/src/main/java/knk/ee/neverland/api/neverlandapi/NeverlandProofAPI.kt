@@ -32,11 +32,11 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
 
-        val responseObj = Gson().fromJson(responseBody,
+        val responseObject = Gson().fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
-        if (responseObj.code != Constants.SUCCESS_CODE) {
-            throw APIException(responseObj.code)
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
         }
     }
 
@@ -48,9 +48,14 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody, Array<Proof>::class.java)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
 
-        return responseObject.toList()
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.proofs
     }
 
     override fun getProofsByUserID(userID: Int): List<Proof> {
@@ -61,8 +66,13 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody, Array<Proof>::class.java)
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
 
-        return responseObject.toList()
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.proofs
     }
 }

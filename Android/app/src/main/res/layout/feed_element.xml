@@ -64,7 +64,7 @@
                 android:adjustViewBounds="true"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="false"
-                android:scaleType="center"
+                android:scaleType="fitXY"
                 android:visibility="visible" />
 
             <TextView
