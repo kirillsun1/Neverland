@@ -20,11 +20,9 @@ class NLConfirmationPopupService {
         let popup = PopupDialog(title: "TAKE QUEST", message: "Do you want to take \(quest.title)", image: nil)
         let cancel = CancelButton(title: "CANCEL") { }
         let confirm = DefaultButton(title: "ADD") {
-            guard let vc = viewController as? NewQuestViewController else {
-                fatalError("Class is now only supposed to be called from NewQuestVC")
+            if let vc = viewController as? NewQuestViewController {
+                vc.removeQuest(quest: quest)
             }
-            
-            vc.removeQuest(quest: quest)
             onComplete()
         }
         

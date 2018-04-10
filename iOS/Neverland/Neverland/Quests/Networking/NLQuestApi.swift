@@ -34,8 +34,13 @@ class NLQuestApi: QuestApi {
         fetchingLogic(url: self.urlBase + "/getMyProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
     }
     
+    
     func fetchAllProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
         fetchingLogic(url: self.urlBase + "/getAllProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchUserProofs(uid: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getUsersProofs", params: ["token": User.sharedInstance.token ?? "", "uid":uid], onComplete: onComplete, jsonKey: "proofs")
     }
     
     func fetchingLogic(url: String, params: [String: Any], onComplete: @escaping ([NSDictionary])->(), jsonKey: String = "quests") {
@@ -45,13 +50,10 @@ class NLQuestApi: QuestApi {
 
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
-                let JSON = result as! NSDictionary
-//                print(JSON)
-                guard let resultDict = JSON.value(forKey: jsonKey) as? [NSDictionary] else {
-                    return
-                }
+                //print(result)
+                let JSON = (result as! NSDictionary).value(forKey: "elements") as! [NSDictionary]
                 DispatchQueue.main.async {
-                    onComplete(resultDict)
+                    onComplete(JSON)
                 }
             }
         }

@@ -80,6 +80,8 @@ extension ProofSubmitViewController: ImagePickerDelegate {
 extension ProofSubmitViewController: CropViewControllerDelegate {
     func presentCropper(forImg image: UIImage) {
         let cropViewController = CropViewController(image: image)
+        cropViewController.aspectRatioPreset = .presetSquare
+        cropViewController.aspectRatioPickerButtonHidden = true
         cropViewController.delegate = self
         present(cropViewController, animated: true, completion: nil)
     }

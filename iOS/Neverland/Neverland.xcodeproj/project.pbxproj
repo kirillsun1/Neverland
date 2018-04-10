@@ -14,10 +14,13 @@
 		1728CEDD204434ED005D9A63 /* QuestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEDC204434ED005D9A63 /* QuestApi.swift */; };
 		1728CEDF2044378C005D9A63 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEDE2044378C005D9A63 /* ApiResponse.swift */; };
 		1728CEE1204437F9005D9A63 /* QuestApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */; };
+		1735D219207A7CD60011A095 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735D218207A7CD60011A095 /* UserInfo.swift */; };
 		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
 		1754DFC72067AB10006D4911 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754DFC62067AB10006D4911 /* Time.swift */; };
 		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
 		17579BE0204083EE005F74B5 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDF204083EE005F74B5 /* SwiftSpinner.swift */; };
+		175E4620206E20A800F67DB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E461F206E20A800F67DB2 /* SettingsViewController.swift */; };
+		17660C3B207A5E12002DA972 /* NLProfileApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17660C3A207A5E12002DA972 /* NLProfileApi.swift */; };
 		176635F2203886CB003D76A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176635F1203886CA003D76A8 /* Assets.xcassets */; };
 		176635F420388B19003D76A8 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176635F320388B19003D76A8 /* RoundedImage.swift */; };
 		176755452039FD0100490BEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176755442039FD0100490BEB /* Checkbox.swift */; };
@@ -29,6 +32,8 @@
 		176E63202035BE8000DCAC3F /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E631F2035BE8000DCAC3F /* GroupsViewController.swift */; };
 		176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */; };
 		176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */; };
+		177882B5207D5A7C0088AF95 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177882B4207D5A7C0088AF95 /* Group.swift */; };
+		177882B8207D5B0D0088AF95 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177882B7207D5B0D0088AF95 /* GroupCell.swift */; };
 		178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EEC812053E9B800D9EBCC /* FloatingButton.swift */; };
 		179F4C3B2059A2C10084E095 /* ProofSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */; };
 		17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE72034640A00A4FC72 /* AppDelegate.swift */; };
@@ -54,6 +59,10 @@
 		17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD420488B9F0074D74A /* NLAuthApi.swift */; };
 		17FB6953203DF88E008F9057 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6952203DF88E008F9057 /* User.swift */; };
 		17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */; };
+		17FD09C5207D3C7F00B4A2C7 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */; };
+		17FD09C8207D4DDB00B4A2C7 /* NLGroupApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09C7207D4DDB00B4A2C7 /* NLGroupApi.swift */; };
+		17FD09CB207D4E9600B4A2C7 /* GroupApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09CA207D4E9600B4A2C7 /* GroupApiResponse.swift */; };
+		17FD09CD207D579700B4A2C7 /* SearchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */; };
 		17FD829720374139004A33E7 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829620374139004A33E7 /* FeedCell.swift */; };
 		17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD829920375FB5004A33E7 /* QuestCell.swift */; };
 		C013047877C178077CE31EE2 /* Pods_NeverlandTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6AC89EC62EB04AA7731387 /* Pods_NeverlandTests.framework */; };
@@ -88,10 +97,13 @@
 		1728CEDC204434ED005D9A63 /* QuestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestApi.swift; sourceTree = "<group>"; };
 		1728CEDE2044378C005D9A63 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestApiResponse.swift; sourceTree = "<group>"; };
+		1735D218207A7CD60011A095 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1754DFC62067AB10006D4911 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/AccountManagement/View/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
 		17579BDF204083EE005F74B5 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
+		175E461F206E20A800F67DB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		17660C3A207A5E12002DA972 /* NLProfileApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLProfileApi.swift; sourceTree = "<group>"; };
 		176635F1203886CA003D76A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176635F320388B19003D76A8 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		176755442039FD0100490BEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -103,6 +115,8 @@
 		176E631F2035BE8000DCAC3F /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallangesViewController.swift; sourceTree = "<group>"; };
 		176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		177882B4207D5A7C0088AF95 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		177882B7207D5B0D0088AF95 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		178EEC812053E9B800D9EBCC /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProofSubmitViewController.swift; sourceTree = "<group>"; };
 		17A56BE42034640A00A4FC72 /* Neverland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neverland.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +148,10 @@
 		17F93FD420488B9F0074D74A /* NLAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLAuthApi.swift; sourceTree = "<group>"; };
 		17FB6952203DF88E008F9057 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
+		17FD09C7207D4DDB00B4A2C7 /* NLGroupApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLGroupApi.swift; sourceTree = "<group>"; };
+		17FD09CA207D4E9600B4A2C7 /* GroupApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupApiResponse.swift; sourceTree = "<group>"; };
+		17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupViewController.swift; sourceTree = "<group>"; };
 		17FD829620374139004A33E7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		17FD829920375FB5004A33E7 /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
 		809EDFEEEC5376C0CE79D22A /* Pods-Neverland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neverland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neverland/Pods-Neverland.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,7 +259,6 @@
 				17E15A8A20382A2500027634 /* QuestInfoCell.swift */,
 				17E6B5F3204585CC002EC1D2 /* BorderedTextView.swift */,
 				17F93FD2204886580074D74A /* NLConfirmationPopupService.swift */,
-				178EEC812053E9B800D9EBCC /* FloatingButton.swift */,
 				17EC569A2067FA1B0011327D /* ProofPhotoCell.swift */,
 			);
 			path = Views;
@@ -250,7 +267,6 @@
 		1721765A2042F15C00A1A2E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				176E63182035BE4B00DCAC3F /* ProfileViewController.swift */,
 				176E63212035BE8900DCAC3F /* MyChallangesViewController.swift */,
 				17E15A862038282000027634 /* NewQuestViewController.swift */,
 				17E15A88203828B500027634 /* QuestDetailedViewController.swift */,
@@ -280,6 +296,9 @@
 		1721765D2042F19800A1A2E2 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				177882B6207D5AFA0088AF95 /* View */,
+				17FD09C9207D4E8900B4A2C7 /* Models */,
+				17FD09C6207D4DC000B4A2C7 /*  Networking */,
 				1721765E2042F19D00A1A2E2 /* Controllers */,
 			);
 			path = Groups;
@@ -289,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				176E631F2035BE8000DCAC3F /* GroupsViewController.swift */,
+				17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */,
+				17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -336,11 +357,37 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		175E461E206E208600F67DB2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				175E461F206E20A800F67DB2 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		17660C39207A5DB7002DA972 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				17AF67D6207D1C5C00931024 /* Models */,
+				17AF67D5207D1C5700931024 /* Networking */,
+				17AF67D4207D1C4F00931024 /* Controllers */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		176E63232035BEE200DCAC3F /* Services */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		177882B6207D5AFA0088AF95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				177882B7207D5B0D0088AF95 /* GroupCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		17A56BDB2034640A00A4FC72 = {
@@ -368,8 +415,10 @@
 		17A56BE62034640A00A4FC72 /* Neverland */ = {
 			isa = PBXGroup;
 			children = (
+				175E461E206E208600F67DB2 /* Settings */,
 				1721765D2042F19800A1A2E2 /* Groups */,
 				1721765B2042F18400A1A2E2 /* Feed */,
+				17660C39207A5DB7002DA972 /* Profile */,
 				172176582042F12B00A1A2E2 /* Quests */,
 				172176532042F0CA00A1A2E2 /* AccountManagement */,
 				1721765F2042F1B900A1A2E2 /* Common */,
@@ -400,6 +449,7 @@
 		17A56C19203464A500A4FC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				178EEC812053E9B800D9EBCC /* FloatingButton.swift */,
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
@@ -441,6 +491,30 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		17AF67D4207D1C4F00931024 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				176E63182035BE4B00DCAC3F /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		17AF67D5207D1C5700931024 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				17660C3A207A5E12002DA972 /* NLProfileApi.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		17AF67D6207D1C5C00931024 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1735D218207A7CD60011A095 /* UserInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		17EC569E206808120011327D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +532,23 @@
 				17EC569C206807420011327D /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		17FD09C6207D4DC000B4A2C7 /*  Networking */ = {
+			isa = PBXGroup;
+			children = (
+				17FD09C7207D4DDB00B4A2C7 /* NLGroupApi.swift */,
+			);
+			path = " Networking";
+			sourceTree = "<group>";
+		};
+		17FD09C9207D4E8900B4A2C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				17FD09CA207D4E9600B4A2C7 /* GroupApiResponse.swift */,
+				177882B4207D5A7C0088AF95 /* Group.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B0115300CDEF573AC79C3BA3 /* Pods */ = {
@@ -768,11 +859,15 @@
 				17CB3C4D203F6F0B006EF6D5 /* AuthApi.swift in Sources */,
 				17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */,
 				17CB3C53203F7203006EF6D5 /* AuthApiResponse.swift in Sources */,
+				17FD09C5207D3C7F00B4A2C7 /* NewGroupViewController.swift in Sources */,
 				17E15A872038282000027634 /* NewQuestViewController.swift in Sources */,
 				176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */,
 				176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */,
+				177882B8207D5B0D0088AF95 /* GroupCell.swift in Sources */,
+				1735D219207A7CD60011A095 /* UserInfo.swift in Sources */,
 				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
 				178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */,
+				17FD09CD207D579700B4A2C7 /* SearchGroupViewController.swift in Sources */,
 				17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */,
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
 				17F93FD3204886580074D74A /* NLConfirmationPopupService.swift in Sources */,
@@ -780,6 +875,7 @@
 				179F4C3B2059A2C10084E095 /* ProofSubmitViewController.swift in Sources */,
 				17B96E00204DC551001F22D2 /* Array+Extension.swift in Sources */,
 				170781EC204EC35E00A87182 /* NLQuestApi.swift in Sources */,
+				177882B5207D5A7C0088AF95 /* Group.swift in Sources */,
 				17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */,
 				17FD829A20375FB5004A33E7 /* QuestCell.swift in Sources */,
 				1754DFC72067AB10006D4911 /* Time.swift in Sources */,
@@ -787,6 +883,8 @@
 				17FB6953203DF88E008F9057 /* User.swift in Sources */,
 				1728CEE1204437F9005D9A63 /* QuestApiResponse.swift in Sources */,
 				1728CEDF2044378C005D9A63 /* ApiResponse.swift in Sources */,
+				17660C3B207A5E12002DA972 /* NLProfileApi.swift in Sources */,
+				17FD09CB207D4E9600B4A2C7 /* GroupApiResponse.swift in Sources */,
 				176E63192035BE4B00DCAC3F /* ProfileViewController.swift in Sources */,
 				17CB3C51203F70AC006EF6D5 /* UserData.swift in Sources */,
 				17E15A89203828B500027634 /* QuestDetailedViewController.swift in Sources */,
@@ -800,11 +898,13 @@
 				17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */,
 				17EC569D206807420011327D /* UIImageView+Extension.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
+				175E4620206E20A800F67DB2 /* SettingsViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
 				17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */,
 				176755472039FF9D00490BEB /* RegistrerViewController.swift in Sources */,
 				176755452039FD0100490BEB /* Checkbox.swift in Sources */,
 				17EC569B2067FA1B0011327D /* ProofPhotoCell.swift in Sources */,
+				17FD09C8207D4DDB00B4A2C7 /* NLGroupApi.swift in Sources */,
 				1728CED620442E69005D9A63 /* Quest.swift in Sources */,
 				17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */,
 				1728CEDA204433EB005D9A63 /* Proof.swift in Sources */,

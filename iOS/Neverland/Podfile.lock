@@ -1,4 +1,5 @@
 PODS:
+  - AAPhotoCircleCrop (1.3.0)
   - Alamofire (4.6.0)
   - CommonCryptoModule (1.0.2)
   - CropViewController (2.3.6)
@@ -11,6 +12,7 @@ PODS:
   - WXImageCompress (0.1.1)
 
 DEPENDENCIES:
+  - AAPhotoCircleCrop
   - Alamofire (~> 4.5)
   - CommonCryptoModule (~> 1.0.1)
   - CropViewController
@@ -23,6 +25,7 @@ DEPENDENCIES:
   - WXImageCompress
 
 SPEC CHECKSUMS:
+  AAPhotoCircleCrop: 9ad008dbe3f86c61032b0888f01a95055c346c20
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
   CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
@@ -34,6 +37,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   WXImageCompress: 4003213a788574c3e307faec0130359c52e43887
 
-PODFILE CHECKSUM: 7847ec3e2a8a7ca2bf7808d70319c7ab2064f780
+PODFILE CHECKSUM: 40e72e1f3d292ffa380b5eac6fe6ec14efa42cf4
 
 COCOAPODS: 1.2.1

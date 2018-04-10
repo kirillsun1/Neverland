@@ -89,6 +89,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AAPhotoCircleCrop/AAPhotoCircleCrop.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CommonCryptoModule/CommonCryptoModule.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CropViewController/CropViewController.framework"
@@ -101,6 +102,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/WXImageCompress/WXImageCompress.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AAPhotoCircleCrop/AAPhotoCircleCrop.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CommonCryptoModule/CommonCryptoModule.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CropViewController/CropViewController.framework"

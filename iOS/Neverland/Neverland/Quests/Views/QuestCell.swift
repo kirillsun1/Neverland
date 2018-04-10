@@ -21,7 +21,7 @@ class QuestCell: UITableViewCell {
         questName.text = quest.title
         questTakenDate.text = "01.01.1990"
         if let time = quest.datePicked {
-            questTakenDate.text = "\(time.day).\(time.month).\(time.year)"
+            questTakenDate.text = String(format: "%02d.%02d.%04d", time.day, time.month, time.year)
         }
     }
 
