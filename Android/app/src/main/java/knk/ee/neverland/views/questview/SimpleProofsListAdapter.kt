@@ -16,7 +16,7 @@ import knk.ee.neverland.R
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.utils.Constants
 
-class ProfileProofsTabAdapter(val context: Context) : BaseAdapter() {
+class SimpleProofsListAdapter(val context: Context) : BaseAdapter() {
 
     private val layoutInflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

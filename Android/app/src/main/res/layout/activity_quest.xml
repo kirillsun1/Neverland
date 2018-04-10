@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context="knk.ee.neverland.activities.QuestActivity">
 
     <!--
@@ -22,6 +21,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:columnCount="2"
         android:rowCount="4">
 
@@ -111,15 +111,12 @@
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
-    <GridView
-        android:id="@+id/quest_images"
+    <ListView
+        android:id="@+id/quest_proofs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="5sp"
         android:gravity="center"
-        android:horizontalSpacing="16dp"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="16dp" />
+        android:scrollbars="none" />
 
 </LinearLayout>

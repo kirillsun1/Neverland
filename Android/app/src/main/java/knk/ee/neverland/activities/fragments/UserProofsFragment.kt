@@ -10,11 +10,11 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.views.questview.ProfileProofsTabAdapter
+import knk.ee.neverland.views.questview.SimpleProofsListAdapter
 
 class UserProofsFragment : Fragment() {
 
-    private var profileProofsTabAdapter: ProfileProofsTabAdapter? = null
+    private var simpleProofsListAdapter: SimpleProofsListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -25,9 +25,9 @@ class UserProofsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileProofsTabAdapter = ProfileProofsTabAdapter(view.context!!)
+        simpleProofsListAdapter = SimpleProofsListAdapter(view.context!!)
 
-        view.findViewById<ListView>(R.id.profile_list_view).adapter = profileProofsTabAdapter
+        view.findViewById<ListView>(R.id.profile_list_view).adapter = simpleProofsListAdapter
 
         runGetProofsTask(arguments!!.getInt("userID"))
     }
@@ -35,7 +35,7 @@ class UserProofsFragment : Fragment() {
     private fun runGetProofsTask(userID: Int) {
         APIAsyncRequest.Builder<List<Proof>>()
             .request { DefaultAPI.proofAPI.getProofsByUserID(userID) }
-            .handleResult { profileProofsTabAdapter!!.addProofs(it!!) }
+            .handleResult { simpleProofsListAdapter!!.addProofs(it!!) }
             .setContext(view!!.context)
             .showMessages(true)
             .finish()

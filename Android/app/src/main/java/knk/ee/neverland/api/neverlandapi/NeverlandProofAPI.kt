@@ -75,4 +75,22 @@ class NeverlandProofAPI : ProofAPI {
 
         return responseObject.proofs
     }
+
+    override fun getProofsByQuestID(questID: Int): List<Proof> {
+        val link = URLLinkBuilder(API_LINK, "getQuestsProofs")
+            .addParam("token", token)
+            .addParam("qid", questID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = Gson().fromJson(responseBody,
+            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.proofs
+    }
 }

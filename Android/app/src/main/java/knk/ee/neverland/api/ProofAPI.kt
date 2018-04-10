@@ -11,4 +11,6 @@ interface ProofAPI {
     fun getProofs(feedScope: FeedScope): List<Proof>
 
     fun getProofsByUserID(userID: Int): List<Proof>
+
+    fun getProofsByQuestID(questID: Int): List<Proof>
 }
