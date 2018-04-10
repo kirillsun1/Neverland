@@ -25,7 +25,7 @@ class NeverlandQuestAPI : QuestAPI {
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
         val responseObject = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
@@ -41,7 +41,7 @@ class NeverlandQuestAPI : QuestAPI {
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
         val responseObject = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
@@ -57,7 +57,7 @@ class NeverlandQuestAPI : QuestAPI {
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
         val responseObject = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)

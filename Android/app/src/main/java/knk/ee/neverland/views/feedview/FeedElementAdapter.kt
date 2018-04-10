@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -14,10 +15,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.mikhaellopez.circularimageview.CircularImageView
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Proof
+import knk.ee.neverland.utils.Constants
 
-class FeedElementAdapter(context: Context) : BaseAdapter() {
+class FeedElementAdapter(val context: Context) : BaseAdapter() {
     private val layoutInflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private val feedElementList: MutableList<Proof> = mutableListOf()
@@ -34,6 +37,10 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
         return i.toLong()
     }
 
+    override fun getViewTypeCount(): Int = Constants.ELEMENT_NUMBER_TO_START_RECYCLING_FROM
+
+    override fun getItemViewType(position: Int): Int = position
+
     override fun getView(i: Int, convertView: View?, viewGroup: ViewGroup): View {
         var view = convertView
         val element = getItem(i) as Proof
@@ -49,32 +56,15 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
             viewHolder.ratingBar = view.findViewById(R.id.feed_rating_bar)
             viewHolder.proofImage = view.findViewById(R.id.feed_proof_image)
             viewHolder.comment = view.findViewById(R.id.feed_proof_comment)
+            viewHolder.buttonFor = view.findViewById(R.id.feed_rating_plus)
+            viewHolder.buttonAgainst = view.findViewById(R.id.feed_rating_minus)
 
             view.tag = viewHolder
         } else {
             viewHolder = view.tag as ViewHolder
         }
 
-        viewHolder.userName!!.text = element.sender.userName
-        viewHolder.questName!!.text = element.quest.title
-        viewHolder.ratingBar!!.max = element.votesFor + element.votesAgainst
-        viewHolder.ratingBar!!.progress = element.votesFor
-        viewHolder.comment!!.visibility = if (element.comment == null || element.comment.isBlank()) GONE else VISIBLE
-        viewHolder.comment!!.text = element.comment
-
-        Glide.with(view.context)
-            .load(element.imageLink)
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-            .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
-                R.integer.feed_fade_animation_duration)))
-            .into(viewHolder.proofImage!!)
-
-        Glide.with(view.context)
-            .load(element.sender.avatarLink)
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-            .transition(DrawableTransitionOptions.withCrossFade(view.resources.getInteger(
-                R.integer.feed_fade_animation_duration)))
-            .into(viewHolder.userAvatar!!)
+        viewHolder.loadFromProof(context, element)
 
         return view
     }
@@ -88,9 +78,44 @@ class FeedElementAdapter(context: Context) : BaseAdapter() {
     private class ViewHolder {
         internal var userName: TextView? = null
         internal var questName: TextView? = null
-        internal var userAvatar: ImageView? = null
+        internal var userAvatar: CircularImageView? = null
         internal var ratingBar: ProgressBar? = null
         internal var proofImage: ImageView? = null
         internal var comment: TextView? = null
+        internal var buttonFor: Button? = null
+        internal var buttonAgainst: Button? = null
+
+        fun loadFromProof(context: Context, proof: Proof) {
+            userName!!.text = proof.sender.userName
+            questName!!.text = proof.quest.title
+            ratingBar!!.max = proof.votesFor + proof.votesAgainst
+            ratingBar!!.progress = proof.votesFor
+            comment!!.visibility = shouldCommentBeVisible(proof, proof.comment)
+            comment!!.text = proof.comment
+
+            loadAvatar(context, proof)
+            loadProofImage(context, proof)
+        }
+
+        private fun shouldCommentBeVisible(proof: Proof, comment: String?) =
+            if (proof.comment == null || comment!!.isBlank()) GONE else VISIBLE
+
+        private fun loadAvatar(context: Context, proof: Proof) {
+            Glide.with(context)
+                .load(proof.sender.avatarLink)
+                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
+                    R.integer.feed_fade_animation_duration)))
+                .into(userAvatar!!)
+        }
+
+        private fun loadProofImage(context: Context, proof: Proof) {
+            Glide.with(context)
+                .load(proof.imageLink)
+                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
+                .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
+                    R.integer.feed_fade_animation_duration)))
+                .into(proofImage!!)
+        }
     }
 }

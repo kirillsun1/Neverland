@@ -14,6 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Proof
+import knk.ee.neverland.utils.Constants
 
 class ProfileProofsTabAdapter(val context: Context) : BaseAdapter() {
 
@@ -31,6 +32,10 @@ class ProfileProofsTabAdapter(val context: Context) : BaseAdapter() {
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getCount(): Int = proofsList.size
+
+    override fun getViewTypeCount(): Int = Constants.ELEMENT_NUMBER_TO_START_RECYCLING_FROM
+
+    override fun getItemViewType(position: Int): Int = position
 
     override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
         var convertView = view
@@ -50,15 +55,7 @@ class ProfileProofsTabAdapter(val context: Context) : BaseAdapter() {
             viewHolder = convertView.tag as ViewHolder
         }
 
-        viewHolder.questName!!.text = element.quest.title
-        viewHolder.rating!!.progress = 77 // TODO: rating!
-
-        Glide.with(context)
-            .load(element.imageLink)
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-            .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
-                R.integer.feed_fade_animation_duration)))
-            .into(viewHolder.proofImage!!)
+        viewHolder.loadFromProof(context, element)
 
         return convertView
     }
@@ -67,5 +64,19 @@ class ProfileProofsTabAdapter(val context: Context) : BaseAdapter() {
         internal var questName: TextView? = null
         internal var proofImage: ImageView? = null
         internal var rating: ProgressBar? = null
+
+        fun loadFromProof(context: Context, proof: Proof) {
+            questName!!.text = proof.quest.title
+
+            rating!!.max = proof.votesFor + proof.votesAgainst
+            rating!!.progress = proof.votesFor
+
+            Glide.with(context)
+                .load(proof.imageLink)
+                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
+                .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
+                    R.integer.feed_fade_animation_duration)))
+                .into(proofImage!!)
+        }
     }
 }

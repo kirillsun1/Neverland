@@ -18,7 +18,7 @@ class NeverlandAPIResponses {
         val token: String
     )
 
-    data class SimpleQuestAPIResponse(
+    data class SimpleResponse(
         val code: Int
     )
 

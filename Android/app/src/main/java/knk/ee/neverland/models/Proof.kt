@@ -20,7 +20,7 @@ data class Proof(
     val dateSent: Date,
 
     @SerializedName("for")
-    val votesFor: Int,
+    var votesFor: Int,
 
     @SerializedName("against")
     val votesAgainst: Int,

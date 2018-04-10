@@ -84,13 +84,25 @@
         android:id="@+id/drop_quest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/quest_drop_quest_button" />
+        android:layout_margin="5dp"
+        android:background="@drawable/profile_follow_button"
+        android:minHeight="30dp"
+        android:padding="0dp"
+        android:text="@string/quest_drop_quest_button"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/submit_proof"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/quest_submit_proof_button" />
+        android:layout_margin="5dp"
+        android:background="@drawable/profile_follow_button"
+        android:minHeight="30dp"
+        android:padding="0dp"
+        android:text="@string/quest_submit_proof_button"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 
     <ProgressBar
         android:id="@+id/dropping_progress"

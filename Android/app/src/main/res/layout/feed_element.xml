@@ -22,7 +22,7 @@
                 android:orientation="horizontal"
                 android:rowCount="1">
 
-                <ImageView
+                <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/feed_user_avatar"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
@@ -61,8 +61,8 @@
                 android:id="@+id/feed_proof_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:adjustViewBounds="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="false"
                 android:scaleType="center"
                 android:visibility="visible" />

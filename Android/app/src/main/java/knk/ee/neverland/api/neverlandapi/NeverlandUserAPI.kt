@@ -26,10 +26,6 @@ class NeverlandUserAPI : UserAPI {
         // TODO: ask to change api response
         val responseObject = Gson().fromJson(responseBody, User::class.java)
 
-//        if (responseObject.code != Constants.SUCCESS_CODE) {
-//            throw APIException(responseObject.code)
-//        }
-
         return responseObject
     }
 
@@ -43,10 +39,6 @@ class NeverlandUserAPI : UserAPI {
 
         // TODO: ask to change api response
         val responseObject = Gson().fromJson(responseBody, User::class.java)
-
-//        if (responseObject.code != Constants.SUCCESS_CODE) {
-//            throw APIException(responseObject.code)
-//        }
 
         return responseObject
     }
@@ -68,7 +60,7 @@ class NeverlandUserAPI : UserAPI {
 
         val responseObj = Gson().fromJson(
             responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java
+            NeverlandAPIResponses.SimpleResponse::class.java
         )
 
         if (responseObj.code != Constants.SUCCESS_CODE) {

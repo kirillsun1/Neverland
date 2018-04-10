@@ -33,7 +33,7 @@ class NeverlandProofAPI : ProofAPI {
         val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
 
         val responseObj = Gson().fromJson(responseBody,
-            NeverlandAPIResponses.SimpleQuestAPIResponse::class.java)
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObj.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObj.code)
