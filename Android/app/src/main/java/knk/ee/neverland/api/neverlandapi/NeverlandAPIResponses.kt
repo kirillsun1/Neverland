@@ -1,33 +1,49 @@
 package knk.ee.neverland.api.neverlandapi
 
+import com.google.gson.annotations.SerializedName
+import knk.ee.neverland.models.Group
+import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 
 class NeverlandAPIResponses {
     data class IsKeyActiveResponse(
-            val code: Int
+        val code: Int
     )
 
     data class RegistrationResponse(
-            val code: Int,
-            val token: String
+        val code: Int,
+        val token: String
     )
 
     data class AttemptLoginResponse(
-            val code: Int,
-            val token: String
+        val code: Int,
+        val token: String
     )
 
-    data class SimpleQuestAPIResponse(
-            val code: Int
+    data class SimpleResponse(
+        val code: Int
     )
 
     data class GetQuestsAPIResponse(
-            val code: Int,
-            val quests: List<Quest>
+        val code: Int,
+        @SerializedName("elements")
+        val quests: List<Quest>
     )
 
     data class GetQuestAPIResponse(
-            val code: Int,
-            val quest: Quest
+        val code: Int,
+        val quest: Quest
+    )
+
+    data class GetProofsAPIResponse(
+        val code: Int,
+        @SerializedName("elements")
+        val proofs: List<Proof>
+    )
+
+    data class GetGroupsAPIResponse(
+        val code: Int,
+        @SerializedName("elements")
+        val groups: List<Group>
     )
 }

@@ -1,5 +1,6 @@
 package knk.ee.neverland.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -8,11 +9,14 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.fragments.FeedFragment
 import knk.ee.neverland.activities.fragments.GroupsFragment
-import knk.ee.neverland.activities.fragments.ProfileFragment
-import knk.ee.neverland.activities.fragments.QuestsFragment
+import knk.ee.neverland.activities.fragments.TakenQuestsFragment
 import knk.ee.neverland.activities.fragments.SearchFragment
 
 class MainActivity : AppCompatActivity() {
+    enum class FragmentType {
+        FEED, QUESTS, SEARCH, GROUPS
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,15 +34,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.onNavigationItemSelectedListener =
                 BottomNavigationView.OnNavigationItemSelectedListener { item ->
                     when (item.itemId) {
-                        R.id.navigation_feed -> setMainFragment(FeedFragment())
+                        R.id.navigation_feed -> setMainFragment(FragmentType.FEED)
 
-                        R.id.navigation_quests -> setMainFragment(QuestsFragment())
+                        R.id.navigation_quests -> setMainFragment(FragmentType.QUESTS)
 
-                        R.id.navigation_search -> setMainFragment(SearchFragment())
+                        R.id.navigation_search -> setMainFragment(FragmentType.SEARCH)
 
-                        R.id.navigation_groups -> setMainFragment(GroupsFragment())
+                        R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
 
-                        R.id.navigation_profile -> setMainFragment(ProfileFragment())
+                        R.id.navigation_profile -> openUserProfile()
                     }
 
                     true
@@ -47,9 +51,34 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewEx.currentItem = 0
     }
 
-    private fun setMainFragment(fragment: Fragment) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_page_frame, fragment)
+    private fun openUserProfile() {
+        startActivity(Intent(this, ProfileActivity::class.java))
+    }
+
+    private fun setMainFragment(fragmentType: FragmentType) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        var fragmentObject = fragmentManager.findFragmentByTag(fragmentType.toString())
+
+        if (fragmentObject == null) {
+            fragmentObject = createNewFragmentObject(fragmentType)
+        }
+
+        fragmentTransaction.replace(R.id.main_page_frame, fragmentObject, fragmentType.toString())
+        fragmentTransaction.addToBackStack(fragmentType.toString())
         fragmentTransaction.commit()
+    }
+
+    private fun createNewFragmentObject(fragmentType: FragmentType): Fragment {
+        return when (fragmentType) {
+            FragmentType.FEED -> FeedFragment()
+
+            FragmentType.QUESTS -> TakenQuestsFragment()
+
+            FragmentType.SEARCH -> SearchFragment()
+
+            FragmentType.GROUPS -> GroupsFragment()
+        }
     }
 }

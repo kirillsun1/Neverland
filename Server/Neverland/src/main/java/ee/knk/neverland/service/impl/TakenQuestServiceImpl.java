@@ -41,6 +41,11 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     }
 
     @Override
+    public void archive(Long takenQuestId) {
+        takenQuestsRepository.archive(takenQuestId);
+    }
+
+    @Override
     public void delete(Long takenQuestId) {
         takenQuestsRepository.delete(takenQuestId);
     }

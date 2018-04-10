@@ -40,7 +40,8 @@
 
     <string name="error_submit_quest_field_length">Length is too short</string>
 
-    <string name="quest_author">By %s %s</string>
+    <string name="quest_author">Author: %s %s</string>
+    <string name="quest_taken_data">Taken: %s</string>
     <string name="my_quests_taken_date_time">Created: %s</string>
 
     <!-- Main menu options -->
@@ -90,5 +91,36 @@
 
     <string name="progress">Progress</string>
     <string name="image_content_user_avatar">User avatar</string>
+
+    <string name="proof_select_image">Select proof image</string>
+    <string name="submit_quest_confirmation">Confirm</string>
+    <string name="proof_comment_hint">Comment</string>
+    <string name="proof_retake_picture">Retake</string>
+    <string name="proof_submit_button">Submit</string>
+    <string name="proof_image_hint">Your proof image</string>
+    <string name="error_submitting_proof">Failed to submit proof!</string>
+    <string name="taken_quest_proof_sent_hint">Proof sent</string>
+    <string name="crop_image_title">Edit photo</string>
+    <string name="crop_image_error">Could not crop image</string>
+
+    <string name="error_getting_proofs_failed">Failed getting proofs</string>
+    <string name="error_slow_network">Network is too slow</string>
+
+    <string name="title_activity_profile">Profile</string>
+
+    <string name="error_getting_user_data">Could not get user data</string>
+    <string name="quests_fragment_title">Quests</string>
+    <string name="proof_submitted_message">Proof is submitted</string>
+    <string name="error_uploading_avatar">Failed</string>
+
+    <string name="completed_quests_tab_title">Completed</string>
+    <string name="suggested_quests_tab_title">Suggested</string>
+    <string name="profile_take_quest_button_label">Take this quest</string>
+    <string name="feed_fragment_title">Feed</string>
+    <string name="error_quest_is_already_taken">Quest is already taken</string>
+
+    <string name="title_activity_create_group">Create group</string>
+    <string name="creating_group_confirmation">Are you sure you want to create group?</string>
+    <string name="groups_fragment_title">Groups</string>
 
 </resources>

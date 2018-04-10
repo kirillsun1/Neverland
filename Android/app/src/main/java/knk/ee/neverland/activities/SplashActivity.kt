@@ -1,15 +1,14 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.AuthAPIException
+import knk.ee.neverland.utils.APIAsyncRequest
+import java.util.concurrent.atomic.AtomicBoolean
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         setUserDataFromSystemPreferences()
 
         if (DefaultAPI.isKeySet()) {
-            CheckTokenTask(DefaultAPI.userToken!!).execute()
+            runCheckTokenTask(DefaultAPI.userToken!!)
         } else {
             openLoginActivity()
         }
@@ -27,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setUserDataFromSystemPreferences() {
         val sharedPreferences = getSharedPreferences(resources
-                .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
+            .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
 
         val login = sharedPreferences.getString(resources.getString(R.string.auth_login_address), "")
         val key = sharedPreferences.getString(resources.getString(R.string.auth_key_address), "")
@@ -48,29 +47,29 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        val context = applicationContext
-        val duration = Toast.LENGTH_LONG
-        val toast = Toast.makeText(context, message, duration)
-        toast.show()
+        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class CheckTokenTask(val token: String) : AsyncTask<Void, Void, Boolean>() {
-        override fun doInBackground(vararg p0: Void?): Boolean {
-            try {
-                return DefaultAPI.authAPI.isTokenActive(token)
-            } catch (_: AuthAPIException) {
-                return false
-            }
-        }
+    private fun runCheckTokenTask(userToken: String) {
+        val tokenIsOK = AtomicBoolean(false)
 
-        override fun onPostExecute(result: Boolean?) {
-            if (!result!!) {
-                openLoginActivity()
-                showToast(getString(R.string.error_invalid_token))
-            } else {
-                openMainActivity()
+        APIAsyncRequest.Builder<Boolean>()
+            .request {
+                tokenIsOK.set(DefaultAPI.authAPI.isTokenActive(userToken))
+                true
             }
-        }
+            .setContext(this)
+            .showMessages(true)
+            .after {
+                if (!tokenIsOK.get()) {
+                    openLoginActivity()
+                    showToast(getString(R.string.error_invalid_token))
+                } else {
+                    openMainActivity()
+                }
+            }
+            .onNetworkFail { openLoginActivity() }
+            .finish()
+            .execute()
     }
 }

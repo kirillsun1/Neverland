@@ -7,14 +7,14 @@
     android:padding="10dp"
     android:rowCount="2">
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/user_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_column="0"
         android:layout_row="0"
-        app:srcCompat="@mipmap/ic_launcher_round"
-        android:contentDescription="@string/image_content_user_avatar" />
+        android:contentDescription="@string/image_content_user_avatar"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,7 +35,6 @@
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
             android:maxLines="1"
-            android:textSize="@dimen/standard_font_size"
             android:textStyle="bold" />
 
         <TextView
@@ -44,8 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="1dp"
-            android:textSize="@dimen/standard_font_size" />
+            android:layout_marginTop="1dp" />
     </LinearLayout>
 
     <TextView
@@ -56,7 +54,6 @@
         android:layout_columnSpan="2"
         android:layout_marginTop="5dp"
         android:layout_row="1"
-        android:textAlignment="gravity"
-        android:textSize="@dimen/standard_font_size" />
+        android:textAlignment="gravity" />
 
 </GridLayout>

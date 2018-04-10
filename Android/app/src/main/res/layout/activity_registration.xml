@@ -110,8 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/registration_agree_message"
-        android:textColor="@color/background"
-        android:textSize="@dimen/standard_font_size" />
+        android:textColor="@color/background" />
 
     <Button
         android:id="@+id/registration_register"

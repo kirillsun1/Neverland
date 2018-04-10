@@ -12,5 +12,6 @@ public interface TakenQuestService {
     List<TakenQuest> getQuests(User user);
     boolean checkIfQuestIsTaken(User user, Quest quest);
     Optional<TakenQuest> getQuestTakenByUser(User user, Quest quest);
+    void archive(Long takenQuestId);
     void delete(Long takenQuestId);
 }

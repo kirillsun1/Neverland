@@ -98,7 +98,6 @@
                 android:text="@string/login_register_hint"
                 android:textAlignment="center"
                 android:textColor="@color/background"
-                android:textSize="@dimen/standard_font_size"
                 android:textStyle="bold" />
 
         </LinearLayout>

@@ -1,20 +1,15 @@
 package knk.ee.neverland.activities
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.exceptions.AuthAPIException
-import knk.ee.neverland.models.RegistrationData
-import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.api.models.RegistrationData
+import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Utils
 
 class RegistrationActivity : AppCompatActivity() {
@@ -25,8 +20,6 @@ class RegistrationActivity : AppCompatActivity() {
     private var secondNameBox: EditText? = null
     private var emailBox: EditText? = null
     private var agreeBox: CheckBox? = null
-
-    private var registerTask: RegisterTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +35,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.registration_register).setOnClickListener {
             if (validateFields()) {
-                register(makeRegistrationData())
+                runRegisterTask(makeRegistrationData())
             }
         }
     }
@@ -59,28 +52,11 @@ class RegistrationActivity : AppCompatActivity() {
         return registrationData
     }
 
-    @Throws(AuthAPIException::class)
-    private fun register(registrationData: RegistrationData) {
-        registerTask = RegisterTask(registrationData)
-        registerTask!!.execute()
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
-    }
-
-    private fun finishNow(login: String, token: String) {
-        val intent = Intent()
-        intent.putExtra("token", token)
-        intent.putExtra("login", login)
-        setResult(Constants.SUCCESS, intent)
-        finish()
-    }
-
     private fun validateFields(): Boolean {
         resetErrors()
 
-        return validateLogin() && validatePassword() && validateNames() && validateEmail() && checkAgreement()
+        return validateLogin() && validatePassword() && validateNames() && validateEmail()
+                && checkAgreement()
     }
 
     private fun validateLogin(): Boolean {
@@ -193,27 +169,24 @@ class RegistrationActivity : AppCompatActivity() {
         agreeBox!!.error = null
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class RegisterTask(val registrationData: RegistrationData) : AsyncTask<Void, Void, Int>() {
-        private var token: String = ""
+    private fun runRegisterTask(registrationData: RegistrationData) {
+        var success = false
 
-        override fun doInBackground(vararg p0: Void?): Int {
-            try {
-                token = DefaultAPI.authAPI.registerAccount(registrationData)
-                return Constants.SUCCESS
-            } catch (ex: AuthAPIException) {
-                return ex.code
+        APIAsyncRequest.Builder<String>()
+            .request {
+                val token = DefaultAPI.authAPI.registerAccount(registrationData)
+                success = true
+                token
             }
-        }
-
-        override fun onPostExecute(code: Int?) {
-            when (code) {
-                Constants.BAD_REQUEST_TO_API -> showToast(getString(R.string.error_invalid_api_request))
-                Constants.NETWORK_ERROR -> showToast(getString(R.string.error_network_down))
-                Constants.FAILED -> showToast(getString(R.string.error_incorrect_fields))
-                Constants.SUCCESS -> finishNow(registrationData.login, token)
-                else -> showToast(String.format("%s %d", getString(R.string.error_unexpected_code), code))
+            .setContext(this)
+            .showMessages(true)
+            .onAPIFailMessage { R.string.error_incorrect_fields }
+            .after {
+                if (success) {
+                    finish()
+                }
             }
-        }
+            .finish()
+            .execute()
     }
 }
