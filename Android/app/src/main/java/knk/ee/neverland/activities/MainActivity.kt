@@ -9,7 +9,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.fragments.FeedFragment
 import knk.ee.neverland.activities.fragments.GroupsFragment
-import knk.ee.neverland.activities.fragments.MyQuestsFragment
+import knk.ee.neverland.activities.fragments.TakenQuestsFragment
 import knk.ee.neverland.activities.fragments.SearchFragment
 
 class MainActivity : AppCompatActivity() {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         return when (fragmentType) {
             FragmentType.FEED -> FeedFragment()
 
-            FragmentType.QUESTS -> MyQuestsFragment()
+            FragmentType.QUESTS -> TakenQuestsFragment()
 
             FragmentType.SEARCH -> SearchFragment()
 

@@ -3,6 +3,7 @@ package knk.ee.neverland.activities.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,8 @@ class FeedFragment : Fragment() {
         feedListSwipeLayout!!.setOnRefreshListener({
             runGetProofsTask(true)
         })
+
+        view.findViewById<Toolbar>(R.id.toolbar).title = getString(R.string.feed_fragment_title)
 
         runGetProofsTask(false)
     }

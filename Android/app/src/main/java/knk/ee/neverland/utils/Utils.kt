@@ -20,6 +20,6 @@ object Utils {
             doubleNumber /= 1000
         }
 
-        return "$doubleNumber$ks"
+        return "${doubleNumber.toInt()}$ks"
     }
 }

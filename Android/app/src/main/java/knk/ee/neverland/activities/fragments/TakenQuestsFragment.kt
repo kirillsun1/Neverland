@@ -15,31 +15,31 @@ import android.widget.TextView
 import com.gordonwong.materialsheetfab.DimOverlayFrameLayout
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import knk.ee.neverland.R
-import knk.ee.neverland.activities.AllQuestsActivity
+import knk.ee.neverland.activities.TakeQuestActivity
 import knk.ee.neverland.activities.CreateQuestActivity
 import knk.ee.neverland.activities.QuestActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.CustomFloatingActionButton
-import knk.ee.neverland.views.questview.MyQuestElementAdapter
+import knk.ee.neverland.views.questview.TakenQuestsListAdapter
 
-class MyQuestsFragment : Fragment() {
+class TakenQuestsFragment : Fragment() {
     private var materialSheetFab: MaterialSheetFab<CustomFloatingActionButton>? = null
-    private var myQuestElementAdapter: MyQuestElementAdapter? = null
+    private var takenQuestsListAdapter: TakenQuestsListAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val listView = view.findViewById<View>(R.id.quests_listview) as ListView
-        myQuestElementAdapter = MyQuestElementAdapter(view.context)
-        listView.adapter = myQuestElementAdapter
+        takenQuestsListAdapter = TakenQuestsListAdapter(view.context)
+        listView.adapter = takenQuestsListAdapter
 
         listView.setOnItemClickListener { adapterView: AdapterView<*>, _: View, position: Int, _: Long ->
             openQuestActivity(adapterView.adapter.getItem(position) as Quest)
         }
 
-        view.findViewById<Toolbar>(R.id.quests_toolbar).title = getString(R.string.quests_fragment_title)
+        view.findViewById<Toolbar>(R.id.toolbar).title = getString(R.string.quests_fragment_title)
 
         setupFAB()
 
@@ -77,8 +77,8 @@ class MyQuestsFragment : Fragment() {
         APIAsyncRequest.Builder<List<Quest>>()
             .request { DefaultAPI.questAPI.getMyQuests() }
             .handleResult {
-                myQuestElementAdapter!!.questsList = it!!
-                myQuestElementAdapter!!.notifyDataSetChanged()
+                takenQuestsListAdapter!!.questsList = it!!
+                takenQuestsListAdapter!!.notifyDataSetChanged()
             }
             .setContext(view!!.context)
             .showMessages(true)
@@ -92,7 +92,7 @@ class MyQuestsFragment : Fragment() {
         intent.putExtra("questID", quest.id)
         intent.putExtra("questTitle", quest.title)
         intent.putExtra("questDesc", quest.description)
-        intent.putExtra("questAuthor", "${quest.creator.firstName} ${quest.creator.secondName}")
+        intent.putExtra("questAuthor", "${quest.author.firstName} ${quest.author.secondName}")
         intent.putExtra("questCreatedDate", quest.timeCreated.toString())
 
         startActivity(intent)
@@ -105,7 +105,7 @@ class MyQuestsFragment : Fragment() {
     }
 
     private fun openFindQuestActivity() {
-        val findIntent = Intent(view!!.context, AllQuestsActivity::class.java)
+        val findIntent = Intent(view!!.context, TakeQuestActivity::class.java)
         startActivity(findIntent)
         materialSheetFab?.hideSheet()
     }

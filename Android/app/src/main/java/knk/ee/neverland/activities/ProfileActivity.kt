@@ -16,9 +16,7 @@ import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.yalantis.ucrop.UCrop
@@ -95,7 +93,6 @@ class ProfileActivity : AppCompatActivity() {
     private fun loadUserAvatar(user: User) {
         Glide.with(this)
             .load(user.avatarLink)
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
             .transition(DrawableTransitionOptions.withCrossFade(resources.getInteger(
                 R.integer.feed_fade_animation_duration)))
             .into(findViewById(R.id.profile_user_avatar))
@@ -112,7 +109,8 @@ class ProfileActivity : AppCompatActivity() {
         val followButton = findViewById<Button>(R.id.profile_follow_button)
 
         followButton.visibility = if (userID == selfID) GONE else VISIBLE
-        followButton.isEnabled = userID != selfID
+        // TODO: Following
+        followButton.isEnabled = false // userID != selfID
     }
 
     private fun getUserIDFromIntent(): Int {

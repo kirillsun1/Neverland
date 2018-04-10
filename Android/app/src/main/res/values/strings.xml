@@ -113,4 +113,9 @@
     <string name="proof_submitted_message">Proof is submitted</string>
     <string name="error_uploading_avatar">Failed</string>
 
+    <string name="completed_quests_tab_title">Completed</string>
+    <string name="suggested_quests_tab_title">Suggested</string>
+    <string name="profile_take_quest_button_label">Take this quest</string>
+    <string name="feed_fragment_title">Feed</string>
+
 </resources>

@@ -13,13 +13,13 @@ data class Quest(
     val description: String,
 
     @SerializedName("author")
-    val creator: User,
+    val author: User,
 
     @SerializedName("time_created")
     val timeCreated: DateTime,
 
     @SerializedName("time_taken")
-    val timeTaken: DateTime?,
+    var timeTaken: DateTime?,
 
     val groupID: Int
 ) {

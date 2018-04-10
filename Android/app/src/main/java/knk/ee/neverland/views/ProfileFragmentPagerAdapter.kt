@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import knk.ee.neverland.R
 import knk.ee.neverland.activities.fragments.UserProofsFragment
 import knk.ee.neverland.activities.fragments.UserSuggestedQuestsFragment
 
@@ -33,9 +34,9 @@ class ProfileFragmentPagerAdapter(val context: Context,
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Proofs"
+            0 -> context.getString(R.string.completed_quests_tab_title)
 
-            1 -> "Suggested quests"
+            1 -> context.getString(R.string.suggested_quests_tab_title)
 
             else -> ""
         }

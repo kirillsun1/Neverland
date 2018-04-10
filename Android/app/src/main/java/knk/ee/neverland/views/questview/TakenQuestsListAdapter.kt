@@ -10,8 +10,9 @@ import knk.ee.neverland.R
 import knk.ee.neverland.models.Quest
 import java.util.*
 
-class MyQuestElementAdapter(val context: Context) : BaseAdapter() {
-    private val layoutInflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
+    private val layoutInflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     var questsList: List<Quest> = ArrayList()
 
     override fun getCount(): Int {
@@ -43,9 +44,7 @@ class MyQuestElementAdapter(val context: Context) : BaseAdapter() {
             viewHolder = convertView.tag as ViewHolder
         }
 
-        viewHolder.questName!!.text = element.title
-        viewHolder.questTimeTaken!!.text = context.getString(R.string.quest_taken_data)
-            .format(element.timeTaken.toString())
+        viewHolder.loadFromQuest(context, element)
 
         return convertView
     }
@@ -53,5 +52,11 @@ class MyQuestElementAdapter(val context: Context) : BaseAdapter() {
     private class ViewHolder {
         internal var questName: TextView? = null
         internal var questTimeTaken: TextView? = null
+
+        fun loadFromQuest(context: Context, quest: Quest) {
+            questName!!.text = quest.title
+            questTimeTaken!!.text = context.getString(R.string.quest_taken_data)
+                .format(quest.timeTaken.toString())
+        }
     }
 }

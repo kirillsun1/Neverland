@@ -3,12 +3,16 @@ package knk.ee.neverland.views.questview
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import knk.ee.neverland.R
+import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.datetime.DateTime
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.utils.APIAsyncRequest
 
 class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
 
@@ -45,11 +49,7 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
             viewHolder = convertView.tag as ViewHolder
         }
 
-        viewHolder.questName!!.text = element.title
-        viewHolder.questDesc!!.text = element.description
-        viewHolder.takeQuestButton!!.setOnClickListener {
-            // DefaultAPI.questAPI.takeQuest(element.id)
-        }
+        viewHolder.loadFromQuest(context, element)
 
         return convertView
     }
@@ -58,5 +58,43 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context) : BaseAdapter() {
         internal var questName: TextView? = null
         internal var questDesc: TextView? = null
         internal var takeQuestButton: Button? = null
+
+        private var takingQuest: Boolean = false
+
+        fun loadFromQuest(context: Context, quest: Quest) {
+            questName!!.text = quest.title
+            questDesc!!.text = quest.description
+            takeQuestButton!!.setOnClickListener {
+                runTakingQuestTask(context, quest)
+            }
+
+            hideTakeQuestButtonIfQuestIsTaken(quest)
+        }
+
+        private fun runTakingQuestTask(context: Context, quest: Quest) {
+            if (!takingQuest) {
+                APIAsyncRequest.Builder<Boolean>()
+                    .before { takingQuest = true }
+                    .request {
+                        DefaultAPI.questAPI.takeQuest(quest.id)
+                        true
+                    }
+                    .onAPIFailMessage { R.string.error_failed_taking_quest }
+                    .setContext(context)
+                    .showMessages(true)
+                    .after {
+                        takingQuest = false
+                        quest.timeTaken = DateTime() // TODO: update
+                    }
+                    .finish()
+                    .execute()
+            }
+        }
+
+        private fun hideTakeQuestButtonIfQuestIsTaken(quest: Quest) {
+            if (quest.isTaken()) {
+                takeQuestButton!!.visibility = GONE
+            }
+        }
     }
 }

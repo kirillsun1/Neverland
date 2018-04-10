@@ -14,17 +14,17 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.views.questview.QuestElementAdapter
+import knk.ee.neverland.views.questview.TakeQuestListAdapter
 
-class AllQuestsActivity : AppCompatActivity() {
-    private var questListAdapter: QuestElementAdapter? = null
+class TakeQuestActivity : AppCompatActivity() {
+    private var takeQuestListAdapter: TakeQuestListAdapter? = null
     private var questListSwipper: SwipeRefreshLayout? = null
 
     private var takingQuest: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_all_quests)
+        setContentView(R.layout.activity_take_quest)
 
         initializeQuestsList()
         runUpdateQuestsTask(false)
@@ -33,8 +33,8 @@ class AllQuestsActivity : AppCompatActivity() {
     private fun initializeQuestsList() {
         val questsListView = findViewById<ListView>(R.id.all_quests_list_view)
 
-        questListAdapter = QuestElementAdapter(this)
-        questsListView.adapter = questListAdapter
+        takeQuestListAdapter = TakeQuestListAdapter(this)
+        questsListView.adapter = takeQuestListAdapter
 
         questsListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             if (!takingQuest) {
@@ -51,7 +51,7 @@ class AllQuestsActivity : AppCompatActivity() {
     }
 
     private fun askConfirmationAndTakeQuest(pos: Int) {
-        val quest = questListAdapter!!.getItem(pos)
+        val quest = takeQuestListAdapter!!.getItem(pos)
         val message = getString(R.string.taking_quest_confirmation).format(quest.title)
 
         AlertDialog.Builder(this)
@@ -76,7 +76,7 @@ class AllQuestsActivity : AppCompatActivity() {
                 }
             }
             .request { DefaultAPI.questAPI.getQuestsToTake() }
-            .handleResult { questListAdapter!!.addQuests(it!!) }
+            .handleResult { takeQuestListAdapter!!.addQuests(it!!) }
             .onAPIFailMessage { R.string.error_failed_getting_quests }
             .setContext(this)
             .showMessages(true)
@@ -100,7 +100,7 @@ class AllQuestsActivity : AppCompatActivity() {
                 .setContext(this)
                 .showMessages(true)
                 .after {
-                    questListAdapter!!.removeQuest(positionInAdapter)
+                    takeQuestListAdapter!!.removeQuest(positionInAdapter)
                     takingQuest = false
                 }
                 .finish()
@@ -110,7 +110,7 @@ class AllQuestsActivity : AppCompatActivity() {
 
     private inner class QuestTextWatcher : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
-            questListAdapter!!.filter.filter(p0.toString())
+            takeQuestListAdapter!!.filter.filter(p0.toString())
         }
 
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

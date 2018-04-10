@@ -1,6 +1,7 @@
 package knk.ee.neverland.views.feedview
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.mikhaellopez.circularimageview.CircularImageView
 import knk.ee.neverland.R
+import knk.ee.neverland.activities.ProfileActivity
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.utils.Constants
 
@@ -95,6 +97,8 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
 
             loadAvatar(context, proof)
             loadProofImage(context, proof)
+
+            setActionsToOpenUserActivity(context, proof)
         }
 
         private fun shouldCommentBeVisible(proof: Proof, comment: String?) =
@@ -112,10 +116,21 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
         private fun loadProofImage(context: Context, proof: Proof) {
             Glide.with(context)
                 .load(proof.imageLink)
-                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
+                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
                 .into(proofImage!!)
+        }
+
+        private fun setActionsToOpenUserActivity(context: Context, proof: Proof) {
+            val openUserProfileListener: View.OnClickListener = View.OnClickListener {
+                val intent = Intent(context, ProfileActivity::class.java)
+                intent.putExtra("userID", proof.sender.id)
+                context.startActivity(intent)
+            }
+
+            userName!!.setOnClickListener(openUserProfileListener)
+            userAvatar!!.setOnClickListener(openUserProfileListener)
         }
     }
 }
