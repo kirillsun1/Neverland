@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#645680</color>
+    <color name="colorPrimaryDark">#4f4464</color>
+    <color name="colorAccent">#32BDFF</color>
+    <color name="background">#efefef</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="custom_fab_sheet_color">@color/background</color>
+    <color name="custom_fab_color">@color/colorPrimaryDark</color>
+</resources>
