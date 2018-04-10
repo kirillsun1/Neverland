@@ -55,19 +55,21 @@ class ProfileViewController: UIViewController {
     }
     
     func refreshData() {
-        if uid != nil {
-            getUsersData()
-        } else {
-            getMyData()
-        }
+        fetchInfo()
+        fetchProofs()
+        fetchSuggested()
     }
     
-    func getMyData() {
-        questApi.fetchMyProofs { arr in
+    func fetchProofs() {
+        let completionHandler: ([NSDictionary]) -> () = { arr in
             self.proofs = Proof.createProofsArray(from: arr)
         }
-        
-        profileApi.getMyInfo { userInfo in
+        uid != nil ? questApi.fetchUserProofs(uid: uid!, onComplete: completionHandler) :  questApi.fetchMyProofs(onComplete: completionHandler)
+    }
+    
+    func fetchInfo() {
+        let completionHandler: (Person) -> () = {
+            userInfo in
             if let imgLink = userInfo.photoURLString {
                 self.avatarView.uploadImageFrom(url: imgLink)
             }
@@ -75,7 +77,12 @@ class ProfileViewController: UIViewController {
             self.nameLbl.text = "\(userInfo.firstName) \(userInfo.secondName)"
         }
         
-        profileApi.getMySuggestedQuests { jsonArr in
+        uid != nil ? profileApi.getUserInfo(uid: uid!, onComplete: completionHandler) : profileApi.getMyInfo(onComplete: completionHandler)
+    }
+    
+    func fetchSuggested() {
+        
+        let completionHandler: ([NSDictionary]) -> () = { jsonArr in
             self.suggestedQuests = []
             jsonArr.forEach {
                 let q = Quest(fromJSON: $0)
@@ -84,32 +91,10 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func getUsersData() {
-        questApi.fetchUserProofs(uid: uid!) { arr in
-            self.proofs = Proof.createProofsArray(from: arr)
-        }
         
-        profileApi.getUserInfo(uid: uid!) { userInfo in
-            if let imgLink = userInfo.photoURLString {
-                self.avatarView.uploadImageFrom(url: imgLink)
-            }
-            self.navigationItem.title = userInfo.nickname
-            self.nameLbl.text = "\(userInfo.firstName) \(userInfo.secondName)"
-        }
-        
-        profileApi.getSuggestedQuests(uid: uid!) { jsonArr in
-            self.suggestedQuests = []
-            jsonArr.forEach {
-                let q = Quest(fromJSON: $0)
-                if let q = q {
-                    self.suggestedQuests.append(q)
-                }
-            }
-        }
+        uid != nil ? profileApi.getSuggestedQuests(uid: uid!, onComplete: completionHandler) : profileApi.getMySuggestedQuests(onComplete: completionHandler)
     }
-    
+
     func confirmationPopup(for quest: Quest) {
         NLConfirmationPopupService().presentPopup(forQuest: quest, into: self) {
             NLQuestApi().takeQuest(qid: quest.id) { _ in
@@ -127,7 +112,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // todo: Make that there are no space above&below pic
         return self.mode == .proofs ? self.view.frame.size.width + 25 + 45 + 6 + 4*2 : 70
     }
     

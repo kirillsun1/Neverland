@@ -16,36 +16,10 @@ class NLProfileApi {
     
     func getMyInfo(onComplete: @escaping (Person) -> ()) {
         getInfoLogic(url: urlBase + "/getMyInfo", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
-//        let request = Alamofire.request(urlBase + "/getMyInfo", method: .get, parameters: ["token": User.sharedInstance.token ?? ""])
-//        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
-//
-//        request.responseJSON(queue: queue) { response in
-//            if let result = response.result.value {
-//                let JSON = result as! NSDictionary
-//                //print(JSON)
-//                let person = Person.init(creatorData: JSON)
-//                DispatchQueue.main.async {
-//                    onComplete(person!)
-//                }
-//            }
-//        }
     }
     
     func getUserInfo(uid: Int, onComplete: @escaping (Person) -> ()) {
         getInfoLogic(url: urlBase + "/getUsersInfo", params: ["token": User.sharedInstance.token ?? "", "uid": uid], onComplete: onComplete)
-//        let request = Alamofire.request(urlBase + "/getUsersInfo", method: .get, parameters: ["token": User.sharedInstance.token ?? "", "uid": uid])
-//        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
-//
-//        request.responseJSON(queue: queue) { response in
-//            if let result = response.result.value {
-//                let JSON = result as! NSDictionary
-//                //print(JSON)
-//                let person = Person.init(creatorData: JSON)
-//                DispatchQueue.main.async {
-//                    onComplete(person!)
-//                }
-//            }
-//        }
     }
     
     func getInfoLogic(url: String, params: [String: Any], onComplete: @escaping (Person) -> ()) {

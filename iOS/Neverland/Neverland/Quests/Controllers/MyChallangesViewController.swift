@@ -21,7 +21,7 @@ class MyChallangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        FloatingButton().add(intoViewController: self)
+        FloatingButton().add(intoViewController: self, type: .quest)
         fetchMyQuests()
         
         self.tableView.es.addPullToRefresh {

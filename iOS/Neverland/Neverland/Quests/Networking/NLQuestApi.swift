@@ -50,6 +50,7 @@ class NLQuestApi: QuestApi {
 
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
+//                print(result)
                 let JSON = result as! [NSDictionary]
                 DispatchQueue.main.async {
                     onComplete(JSON)
