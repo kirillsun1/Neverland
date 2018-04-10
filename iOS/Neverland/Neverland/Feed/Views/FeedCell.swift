@@ -17,6 +17,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var ratingProgr: UIProgressView!
     @IBOutlet weak var photoWidthConstr: NSLayoutConstraint!
     @IBOutlet weak var photoHeigthConstr: NSLayoutConstraint!
+    @IBOutlet weak var segueButton: UIButton?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +29,14 @@ class FeedCell: UITableViewCell {
         self.userNameLbl.text = proof.proofer.nickname
         self.questTitleLbl.text = proof.quest?.title ?? "Quest Title"
         self.photoView.uploadImageFrom(url: proof.picPath)
+        if let btn = self.segueButton {
+            btn.tag = proof.proofer.id
+        }
+        if let imgUrl = proof.proofer.photoURLString {
+            self.userAvatarView.uploadImageFrom(url: imgUrl)
+        } else {
+            self.userAvatarView.image = UIImage.init(named: "1")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

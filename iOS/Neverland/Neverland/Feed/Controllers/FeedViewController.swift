@@ -41,7 +41,16 @@ class FeedViewController: UIViewController {
         }
     }
     
+    @IBAction func segueButtonTapped(_ sender: UIButton!) {
+        performSegue(withIdentifier: "UserDetailed", sender: sender.tag)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "UserDetailed" {
+            let vc = segue.destination as! ProfileViewController
+            vc.uid = (sender as! Int)
+        }
+    }
 
     @IBAction func changeTypePressed() {
         dropDown.show()

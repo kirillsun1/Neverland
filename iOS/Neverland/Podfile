@@ -16,6 +16,7 @@ target 'Neverland' do
   pod 'ImagePicker'
   pod 'CropViewController'
   pod 'WXImageCompress'
+  pod 'AAPhotoCircleCrop'
 
 
   target 'NeverlandTests' do

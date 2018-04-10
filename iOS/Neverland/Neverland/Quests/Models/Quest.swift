@@ -32,7 +32,11 @@ struct Quest {
         self.description = desc
         self.id = id
         self.creator = creator
-        self.datePicked = Time(from: ((json.value(forKey: "time_taken") as? NSDictionary)?.value(forKey: "date") as? NSDictionary))
+        if let timestamp = (json.value(forKey: "time_taken") as? NSDictionary)?.value(forKey: "date") as? NSDictionary {
+            self.datePicked = Time(from: timestamp)
+        } else {
+            self.datePicked = Time(from: (json.value(forKey: "time_created") as? NSDictionary)?.value(forKey: "date") as? NSDictionary)
+        }
         self.proofs = [Proof]()
     }
     
