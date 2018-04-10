@@ -33,7 +33,14 @@ class NewGroupViewController: UIViewController {
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        print("pressed")
+        NLGroupApi().registerGroup(g_name: nameField.text!) { response in
+            switch response.code {
+            case .Successful:
+                self.navigationController?.popViewController(animated: true)
+            case .Error:
+                SCLAlertView().showError("Server error", subTitle: "Group was not added")
+            }
+        }
     }
     
 

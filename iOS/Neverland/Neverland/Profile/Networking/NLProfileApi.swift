@@ -53,7 +53,7 @@ class NLProfileApi {
 
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
-                let JSON = result as! [NSDictionary]
+                let JSON = (result as! NSDictionary).value(forKey: "elements") as! [NSDictionary]
 
                 DispatchQueue.main.async {
                     onComplete(JSON)
