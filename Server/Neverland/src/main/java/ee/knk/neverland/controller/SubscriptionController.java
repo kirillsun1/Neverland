@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.Answer;
+import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.PeopleGroup;
@@ -41,37 +41,37 @@ public class SubscriptionController {
     public String subscribe(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<PeopleGroup> group = findGroupById(groupId);
         if (!group.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
 
         Subscription subscription = new Subscription(user.get(), group.get());
         subscriptionService.subscribe(subscription);
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     @RequestMapping(value = "/unsubscribe")
     public String unsubscribe(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<PeopleGroup> group = findGroupById(groupId);
         if (!group.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         subscriptionService.unsubscribe(user.get(), group.get());
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     @RequestMapping(value = "/getMyGroups")
     public String getMyGroups(@RequestParam(value = "token") String token) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<PeopleGroup> groups = subscriptionService.getUserGroups(user.get());
         GroupPacker packer = new GroupPacker(this);
@@ -82,7 +82,7 @@ public class SubscriptionController {
     public String getUsersGroups(@RequestParam(value = "token") String token, @RequestParam(value = "uid") Long userId) {
         Optional<User> me = tokenController.getTokenUser(token);
         if (!me.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         User user = userController.getUserById(userId);
         List<PeopleGroup> groups = subscriptionService.getUserGroups(user);
@@ -94,11 +94,11 @@ public class SubscriptionController {
     public String getGroupSubscribers(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<PeopleGroup> group = findGroupById(groupId);
         if (!group.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         UserPacker userPacker = new UserPacker();
         List<User> subscribers = subscriptionService.getGroupSubscribers(group.get());

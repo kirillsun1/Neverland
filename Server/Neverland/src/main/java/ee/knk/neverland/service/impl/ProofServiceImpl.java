@@ -37,7 +37,7 @@ public class ProofServiceImpl implements ProofService {
 
     @Override
     public List<Proof> getAllProofs() {
-        return proofRepository.findAll();
+        return proofRepository.findAllAndSort();
     }
 
     @Override

@@ -1,9 +1,11 @@
 package ee.knk.neverland.answer.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
 public class QuestPojo implements Pojo {
     private Long id;
     private String title;

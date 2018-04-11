@@ -27,4 +27,7 @@ public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
     @Modifying(clearAutomatically = true)
     @Query("UPDATE TakenQuest takenQuest SET takenQuest.active = false WHERE takenQuest.id = :id")
     void archive(@Param("id") Long id);
+
+    @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.quest = :quest AND takenQuest.user = :user")
+    Optional<TakenQuest> getIfExists(@Param("quest") Quest quest, @Param("user") User user);
 }

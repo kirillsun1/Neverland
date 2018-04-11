@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.Answer;
+import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Comment;
@@ -39,15 +39,15 @@ public class CommentController {
                                @Param(value = "text") String text) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<Proof> proof = proofController.getProofById(proofId);
         if (!proof.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         Comment comment = new Comment(user.get(), proof.get(), text);
         commentService.addComment(comment);
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
 
     }
 
@@ -56,17 +56,17 @@ public class CommentController {
                                @RequestParam(value = "text") String text) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<Comment> comment = getCommentById(commentId);
         if (!comment.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         if(!comment.get().getAuthor().equals(user.get())) {
-            return gson.toJson(new Answer(Constants.PERMISSION_DENIED));
+            return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
         }
         commentService.editComment(text, commentId);
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
 
     }
 
@@ -74,15 +74,15 @@ public class CommentController {
     public String getProofComments(@RequestParam(name = "token") String token, @RequestParam(value = "pid") Long proofId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<Proof> proof = proofController.getProofById(proofId);
         if (!proof.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         List<Comment> comments = commentService.getProofComments(proof.get());
         CommentPacker packer = new CommentPacker();
-        return gson.toJson(new ListAnswer(packer.packAllComments(comments), Constants.SUCCEED));
+        return gson.toJson(new ListAnswer(packer.packAllComments(comments)));
     }
 
     private Optional<Comment> getCommentById(Long id) {

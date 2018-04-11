@@ -1,6 +1,7 @@
 package ee.knk.neverland.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,10 +10,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tokens")
+@NoArgsConstructor
 public class Token {
-    public Token() {
-
-    }
 
     public Token(User user, String value) {
         this.value = value;

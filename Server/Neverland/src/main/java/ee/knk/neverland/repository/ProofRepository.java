@@ -19,4 +19,7 @@ public interface ProofRepository extends JpaRepository<Proof, Long> {
 
     @Query("SELECT proof FROM Proof proof WHERE proof.id = :id")
     Optional<Proof> findOneIfExists(@Param("id") Long id);
+
+    @Query("SELECT proof FROM Proof proof ORDER BY proof.id DESC")
+    List<Proof> findAllAndSort();
 }

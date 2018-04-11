@@ -24,7 +24,7 @@ public class ProofPacker {
         this.me = me;
     }
 
-    private ProofPojo packProof(Proof pointer) {
+    public ProofPojo packProof(Proof pointer) {
         UserPojo proofer = userPacker.packUser(pointer.getUser());
         QuestPojo quest = questPacker.packQuest(pointer.getQuest());
         ProofPojoBuilder builder = new ProofPojoBuilder();
@@ -41,7 +41,7 @@ public class ProofPacker {
                 .getProofPojo();
     }
 
-    public List<Pojo> packProofs(List<Proof> proofs) {
+    public List<Pojo> packAllProofs(List<Proof> proofs) {
         List<Pojo> packedProofs = new ArrayList<>();
         for (Proof pointer : proofs) {
             packedProofs.add(packProof(pointer));
