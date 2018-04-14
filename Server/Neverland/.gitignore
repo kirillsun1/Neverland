@@ -11,7 +11,7 @@
 .springBeans
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -25,4 +25,5 @@ nbdist/
 .nb-gradle/
 
 src/main/resources/application.properties
+src/test/resources/application.properties
 out/
