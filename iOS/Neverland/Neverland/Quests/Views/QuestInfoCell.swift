@@ -13,6 +13,7 @@ class QuestInfoCell: UITableViewCell {
     @IBOutlet weak var questNameLbl: UILabel!
     @IBOutlet weak var questDescrView: UITextView!
     @IBOutlet weak var creatorUsername: UILabel!
+    @IBOutlet weak var creatorAvatar: RoundedImage!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,9 @@ class QuestInfoCell: UITableViewCell {
         questNameLbl.text = quest.title
         questDescrView.text  = quest.description
         creatorUsername.text = "by \(quest.creator.nickname)"
+        if let link = quest.creator.photoURLString {
+            creatorAvatar.uploadImageFrom(url: link)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

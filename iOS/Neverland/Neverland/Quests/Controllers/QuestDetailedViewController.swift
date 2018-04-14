@@ -12,8 +12,16 @@ class QuestDetailedViewController: UIViewController {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var questDescrView: UITextView!
+    @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var delBtn: UIBarButtonItem!
     
-    var quest: Quest?
+    let api = NLQuestApi()
+    var quest: Quest? {
+        didSet {
+            photoCollectionView?.reloadData()
+        }
+    }
+    var finished = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +36,35 @@ class QuestDetailedViewController: UIViewController {
         
         self.navigationItem.title = quest?.title
         self.questDescrView.text = quest?.description
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        sendBtn.isHidden = finished
+        sendBtn.isEnabled = !finished
+        delBtn.isEnabled = !finished
+        if finished {  api.dropQuest(qid: quest!.id) { response in } }
+        
+        api.fetchProofsForQuest(withId: quest!.id, onComplete: { arr in
+            self.quest?.setProofs(arr)
+        })
     }
     
     @IBAction func deleteQuest() {
         if (quest == nil) { return }
             
-        NLQuestApi().dropQuest(qid: quest!.id) { response in
+        api.dropQuest(qid: quest!.id) { response in
             self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProofSegue" {
+            guard let vc = segue.destination as? ProofSubmitViewController else {
+                fatalError("oh-oh-oh. Something bad happened here :(")
+            }
+            
+            vc.quest = self.quest
         }
     }
 
@@ -43,12 +73,15 @@ class QuestDetailedViewController: UIViewController {
 // MARK: - CollectionViewProtocols
 extension QuestDetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.quest?.proofs.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? ProofPhotoCell else {
+            fatalError()
+        }
         
+        cell.setPic(urlString: quest!.proofs[indexPath.row].picPath )
         return cell
     }
     

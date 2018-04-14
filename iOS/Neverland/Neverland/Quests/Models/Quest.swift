@@ -16,7 +16,7 @@ struct Quest {
     var description: String
     var datePicked: Time?
     var creator: Person
-    //var solution: [Solution]
+    var proofs: [Proof]
     
     init?(fromJSON json: NSDictionary) {
         groupId = 0
@@ -32,29 +32,24 @@ struct Quest {
         self.description = desc
         self.id = id
         self.creator = creator
-        self.datePicked = Time(from: ((json.value(forKey: "time_taken") as? NSDictionary)?.value(forKey: "date") as? NSDictionary))
+        if let timestamp = (json.value(forKey: "time_taken") as? NSDictionary)?.value(forKey: "date") as? NSDictionary {
+            self.datePicked = Time(from: timestamp)
+        } else {
+            self.datePicked = Time(from: (json.value(forKey: "time_created") as? NSDictionary)?.value(forKey: "date") as? NSDictionary)
+        }
+        self.proofs = [Proof]()
     }
-
-}
-
-struct Time {
-    var day: Int
-    var month: Int
-    var year: Int
     
-    init(from time: NSDictionary?) {
-        day = (time?.value(forKey: "day") as? Int) ?? 1
-        month = (time?.value(forKey: "month") as? Int) ?? 1
-        year = (time?.value(forKey: "year") as? Int) ?? 1990
+    mutating func setProofs(_ jsonArr: [NSDictionary]) {
+        self.proofs = Proof.createProofsArray(from: jsonArr)
     }
+
 }
 
 extension Quest: Equatable {
     static func ==(lhs: Quest, rhs: Quest) -> Bool {
         return lhs.id == rhs.id
     }
-    
-    
 }
 
 

@@ -2,7 +2,9 @@ package ee.knk.neverland.controller;
 
 
 import com.google.gson.Gson;
+import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.QuestService;
@@ -21,21 +23,35 @@ import java.util.Optional;
 public class QuestController {
     private final QuestService questService;
     private final TokenController tokenController;
+    private final UserController userController;
+    private final GroupController groupController;
     private Gson gson = new Gson();
 
     @Autowired
-    public QuestController(QuestService questService, TokenService tokenService) {
+    public QuestController(QuestService questService, TokenService tokenService, UserController userController,
+                           GroupController groupController) {
         this.questService = questService;
         this.tokenController = new TokenController(tokenService);
+        this.userController = userController;
+        this.groupController = groupController;
     }
 
     @RequestMapping(value="/submitQuest")
-    public String submitQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title, @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long groupId) {
+    public String submitQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title,
+                              @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long deskId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        questService.addQuest(new Quest(title, description, user.get(), groupId));
+        if (deskId > 0) {
+            Optional<PeopleGroup> peopleGroup = groupController.findGroupById(deskId);
+            if (!peopleGroup.isPresent()) {
+                return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+            }
+            questService.addQuest(new Quest(title, description, user.get(), peopleGroup.get()));
+        } else {
+            questService.addQuest(new Quest(title, description, user.get()));
+        }
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
@@ -46,8 +62,44 @@ public class QuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         QuestPacker packer = new QuestPacker();
-        return gson.toJson(packer.packAllQuests(getQuests()));
+        return gson.toJson(new ListAnswer(packer.packAllQuests(getQuests())));
     }
+
+    @RequestMapping(value="/getSuggestedQuests")
+    public String getAuthorsQuests(@RequestParam(value="token") String token, @RequestParam(value="uid") Long userId) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        User author = userController.getUserById(userId);
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(author))));
+    }
+
+    @RequestMapping(value="/getMySuggestedQuests")
+    public String getMySuggestedQuests(@RequestParam(value="token") String token) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(user.get()))));
+    }
+
+    @RequestMapping(value="/getGroupQuests")
+    public String getGroupQuests(@RequestParam(value="token") String token, @RequestParam(value = "gid") Long groupId) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        Optional<PeopleGroup> group = groupController.findGroupById(groupId);
+        if (!group.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+        }
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getGroupQuests(group.get()))));
+    }
+
 
     List<Quest> getQuests() {
         return questService.getQuests();

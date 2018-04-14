@@ -10,15 +10,15 @@ import java.util.Optional;
 
 
 public interface TokenRepository extends JpaRepository<Token, Long> {
-    @Query("delete from Token token where token.user = :user")
+    @Query("DELETE from Token token WHERE token.user = :user")
     void clearUpOutOfDateKeys(@Param("user") User userFk);
 
-    @Query("select token from Token token where token.value = :value and token.active = true")
+    @Query("SELECT token FROM Token token WHERE token.value = :value AND token.active = true")
     Optional<Token> isValid(@Param("value") String value);
 
-    @Query("select token from Token token where token.value = :value")
+    @Query("SELECT token FROM Token token WHERE token.value = :value")
     Optional<Token> exists(@Param("value") String value);
 
-    @Query("select user from Token token where token.value = :value")
+    @Query("SELECT user FROM Token token WHERE token.value = :value")
     Optional<User> getTokenUser(@Param("value") String value);
 }

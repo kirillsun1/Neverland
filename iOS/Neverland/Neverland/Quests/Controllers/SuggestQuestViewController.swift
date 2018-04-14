@@ -15,16 +15,16 @@ class SuggestQuestViewController: UIViewController {
     @IBOutlet weak var questTitleLbl: UITextField!
     @IBOutlet weak var detailedTextView: UITextView!
     
-    let MAX_QUEST_DESCRIPTION_COUNT = 480
-    let MAX_QUEST_TITLE_COUNT = 30
-    let MIN_QUEST_DESCRIPTION_COUNT = 10
-    let MIN_QUEST_TITLE_COUNT = 4
+    private let MAX_QUEST_DESCRIPTION_COUNT = 480
+    private let MAX_QUEST_TITLE_COUNT = 30
+    private let MIN_QUEST_DESCRIPTION_COUNT = 10
+    private let MIN_QUEST_TITLE_COUNT = 4
 
-    let questApi = NLQuestApi() // change when ready
+    private let questApi = NLQuestApi()
     let groupId = 0 // get through segue.
     
-    var questTitle: String?
-    var questDescription: String?
+    private var questTitle: String?
+    private var questDescription: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class SuggestQuestViewController: UIViewController {
 
     
     @IBAction func savePressed() {
+        view.endEditing(true)
         questApi.registerQuest(title: questTitleLbl.text!, description: detailedTextView.text!, groupId: groupId) { response in
             if response.code == .Successful {
                 self.navigationController?.popViewController(animated: true)
@@ -58,4 +59,6 @@ extension SuggestQuestViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         inputInfoChanged()
     }
+    
+
 }

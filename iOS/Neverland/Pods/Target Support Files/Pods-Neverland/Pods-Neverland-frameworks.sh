@@ -89,22 +89,30 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AAPhotoCircleCrop/AAPhotoCircleCrop.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CommonCryptoModule/CommonCryptoModule.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CropViewController/CropViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DropDown/DropDown.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ESPullToRefresh/ESPullToRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImagePicker/ImagePicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JJFloatingActionButton/JJFloatingActionButton.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/WXImageCompress/WXImageCompress.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AAPhotoCircleCrop/AAPhotoCircleCrop.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CommonCryptoModule/CommonCryptoModule.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CropViewController/CropViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DropDown/DropDown.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ESPullToRefresh/ESPullToRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ImagePicker/ImagePicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JJFloatingActionButton/JJFloatingActionButton.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView/SCLAlertView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/WXImageCompress/WXImageCompress.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

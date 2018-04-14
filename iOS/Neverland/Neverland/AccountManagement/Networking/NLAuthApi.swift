@@ -12,7 +12,7 @@ import Alamofire
 // todo
 class NLAuthApi: AuthApi {
     
-    let urlBase = "http://vrot.bounceme.net:8080"
+    private let urlBase = "http://vrot.bounceme.net:8080"
     
     func attemptLogin(withLogin login: String, passwordHash: String, onComplete: @escaping (AuthApiResponse) -> ()) {
         makeAuthApiRequest(url: urlBase + "/login", params: ["username": login, "password": passwordHash], onComplete: onComplete)
@@ -25,7 +25,7 @@ class NLAuthApi: AuthApi {
     
     
     func ifActive(token: String, onComplete: @escaping (AuthApiResponse)->()) {
-        makeAuthApiRequest(url: urlBase + "/tokencheck", params: ["token": token], onComplete: onComplete)
+        makeAuthApiRequest(url: urlBase + "/tokenCheck", params: ["token": token], onComplete: onComplete)
     }
     
     func makeAuthApiRequest(url: String, params: [String:Any], onComplete: @escaping (AuthApiResponse) -> ()) {
@@ -38,10 +38,13 @@ class NLAuthApi: AuthApi {
             
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
+//                print(JSON)
                 
                 guard let codeInt = JSON.value(forKey: "code") as? Int,
                     let code = ResponseCode(rawValue: codeInt) else {
-                        fatalError("Unknown server code. Debug this")
+                        onComplete(AuthApiResponse(code: .Error, message: "Could not establish connection with server"))
+                        SwiftSpinner.hide()
+                        return
                 }
                 
                 onComplete(AuthApiResponse(code: code, message: JSON.value(forKey: "token") as? String))

@@ -13,7 +13,7 @@ import ESPullToRefresh
 class MyChallangesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var myQuests = [Quest]()
+    private var myQuests = [Quest]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class MyChallangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        FloatingButton().add(intoViewController: self)
+        FloatingButton().add(intoViewController: self, type: .quest)
         fetchMyQuests()
         
         self.tableView.es.addPullToRefresh {

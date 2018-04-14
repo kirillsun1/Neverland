@@ -2,11 +2,11 @@ package ee.knk.neverland.tools;
 
 public class Validator {
     public boolean loginIsCorrect(String login) {
-        return login.matches("^[a-z0-9_-]{6,16}$");
+        return login.matches("(?!^[0-9]*\\$)^([-_a-zA-Z0-9]{6,16})$");
     }
 
     public boolean emailIsCorrect(String email){
-        return email.matches("^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$");
+        return email.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
     }
 
     public boolean nameIsCorrect(String name) {
