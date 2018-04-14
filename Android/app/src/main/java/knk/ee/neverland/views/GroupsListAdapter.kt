@@ -69,7 +69,9 @@ class GroupsListAdapter(val context: Context) : BaseAdapter() {
         private fun loadAvatar(context: Context, group: Group) {
             Glide.with(context)
                 .load(group.admin.avatarLink)
-                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                .apply(RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.logo))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
                 .into(groupAvatar!!)

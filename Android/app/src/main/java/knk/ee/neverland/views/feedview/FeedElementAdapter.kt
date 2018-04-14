@@ -107,7 +107,8 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
         private fun loadAvatar(context: Context, proof: Proof) {
             Glide.with(context)
                 .load(proof.sender.avatarLink)
-                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                .apply(RequestOptions()
+                    .placeholder(R.drawable.logo))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
                 .into(userAvatar!!)
