@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProofServiceImpl implements ProofService {
@@ -36,6 +37,11 @@ public class ProofServiceImpl implements ProofService {
 
     @Override
     public List<Proof> getAllProofs() {
-        return proofRepository.findAll();
+        return proofRepository.findAllAndSort();
+    }
+
+    @Override
+    public Optional<Proof> getProofById(Long id) {
+        return proofRepository.findOneIfExists(id) ;
     }
 }

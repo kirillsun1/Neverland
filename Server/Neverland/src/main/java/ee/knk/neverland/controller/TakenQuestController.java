@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.QuestList;
+import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Quest;
@@ -24,15 +24,13 @@ public class TakenQuestController {
     private final TakenQuestService takenQuestsService;
     private final TokenController tokenController;
     private final QuestController questController;
-    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController, UserController userController) {
+    public TakenQuestController(TakenQuestService takenQuestsService, TokenService tokenService, QuestController questController) {
         this.takenQuestsService = takenQuestsService;
         this.tokenController = new TokenController(tokenService);
         this.questController = questController;
-        this.userController = userController;
     }
 
     @RequestMapping(value="/takeQuest")
@@ -56,9 +54,9 @@ public class TakenQuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
 
-        List<TakenQuest> questPointers = takenQuestsService.getQuests(user.get());
+        List<TakenQuest> questPointers = takenQuestsService.getActiveQuestsUserTook(user.get());
         QuestPacker packer = new QuestPacker();
-        return gson.toJson(packer.packMyQuests(questPointers));
+        return gson.toJson(new ListAnswer(packer.packMyQuests(questPointers)));
     }
 
 
@@ -86,25 +84,17 @@ public class TakenQuestController {
         List<Quest> quests = questController.getQuests();
         QuestPacker packer = new QuestPacker();
         List<Quest> needed = getNewQuests(quests, user.get());
-        QuestList answer = packer.packAllQuests(needed);
-        return gson.toJson(answer);
+        return gson.toJson(new ListAnswer(packer.packAllQuests(needed)));
     }
 
     private List<Quest> getNewQuests(List<Quest> allQuests, User user) {
-        List<TakenQuest> questPointers = takenQuestsService.getQuests(user);
+        List<Quest> questsITook = takenQuestsService.getAllQuestsUserTook(user);
         List<Quest> notMyQuests = new ArrayList<>();
-        int counter = 0;
         for(Quest quest : allQuests) {
-            for(TakenQuest questPointer : questPointers) {
-                if(questPointer.getQuest().getId().equals(quest.getId())) {
-                    break;
-                }
-                counter++;
+            if (questsITook.contains(quest) ) {
+                continue;
             }
-            if (counter == questPointers.size()) {
-                notMyQuests.add(quest);
-            }
-            counter = 0;
+            notMyQuests.add(quest);
         }
         return notMyQuests;
     }

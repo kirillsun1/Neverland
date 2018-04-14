@@ -1,7 +1,7 @@
 package ee.knk.neverland.entity;
 
-import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
@@ -10,9 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
-    public User() {
-    }
 
     public User(String name, String password, String email, String firstName, String secondName) {
         this.email = email;
@@ -47,8 +46,23 @@ public class User {
     @Getter @Setter private String secondName;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    @Getter private Set<Token> tokens;
+    @Setter @Getter private Set<Token> tokens;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @Getter private Set<Quest> quests;
+    @Getter @Setter private Set<Quest> quests;
+
+    @Column(name="avatar")
+    @Getter @Setter private String avatar;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<PeopleGroup> adminPeopleGroups;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Subscription> subscriptions;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Comment> comments;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Getter @Setter private Set<Vote> votes;
 }

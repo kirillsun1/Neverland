@@ -8,6 +8,7 @@ import ee.knk.neverland.service.TakenQuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +23,25 @@ public class TakenQuestServiceImpl implements TakenQuestService {
 
     @Override
     public TakenQuest takeQuest(TakenQuest quest) {
+        if(takenQuestsRepository.getIfExists(quest.getQuest(), quest.getUser()).isPresent()) {
+            return quest;
+        }
         return takenQuestsRepository.saveAndFlush(quest);
     }
 
     @Override
-    public List<TakenQuest> getQuests(User user) {
-        return takenQuestsRepository.getTakenQuestsByUser(user);
+    public List<Quest> getAllQuestsUserTook(User user) {
+        List<TakenQuest> takenQuests = takenQuestsRepository.getTakenQuestsByUser(user);
+        List<Quest> quests = new ArrayList<>();
+        for (TakenQuest takenQuest : takenQuests) {
+            quests.add(takenQuest.getQuest());
+        }
+        return quests;
+    }
+
+    @Override
+    public List<TakenQuest> getActiveQuestsUserTook(User user) {
+        return takenQuestsRepository.getMyTakenQuests(user);
     }
 
     @Override

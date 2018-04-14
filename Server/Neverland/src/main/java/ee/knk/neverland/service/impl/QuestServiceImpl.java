@@ -1,6 +1,8 @@
 package ee.knk.neverland.service.impl;
 
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Quest;
+import ee.knk.neverland.entity.User;
 import ee.knk.neverland.repository.QuestRepository;
 import ee.knk.neverland.service.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,21 @@ public class QuestServiceImpl implements QuestService {
 
     @Override
     public List<Quest> getQuests() {
-        return questRepository.findAll();
+        return questRepository.getAllQuests();
     }
 
     @Override
     public Quest getQuestById(Long id) {
         return questRepository.findOne(id);
+    }
+
+    @Override
+    public List<Quest> getGroupQuests(PeopleGroup group) {
+        return questRepository.getGroupQuests(group);
+    }
+
+    @Override
+    public List<Quest> getAuthorsQuests(User author) {
+        return questRepository.getAuthorsQuests(author);
     }
 }

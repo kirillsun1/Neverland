@@ -1,9 +1,6 @@
 package ee.knk.neverland.controller;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 import com.google.gson.Gson;
@@ -19,37 +16,83 @@ import ee.knk.neverland.constants.Constants;
 public class FileUploadController {
     private final TokenController tokenController;
     private final ProofController proofController;
+    private final GroupController groupController;
+    private final UserController userController;
     private Gson gson = new Gson();
 
     @Autowired
-    public FileUploadController(TokenService tokenService, ProofController proofController) {
-        this.tokenController = new TokenController(tokenService);
+    public FileUploadController(TokenController tokenController, UserController userController, ProofController proofController, GroupController groupController) {
+        this.tokenController = tokenController;
         this.proofController = proofController;
+        this.groupController = groupController;
+        this.userController = userController;
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("token") String token, @RequestParam("qid") Long questId,
+    public @ResponseBody String handleProofUpload(@RequestParam("token") String token, @RequestParam("qid") Long questId,
                                                  @RequestParam("file") MultipartFile file, @RequestParam("comment") String comment){
-        String standardPath = "/var/www/html/never_pictures/proofs/";
+        String realPath = "/var/www/html/never_pictures/proofs/";
+        String dbPath = "http://vrot.bounceme.net:8081/never_pictures/proofs/";
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String path = standardPath + user.get().getUsername() + "_" + questId + ".jpg";
-        proofController.addProof(questId, user.get(), path, comment);
+        String pathEnding = user.get().getUsername() + "_" + questId + ".jpg";
+        StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
+        if (standardAnswer.getCode() == Constants.SUCCEED) {
+            proofController.addProof(questId, user.get(), dbPath + pathEnding, comment);
+        }
+        return gson.toJson(standardAnswer);
+
+    }
+
+    @RequestMapping(value="/uploadAvatar", method=RequestMethod.POST)
+    public @ResponseBody String handleUserAvatarUpload(@RequestParam("token") String token, @RequestParam("file") MultipartFile file){
+        String realPath = "/var/www/html/never_pictures/user_avatars/";
+        String dbPath = "http://vrot.bounceme.net:8081/never_pictures/user_avatars/";
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        String pathEnding = user.get().getUsername() + ".jpg";
+        StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
+        if (standardAnswer.getCode() == Constants.SUCCEED) {
+            userController.setAvatar(user.get().getId(), dbPath + pathEnding);
+        }
+        return gson.toJson(standardAnswer);
+        }
+
+    @RequestMapping(value="/uploadGroupAvatar", method=RequestMethod.POST)
+    public @ResponseBody String handleGroupAvatarUpload(@RequestParam("token") String token, @RequestParam("file") MultipartFile file, @RequestParam("gid") Long groupId){
+        String realPath = "/var/www/html/never_pictures/group_avatars/";
+        String dbPath = "http://vrot.bounceme.net:8081/never_pictures/group_avatars/";
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        String pathEnding = user.get().getUsername() + ".jpg";
+        StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
+        if (standardAnswer.getCode() == Constants.SUCCEED) {
+            groupController.setAvatar(user.get().getId(), dbPath + pathEnding);
+        }
+        return gson.toJson(standardAnswer);
+    }
+
+    private StandardAnswer writeFile(MultipartFile file, String realPath) {
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(path)));
+                        new BufferedOutputStream(new FileOutputStream(new File(realPath)));
                 stream.write(bytes);
                 stream.close();
-                return gson.toJson(new StandardAnswer(Constants.SUCCEED));
+                return new StandardAnswer(Constants.SUCCEED);
             } catch (Exception e) {
-                return gson.toJson(new StandardAnswer(Constants.FAILED));
+                return new StandardAnswer(Constants.FAILED);
             }
         } else {
-            return gson.toJson(new StandardAnswer(Constants.FILE_IS_EMPTY));
+            return new StandardAnswer(Constants.FILE_IS_EMPTY);
         }
     }
 }

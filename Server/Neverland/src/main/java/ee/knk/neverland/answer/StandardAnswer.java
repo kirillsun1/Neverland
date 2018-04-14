@@ -1,21 +1,24 @@
 package ee.knk.neverland.answer;
 
-import com.google.gson.annotations.SerializedName;
+import ee.knk.neverland.answer.pojo.Pojo;
+import ee.knk.neverland.constants.Constants;
+import lombok.Data;
 
-
+@Data
 public class StandardAnswer {
-    private final int code;
-    @SerializedName("token")
-    private final String tokenValue;
+    private Pojo body;
+    private int code = Constants.SUCCEED;
 
-    public StandardAnswer(int code, String token) {
+    public StandardAnswer(Pojo body) {
+        this.body = body;
+    }
+
+    public StandardAnswer(Pojo body, int code) {
+        this.body = body;
         this.code = code;
-        this.tokenValue = token;
     }
 
     public StandardAnswer(int code) {
         this.code = code;
-        this.tokenValue = "";
     }
-
 }
