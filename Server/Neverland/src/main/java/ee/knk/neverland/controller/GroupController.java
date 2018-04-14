@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.Answer;
+import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.pojo.GroupPojo;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.constants.Constants;
@@ -36,24 +36,26 @@ public class GroupController {
     public String addGroup(@RequestParam(name = "token") String token, @RequestParam(name = "g_name") String groupName) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         PeopleGroup peopleGroup = new PeopleGroup(groupName, user.get());
-        groupService.addGroup(peopleGroup);
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        PeopleGroup group = groupService.addGroup(peopleGroup);
+        subscriptionController.subscribe(token, group.getId());
+        GroupPacker packer = new GroupPacker(subscriptionController);
+        return gson.toJson(new StandardAnswer(packer.packGroup(group)));
     }
 
     @RequestMapping(value = "/deleteGroup")
-    public String deleteGroup(@RequestParam(name = "token") String token, @RequestParam(name = "gid") Long id) {
+    public String deleteGroup(@RequestParam(name = "token") String token, @RequestParam(name = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        if (groupService.checkAdminRights(id, user.get())) {
-            groupService.deleteGroup(id);
-            return gson.toJson(new Answer(Constants.SUCCEED));
+        if (groupService.checkAdminRights(groupId, user.get())) {
+            groupService.deleteGroup(groupId);
+            return gson.toJson(new StandardAnswer(Constants.SUCCEED));
         }
-        return gson.toJson(new Answer(Constants.PERMISSION_DENIED));
+        return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
     }
 
     Optional<PeopleGroup> findGroupById(Long id) {
@@ -64,15 +66,15 @@ public class GroupController {
     public String getGroupInfo(@RequestParam(name = "token") String token, @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         GroupPacker groupPacker = new GroupPacker(subscriptionController);
         Optional<PeopleGroup> group = groupService.findGroupById(groupId);
         if (!group.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         GroupPojo groupPojo = groupPacker.packGroup(group.get());
-        return gson.toJson(new Answer(groupPojo, Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(groupPojo, Constants.SUCCEED));
     }
 
 
@@ -80,7 +82,7 @@ public class GroupController {
     public String getAllGroups(@RequestParam(value = "token") String token) {
         Optional<User> me = tokenController.getTokenUser(token);
         if (!me.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<PeopleGroup> groups = groupService.getAllGroups();
         GroupPacker packer = new GroupPacker(subscriptionController);

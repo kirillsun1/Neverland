@@ -1,6 +1,7 @@
 package ee.knk.neverland.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -8,11 +9,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "votes")
+@NoArgsConstructor
 public class Vote {
-
-    public Vote() {
-
-    }
 
     public Vote(User user, Proof proof, boolean agreed) {
         this.user = user;

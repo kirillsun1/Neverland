@@ -1,6 +1,7 @@
 package ee.knk.neverland.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
@@ -9,9 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
-    public User() {
-    }
 
     public User(String name, String password, String email, String firstName, String secondName) {
         this.email = email;

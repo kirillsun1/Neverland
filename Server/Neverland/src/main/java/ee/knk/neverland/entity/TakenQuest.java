@@ -1,6 +1,8 @@
 package ee.knk.neverland.entity;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,11 +11,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="taken_quests")
+@Data
+@NoArgsConstructor
 public class TakenQuest {
-
-    public TakenQuest() {
-
-    }
     public TakenQuest(User user, Quest quest) {
         this.user = user;
         this.quest = quest;
@@ -24,24 +24,20 @@ public class TakenQuest {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    @Getter
-    @Setter
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk", nullable = false)
-    @Getter @Setter private User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "quest_fk", nullable = false)
-    @Getter @Setter private Quest quest;
+    private Quest quest;
 
     @Column(name = "active", nullable = false)
-    @Getter @Setter private boolean active = true;
+    private boolean active = true;
 
     @Column(name = "taken_time")
-    @Getter
-    @Setter
     private LocalDateTime timeQuestTaken = LocalDateTime.now();
 
 }

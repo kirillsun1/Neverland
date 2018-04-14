@@ -19,7 +19,6 @@ import javax.servlet.MultipartConfigElement;
 @EnableJpaRepositories("ee.knk.neverland.repository")
 public class DataConfig {
 
-
     @Bean
     MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();

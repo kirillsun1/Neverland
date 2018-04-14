@@ -23,6 +23,6 @@ public interface GroupRepository extends JpaRepository<PeopleGroup, Long> {
     @Query("UPDATE PeopleGroup peopleGroup SET peopleGroup.avatar = :avatarPath WHERE peopleGroup.id = :id")
     void setAvatar(@Param("id") Long id, @Param("avatarPath") String avatarPath);
 
-    @Query("SELECT peopleGroup FROM PeopleGroup peopleGroup ORDER BY peopleGroup.id ASC")
+    @Query("SELECT peopleGroup FROM PeopleGroup peopleGroup ORDER BY peopleGroup.id DESC")
     List<PeopleGroup> findAllAndSort();
 }

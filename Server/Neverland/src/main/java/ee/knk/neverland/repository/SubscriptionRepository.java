@@ -19,6 +19,6 @@ public interface SubscriptionRepository  extends JpaRepository<Subscription, Lon
     @Query("SELECT subscription.user FROM Subscription subscription WHERE subscription.peopleGroup = :peopleGroup ORDER BY subscription.id ASC")
     List<User> getGroupSubscribers(@Param("peopleGroup")PeopleGroup peopleGroup);
 
-    @Query("SELECT Count(subscription) FROM Subscription subsription WHERE subsription.peopleGroup = :peopleGroup")
+    @Query("SELECT Count(ALL subsription) FROM Subscription subsription WHERE subsription.peopleGroup = :peopleGroup")
     int countGroupSubscribers(@Param("peopleGroup") PeopleGroup peopleGroup);
 }

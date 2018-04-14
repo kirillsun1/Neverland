@@ -1,6 +1,8 @@
 package ee.knk.neverland.entity;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,12 +12,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quests")
+@Data
+@NoArgsConstructor
 public class Quest {
-    public Quest() {
-
-    }
-
-    public Quest(String title, String description, User user, Long deskId) {
+    public Quest(String title, String description, User user) {
         this.title = title;
         this.description = description;
         this.user = user;
@@ -31,28 +31,28 @@ public class Quest {
     @GeneratedValue
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    @Getter @Setter private Long id;
+    private Long id;
 
     @Column(name = "title", length = 35, nullable = false)
-    @Getter @Setter private String title;
+    private String title;
 
     @Column(name = "description", length = 485, nullable = false)
-    @Getter @Setter private String description;
+    private String description;
 
     @Column(name = "add_time")
-    @Getter @Setter private LocalDateTime time = LocalDateTime.now();
+    private LocalDateTime time = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "group_fk")
-    @Getter @Setter private PeopleGroup peopleGroup;
+    private PeopleGroup peopleGroup;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_fk")
-    @Getter @Setter private User user;
+    private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Proof> proofs;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @Getter @Setter private Set<TakenQuest> setOfBeingTaken;
+    private Set<TakenQuest> setOfBeingTaken;
 }

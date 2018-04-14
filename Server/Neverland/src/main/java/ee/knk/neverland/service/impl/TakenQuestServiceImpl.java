@@ -23,6 +23,9 @@ public class TakenQuestServiceImpl implements TakenQuestService {
 
     @Override
     public TakenQuest takeQuest(TakenQuest quest) {
+        if(takenQuestsRepository.getIfExists(quest.getQuest(), quest.getUser()).isPresent()) {
+            return quest;
+        }
         return takenQuestsRepository.saveAndFlush(quest);
     }
 

@@ -1,7 +1,7 @@
 package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
-import ee.knk.neverland.answer.Answer;
+import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.User;
@@ -35,15 +35,15 @@ public class VoteController {
                                @RequestParam(name = "value") boolean value) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
-            return gson.toJson(new Answer(Constants.FAILED));
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         Optional<Proof> proof = getProofById(proofId);
         if (!proof.isPresent()) {
-            return gson.toJson(new Answer(Constants.ELEMENT_DOES_NOT_EXIST));
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         Vote vote = new Vote(user.get(), proof.get(), value);
         voteService.addVote(vote);
-        return gson.toJson(new Answer(Constants.SUCCEED));
+        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 
     private Optional<Proof> getProofById(Long proofId) {
