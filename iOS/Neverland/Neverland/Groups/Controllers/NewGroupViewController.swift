@@ -22,7 +22,6 @@ class NewGroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         imagePickerController.delegate = self
         imagePickerController.imageLimit = 1
     }

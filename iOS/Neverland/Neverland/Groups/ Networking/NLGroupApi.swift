@@ -37,7 +37,7 @@ class NLGroupApi {
             }
         }
     }
-//
+
     //MARK: - Action with quests
     
     func registerGroup(g_name: String, onComplete: @escaping (GroupApiResponse) -> ()) {
@@ -57,7 +57,7 @@ class NLGroupApi {
         
         request.responseJSON(queue: queue) { response in
             if let result = response.result.value {
-                print(result as? NSDictionary)
+                //print(result as? NSDictionary)
                 if let JSON = result as? NSDictionary, JSON.value(forKey: "code") as? Int == 1 {
                     DispatchQueue.main.async {
                         onComplete(GroupApiResponse(code: .Successful, message: nil))

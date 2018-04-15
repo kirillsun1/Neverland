@@ -11,4 +11,15 @@ import Foundation
 struct Group {
     let title: String
     let creator: Person
+    
+    init?(json: NSDictionary) {
+        guard let title = json.value(forKey: "name") as? String,
+              let person = Person.init(creatorData: json.value(forKey: "admin") as? NSDictionary)
+            else {
+                return nil
+        }
+        
+        self.title = title
+        self.creator = person
+    }
 }
