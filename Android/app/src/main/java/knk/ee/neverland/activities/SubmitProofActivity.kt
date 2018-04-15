@@ -17,8 +17,8 @@ import java.io.File
 
 class SubmitProofActivity : AppCompatActivity() {
 
-    private var proofImage: ImageView? = null
-    private var proofComment: EditText? = null
+    private lateinit var proofImage: ImageView
+    private lateinit var proofComment: EditText
     private var imageFile: File? = null
 
     private var submittingExecuted = false
@@ -62,7 +62,7 @@ class SubmitProofActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(imageFile)
-            .into(proofImage!!)
+            .into(proofImage)
     }
 
     private fun openSelectingProofImageActivity() {
@@ -82,7 +82,7 @@ class SubmitProofActivity : AppCompatActivity() {
         findViewById<Button>(R.id.proof_submit).isEnabled = enabled
     }
 
-    private fun makeProofToSubmit(): ProofToSubmit = ProofToSubmit(proofComment!!.text.toString(),
+    private fun makeProofToSubmit(): ProofToSubmit = ProofToSubmit(proofComment.text.toString(),
         imageFile!!, intent.extras!!.getInt("questID"))
 
     private fun runSubmitProofTask(proofToSubmit: ProofToSubmit) {

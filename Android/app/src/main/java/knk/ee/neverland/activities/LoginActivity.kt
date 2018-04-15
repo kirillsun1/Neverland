@@ -22,10 +22,10 @@ import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
-    private var mLoginView: AutoCompleteTextView? = null
-    private var mPasswordView: EditText? = null
-    private var mProgressView: View? = null
-    private var mLoginFormView: View? = null
+    private lateinit var mLoginView: AutoCompleteTextView
+    private lateinit var mPasswordView: EditText
+    private lateinit var mProgressView: View
+    private lateinit var mLoginFormView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         mLoginView = findViewById(R.id.registration_login)
 
         mPasswordView = findViewById(R.id.registration_password)
-        mPasswordView!!.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
+        mPasswordView.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
                 attemptLogin()
                 return@OnEditorActionListener true
@@ -48,7 +48,9 @@ class LoginActivity : AppCompatActivity() {
         mLoginFormView = findViewById(R.id.login_form)
         mProgressView = findViewById(R.id.login_progress)
 
-        findViewById<View>(R.id.login_register).setOnClickListener { view -> startActivityForResult(Intent(view.context, RegistrationActivity::class.java), 1) }
+        findViewById<View>(R.id.login_register).setOnClickListener { view ->
+            startActivityForResult(Intent(view.context, RegistrationActivity::class.java), 1)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -66,26 +68,26 @@ class LoginActivity : AppCompatActivity() {
 
     private fun attemptLogin() {
         // Reset errors.
-        mLoginView!!.error = null
-        mPasswordView!!.error = null
+        mLoginView.error = null
+        mPasswordView.error = null
         // Store values at the time of the login attempt.
-        val login = mLoginView!!.text.toString()
-        val password = mPasswordView!!.text.toString()
+        val login = mLoginView.text.toString()
+        val password = mPasswordView.text.toString()
         var cancel = false
         var focusView: View? = null
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !Utils.passwordIsCorrect(password)) {
-            mPasswordView!!.error = getString(R.string.error_invalid_password)
+            mPasswordView.error = getString(R.string.error_invalid_password)
             focusView = mPasswordView
             cancel = true
         }
         // Check for a valid login address.
         if (TextUtils.isEmpty(login)) {
-            mLoginView!!.error = getString(R.string.error_field_required)
+            mLoginView.error = getString(R.string.error_field_required)
             focusView = mLoginView
             cancel = true
         } else if (!Utils.loginIsCorrect(login)) {
-            mLoginView!!.error = getString(R.string.error_invalid_login)
+            mLoginView.error = getString(R.string.error_invalid_login)
             focusView = mLoginView
             cancel = true
         }
@@ -105,19 +107,19 @@ class LoginActivity : AppCompatActivity() {
     private fun showProgress(show: Boolean) {
         val shortAnimTime = resources.getInteger(android.R.integer.config_shortAnimTime)
 
-        mLoginFormView!!.visibility = if (show) View.GONE else View.VISIBLE
-        mLoginFormView!!.animate().setDuration(shortAnimTime.toLong()).alpha(
+        mLoginFormView.visibility = if (show) View.GONE else View.VISIBLE
+        mLoginFormView.animate().setDuration(shortAnimTime.toLong()).alpha(
             (if (show) 0 else 1).toFloat()).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                mLoginFormView!!.visibility = if (show) View.GONE else View.VISIBLE
+                mLoginFormView.visibility = if (show) View.GONE else View.VISIBLE
             }
         })
 
-        mProgressView!!.visibility = if (show) View.VISIBLE else View.GONE
-        mProgressView!!.animate().setDuration(shortAnimTime.toLong()).alpha(
+        mProgressView.visibility = if (show) View.VISIBLE else View.GONE
+        mProgressView.animate().setDuration(shortAnimTime.toLong()).alpha(
             (if (show) 1 else 0).toFloat()).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                mProgressView!!.visibility = if (show) View.VISIBLE else View.GONE
+                mProgressView.visibility = if (show) View.VISIBLE else View.GONE
             }
         })
     }

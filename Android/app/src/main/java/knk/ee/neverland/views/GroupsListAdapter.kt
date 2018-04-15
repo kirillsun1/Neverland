@@ -56,13 +56,13 @@ class GroupsListAdapter(val context: Context) : BaseAdapter() {
     }
 
     private class ViewHolder {
-        internal var groupName: TextView? = null
-        internal var groupCreator: TextView? = null
-        internal var groupAvatar: ImageView? = null
+        internal lateinit var groupName: TextView
+        internal lateinit var groupCreator: TextView
+        internal lateinit var groupAvatar: ImageView
 
         fun loadFromGroup(context: Context, group: Group) {
-            groupName!!.text = group.name
-            groupCreator!!.text = "Created by ${group.admin}"
+            groupName.text = group.name
+            groupCreator.text = "Created by ${group.admin}"
             loadAvatar(context, group)
         }
 
@@ -74,7 +74,7 @@ class GroupsListAdapter(val context: Context) : BaseAdapter() {
                     .placeholder(R.drawable.logo))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
-                .into(groupAvatar!!)
+                .into(groupAvatar)
         }
     }
 }

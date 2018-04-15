@@ -10,10 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.datetime.DateTime
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.utils.Constants
 
 class ProfileSuggestedQuestsTabAdapter(val context: Context, val userID: Int) : BaseAdapter() {
 
@@ -26,9 +24,9 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context, val userID: Int) : 
         notifyDataSetChanged()
     }
 
-    override fun getItem(p0: Int): Any = questsList[p0]
+    override fun getItem(index: Int): Any = questsList[index]
 
-    override fun getItemId(p0: Int): Long = p0.toLong()
+    override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getCount(): Int = questsList.size
 
@@ -56,16 +54,16 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context, val userID: Int) : 
     }
 
     private inner class ViewHolder {
-        internal var questName: TextView? = null
-        internal var questDesc: TextView? = null
-        internal var takeQuestButton: Button? = null
+        internal lateinit var questName: TextView
+        internal lateinit var questDesc: TextView
+        internal lateinit var takeQuestButton: Button
 
         private var takingQuest: Boolean = false
 
         fun loadFromQuest(context: Context, quest: Quest) {
-            questName!!.text = quest.title
-            questDesc!!.text = quest.description
-            takeQuestButton!!.setOnClickListener {
+            questName.text = quest.title
+            questDesc.text = quest.description
+            takeQuestButton.setOnClickListener {
                 runTakingQuestTask(context, quest)
             }
 
@@ -93,7 +91,7 @@ class ProfileSuggestedQuestsTabAdapter(val context: Context, val userID: Int) : 
 
         private fun hideTakeQuestButtonIfQuestIsTaken(quest: Quest) {
             if (quest.isTaken()) {
-                takeQuestButton!!.visibility = GONE
+                takeQuestButton.visibility = GONE
             }
         }
     }

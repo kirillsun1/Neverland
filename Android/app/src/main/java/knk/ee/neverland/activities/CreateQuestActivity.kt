@@ -14,10 +14,10 @@ import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants
 
 class CreateQuestActivity : AppCompatActivity() {
-    private var questTitleView: EditText? = null
-    private var questDescView: EditText? = null
-    private var saveButton: Button? = null
-    private var submittingProgress: ProgressBar? = null
+    private lateinit var questTitleView: EditText
+    private lateinit var questDescView: EditText
+    private lateinit var saveButton: Button
+    private lateinit var submittingProgress: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class CreateQuestActivity : AppCompatActivity() {
 
         blockSaveButton(false)
 
-        saveButton!!.setOnClickListener {
+        saveButton.setOnClickListener {
             if (validateFields()) {
                 runSubmitQuestTask(getQuestToSubmit())
             }
@@ -38,23 +38,23 @@ class CreateQuestActivity : AppCompatActivity() {
     }
 
     private fun validateFields(): Boolean {
-        if (questTitleView!!.text.isBlank()) {
-            questTitleView!!.error = getString(R.string.error_field_required)
+        if (questTitleView.text.isBlank()) {
+            questTitleView.error = getString(R.string.error_field_required)
             return false
         }
 
-        if (!isQuestNameCorrect(questTitleView!!.text.toString())) {
-            questTitleView!!.error = getString(R.string.error_submit_quest_field_length)
+        if (!isQuestNameCorrect(questTitleView.text.toString())) {
+            questTitleView.error = getString(R.string.error_submit_quest_field_length)
             return false
         }
 
-        if (questDescView!!.text.isBlank()) {
-            questDescView!!.error = getString(R.string.error_field_required)
+        if (questDescView.text.isBlank()) {
+            questDescView.error = getString(R.string.error_field_required)
             return false
         }
 
-        if (!isQuestDescCorrect(questDescView!!.text.toString())) {
-            questDescView!!.error = getString(R.string.error_submit_quest_field_length)
+        if (!isQuestDescCorrect(questDescView.text.toString())) {
+            questDescView.error = getString(R.string.error_submit_quest_field_length)
             return false
         }
 
@@ -62,8 +62,8 @@ class CreateQuestActivity : AppCompatActivity() {
     }
 
     private fun getQuestToSubmit(): QuestToSubmit {
-        return QuestToSubmit(questTitleView!!.text.toString(),
-            questDescView!!.text.toString(), 0) // TODO: groupID!
+        return QuestToSubmit(questTitleView.text.toString(),
+            questDescView.text.toString(), 0) // TODO: groupID!
     }
 
     private fun isQuestNameCorrect(name: String) =
@@ -75,9 +75,9 @@ class CreateQuestActivity : AppCompatActivity() {
                 && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
 
     private fun blockSaveButton(block: Boolean) {
-        saveButton?.isEnabled = !block
-        saveButton?.visibility = if (block) GONE else VISIBLE
-        submittingProgress?.visibility = if (!block) GONE else VISIBLE
+        saveButton.isEnabled = !block
+        saveButton.visibility = if (block) GONE else VISIBLE
+        submittingProgress.visibility = if (!block) GONE else VISIBLE
     }
 
     private fun runSubmitQuestTask(questToSubmit: QuestToSubmit) {

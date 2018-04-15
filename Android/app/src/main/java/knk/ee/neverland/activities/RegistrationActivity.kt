@@ -13,13 +13,13 @@ import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Utils
 
 class RegistrationActivity : AppCompatActivity() {
-    private var loginBox: AutoCompleteTextView? = null
-    private var passwordBox: EditText? = null
-    private var passwordRepeatBox: EditText? = null
-    private var firstNameBox: EditText? = null
-    private var secondNameBox: EditText? = null
-    private var emailBox: EditText? = null
-    private var agreeBox: CheckBox? = null
+    private lateinit var loginBox: AutoCompleteTextView
+    private lateinit var passwordBox: EditText
+    private lateinit var passwordRepeatBox: EditText
+    private lateinit var firstNameBox: EditText
+    private lateinit var secondNameBox: EditText
+    private lateinit var emailBox: EditText
+    private lateinit var agreeBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +43,11 @@ class RegistrationActivity : AppCompatActivity() {
     private fun makeRegistrationData(): RegistrationData {
         val registrationData = RegistrationData()
 
-        registrationData.login = loginBox!!.text.toString()
-        registrationData.password = passwordBox!!.text.toString()
-        registrationData.firstName = firstNameBox!!.text.toString()
-        registrationData.secondName = secondNameBox!!.text.toString()
-        registrationData.email = emailBox!!.text.toString()
+        registrationData.login = loginBox.text.toString()
+        registrationData.password = passwordBox.text.toString()
+        registrationData.firstName = firstNameBox.text.toString()
+        registrationData.secondName = secondNameBox.text.toString()
+        registrationData.email = emailBox.text.toString()
 
         return registrationData
     }
@@ -60,15 +60,15 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validateLogin(): Boolean {
-        val login = loginBox!!.text.toString()
+        val login = loginBox.text.toString()
 
         if (login.isBlank()) {
-            loginBox!!.error = getString(R.string.error_field_required)
+            loginBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.loginIsCorrect(login)) {
-            loginBox!!.error = getString(R.string.error_invalid_login)
+            loginBox.error = getString(R.string.error_invalid_login)
             return false
         }
 
@@ -76,31 +76,31 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validatePassword(): Boolean {
-        val password = passwordBox!!.text.toString()
-        val repeated = passwordRepeatBox!!.text.toString()
+        val password = passwordBox.text.toString()
+        val repeated = passwordRepeatBox.text.toString()
 
         if (password.isBlank()) {
-            passwordBox!!.error = getString(R.string.error_field_required)
+            passwordBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.passwordIsCorrect(password)) {
-            passwordBox!!.error = getString(R.string.error_invalid_password)
+            passwordBox.error = getString(R.string.error_invalid_password)
             return false
         }
 
         if (repeated.isBlank()) {
-            passwordRepeatBox!!.error = getString(R.string.error_field_required)
+            passwordRepeatBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.passwordIsCorrect(repeated)) {
-            passwordRepeatBox!!.error = getString(R.string.error_invalid_password)
+            passwordRepeatBox.error = getString(R.string.error_invalid_password)
             return false
         }
 
         if (password != repeated) {
-            passwordRepeatBox!!.error = getString(R.string.error_registration_password_are_not_the_same)
+            passwordRepeatBox.error = getString(R.string.error_registration_password_are_not_the_same)
             return false
         }
 
@@ -108,26 +108,26 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validateNames(): Boolean {
-        val firstName = firstNameBox!!.text.toString()
-        val secondName = secondNameBox!!.text.toString()
+        val firstName = firstNameBox.text.toString()
+        val secondName = secondNameBox.text.toString()
 
         if (firstName.isBlank()) {
-            firstNameBox!!.error = getString(R.string.error_field_required)
+            firstNameBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.nameIsCorrect(firstName)) {
-            firstNameBox!!.error = getString(R.string.error_invalid_first_name)
+            firstNameBox.error = getString(R.string.error_invalid_first_name)
             return false
         }
 
         if (secondName.isBlank()) {
-            secondNameBox!!.error = getString(R.string.error_field_required)
+            secondNameBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.nameIsCorrect(secondName)) {
-            secondNameBox!!.error = getString(R.string.error_invalid_second_name)
+            secondNameBox.error = getString(R.string.error_invalid_second_name)
             return false
         }
 
@@ -135,15 +135,15 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validateEmail(): Boolean {
-        val email = emailBox!!.text.toString()
+        val email = emailBox.text.toString()
 
         if (email.isBlank()) {
-            emailBox!!.error = getString(R.string.error_field_required)
+            emailBox.error = getString(R.string.error_field_required)
             return false
         }
 
         if (!Utils.emailIsCorrect(email)) {
-            emailBox!!.error = getString(R.string.error_invalid_email)
+            emailBox.error = getString(R.string.error_invalid_email)
             return false
         }
 
@@ -151,8 +151,8 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun checkAgreement(): Boolean {
-        if (!agreeBox!!.isChecked) {
-            agreeBox!!.error = getString(R.string.error_registration_did_not_agree)
+        if (!agreeBox.isChecked) {
+            agreeBox.error = getString(R.string.error_registration_did_not_agree)
             return false
         }
 
@@ -160,13 +160,13 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun resetErrors() {
-        loginBox!!.error = null
-        passwordBox!!.error = null
-        passwordRepeatBox!!.error = null
-        firstNameBox!!.error = null
-        secondNameBox!!.error = null
-        emailBox!!.error = null
-        agreeBox!!.error = null
+        loginBox.error = null
+        passwordBox.error = null
+        passwordRepeatBox.error = null
+        firstNameBox.error = null
+        secondNameBox.error = null
+        emailBox.error = null
+        agreeBox.error = null
     }
 
     private fun runRegisterTask(registrationData: RegistrationData) {

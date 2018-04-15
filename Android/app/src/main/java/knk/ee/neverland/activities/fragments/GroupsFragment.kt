@@ -17,7 +17,7 @@ import knk.ee.neverland.views.GroupsListAdapter
 
 class GroupsFragment : Fragment() {
 
-    private var groupsListAdapter: GroupsListAdapter? = null
+    private lateinit var groupsListAdapter: GroupsListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +52,7 @@ class GroupsFragment : Fragment() {
         APIAsyncRequest.Builder<List<Group>>()
             .request { DefaultAPI.groupAPI.getMyGroups() }
             .handleResult {
-                groupsListAdapter!!.refreshGroups(it!!)
+                groupsListAdapter.refreshGroups(it!!)
             }
             .setContext(view!!.context)
             .showMessages(true)

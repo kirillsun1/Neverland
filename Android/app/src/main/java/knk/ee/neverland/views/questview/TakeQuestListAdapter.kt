@@ -89,15 +89,15 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
     }
 
     private class ViewHolder {
-        internal var questName: TextView? = null
-        internal var questDesc: TextView? = null
-        internal var questAuthor: TextView? = null
-        internal var userAvatar: CircularImageView? = null
+        internal lateinit var questName: TextView
+        internal lateinit var questDesc: TextView
+        internal lateinit var questAuthor: TextView
+        internal lateinit var userAvatar: CircularImageView
 
         fun loadFromQuest(context: Context, quest: Quest) {
-            questName!!.text = quest.title
-            questDesc!!.text = quest.description
-            questAuthor!!.text = context.getString(R.string.quest_author,
+            questName.text = quest.title
+            questDesc.text = quest.description
+            questAuthor.text = context.getString(R.string.quest_author,
                 quest.author.firstName, quest.author.secondName)
 
             loadAvatar(context, quest)
@@ -111,7 +111,7 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
                     .placeholder(R.drawable.logo))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
-                .into(userAvatar!!)
+                .into(userAvatar)
         }
     }
 

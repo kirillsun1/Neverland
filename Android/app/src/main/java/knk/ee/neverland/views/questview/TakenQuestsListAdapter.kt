@@ -50,12 +50,12 @@ class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
     }
 
     private class ViewHolder {
-        internal var questName: TextView? = null
-        internal var questTimeTaken: TextView? = null
+        internal lateinit var questName: TextView
+        internal lateinit var questTimeTaken: TextView
 
         fun loadFromQuest(context: Context, quest: Quest) {
-            questName!!.text = quest.title
-            questTimeTaken!!.text = context.getString(R.string.quest_taken_data)
+            questName.text = quest.title
+            questTimeTaken.text = context.getString(R.string.quest_taken_data)
                 .format(quest.timeTaken.toString())
         }
     }

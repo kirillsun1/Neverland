@@ -25,7 +25,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
     private var creatingGroupInProcess: Boolean = false
     private var avatarPath: String = ""
-    private var groupNameBox: EditText? = null
+    private lateinit var groupNameBox: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class CreateGroupActivity : AppCompatActivity() {
     fun createGroup(view: View) {
         val groupToCreate = makeGroupToCreate()
 
-        groupNameBox!!.error = null
+        groupNameBox.error = null
         if (validateGroupName(groupToCreate.groupName)) {
             askConfirmationAndCreateGroup(groupToCreate)
         }
@@ -63,7 +63,7 @@ class CreateGroupActivity : AppCompatActivity() {
         val valid = groupName.replace(" ", "").length > 3
 
         if (!valid) {
-            groupNameBox!!.error = "Incorrect group name"
+            groupNameBox.error = "Incorrect group name"
         }
 
         return valid
@@ -127,7 +127,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
     private fun makeGroupToCreate(): GroupToCreate {
         return GroupToCreate(
-            groupNameBox!!.text!!.toString()
+            groupNameBox.text!!.toString()
         )
     }
 

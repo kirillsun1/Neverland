@@ -14,7 +14,7 @@ import knk.ee.neverland.views.questview.SimpleProofsListAdapter
 
 class UserProofsFragment : Fragment() {
 
-    private var simpleProofsListAdapter: SimpleProofsListAdapter? = null
+    private lateinit var simpleProofsListAdapter: SimpleProofsListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,7 +35,7 @@ class UserProofsFragment : Fragment() {
     private fun runGetProofsTask(userID: Int) {
         APIAsyncRequest.Builder<List<Proof>>()
             .request { DefaultAPI.proofAPI.getProofsByUserID(userID) }
-            .handleResult { simpleProofsListAdapter!!.addProofs(it!!) }
+            .handleResult { simpleProofsListAdapter.addProofs(it!!) }
             .setContext(view!!.context)
             .showMessages(true)
             .finish()

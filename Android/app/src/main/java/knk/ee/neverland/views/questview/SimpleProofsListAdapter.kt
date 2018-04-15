@@ -61,22 +61,22 @@ class SimpleProofsListAdapter(val context: Context) : BaseAdapter() {
     }
 
     private class ViewHolder {
-        internal var questName: TextView? = null
-        internal var proofImage: ImageView? = null
-        internal var rating: ProgressBar? = null
+        internal lateinit var questName: TextView
+        internal lateinit var proofImage: ImageView
+        internal lateinit var rating: ProgressBar
 
         fun loadFromProof(context: Context, proof: Proof) {
-            questName!!.text = proof.quest.title
+            questName.text = proof.quest.title
 
-            rating!!.max = proof.votesFor + proof.votesAgainst
-            rating!!.progress = proof.votesFor
+            rating.max = proof.votesFor + proof.votesAgainst
+            rating.progress = proof.votesFor
 
             Glide.with(context)
                 .load(proof.imageLink)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
-                .into(proofImage!!)
+                .into(proofImage)
         }
     }
 }

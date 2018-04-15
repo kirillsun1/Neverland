@@ -32,10 +32,9 @@ class QuestActivity : AppCompatActivity() {
 
     private var droppingQuest: Boolean = false
 
-    private var dropQuestButton: Button? = null
-    private var droppingProgress: ProgressBar? = null
-
-    private var simpleProofsListAdapter: SimpleProofsListAdapter? = null
+    private lateinit var dropQuestButton: Button
+    private lateinit var droppingProgress: ProgressBar
+    private lateinit var simpleProofsListAdapter: SimpleProofsListAdapter
 
     private var questID: Int = 0
 
@@ -60,7 +59,7 @@ class QuestActivity : AppCompatActivity() {
         dropQuestButton = findViewById(R.id.drop_quest)
         droppingProgress = findViewById(R.id.dropping_progress)
 
-        dropQuestButton!!.setOnClickListener {
+        dropQuestButton.setOnClickListener {
             askConfirmationAndDropQuest(questID)
         }
 
@@ -110,9 +109,9 @@ class QuestActivity : AppCompatActivity() {
     private fun changeDroppingQuestProperty(dropping: Boolean) {
         droppingQuest = dropping
 
-        dropQuestButton!!.isEnabled = !dropping
-        dropQuestButton!!.visibility = if (dropping) GONE else VISIBLE
-        droppingProgress!!.visibility = if (!dropping) GONE else VISIBLE
+        dropQuestButton.isEnabled = !dropping
+        dropQuestButton.visibility = if (dropping) GONE else VISIBLE
+        droppingProgress.visibility = if (!dropping) GONE else VISIBLE
     }
 
     private fun openSelectingImageActivity() {
@@ -212,7 +211,7 @@ class QuestActivity : AppCompatActivity() {
     private fun runGetProofsTask(questID: Int) {
         APIAsyncRequest.Builder<List<Proof>>()
             .request { DefaultAPI.proofAPI.getProofsByQuestID(questID) }
-            .handleResult { simpleProofsListAdapter!!.addProofs(it!!) }
+            .handleResult { simpleProofsListAdapter.addProofs(it!!) }
             .setContext(this)
             .showMessages(true)
             .finish()

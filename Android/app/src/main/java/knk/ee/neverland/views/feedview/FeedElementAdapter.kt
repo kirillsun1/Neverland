@@ -78,22 +78,22 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
     }
 
     private class ViewHolder {
-        internal var userName: TextView? = null
-        internal var questName: TextView? = null
-        internal var userAvatar: CircularImageView? = null
-        internal var ratingBar: ProgressBar? = null
-        internal var proofImage: ImageView? = null
-        internal var comment: TextView? = null
-        internal var buttonFor: Button? = null
-        internal var buttonAgainst: Button? = null
+        internal lateinit var userName: TextView
+        internal lateinit var questName: TextView
+        internal lateinit var userAvatar: CircularImageView
+        internal lateinit var ratingBar: ProgressBar
+        internal lateinit var proofImage: ImageView
+        internal lateinit var comment: TextView
+        internal lateinit var buttonFor: Button
+        internal lateinit var buttonAgainst: Button
 
         fun loadFromProof(context: Context, proof: Proof) {
-            userName!!.text = proof.sender.userName
-            questName!!.text = proof.quest.title
-            ratingBar!!.max = proof.votesFor + proof.votesAgainst
-            ratingBar!!.progress = proof.votesFor
-            comment!!.visibility = shouldCommentBeVisible(proof, proof.comment)
-            comment!!.text = proof.comment
+            userName.text = proof.sender.userName
+            questName.text = proof.quest.title
+            ratingBar.max = proof.votesFor + proof.votesAgainst
+            ratingBar.progress = proof.votesFor
+            comment.visibility = shouldCommentBeVisible(proof, proof.comment)
+            comment.text = proof.comment
 
             loadAvatar(context, proof)
             loadProofImage(context, proof)
@@ -111,7 +111,7 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
                     .placeholder(R.drawable.logo))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
-                .into(userAvatar!!)
+                .into(userAvatar)
         }
 
         private fun loadProofImage(context: Context, proof: Proof) {
@@ -120,7 +120,7 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
-                .into(proofImage!!)
+                .into(proofImage)
         }
 
         private fun setActionsToOpenUserActivity(context: Context, proof: Proof) {
@@ -130,8 +130,8 @@ class FeedElementAdapter(val context: Context) : BaseAdapter() {
                 context.startActivity(intent)
             }
 
-            userName!!.setOnClickListener(openUserProfileListener)
-            userAvatar!!.setOnClickListener(openUserProfileListener)
+            userName.setOnClickListener(openUserProfileListener)
+            userAvatar.setOnClickListener(openUserProfileListener)
         }
     }
 }

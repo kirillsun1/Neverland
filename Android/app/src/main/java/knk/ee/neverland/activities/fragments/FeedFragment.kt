@@ -16,15 +16,15 @@ import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.feedview.FeedElementAdapter
 
 class FeedFragment : Fragment() {
-    private var feedElementAdapter: FeedElementAdapter? = null
-    private var feedListSwipeLayout: SwipeRefreshLayout? = null
+    private lateinit var feedElementAdapter: FeedElementAdapter
+    private lateinit var feedListSwipeLayout: SwipeRefreshLayout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeFeedListView()
 
         feedListSwipeLayout = view.findViewById(R.id.feed_list_swipe_layout)
-        feedListSwipeLayout!!.setOnRefreshListener({
+        feedListSwipeLayout.setOnRefreshListener({
             runGetProofsTask(true)
         })
 
@@ -40,12 +40,12 @@ class FeedFragment : Fragment() {
 
     private fun runGetProofsTask(updating: Boolean) {
         APIAsyncRequest.Builder<List<Proof>>()
-            .before { feedListSwipeLayout!!.isRefreshing = true && updating }
+            .before { feedListSwipeLayout.isRefreshing = true && updating }
             .request { DefaultAPI.proofAPI.getProofs(FeedScope.WORLD) }
-            .handleResult { result -> feedElementAdapter!!.updateList(result!!) }
+            .handleResult { result -> feedElementAdapter.updateList(result!!) }
             .setContext(view!!.context)
             .showMessages(true)
-            .after { feedListSwipeLayout!!.isRefreshing = false }
+            .after { feedListSwipeLayout.isRefreshing = false }
             .onAPIFailMessage { R.string.error_getting_proofs_failed }
             .finish()
             .execute()

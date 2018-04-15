@@ -14,7 +14,7 @@ import knk.ee.neverland.views.questview.ProfileSuggestedQuestsTabAdapter
 
 class UserSuggestedQuestsFragment : Fragment() {
 
-    private var profileSuggestedQuestsFragment: ProfileSuggestedQuestsTabAdapter? = null
+    private lateinit var profileSuggestedQuestsFragment: ProfileSuggestedQuestsTabAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +36,7 @@ class UserSuggestedQuestsFragment : Fragment() {
     private fun runLoadQuestTask(userID: Int) {
         APIAsyncRequest.Builder<List<Quest>>()
             .request { DefaultAPI.questAPI.getSuggestedByUserQuests(userID) }
-            .handleResult { profileSuggestedQuestsFragment!!.addQuests(it!!) }
+            .handleResult { profileSuggestedQuestsFragment.addQuests(it!!) }
             .setContext(view!!.context)
             .showMessages(true)
             .finish()

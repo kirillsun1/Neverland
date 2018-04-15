@@ -30,9 +30,8 @@ import java.io.File
 
 
 class ProfileActivity : AppCompatActivity() {
-    private val selfID = -1
-
     private var userID: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -40,9 +39,9 @@ class ProfileActivity : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        this.userID = getUserIDFromIntent()
-        hideFollowButtonIfOwnProfile(userID!!)
-        runLoadUserDataTask(userID!!)
+        getUserIDFromIntent()
+        hideFollowButtonIfOwnProfile()
+        runLoadUserDataTask()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -59,14 +58,14 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.profile_menu, menu)
-        menu!!.findItem(R.id.change_avatar).isVisible = userID == selfID
+        menu!!.findItem(R.id.change_avatar).isVisible = userID == null
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.change_avatar -> {
-                if (userID == selfID) {
+                if (userID == null) {
                     startUploadingAvatar()
                 }
                 true
@@ -105,31 +104,27 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<TabLayout>(R.id.profile_tabs).setupWithViewPager(viewPager)
     }
 
-    private fun hideFollowButtonIfOwnProfile(userID: Int) {
+    private fun hideFollowButtonIfOwnProfile() {
         val followButton = findViewById<Button>(R.id.profile_follow_button)
 
-        followButton.visibility = if (userID == selfID) GONE else VISIBLE
+        followButton.visibility = if (userID == null) GONE else VISIBLE
         // TODO: Following
         followButton.isEnabled = false // userID != selfID
     }
 
-    private fun getUserIDFromIntent(): Int {
-        if (intent.extras == null) {
-            return selfID
+    private fun getUserIDFromIntent() {
+        if (intent.extras != null) {
+            userID = intent.extras.getInt("userID")
         }
-
-        val value = intent.extras.getInt("userID")
-
-        return if (value != 0) value else selfID
     }
 
-    private fun runLoadUserDataTask(userID: Int) {
+    private fun runLoadUserDataTask() {
         APIAsyncRequest.Builder<User>()
             .request {
-                if (userID == selfID)
+                if (userID == null)
                     DefaultAPI.userAPI.getMyData()
                 else
-                    DefaultAPI.userAPI.getUserData(userID)
+                    DefaultAPI.userAPI.getUserData(userID!!)
             }
             .handleResult {
                 setUserData(it!!)
@@ -201,7 +196,7 @@ class ProfileActivity : AppCompatActivity() {
             .onAPIFailMessage { R.string.error_uploading_avatar }
             .after {
                 if (success) {
-                    runLoadUserDataTask(userID!!)
+                    runLoadUserDataTask()
                 }
             }
             .setContext(this)
