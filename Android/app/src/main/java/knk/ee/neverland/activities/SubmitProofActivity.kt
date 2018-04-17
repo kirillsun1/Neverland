@@ -1,13 +1,11 @@
 package knk.ee.neverland.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.esafirm.imagepicker.features.ImagePicker
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.ProofToSubmit
@@ -43,15 +41,6 @@ class SubmitProofActivity : AppCompatActivity() {
         setImageFromIntentToView()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            val image = ImagePicker.getImages(data).firstOrNull()
-            setImageToView(image!!.path)
-        }
-
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     private fun setImageFromIntentToView() {
         val path = intent.extras!!.getString("pathToImage")
         setImageToView(path)
@@ -66,14 +55,7 @@ class SubmitProofActivity : AppCompatActivity() {
     }
 
     private fun openSelectingProofImageActivity() {
-        val imageTitle = getString(R.string.proof_select_image)
 
-        ImagePicker.create(this)
-            .single()
-            .showCamera(true)
-            .theme(R.style.AppTheme_NoActionBar)
-            .toolbarImageTitle(imageTitle)
-            .start()
     }
 
     private fun changeButtonsEnablePropertyWhenSubmittingExecutionChanges() {

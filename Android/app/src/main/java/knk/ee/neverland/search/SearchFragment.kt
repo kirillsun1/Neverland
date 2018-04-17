@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities.fragments
+package knk.ee.neverland.search
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

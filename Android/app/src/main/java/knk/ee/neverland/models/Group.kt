@@ -10,7 +10,7 @@ data class Group(
 
     val admin: User,
 
-    val quantity: Int, // ???
+    val quantity: Int,
 
     @SerializedName("creation_time")
     val created: DateTime

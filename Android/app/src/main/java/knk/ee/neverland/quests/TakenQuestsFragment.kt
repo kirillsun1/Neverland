@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities.fragments
+package knk.ee.neverland.quests
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,14 +15,10 @@ import android.widget.TextView
 import com.gordonwong.materialsheetfab.DimOverlayFrameLayout
 import com.gordonwong.materialsheetfab.MaterialSheetFab
 import knk.ee.neverland.R
-import knk.ee.neverland.activities.CreateQuestActivity
-import knk.ee.neverland.activities.QuestActivity
-import knk.ee.neverland.activities.TakeQuestActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.views.CustomFloatingActionButton
-import knk.ee.neverland.views.questview.TakenQuestsListAdapter
 
 class TakenQuestsFragment : Fragment() {
     private lateinit var materialSheetFab: MaterialSheetFab<CustomFloatingActionButton>
@@ -93,7 +89,7 @@ class TakenQuestsFragment : Fragment() {
     }
 
     private fun openQuestActivity(quest: Quest) {
-        val intent = Intent(view!!.context, QuestActivity::class.java)
+        val intent = Intent(view!!.context, QuestDetailsActivity::class.java)
 
         intent.putExtra("questID", quest.id)
         intent.putExtra("questTitle", quest.title)

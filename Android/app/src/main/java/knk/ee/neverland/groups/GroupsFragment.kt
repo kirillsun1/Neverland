@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities.fragments
+package knk.ee.neverland.groups
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import knk.ee.neverland.R
-import knk.ee.neverland.activities.CreateGroupActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Group
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.views.GroupsListAdapter
 
 class GroupsFragment : Fragment() {
 

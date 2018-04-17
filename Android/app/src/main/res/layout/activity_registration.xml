@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="knk.ee.neverland.activities.RegistrationActivity">
+    tools:context="knk.ee.neverland.auth.RegistrationActivity">
 
     <AutoCompleteTextView
         android:id="@+id/registration_login"

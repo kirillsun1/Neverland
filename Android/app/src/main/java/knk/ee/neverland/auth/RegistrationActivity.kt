@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.auth
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

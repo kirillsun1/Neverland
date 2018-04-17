@@ -7,10 +7,11 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
-import knk.ee.neverland.activities.fragments.FeedFragment
-import knk.ee.neverland.activities.fragments.GroupsFragment
-import knk.ee.neverland.activities.fragments.TakenQuestsFragment
-import knk.ee.neverland.activities.fragments.SearchFragment
+import knk.ee.neverland.feed.FeedFragment
+import knk.ee.neverland.groups.GroupsFragment
+import knk.ee.neverland.quests.TakenQuestsFragment
+import knk.ee.neverland.search.SearchFragment
+import knk.ee.neverland.profile.ProfileActivity
 
 class MainActivity : AppCompatActivity() {
     enum class FragmentType {

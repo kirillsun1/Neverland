@@ -11,16 +11,13 @@ import java.net.SocketTimeoutException
 import java.net.URL
 import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
-import kotlin.math.min
 
 object NetworkRequester {
-    private val MAXIMUM_TIMEOUT_IN_MS = 10000
-    private val TIMEOUT_DELTA = 2500
-    private var currentTimeout = 5000
+    private const val MAXIMUM_TIMEOUT_IN_MS = 10000
 
     fun makeGetRequestAndGetResponseBody(
         urlString: String,
-        defaultTimeoutInMilliSeconds: Int = currentTimeout
+        defaultTimeoutInMilliSeconds: Int = MAXIMUM_TIMEOUT_IN_MS
     ): String {
         try {
             val request = Request.Builder()
@@ -39,7 +36,6 @@ object NetworkRequester {
 
             return response.body()!!.string()
         } catch (ex: SocketTimeoutException) {
-            increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
         } catch (ex: UnknownHostException) {
             throw NetworkException(Constants.NETWORK_ERROR_CODE)
@@ -48,7 +44,7 @@ object NetworkRequester {
 
     fun makePostRequestAndGetResponseBody(
         urlString: String, requestBody: RequestBody,
-        defaultTimeoutInMilliSeconds: Int = currentTimeout
+        defaultTimeoutInMilliSeconds: Int = MAXIMUM_TIMEOUT_IN_MS
     ): String {
         try {
             val request = Request.Builder()
@@ -67,7 +63,6 @@ object NetworkRequester {
 
             return response.body()!!.string()
         } catch (ex: SocketTimeoutException) {
-            increaseTimeout()
             throw NetworkException(Constants.NETWORK_TIMEOUT)
         } catch (ex: UnknownHostException) {
             throw NetworkException(Constants.NETWORK_ERROR_CODE)
@@ -83,9 +78,5 @@ object NetworkRequester {
                 else -> throw NetworkException(Constants.NETWORK_ERROR_CODE)
             }
         }
-    }
-
-    private fun increaseTimeout() {
-        currentTimeout = min(currentTimeout + TIMEOUT_DELTA, MAXIMUM_TIMEOUT_IN_MS)
     }
 }

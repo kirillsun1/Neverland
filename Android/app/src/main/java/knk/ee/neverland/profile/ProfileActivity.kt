@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.profile
 
 import android.app.Activity
 import android.content.Intent
@@ -25,7 +25,6 @@ import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.User
 import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Utils
-import knk.ee.neverland.views.ProfileFragmentPagerAdapter
 import java.io.File
 
 

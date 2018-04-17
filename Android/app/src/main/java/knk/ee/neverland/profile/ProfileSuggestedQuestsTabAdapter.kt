@@ -1,4 +1,4 @@
-package knk.ee.neverland.views.questview
+package knk.ee.neverland.profile
 
 import android.content.Context
 import android.view.LayoutInflater

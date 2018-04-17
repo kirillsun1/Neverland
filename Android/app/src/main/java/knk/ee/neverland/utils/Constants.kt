@@ -11,7 +11,7 @@ object Constants {
     const val SUBMITTING_PROOF_REQUEST_CODE = 1
     const val SELECTING_PICTURE_REQUEST_CODE: Int = 2
 
-    const val ELEMENT_NUMBER_TO_START_RECYCLING_FROM = 50
+    const val ELEMENT_NUMBER_TO_START_RECYCLING_FROM = 20
 
     val LOGIN_REGEX = "(?!^[0-9]*\$)^([-_a-zA-Z0-9]{6,16})\$".toRegex()
     val PASSWORD_REGEX = "^[a-zA-Z0-9_-]{6,18}\$".toRegex()

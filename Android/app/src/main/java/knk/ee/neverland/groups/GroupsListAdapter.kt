@@ -1,4 +1,4 @@
-package knk.ee.neverland.views
+package knk.ee.neverland.groups
 
 import android.content.Context
 import android.view.LayoutInflater

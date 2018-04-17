@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.quests
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +7,9 @@ import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.QuestToSubmit
@@ -14,26 +17,30 @@ import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants
 
 class CreateQuestActivity : AppCompatActivity() {
-    private lateinit var questTitleView: EditText
-    private lateinit var questDescView: EditText
-    private lateinit var saveButton: Button
-    private lateinit var submittingProgress: ProgressBar
+    @BindView(R.id.create_quest_title)
+    lateinit var questTitleView: EditText
+
+    @BindView(R.id.create_quest_desc)
+    lateinit var questDescView: EditText
+
+    @BindView(R.id.create_quest_save)
+    lateinit var saveButton: Button
+
+    @BindView(R.id.submitting_progress)
+    lateinit var submittingProgress: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_quest)
-
-        questTitleView = (findViewById(R.id.create_quest_title))
-        questDescView = (findViewById(R.id.create_quest_desc))
-        saveButton = findViewById(R.id.create_quest_save)
-        submittingProgress = findViewById(R.id.submitting_progress)
+        ButterKnife.bind(this)
 
         blockSaveButton(false)
+    }
 
-        saveButton.setOnClickListener {
-            if (validateFields()) {
-                runSubmitQuestTask(getQuestToSubmit())
-            }
+    @OnClick(R.id.create_quest_save)
+    fun saveButtonAction() {
+        if (validateFields()) {
+            runSubmitQuestTask(getQuestToSubmit())
         }
     }
 

@@ -1,4 +1,4 @@
-package knk.ee.neverland.views
+package knk.ee.neverland.profile
 
 import android.content.Context
 import android.os.Bundle
@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import knk.ee.neverland.R
-import knk.ee.neverland.activities.fragments.UserProofsFragment
-import knk.ee.neverland.activities.fragments.UserSuggestedQuestsFragment
 
 class ProfileFragmentPagerAdapter(val context: Context,
                                   fragmentManager: FragmentManager,

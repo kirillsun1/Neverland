@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities.fragments
+package knk.ee.neverland.profile
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,7 +10,6 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.views.questview.ProfileSuggestedQuestsTabAdapter
 
 class UserSuggestedQuestsFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package knk.ee.neverland.views.questview
+package knk.ee.neverland.quests
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -16,7 +16,6 @@ import com.mikhaellopez.circularimageview.CircularImageView
 
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.utils.Constants
 
 class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
     private val layoutInflater: LayoutInflater =
@@ -60,7 +59,7 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
         return this.filter!!
     }
 
-    override fun getViewTypeCount(): Int = Constants.ELEMENT_NUMBER_TO_START_RECYCLING_FROM
+    // override fun getViewTypeCount(): Int = Constants.ELEMENT_NUMBER_TO_START_RECYCLING_FROM
 
     override fun getItemViewType(position: Int): Int = position
 
@@ -107,8 +106,8 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
             Glide.with(context)
                 .load(quest.author.avatarLink)
                 .apply(RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.logo))
+                    .placeholder(R.drawable.logo)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))
                 .into(userAvatar)

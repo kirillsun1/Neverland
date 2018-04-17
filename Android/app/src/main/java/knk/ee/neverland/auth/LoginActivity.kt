@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.auth
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import knk.ee.neverland.R
+import knk.ee.neverland.activities.MainActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants

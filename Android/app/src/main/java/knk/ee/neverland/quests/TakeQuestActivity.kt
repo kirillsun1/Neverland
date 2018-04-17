@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.quests
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -14,7 +14,6 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.utils.APIAsyncRequest
-import knk.ee.neverland.views.questview.TakeQuestListAdapter
 
 class TakeQuestActivity : AppCompatActivity() {
     private lateinit var takeQuestListAdapter: TakeQuestListAdapter

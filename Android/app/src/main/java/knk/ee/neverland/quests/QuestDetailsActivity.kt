@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.quests
 
 import android.app.Activity
 import android.content.DialogInterface
@@ -19,16 +19,16 @@ import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
+import knk.ee.neverland.activities.SubmitProofActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.utils.APIAsyncRequest
 import knk.ee.neverland.utils.Constants
-import knk.ee.neverland.views.questview.SimpleProofsListAdapter
 import java.io.File
 import java.util.logging.Logger
 
-class QuestActivity : AppCompatActivity() {
-    private val logger = Logger.getLogger(QuestActivity::class.java.simpleName)
+class QuestDetailsActivity : AppCompatActivity() {
+    private val logger = Logger.getLogger(QuestDetailsActivity::class.java.simpleName)
 
     private var droppingQuest: Boolean = false
 
@@ -40,7 +40,7 @@ class QuestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quest)
+        setContentView(R.layout.activity_quest_details)
 
         simpleProofsListAdapter = SimpleProofsListAdapter(this)
 

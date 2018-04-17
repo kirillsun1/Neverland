@@ -1,4 +1,4 @@
-package knk.ee.neverland.views.questview
+package knk.ee.neverland.quests
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -67,9 +67,6 @@ class SimpleProofsListAdapter(val context: Context) : BaseAdapter() {
 
         fun loadFromProof(context: Context, proof: Proof) {
             questName.text = proof.quest.title
-
-            rating.max = proof.votesFor + proof.votesAgainst
-            rating.progress = proof.votesFor
 
             Glide.with(context)
                 .load(proof.imageLink)

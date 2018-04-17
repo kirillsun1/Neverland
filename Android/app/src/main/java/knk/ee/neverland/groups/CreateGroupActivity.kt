@@ -1,4 +1,4 @@
-package knk.ee.neverland.activities
+package knk.ee.neverland.groups
 
 import android.app.Activity
 import android.content.DialogInterface
