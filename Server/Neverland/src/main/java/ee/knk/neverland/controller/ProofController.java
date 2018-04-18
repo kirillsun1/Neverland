@@ -29,9 +29,12 @@ public class ProofController {
     private Gson gson = new Gson();
 
     @Autowired
-    public ProofController(TokenController tokenController, ProofService proofService,
-                           QuestService questService, UserController userController,
-                           TakenQuestController takenQuestController, VoteController voteController) {
+    public ProofController(TokenController tokenController,
+                           ProofService proofService,
+                           QuestService questService,
+                           UserController userController,
+                           TakenQuestController takenQuestController,
+                           VoteController voteController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
         this.questService = questService;
@@ -58,7 +61,8 @@ public class ProofController {
     }
 
     @RequestMapping(value = "/getUsersProofs")
-    public String getUsersProofs(@RequestParam(name = "token") String token, @RequestParam(name = "uid") Long id) {
+    public String getUsersProofs(@RequestParam(name = "token") String token,
+                                 @RequestParam(name = "uid") Long id) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -69,7 +73,8 @@ public class ProofController {
     }
 
     @RequestMapping(value = "/getQuestsProofs")
-    public String getQuestsProofs(@RequestParam(name = "token") String token, @RequestParam(name = "qid") Long questId) {
+    public String getQuestsProofs(@RequestParam(name = "token") String token,
+                                  @RequestParam(name = "qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -91,7 +96,8 @@ public class ProofController {
     }
 
     @RequestMapping(value = "/getProofById")
-    public String getProofById(@RequestParam(name = "token") String token, @RequestParam(name = "pid") Long proofId) {
+    public String getProofById(@RequestParam(name = "token") String token,
+                               @RequestParam(name = "pid") Long proofId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));

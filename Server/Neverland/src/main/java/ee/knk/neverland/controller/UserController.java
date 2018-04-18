@@ -32,8 +32,11 @@ public class UserController {
     }
 
     @RequestMapping(value="/register")
-    public String register(@RequestParam(value="username") String username, @RequestParam(value="password") String password, @RequestParam(value="email") String email,
-                           @RequestParam(value="firstname") String firstName, @RequestParam(value="secondname") String secondName) {
+    public String register(@RequestParam(value="username") String username,
+                           @RequestParam(value="password") String password,
+                           @RequestParam(value="email") String email,
+                           @RequestParam(value="firstname") String firstName,
+                           @RequestParam(value="secondname") String secondName) {
         if (!(validator.loginIsCorrect(username) && validator.emailIsCorrect(email) && validator.nameIsCorrect(firstName) && validator.nameIsCorrect(secondName))
                 || userService.existsWithUsernameOrEmail(username, email)) {
             System.out.println(userService.existsWithUsernameOrEmail(username, email));
@@ -49,7 +52,8 @@ public class UserController {
     }
 
     @RequestMapping(value="/login")
-    public String login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
+    public String login(@RequestParam(value="username") String username,
+                        @RequestParam(value="password") String password) {
         Optional<User> user = userService.findMatch(username, password);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -67,7 +71,8 @@ public class UserController {
     }
 
     @RequestMapping(value="/getUsersInfo")
-    public String getUsersInfo(@RequestParam(value="token") String token, @RequestParam(value = "uid") Long id) {
+    public String getUsersInfo(@RequestParam(value="token") String token,
+                               @RequestParam(value = "uid") Long id) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));

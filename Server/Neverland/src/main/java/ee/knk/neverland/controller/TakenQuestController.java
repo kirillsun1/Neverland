@@ -34,7 +34,8 @@ public class TakenQuestController {
     }
 
     @RequestMapping(value="/takeQuest")
-    public String takeQuest(@RequestParam(value="token") String token, @RequestParam(value="qid") Long questId) {
+    public String takeQuest(@RequestParam(value="token") String token,
+                            @RequestParam(value="qid") Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -61,7 +62,8 @@ public class TakenQuestController {
 
 
     @RequestMapping(value = "/dropQuest")
-    public String deleteQuestFromMyQuests(@RequestParam(value="token") String token, @RequestParam(value="qid")Long questId) {
+    public String deleteQuestFromMyQuests(@RequestParam(value="token") String token,
+                                          @RequestParam(value="qid")Long questId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));

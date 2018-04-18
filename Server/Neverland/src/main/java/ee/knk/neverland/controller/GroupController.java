@@ -33,7 +33,8 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/createGroup")
-    public String addGroup(@RequestParam(name = "token") String token, @RequestParam(name = "g_name") String groupName) {
+    public String addGroup(@RequestParam(name = "token") String token,
+                           @RequestParam(name = "g_name") String groupName) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -46,7 +47,8 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/deleteGroup")
-    public String deleteGroup(@RequestParam(name = "token") String token, @RequestParam(name = "gid") Long groupId) {
+    public String deleteGroup(@RequestParam(name = "token") String token,
+                              @RequestParam(name = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -63,7 +65,8 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/getGroupInfo")
-    public String getGroupInfo(@RequestParam(name = "token") String token, @RequestParam(value = "gid") Long groupId) {
+    public String getGroupInfo(@RequestParam(name = "token") String token,
+                               @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -76,7 +79,6 @@ public class GroupController {
         GroupPojo groupPojo = groupPacker.packGroup(group.get());
         return gson.toJson(new StandardAnswer(groupPojo, Constants.SUCCEED));
     }
-
 
     @RequestMapping(value = "/getAllGroups")
     public String getAllGroups(@RequestParam(value = "token") String token) {

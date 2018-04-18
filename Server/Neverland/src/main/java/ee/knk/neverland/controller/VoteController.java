@@ -31,7 +31,8 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/vote")
-    public String getAllProofs(@RequestParam(name = "token") String token, @RequestParam(name = "pid") Long proofId,
+    public String getAllProofs(@RequestParam(name = "token") String token,
+                               @RequestParam(name = "pid") Long proofId,
                                @RequestParam(name = "value") boolean value) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -67,5 +68,5 @@ public class VoteController {
             return Constants.USER_AGREED;
         }
         return Constants.USER_DISAGREED;
-     }
+    }
 }

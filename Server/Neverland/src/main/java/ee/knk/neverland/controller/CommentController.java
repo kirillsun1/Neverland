@@ -27,8 +27,7 @@ public class CommentController {
     private final Gson gson = new Gson();
 
     @Autowired
-    public CommentController(TokenController tokenController, CommentService commentService,
-                             ProofController proofController) {
+    public CommentController(TokenController tokenController, CommentService commentService, ProofController proofController) {
         this.tokenController = tokenController;
         this.commentService = commentService;
         this.proofController = proofController;
@@ -36,7 +35,7 @@ public class CommentController {
 
     @RequestMapping(value = "/addComment")
     public String addComment(@RequestParam(name = "token") String token, @RequestParam(value = "pid") Long proofId,
-                               @Param(value = "text") String text) {
+                             @Param(value = "text") String text) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -53,7 +52,7 @@ public class CommentController {
 
     @RequestMapping(value = "/editComment")
     public String editComment(@RequestParam(name = "token") String token, @RequestParam(value = "cid") Long commentId,
-                               @RequestParam(value = "text") String text) {
+                              @RequestParam(value = "text") String text) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -62,7 +61,7 @@ public class CommentController {
         if (!comment.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
-        if(!comment.get().getAuthor().equals(user.get())) {
+        if (!comment.get().getAuthor().equals(user.get())) {
             return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
         }
         commentService.editComment(text, commentId);

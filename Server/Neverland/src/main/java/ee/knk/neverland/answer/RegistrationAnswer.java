@@ -12,6 +12,7 @@ public class RegistrationAnswer {
     public RegistrationAnswer(String token) {
         this.token = token;
     }
+
     public RegistrationAnswer(int code) {
         this.code = code;
     }

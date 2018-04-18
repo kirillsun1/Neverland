@@ -28,7 +28,9 @@ public class QuestController {
     private Gson gson = new Gson();
 
     @Autowired
-    public QuestController(QuestService questService, TokenController tokenController, UserController userController,
+    public QuestController(QuestService questService,
+                           TokenController tokenController,
+                           UserController userController,
                            GroupController groupController) {
         this.questService = questService;
         this.tokenController = tokenController;
@@ -37,8 +39,10 @@ public class QuestController {
     }
 
     @RequestMapping(value="/submitQuest")
-    public String submitQuest(@RequestParam(value="token") String token, @RequestParam(value = "title") String title,
-                              @RequestParam(value = "desc") String description, @RequestParam(value = "gid") Long deskId) {
+    public String submitQuest(@RequestParam(value="token") String token,
+                              @RequestParam(value = "title") String title,
+                              @RequestParam(value = "desc") String description,
+                              @RequestParam(value = "gid") Long deskId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -66,7 +70,8 @@ public class QuestController {
     }
 
     @RequestMapping(value="/getSuggestedQuests")
-    public String getAuthorsQuests(@RequestParam(value="token") String token, @RequestParam(value="uid") Long userId) {
+    public String getAuthorsQuests(@RequestParam(value="token") String token,
+                                   @RequestParam(value="uid") Long userId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -87,7 +92,8 @@ public class QuestController {
     }
 
     @RequestMapping(value="/getGroupQuests")
-    public String getGroupQuests(@RequestParam(value="token") String token, @RequestParam(value = "gid") Long groupId) {
+    public String getGroupQuests(@RequestParam(value="token") String token,
+                                 @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));

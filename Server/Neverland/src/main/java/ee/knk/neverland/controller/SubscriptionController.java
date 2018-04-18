@@ -29,8 +29,10 @@ public class SubscriptionController {
     private final UserController userController;
 
     @Autowired
-    public SubscriptionController(GroupService groupService, SubscriptionService subscriptionService,
-                                  UserController userController, TokenController tokenController) {
+    public SubscriptionController(GroupService groupService,
+                                  SubscriptionService subscriptionService,
+                                  UserController userController,
+                                  TokenController tokenController) {
         this.groupService = groupService;
         this.subscriptionService = subscriptionService;
         this.userController = userController;
@@ -38,7 +40,8 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/subscribe")
-    public String subscribe(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
+    public String subscribe(@RequestParam(value = "token") String token,
+                            @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -54,7 +57,8 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/unsubscribe")
-    public String unsubscribe(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
+    public String unsubscribe(@RequestParam(value = "token") String token,
+                              @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -79,7 +83,8 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/getUsersGroups")
-    public String getUsersGroups(@RequestParam(value = "token") String token, @RequestParam(value = "uid") Long userId) {
+    public String getUsersGroups(@RequestParam(value = "token") String token,
+                                 @RequestParam(value = "uid") Long userId) {
         Optional<User> me = tokenController.getTokenUser(token);
         if (!me.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -91,7 +96,8 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/getGroupSubscribers")
-    public String getGroupSubscribers(@RequestParam(value = "token") String token, @RequestParam(value = "gid") Long groupId) {
+    public String getGroupSubscribers(@RequestParam(value = "token") String token,
+                                      @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
