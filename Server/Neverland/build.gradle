@@ -38,10 +38,10 @@ dependencies {
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.1.0')
 }
 
-task gitPull(type: Exec) {
-    description 'Pulls git'
-    commandLine "git", "pull", "origin", "server-dev"
-}
-
-task gitPullAndBuild(dependsOn: ['gitPull', 'build']) {
+task renameStableBuild {
+    String path = "build/libs/"
+    String fileName = rootProject.name + "-" + version + ".jar"
+    String newFileName = rootProject.name + "_last_stable.jar"
+    println(fileName + " -> " + newFileName)
+    file(path + fileName).renameTo(path + newFileName)
 }
