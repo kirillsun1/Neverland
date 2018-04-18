@@ -28,10 +28,10 @@ public class QuestController {
     private Gson gson = new Gson();
 
     @Autowired
-    public QuestController(QuestService questService, TokenService tokenService, UserController userController,
+    public QuestController(QuestService questService, TokenController tokenController, UserController userController,
                            GroupController groupController) {
         this.questService = questService;
-        this.tokenController = new TokenController(tokenService);
+        this.tokenController = tokenController;
         this.userController = userController;
         this.groupController = groupController;
     }

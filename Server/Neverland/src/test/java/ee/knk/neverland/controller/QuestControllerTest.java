@@ -30,7 +30,6 @@ public class QuestControllerTest {
     private UserController userController;
     @Mock
     private GroupController groupController;
-
     @InjectMocks
     private QuestController questController;
 
@@ -43,6 +42,7 @@ public class QuestControllerTest {
     public void before() {
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
         when(groupController.findGroupById(1L)).thenReturn(Optional.empty());
+        when(groupController.findGroupById(0L)).thenReturn(Optional.empty());
     }
 
     @Test
