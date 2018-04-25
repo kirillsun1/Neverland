@@ -13,8 +13,9 @@ import butterknife.OnClick
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.QuestToSubmit
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.utils.UIErrorView
 
 class CreateQuestActivity : AppCompatActivity() {
     @BindView(R.id.create_quest_title)
@@ -90,23 +91,22 @@ class CreateQuestActivity : AppCompatActivity() {
     private fun runSubmitQuestTask(questToSubmit: QuestToSubmit) {
         var success = false
 
-        APIAsyncRequest.Builder<Boolean>()
-            .before { blockSaveButton(true) }
+        APIAsyncTask<Boolean>()
+            .doBefore { blockSaveButton(true) }
             .request {
                 DefaultAPI.questAPI.submitNewQuest(questToSubmit)
                 success = true
                 true
             }
-            .onAPIFailMessage { R.string.error_submit_failed }
-            .setContext(this)
-            .showMessages(true)
-            .after {
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_submit_failed)
+                .create())
+            .doAfter {
                 blockSaveButton(false)
                 if (success) {
                     finish()
                 }
             }
-            .finish()
             .execute()
     }
 }

@@ -11,7 +11,7 @@ import android.widget.ListView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Group
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
 
 class GroupsFragment : Fragment() {
 
@@ -47,14 +47,11 @@ class GroupsFragment : Fragment() {
     }
 
     private fun runGetMyGroupsTask() {
-        APIAsyncRequest.Builder<List<Group>>()
+        APIAsyncTask<List<Group>>()
             .request { DefaultAPI.groupAPI.getMyGroups() }
             .handleResult {
-                groupsListAdapter.refreshGroups(it!!)
+                groupsListAdapter.refreshGroups(it)
             }
-            .setContext(view!!.context)
-            .showMessages(true)
-            .finish()
             .execute()
     }
 }

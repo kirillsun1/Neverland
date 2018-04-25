@@ -8,7 +8,8 @@ import android.widget.Toast
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.auth.LoginActivity
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 import java.util.concurrent.atomic.AtomicBoolean
 
 class SplashActivity : AppCompatActivity() {
@@ -36,32 +37,30 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun openLoginActivity() {
-        val loginIntent = Intent(this, LoginActivity::class.java)
+        val loginIntent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(loginIntent)
         finish()
     }
 
     private fun openMainActivity() {
-        val mainIntent = Intent(this, MainActivity::class.java)
+        val mainIntent = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainIntent)
         finish()
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun runCheckTokenTask(userToken: String) {
         val tokenIsOK = AtomicBoolean(false)
 
-        APIAsyncRequest.Builder<Boolean>()
+        APIAsyncTask<Boolean>()
             .request {
                 tokenIsOK.set(DefaultAPI.authAPI.isTokenActive(userToken))
                 true
             }
-            .setContext(this)
-            .showMessages(true)
-            .after {
+            .doAfter {
                 if (!tokenIsOK.get()) {
                     openLoginActivity()
                     showToast(getString(R.string.error_invalid_token))
@@ -69,8 +68,10 @@ class SplashActivity : AppCompatActivity() {
                     openMainActivity()
                 }
             }
-            .onNetworkFail { openLoginActivity() }
-            .finish()
+            .onError { openLoginActivity() }
+            .uiErrorView(UIErrorView.Builder()
+                .with(this)
+                .create())
             .execute()
     }
 }

@@ -5,9 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
-import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -15,32 +13,50 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.mindorks.placeholderview.PlaceHolderView
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.feed.ProofCard
+import knk.ee.neverland.models.Proof
+import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.User
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 import java.io.File
-
 
 class ProfileActivity : AppCompatActivity() {
     private var userID: Int? = null
 
+    @BindView(R.id.user_proofs)
+    lateinit var userProofList: PlaceHolderView
+
+    @BindView(R.id.user_quests)
+    lateinit var userQuestsList: PlaceHolderView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        ButterKnife.bind(this)
         setSupportActionBar(findViewById(R.id.profile_toolbar))
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        switchToCompletedQuestsTab()
+
         getUserIDFromIntent()
         hideFollowButtonIfOwnProfile()
+
         runLoadUserDataTask()
+        runLoadQuestTask()
+        runGetProofsTask()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -64,14 +80,24 @@ class ProfileActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.change_avatar -> {
-                if (userID == null) {
-                    startUploadingAvatar()
-                }
+                startUploadingAvatar()
                 true
             }
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    // @Click(R.id.completed_quests_tab_button)
+    fun switchToCompletedQuestsTab() {
+        userProofList.visibility = VISIBLE
+        userQuestsList.visibility = GONE
+    }
+
+    // @Click(R.id.suggested_quests_tab_button)
+    fun switchToSuggestedQuestsTab() {
+        userQuestsList.visibility = VISIBLE
+        userProofList.visibility = GONE
     }
 
     private fun setUserData(user: User) {
@@ -84,8 +110,6 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.profile_user_followers).text = Utils.compactHugeNumber(user.followers)
 
         loadUserAvatar(user)
-
-        initializeViewPager(user.id)
     }
 
     private fun loadUserAvatar(user: User) {
@@ -96,19 +120,12 @@ class ProfileActivity : AppCompatActivity() {
             .into(findViewById(R.id.profile_user_avatar))
     }
 
-    private fun initializeViewPager(userID: Int) {
-        val viewPager = findViewById<ViewPager>(R.id.profile_current_tab)
-        viewPager.adapter = ProfileFragmentPagerAdapter(this, supportFragmentManager, userID)
-
-        findViewById<TabLayout>(R.id.profile_tabs).setupWithViewPager(viewPager)
-    }
-
     private fun hideFollowButtonIfOwnProfile() {
         val followButton = findViewById<Button>(R.id.profile_follow_button)
 
         followButton.visibility = if (userID == null) GONE else VISIBLE
+        followButton.isEnabled = userID != null
         // TODO: Following
-        followButton.isEnabled = false // userID != selfID
     }
 
     private fun getUserIDFromIntent() {
@@ -118,7 +135,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun runLoadUserDataTask() {
-        APIAsyncRequest.Builder<User>()
+        APIAsyncTask<User>()
             .request {
                 if (userID == null)
                     DefaultAPI.userAPI.getMyData()
@@ -126,27 +143,28 @@ class ProfileActivity : AppCompatActivity() {
                     DefaultAPI.userAPI.getUserData(userID!!)
             }
             .handleResult {
-                setUserData(it!!)
+                setUserData(it)
             }
-            .onAPIFailMessage { R.string.error_getting_user_data }
-            .setContext(this)
-            .showMessages(true)
-            .finish()
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_getting_user_data)
+                .create())
             .execute()
     }
 
     private fun startUploadingAvatar() {
-        val pickSetup = PickSetup()
+        if (userID == null) {
+            val pickSetup = PickSetup()
 
-        PickImageDialog
-            .build(pickSetup)
-            .setOnPickResult {
-                if (it.error == null) {
-                    startCroppingAvatar(it.path)
+            PickImageDialog
+                .build(pickSetup)
+                .setOnPickResult {
+                    if (it.error == null) {
+                        startCroppingAvatar(it.path)
+                    }
                 }
-            }
-            .setOnPickCancel { }
-            .show(this)
+                .setOnPickCancel { }
+                .show(this)
+        }
     }
 
     private fun startCroppingAvatar(path: String) {
@@ -186,21 +204,46 @@ class ProfileActivity : AppCompatActivity() {
         val avatarFile = File(avatarPath)
 
         var success = false
-        APIAsyncRequest.Builder<Boolean>()
+        APIAsyncTask<Boolean>()
             .request {
                 DefaultAPI.userAPI.uploadAvatar(avatarFile)
                 success = true
                 true
             }
-            .onAPIFailMessage { R.string.error_uploading_avatar }
-            .after {
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_uploading_avatar)
+                .create())
+            .doAfter {
                 if (success) {
                     runLoadUserDataTask()
                 }
             }
-            .setContext(this)
-            .showMessages(true)
-            .finish()
+            .execute()
+    }
+
+    private fun runGetProofsTask() {
+        APIAsyncTask<List<Proof>>()
+            .request {
+                if (userID == null)
+                    DefaultAPI.proofAPI.getMyProofs()
+                else
+                    DefaultAPI.proofAPI.getProofsByUserID(userID!!)
+            }
+            .handleResult { it.forEach { userProofList.addView(ProofCard(this, it)) } }
+            .uiErrorView(UIErrorView.Builder().with(this).create())
+            .execute()
+    }
+
+    private fun runLoadQuestTask() {
+        APIAsyncTask<List<Quest>>()
+            .request {
+                if (userID == null)
+                    DefaultAPI.questAPI.getSuggestedByMeQuests()
+                else
+                    DefaultAPI.questAPI.getSuggestedByUserQuests(userID!!)
+            }
+            .handleResult { it.forEach { userQuestsList.addView(SuggestedQuestElement(this, it)) } }
+            .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
     }
 }

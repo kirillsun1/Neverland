@@ -19,4 +19,6 @@ interface QuestAPI {
     fun getQuestsToTake(): List<Quest>
 
     fun getSuggestedByUserQuests(userID: Int): List<Quest>
+
+    fun getSuggestedByMeQuests(): List<Quest>
 }

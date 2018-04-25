@@ -8,9 +8,11 @@ interface ProofAPI {
 
     fun submitProof(proof: ProofToSubmit)
 
-    fun getProofs(feedScope: FeedScope): List<Proof>
+    fun getProofs(): List<Proof>
 
     fun getProofsByUserID(userID: Int): List<Proof>
 
     fun getProofsByQuestID(questID: Int): List<Proof>
+
+    fun getMyProofs() : List<Proof>
 }

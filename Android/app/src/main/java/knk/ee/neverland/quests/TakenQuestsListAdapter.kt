@@ -36,8 +36,8 @@ class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
             convertView = layoutInflater.inflate(R.layout.taken_quest_element, viewGroup, false)
 
             viewHolder = ViewHolder()
-            viewHolder.questName = convertView!!.findViewById(R.id.my_quests_quest_name)
-            viewHolder.questTimeTaken = convertView.findViewById(R.id.my_quests_time_taken)
+            viewHolder.questName = convertView!!.findViewById(R.id.quest_name)
+            viewHolder.questTimeTaken = convertView.findViewById(R.id.quest_time_taken)
 
             convertView.tag = viewHolder
         } else {
@@ -55,7 +55,7 @@ class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
 
         fun loadFromQuest(context: Context, quest: Quest) {
             questName.text = quest.title
-            questTimeTaken.text = context.getString(R.string.quest_taken_data)
+            questTimeTaken.text = context.getString(R.string.quest_taken_time_string)
                 .format(quest.timeTaken.toString())
         }
     }

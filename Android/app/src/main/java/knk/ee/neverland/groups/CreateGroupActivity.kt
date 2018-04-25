@@ -10,6 +10,9 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
@@ -17,24 +20,26 @@ import com.yalantis.ucrop.UCrop
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.GroupToCreate
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 import kotlinx.android.synthetic.main.activity_create_group.toolbar
 import java.io.File
 
 class CreateGroupActivity : AppCompatActivity() {
 
+    @BindView(R.id.group_name)
+    lateinit var groupNameBox: EditText
+
     private var creatingGroupInProcess: Boolean = false
     private var avatarPath: String = ""
-    private lateinit var groupNameBox: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
+        ButterKnife.bind(this)
         setSupportActionBar(toolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        groupNameBox = findViewById(R.id.group_name)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -50,6 +55,7 @@ class CreateGroupActivity : AppCompatActivity() {
         }
     }
 
+    @OnClick(R.id.create_group)
     fun createGroup(view: View) {
         val groupToCreate = makeGroupToCreate()
 
@@ -150,25 +156,22 @@ class CreateGroupActivity : AppCompatActivity() {
         if (!creatingGroupInProcess) {
             var success = false
 
-            APIAsyncRequest.Builder<Boolean>()
-                .before {
-                    creatingGroupInProcess = true
-                }
+            APIAsyncTask<Boolean>()
+                .doBefore { creatingGroupInProcess = true }
                 .request {
                     DefaultAPI.groupAPI.createGroup(groupToCreate)
                     success = true
                     true
                 }
-                .onAPIFailMessage { R.string.error_failed_dropping_quest }
-                .setContext(this)
-                .showMessages(true)
-                .after {
+                .uiErrorView(UIErrorView.Builder().with(this)
+                    .messageOnAPIFail(R.string.error_failed_dropping_quest)
+                    .create())
+                .doAfter {
                     if (success) {
                         finish()
                     }
                     creatingGroupInProcess = false
                 }
-                .finish()
                 .execute()
         }
     }

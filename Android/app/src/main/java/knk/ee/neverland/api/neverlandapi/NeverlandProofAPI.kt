@@ -1,7 +1,6 @@
 package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
-import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.api.ProofAPI
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
@@ -40,9 +39,8 @@ class NeverlandProofAPI : ProofAPI {
         }
     }
 
-    override fun getProofs(feedScope: FeedScope): List<Proof> {
+    override fun getProofs(): List<Proof> {
         val link = URLLinkBuilder(API_LINK, "getAllProofs")
-            // TODO: consider feedScope
             .addParam("token", token)
             .finish()
 
@@ -92,5 +90,9 @@ class NeverlandProofAPI : ProofAPI {
         }
 
         return responseObject.proofs
+    }
+
+    override fun getMyProofs(): List<Proof> {
+        return getProofs()
     }
 }

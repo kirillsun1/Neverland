@@ -13,7 +13,8 @@ import android.widget.ListView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 
 class TakeQuestActivity : AppCompatActivity() {
     private lateinit var takeQuestListAdapter: TakeQuestListAdapter
@@ -68,41 +69,39 @@ class TakeQuestActivity : AppCompatActivity() {
     }
 
     private fun runUpdateQuestsTask(updating: Boolean) {
-        APIAsyncRequest.Builder<List<Quest>>()
-            .before {
+        APIAsyncTask<List<Quest>>()
+            .doBefore {
                 if (updating) {
                     questListSwipper.isRefreshing = true
                 }
             }
             .request { DefaultAPI.questAPI.getQuestsToTake() }
-            .handleResult { takeQuestListAdapter.addQuests(it!!) }
-            .onAPIFailMessage { R.string.error_failed_getting_quests }
-            .setContext(this)
-            .showMessages(true)
-            .after {
+            .handleResult { takeQuestListAdapter.addQuests(it) }
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_failed_getting_quests)
+                .create())
+            .doAfter {
                 questListSwipper.isRefreshing = false
             }
-            .finish()
             .execute()
 
     }
 
     private fun runTakeQuestTask(questID: Int, positionInAdapter: Int) {
         if (!takingQuest) {
-            APIAsyncRequest.Builder<Boolean>()
-                .before { takingQuest = true }
+            APIAsyncTask<Boolean>()
+                .doBefore { takingQuest = true }
                 .request {
                     DefaultAPI.questAPI.takeQuest(questID)
                     true
                 }
-                .onAPIFailMessage { R.string.error_failed_taking_quest }
-                .setContext(this)
-                .showMessages(true)
-                .after {
+                .uiErrorView(UIErrorView.Builder().with(this)
+                    .messageOnAPIFail(R.string.error_failed_taking_quest)
+                    .create())
+                .doAfter {
                     takeQuestListAdapter.removeQuest(positionInAdapter)
                     takingQuest = false
                 }
-                .finish()
                 .execute()
         }
     }

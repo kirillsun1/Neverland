@@ -1,42 +1,48 @@
 package knk.ee.neverland.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
 import android.widget.EditText
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import knk.ee.neverland.R
+import knk.ee.neverland.activities.MainActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.RegistrationData
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 
 class RegistrationActivity : AppCompatActivity() {
-    private lateinit var loginBox: AutoCompleteTextView
-    private lateinit var passwordBox: EditText
-    private lateinit var passwordRepeatBox: EditText
-    private lateinit var firstNameBox: EditText
-    private lateinit var secondNameBox: EditText
-    private lateinit var emailBox: EditText
-    private lateinit var agreeBox: CheckBox
+    @BindView(R.id.registration_login)
+    lateinit var loginBox: AutoCompleteTextView
+    @BindView(R.id.registration_password)
+    lateinit var passwordBox: EditText
+    @BindView(R.id.registration_password_repeat)
+    lateinit var passwordRepeatBox: EditText
+    @BindView(R.id.registration_first_name)
+    lateinit var firstNameBox: EditText
+    @BindView(R.id.registration_second_name)
+    lateinit var secondNameBox: EditText
+    @BindView(R.id.registration_agree_check)
+    lateinit var emailBox: EditText
+    @BindView(R.id.registration_email)
+    lateinit var agreeBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        ButterKnife.bind(this)
+    }
 
-        loginBox = findViewById(R.id.registration_login)
-        passwordBox = findViewById(R.id.registration_password)
-        passwordRepeatBox = findViewById(R.id.registration_password_repeat)
-        firstNameBox = findViewById(R.id.registration_first_name)
-        secondNameBox = findViewById(R.id.registration_second_name)
-        agreeBox = findViewById(R.id.registration_agree_check)
-        emailBox = findViewById(R.id.registration_email)
-
-        findViewById<View>(R.id.registration_register).setOnClickListener {
-            if (validateFields()) {
-                runRegisterTask(makeRegistrationData())
-            }
+    @OnClick(R.id.registration_register)
+    fun registerButtonClick() {
+        if (validateFields()) {
+            runRegisterTask(makeRegistrationData())
         }
     }
 
@@ -169,24 +175,30 @@ class RegistrationActivity : AppCompatActivity() {
         agreeBox.error = null
     }
 
+    private fun openMainActivityAndFinishThisActivity() {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
+        finish()
+    }
+
     private fun runRegisterTask(registrationData: RegistrationData) {
         var success = false
 
-        APIAsyncRequest.Builder<String>()
+        APIAsyncTask<String>()
             .request {
                 val token = DefaultAPI.authAPI.registerAccount(registrationData)
                 success = true
                 token
             }
-            .setContext(this)
-            .showMessages(true)
-            .onAPIFailMessage { R.string.error_incorrect_fields }
-            .after {
+            .handleResult { DefaultAPI.setUserData(registrationData.login, it) }
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_incorrect_fields)
+                .create())
+            .doAfter {
                 if (success) {
-                    finish()
+                    openMainActivityAndFinishThisActivity()
                 }
             }
-            .finish()
             .execute()
     }
 }

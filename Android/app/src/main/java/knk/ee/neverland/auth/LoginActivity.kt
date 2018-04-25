@@ -12,30 +12,34 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.MainActivity
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var mLoginView: AutoCompleteTextView
-    private lateinit var mPasswordView: EditText
-    private lateinit var mProgressView: View
-    private lateinit var mLoginFormView: View
+    @BindView(R.id.registration_login)
+    lateinit var mLoginView: AutoCompleteTextView
+    @BindView(R.id.registration_password)
+    lateinit var mPasswordView: EditText
+    @BindView(R.id.login_progress)
+    lateinit var mProgressView: View
+    @BindView(R.id.login_form)
+    lateinit var mLoginFormView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        ButterKnife.bind(this)
 
-        // Set up the login form.
-        mLoginView = findViewById(R.id.registration_login)
-
-        mPasswordView = findViewById(R.id.registration_password)
         mPasswordView.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
                 attemptLogin()
@@ -43,15 +47,6 @@ class LoginActivity : AppCompatActivity() {
             }
             false
         })
-        val mEmailSignInButton = findViewById<Button>(R.id.email_sign_in_button)
-        mEmailSignInButton.setOnClickListener { attemptLogin() }
-
-        mLoginFormView = findViewById(R.id.login_form)
-        mProgressView = findViewById(R.id.login_progress)
-
-        findViewById<View>(R.id.login_register).setOnClickListener { view ->
-            startActivityForResult(Intent(view.context, RegistrationActivity::class.java), 1)
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,6 +60,16 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         System.exit(0)
+    }
+
+    @OnClick(R.id.email_sign_in_button)
+    fun signInButtonClick() {
+        attemptLogin()
+    }
+
+    @OnClick(R.id.login_register)
+    fun registerButtonClick() {
+        startActivityForResult(Intent(this, RegistrationActivity::class.java), 1)
     }
 
     private fun attemptLogin() {
@@ -143,18 +148,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun runUserLoginTask(login: String, password: String) {
-        APIAsyncRequest.Builder<String>()
-            .before { showProgress(true) }
+        APIAsyncTask<String>()
+            .doBefore { showProgress(true) }
             .request { DefaultAPI.authAPI.attemptLogin(login, password) }
             .handleResult {
-                saveUserdataToTheSystemSettings(login, it!!)
+                saveUserdataToTheSystemSettings(login, it)
                 openMainActivityAndFinishThisActivity()
             }
-            .setContext(this)
-            .onAPIFailMessage { R.string.error_incorrect_field }
-            .showMessages(true)
-            .after { showProgress(false) }
-            .finish()
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_incorrect_field)
+                .create())
+            .doAfter { showProgress(false) }
             .execute()
     }
 }

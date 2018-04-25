@@ -41,8 +41,7 @@
     <string name="error_submit_quest_field_length">Length is too short</string>
 
     <string name="quest_author">Author: %s %s</string>
-    <string name="quest_taken_data">Taken: %s</string>
-    <string name="my_quests_taken_date_time">Created: %s</string>
+    <string name="quest_taken_time_string">Taken: %s</string>
 
     <!-- Main menu options -->
     <string-array name="main_dropdown_menu_items">

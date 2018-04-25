@@ -133,4 +133,8 @@ class NeverlandQuestAPI : QuestAPI {
 
         return responseObject.quests
     }
+
+    override fun getSuggestedByMeQuests(): List<Quest> {
+        return getQuestsToTake()
+    }
 }

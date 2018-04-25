@@ -17,7 +17,8 @@ import com.gordonwong.materialsheetfab.MaterialSheetFab
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.views.CustomFloatingActionButton
 
 class TakenQuestsFragment : Fragment() {
@@ -76,20 +77,18 @@ class TakenQuestsFragment : Fragment() {
 
 
     private fun runGetMyQuestsTask() {
-        APIAsyncRequest.Builder<List<Quest>>()
+        APIAsyncTask<List<Quest>>()
             .request { DefaultAPI.questAPI.getMyQuests() }
             .handleResult {
-                takenQuestsListAdapter.questsList = it!!
+                takenQuestsListAdapter.questsList = it
                 takenQuestsListAdapter.notifyDataSetChanged()
             }
-            .setContext(view!!.context)
-            .showMessages(true)
-            .finish()
+            .uiErrorView(UIErrorView.Builder().with(view!!.context).create())
             .execute()
     }
 
     private fun openQuestActivity(quest: Quest) {
-        val intent = Intent(view!!.context, QuestDetailsActivity::class.java)
+        val intent = Intent(activity!!.applicationContext, QuestDetailsActivity::class.java)
 
         intent.putExtra("questID", quest.id)
         intent.putExtra("questTitle", quest.title)
@@ -101,13 +100,13 @@ class TakenQuestsFragment : Fragment() {
     }
 
     private fun openSuggestQuestActivity() {
-        val suggestIntent = Intent(view!!.context, CreateQuestActivity::class.java)
+        val suggestIntent = Intent(activity!!.applicationContext, CreateQuestActivity::class.java)
         startActivity(suggestIntent)
         materialSheetFab.hideSheet()
     }
 
     private fun openFindQuestActivity() {
-        val findIntent = Intent(view!!.context, TakeQuestActivity::class.java)
+        val findIntent = Intent(activity!!.applicationContext, TakeQuestActivity::class.java)
         startActivity(findIntent)
         materialSheetFab.hideSheet()
     }

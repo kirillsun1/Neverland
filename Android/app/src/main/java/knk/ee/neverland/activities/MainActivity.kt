@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openUserProfile() {
-        startActivity(Intent(this, ProfileActivity::class.java))
+        startActivity(Intent(applicationContext, ProfileActivity::class.java))
     }
 
     private fun setMainFragment(fragmentType: FragmentType) {

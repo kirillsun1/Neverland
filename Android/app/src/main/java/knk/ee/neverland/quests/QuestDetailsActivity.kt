@@ -22,8 +22,9 @@ import knk.ee.neverland.R
 import knk.ee.neverland.activities.SubmitProofActivity
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Proof
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.utils.UIErrorView
 import java.io.File
 import java.util.logging.Logger
 
@@ -183,8 +184,8 @@ class QuestDetailsActivity : AppCompatActivity() {
         if (!droppingQuest) {
             var success = false
 
-            APIAsyncRequest.Builder<Boolean>()
-                .before {
+            APIAsyncTask<Boolean>()
+                .doBefore {
                     droppingQuest = true
                     changeDroppingQuestProperty(true)
                 }
@@ -193,28 +194,25 @@ class QuestDetailsActivity : AppCompatActivity() {
                     success = true
                     true
                 }
-                .onAPIFailMessage { R.string.error_failed_dropping_quest }
-                .setContext(this)
-                .showMessages(true)
-                .after {
+                .uiErrorView(UIErrorView.Builder().with(this)
+                    .messageOnAPIFail(R.string.error_failed_dropping_quest)
+                    .create())
+                .doAfter {
                     if (success) {
                         finish()
                     }
                     changeDroppingQuestProperty(false)
                     droppingQuest = false
                 }
-                .finish()
                 .execute()
         }
     }
 
     private fun runGetProofsTask(questID: Int) {
-        APIAsyncRequest.Builder<List<Proof>>()
+        APIAsyncTask<List<Proof>>()
             .request { DefaultAPI.proofAPI.getProofsByQuestID(questID) }
-            .handleResult { simpleProofsListAdapter.addProofs(it!!) }
-            .setContext(this)
-            .showMessages(true)
-            .finish()
+            .handleResult { simpleProofsListAdapter.addProofs(it) }
+            .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
     }
 }

@@ -3,7 +3,6 @@ package knk.ee.neverland.feed
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,10 @@ import butterknife.ButterKnife
 import com.mindorks.placeholderview.PlaceHolderView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.models.Proof
-import knk.ee.neverland.utils.APIAsyncRequest
+import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
+import knk.ee.neverland.utils.UIErrorView
 
 class FeedFragment : Fragment() {
     @BindView(R.id.feed_list)
@@ -48,15 +47,19 @@ class FeedFragment : Fragment() {
     }
 
     private fun runGetProofsTask(updating: Boolean) {
-        APIAsyncRequest.Builder<List<Proof>>()
-            .before { feedListSwipeLayout.isRefreshing = true && updating }
-            .request { DefaultAPI.proofAPI.getProofs(FeedScope.WORLD) }
-            .handleResult { result -> result!!.forEach { feedList.addView(FeedElement(view!!.context, it)) } }
-            .setContext(view!!.context)
-            .showMessages(true)
-            .after { feedListSwipeLayout.isRefreshing = false }
-            .onAPIFailMessage { R.string.error_getting_proofs_failed }
-            .finish()
+        APIAsyncTask<List<Proof>>()
+            .doBefore { feedListSwipeLayout.isRefreshing = true && updating }
+            .request { DefaultAPI.proofAPI.getProofs() }
+            .handleResult { result ->
+                feedList.removeAllViews()
+                result.forEach {
+                    feedList.addView(ProofCard(view!!.context, it))
+                }
+            }
+            .uiErrorView(UIErrorView.Builder().with(view!!.context)
+                .messageOnAPIFail(R.string.error_getting_proofs_failed)
+                .create())
+            .doAfter { feedListSwipeLayout.isRefreshing = false }
             .execute()
     }
 }
