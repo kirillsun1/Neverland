@@ -40,7 +40,7 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/subscribe")
-    public String subscribe(@RequestParam(value = "token") String token,
+    public String handleSubscribtion(@RequestParam(value = "token") String token,
                             @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -50,10 +50,13 @@ public class SubscriptionController {
         if (!group.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
-
-        Subscription subscription = new Subscription(user.get(), group.get());
-        subscriptionService.subscribe(subscription);
+        subscribe(user.get(), group.get());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
+    }
+
+    void subscribe(User subscriber, PeopleGroup group) {
+        Subscription subscription = new Subscription(subscriber, group);
+        subscriptionService.subscribe(subscription);
     }
 
     @RequestMapping(value = "/unsubscribe")

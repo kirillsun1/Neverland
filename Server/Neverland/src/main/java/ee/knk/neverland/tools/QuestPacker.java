@@ -2,8 +2,8 @@ package ee.knk.neverland.tools;
 
 import ee.knk.neverland.answer.pojo.Pojo;
 import ee.knk.neverland.answer.pojo.QuestPojo;
-import ee.knk.neverland.answer.pojo.QuestPojo.QuestPojoBuilder;
 import ee.knk.neverland.answer.pojo.UserPojo;
+import ee.knk.neverland.answer.pojo.builder.QuestPojoBuilder;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 
@@ -17,11 +17,11 @@ public class QuestPacker {
         UserPojo author = userPacker.packUser(pointer.getUser());
         QuestPojoBuilder builder = new QuestPojoBuilder();
         return builder
-                .setId(pointer.getId())
-                .setTitle(pointer.getTitle())
-                .setDescription(pointer.getDescription())
-                .setAuthor(author)
-                .setAddingTime(pointer.getTime())
+                .withId(pointer.getId())
+                .withTitle(pointer.getTitle())
+                .withDescription(pointer.getDescription())
+                .withAuthor(author)
+                .withAddingTime(pointer.getTime())
                 .getQuestPojo();
     }
 

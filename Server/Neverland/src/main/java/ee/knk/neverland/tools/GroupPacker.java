@@ -1,10 +1,10 @@
 package ee.knk.neverland.tools;
 
 import ee.knk.neverland.answer.pojo.GroupPojo;
-import ee.knk.neverland.answer.pojo.GroupPojo.GroupPojoBuilder;
 import ee.knk.neverland.answer.pojo.Pojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
+import ee.knk.neverland.answer.pojo.builder.GroupPojoBuilder;
 import ee.knk.neverland.controller.SubscriptionController;
 import ee.knk.neverland.entity.PeopleGroup;
 
@@ -23,12 +23,12 @@ public class GroupPacker {
         UserPacker userPacker = new UserPacker();
         UserPojo admin = userPacker.packUser(pointer.getAdmin());
         GroupPojoBuilder groupPojoBuilder = new GroupPojoBuilder();
-        return groupPojoBuilder.setId(pointer.getId())
-                .setAdmin(admin)
-                .setName(pointer.getName())
-                .setAvatar(pointer.getAvatar())
-                .setQuantity(subscriptionController.getGroupQuantity(pointer))
-                .setTime(pointer.getCreateTime())
+        return groupPojoBuilder.withId(pointer.getId())
+                .withAdmin(admin)
+                .withName(pointer.getName())
+                .withAvatar(pointer.getAvatar())
+                .withQuantity(subscriptionController.getGroupQuantity(pointer))
+                .withTime(pointer.getCreateTime())
                 .getGroupPojo();
 
     }

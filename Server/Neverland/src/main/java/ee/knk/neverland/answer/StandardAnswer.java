@@ -21,4 +21,8 @@ public class StandardAnswer {
     public StandardAnswer(int code) {
         this.code = code;
     }
+
+    public boolean isSuccessful() {
+        return code > 0;
+    }
 }

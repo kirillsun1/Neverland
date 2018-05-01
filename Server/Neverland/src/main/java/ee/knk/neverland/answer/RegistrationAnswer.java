@@ -17,4 +17,8 @@ public class RegistrationAnswer {
         this.code = code;
     }
 
+    public boolean isSuccessful() {
+        return code > 0;
+    }
+
 }

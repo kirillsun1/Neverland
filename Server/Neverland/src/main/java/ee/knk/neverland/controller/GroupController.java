@@ -26,7 +26,9 @@ public class GroupController {
     private final SubscriptionController subscriptionController;
 
     @Autowired
-    public GroupController(TokenController tokenController, GroupService groupService, SubscriptionController subscriptionController) {
+    public GroupController(TokenController tokenController,
+                           GroupService groupService,
+                           SubscriptionController subscriptionController) {
         this.tokenController = tokenController;
         this.groupService = groupService;
         this.subscriptionController = subscriptionController;
@@ -39,11 +41,16 @@ public class GroupController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        PeopleGroup peopleGroup = new PeopleGroup(groupName, user.get());
-        PeopleGroup group = groupService.addGroup(peopleGroup);
-        subscriptionController.subscribe(token, group.getId());
+        PeopleGroup group = addGroup(groupName, user.get());
         GroupPacker packer = new GroupPacker(subscriptionController);
         return gson.toJson(new StandardAnswer(packer.packGroup(group)));
+    }
+
+    PeopleGroup addGroup(String groupName, User admin) {
+        PeopleGroup peopleGroup = new PeopleGroup(groupName, admin);
+        PeopleGroup group = groupService.addGroup(peopleGroup);
+        subscriptionController.subscribe(admin, group);
+        return group;
     }
 
     @RequestMapping(value = "/deleteGroup")
@@ -89,6 +96,11 @@ public class GroupController {
         List<PeopleGroup> groups = groupService.getAllGroups();
         GroupPacker packer = new GroupPacker(subscriptionController);
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
+    }
+
+    @RequestMapping(value = "/createGroupWithAvatar")
+    public String createGroupAndUploadAvatar() {
+        return "";
     }
 
     public void setAvatar(Long groupId, String avatarPath) {

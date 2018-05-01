@@ -2,7 +2,7 @@ package ee.knk.neverland.tools;
 
 import ee.knk.neverland.answer.pojo.Pojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
-import ee.knk.neverland.answer.pojo.UserPojo.UserPojoBuilder;
+import ee.knk.neverland.answer.pojo.builder.UserPojoBuilder;
 import ee.knk.neverland.entity.User;
 
 import java.util.ArrayList;
@@ -13,12 +13,12 @@ public class UserPacker {
     public UserPojo packUser(User user) {
         UserPojoBuilder builder = new UserPojoBuilder();
         return builder
-                .setId(user.getId())
-                .setUsername(user.getUsername())
-                .setFirstName(user.getFirstName())
-                .setSecondName(user.getSecondName())
-                .setAvatar(user.getAvatar())
-                .setRegistrationTime(user.getRegisterTime())
+                .withId(user.getId())
+                .withUsername(user.getUsername())
+                .withFirstName(user.getFirstName())
+                .withSecondName(user.getSecondName())
+                .withAvatar(user.getAvatar())
+                .withRegistrationTime(user.getRegisterTime())
                 .getUserPojo();
     }
 
