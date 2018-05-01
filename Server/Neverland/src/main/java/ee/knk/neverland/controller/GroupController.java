@@ -41,16 +41,11 @@ public class GroupController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        PeopleGroup group = addGroup(groupName, user.get());
+        PeopleGroup peopleGroup = new PeopleGroup(groupName, user.get());
+        PeopleGroup group = groupService.addGroup(peopleGroup);
+        subscriptionController.subscribe(user.get(), group);
         GroupPacker packer = new GroupPacker(subscriptionController);
         return gson.toJson(new StandardAnswer(packer.packGroup(group)));
-    }
-
-    PeopleGroup addGroup(String groupName, User admin) {
-        PeopleGroup peopleGroup = new PeopleGroup(groupName, admin);
-        PeopleGroup group = groupService.addGroup(peopleGroup);
-        subscriptionController.subscribe(admin, group);
-        return group;
     }
 
     @RequestMapping(value = "/deleteGroup")

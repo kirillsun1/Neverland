@@ -78,32 +78,15 @@ public class FileUploadController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-
-        return gson.toJson(uploadGroupAvatar(file, user.get(), groupId));
-    }
-
-    private StandardAnswer uploadGroupAvatar(MultipartFile file, User admin, Long groupId) {
-
         String realPath = "/var/www/html/never_pictures/group_avatars/";
         String dbPath = "http://vrot.bounceme.net:8081/never_pictures/group_avatars/";
-        String pathEnding = admin.getUsername() + ".jpg";
+        String pathEnding = groupId + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             groupController.setAvatar(groupId, dbPath + pathEnding);
         }
-        return standardAnswer;
-    }
 
-    @RequestMapping(value = "/createGroupWithAvatar", method = RequestMethod.POST)
-    public String createGroupAndUploadAvatar(@RequestParam(name = "token") String token,
-                                             @RequestParam(name = "g_name") String groupName,
-                                             @RequestParam("file") MultipartFile file) {
-        Optional<User> user = tokenController.getTokenUser(token);
-        if (!user.isPresent()) {
-            return gson.toJson(new StandardAnswer(Constants.FAILED));
-        }
-        PeopleGroup group = groupController.addGroup(groupName, user.get());
-        return gson.toJson(uploadGroupAvatar(file, user.get(), group.getId()));
+        return gson.toJson(standardAnswer);
     }
 
     private StandardAnswer writeFile(MultipartFile file, String realPath) {
