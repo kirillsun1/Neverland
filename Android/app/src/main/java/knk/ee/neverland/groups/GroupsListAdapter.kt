@@ -40,7 +40,7 @@ class GroupsListAdapter(val context: Context) : BaseAdapter() {
             convertView = layoutInflater.inflate(R.layout.group_element, viewGroup, false)
 
             viewHolder = ViewHolder()
-            viewHolder.groupName = convertView!!.findViewById(R.id.group_name)
+            viewHolder.groupName = convertView!!.findViewById(R.id.group_name_box)
             viewHolder.groupCreator = convertView.findViewById(R.id.group_creator)
             viewHolder.groupAvatar = convertView.findViewById(R.id.group_avatar)
 

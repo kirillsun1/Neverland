@@ -51,9 +51,7 @@ class APIAsyncTask<Result> {
     }
 
     fun execute() {
-        if (!hasFinished()) {
-            throw RuntimeException("Cannot run new task, because the old one has not finish yet!")
-        }
+        stopIfRunning()
 
         doBeforeMethod?.invoke()
 
@@ -95,14 +93,19 @@ class APIAsyncTask<Result> {
         }
 
         override fun onPostExecute(result: Result?) {
-            if (catchedException != null) {
-                onErrorMethod?.invoke(catchedException!!)
-                uiErrorView?.handleError(catchedException!!)
-            } else {
-                resultHandlerMethod?.invoke(result!!)
-            }
+            try {
+                if (catchedException != null) {
+                    onErrorMethod?.invoke(catchedException!!)
+                    uiErrorView?.handleError(catchedException!!)
+                } else {
+                    resultHandlerMethod?.invoke(result!!)
+                }
 
-            doAfterMethod?.invoke()
+                doAfterMethod?.invoke()
+            } catch (ex: Exception) {
+                onErrorMethod?.invoke(ex)
+                uiErrorView?.handleError(ex)
+            }
         }
     }
 }

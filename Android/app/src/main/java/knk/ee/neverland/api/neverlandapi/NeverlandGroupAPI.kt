@@ -2,7 +2,6 @@ package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
 import knk.ee.neverland.api.GroupAPI
-import knk.ee.neverland.api.models.GroupToCreate
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
 import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Group
@@ -13,10 +12,10 @@ import knk.ee.neverland.utils.Constants
 class NeverlandGroupAPI : GroupAPI {
     override var token: String = ""
 
-    override fun createGroup(group: GroupToCreate) {
+    override fun createGroup(groupName: String) {
         val link = URLLinkBuilder(API_LINK, "createGroup")
             .addParam("token", token)
-            .addParam("g_name", group.groupName)
+            .addParam("g_name", groupName)
             .finish()
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)

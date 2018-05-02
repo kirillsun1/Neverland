@@ -101,15 +101,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
-
-        <activity
-            android:name=".groups.CreateGroupActivity"
-            android:label="@string/title_activity_create_group"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="knk.ee.neverland.activities.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

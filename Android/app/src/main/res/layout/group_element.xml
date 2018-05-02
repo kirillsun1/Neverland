@@ -18,6 +18,8 @@
         android:layout_rowWeight="0"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
+        app:civ_border="false"
+        app:civ_shadow="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,18 +40,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/group_name"
+            android:id="@+id/group_name_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="asdfasdf"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/group_creator"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asdfafd" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
