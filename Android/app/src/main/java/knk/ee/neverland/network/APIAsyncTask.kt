@@ -5,6 +5,8 @@ import knk.ee.neverland.utils.UIErrorView
 
 typealias SimpleMethod = () -> Unit
 typealias OnErrorMethod = (Exception) -> Unit
+typealias RequestMethod<T> = () -> T
+typealias HandleResultMethod<T> = (T) -> Unit
 
 class APIAsyncTask<Result> {
     private var doBeforeMethod: SimpleMethod? = null
@@ -13,20 +15,22 @@ class APIAsyncTask<Result> {
 
     private var uiErrorView: UIErrorView? = null
 
-    private lateinit var requestMethod: () -> Result
-    private var resultHandlerMethod: ((Result) -> Unit)? = null
+    private lateinit var requestMethod: RequestMethod<Result>
+    private var resultHandlerMethod: (HandleResultMethod<Result>)? = null
+
+    private var apiTask: APITask<Result>? = null
 
     fun doBefore(doBeforeMethod: SimpleMethod): APIAsyncTask<Result> {
         this.doBeforeMethod = doBeforeMethod
         return this
     }
 
-    fun request(requestMethod: () -> Result): APIAsyncTask<Result> {
+    fun request(requestMethod: RequestMethod<Result>): APIAsyncTask<Result> {
         this.requestMethod = requestMethod
         return this
     }
 
-    fun handleResult(resultHandlerMethod: (Result) -> Unit): APIAsyncTask<Result> {
+    fun handleResult(resultHandlerMethod: HandleResultMethod<Result>): APIAsyncTask<Result> {
         this.resultHandlerMethod = resultHandlerMethod
         return this
     }
@@ -47,16 +51,32 @@ class APIAsyncTask<Result> {
     }
 
     fun execute() {
+        if (!hasFinished()) {
+            throw RuntimeException("Cannot run new task, because the old one has not finish yet!")
+        }
+
         doBeforeMethod?.invoke()
-        APITask(requestMethod,
+
+        apiTask = APITask(requestMethod,
             resultHandlerMethod,
             onErrorMethod,
             doAfterMethod,
-            uiErrorView).execute()
+            uiErrorView)
+
+        apiTask!!.execute()
     }
 
-    private class APITask<Result>(private val requestMethod: () -> Result,
-                                  private val resultHandlerMethod: ((Result) -> Unit)?,
+    fun stopIfRunning() {
+        if (apiTask != null && !hasFinished()) {
+            apiTask!!.cancel(true)
+        }
+    }
+
+    private fun hasFinished(): Boolean =
+        apiTask != null && apiTask!!.status == AsyncTask.Status.FINISHED
+
+    private class APITask<Result>(private val requestMethod: RequestMethod<Result>,
+                                  private val resultHandlerMethod: HandleResultMethod<Result>?,
                                   private val onErrorMethod: OnErrorMethod?,
                                   private val doAfterMethod: SimpleMethod?,
                                   private val uiErrorView: UIErrorView?)
@@ -68,6 +88,7 @@ class APIAsyncTask<Result> {
             try {
                 return requestMethod.invoke()
             } catch (ex: Exception) {
+                ex.printStackTrace()
                 catchedException = ex
                 return null
             }

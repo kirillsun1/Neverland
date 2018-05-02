@@ -24,6 +24,8 @@ class FeedFragment : Fragment() {
     @BindView(R.id.feed_list_swipe_layout)
     lateinit var feedListSwipeLayout: SwipeRefreshLayout
 
+    private var getProofsTask: APIAsyncTask<List<Proof>>? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ButterKnife.bind(this, view)
@@ -46,20 +48,28 @@ class FeedFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_feed, container, false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        getProofsTask?.stopIfRunning()
+    }
+
     private fun runGetProofsTask(updating: Boolean) {
-        APIAsyncTask<List<Proof>>()
-            .doBefore { feedListSwipeLayout.isRefreshing = true && updating }
-            .request { DefaultAPI.proofAPI.getProofs() }
-            .handleResult { result ->
-                feedList.removeAllViews()
-                result.forEach {
-                    feedList.addView(ProofCard(view!!.context, it))
+        if (getProofsTask == null) {
+            getProofsTask = APIAsyncTask<List<Proof>>()
+                .doBefore { feedListSwipeLayout.isRefreshing = true && updating }
+                .request { DefaultAPI.proofAPI.getProofs() }
+                .handleResult { result ->
+                    feedList.removeAllViews()
+                    result.forEach {
+                        feedList.addView(ProofCard(view!!.context, it))
+                    }
                 }
-            }
-            .uiErrorView(UIErrorView.Builder().with(view!!.context)
-                .messageOnAPIFail(R.string.error_getting_proofs_failed)
-                .create())
-            .doAfter { feedListSwipeLayout.isRefreshing = false }
-            .execute()
+                .uiErrorView(UIErrorView.Builder().with(view!!.context)
+                    .messageOnAPIFail(R.string.error_getting_proofs_failed)
+                    .create())
+                .doAfter { feedListSwipeLayout.isRefreshing = false }
+        }
+
+        getProofsTask!!.execute()
     }
 }

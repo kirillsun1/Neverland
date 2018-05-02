@@ -113,7 +113,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun loadUserAvatar(user: User) {
-        Glide.with(this)
+        Glide.with(applicationContext)
             .load(user.avatarLink)
             .transition(DrawableTransitionOptions.withCrossFade(resources.getInteger(
                 R.integer.feed_fade_animation_duration)))

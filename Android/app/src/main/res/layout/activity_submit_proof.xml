@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
-    android:stretchColumns="0,1"
     tools:context="knk.ee.neverland.activities.SubmitProofActivity">
 
-    <ImageView
-        android:id="@+id/proof_image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/proof_image_hint"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <EditText
-        android:id="@+id/proof_comment"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/input_box_background"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="@string/proof_comment_hint"
-        android:inputType="textPersonName"
-        android:textAlignment="gravity" />
+        android:layout_height="match_parent">
 
-    <TableRow>
-
-        <Button
-            android:id="@+id/proof_retake_picture"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:text="@string/proof_retake_picture" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/proof_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="@string/proof_submit_button" />
+            <ImageView
+                android:id="@+id/proof_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/proof_image_hint"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/logo" />
 
-    </TableRow>
+            <Button
+                android:id="@+id/proof_retake_picture"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/proof_retake_picture" />
 
+            <EditText
+                android:id="@+id/proof_comment"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/input_box_background"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/proof_comment_hint"
+                android:inputType="textMultiLine"
+                android:textAlignment="gravity" />
 
-</TableLayout>
+            <Button
+                android:id="@+id/proof_submit"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/proof_submit_button" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

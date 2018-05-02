@@ -2,8 +2,6 @@ package knk.ee.neverland.quests
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -16,6 +14,7 @@ import knk.ee.neverland.api.models.QuestToSubmit
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
+import knk.ee.neverland.utils.ViewProgressController
 
 class CreateQuestActivity : AppCompatActivity() {
     @BindView(R.id.create_quest_title)
@@ -30,12 +29,14 @@ class CreateQuestActivity : AppCompatActivity() {
     @BindView(R.id.submitting_progress)
     lateinit var submittingProgress: ProgressBar
 
+    lateinit var viewProgressController: ViewProgressController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_quest)
         ButterKnife.bind(this)
 
-        blockSaveButton(false)
+        viewProgressController = ViewProgressController(submittingProgress, saveButton)
     }
 
     @OnClick(R.id.create_quest_save)
@@ -82,17 +83,11 @@ class CreateQuestActivity : AppCompatActivity() {
         description.length >= Constants.QUEST_DESC_MINIMUM_SYMBOLS
                 && description.length <= Constants.QUEST_DESC_MAXIMUM_SYMBOLS
 
-    private fun blockSaveButton(block: Boolean) {
-        saveButton.isEnabled = !block
-        saveButton.visibility = if (block) GONE else VISIBLE
-        submittingProgress.visibility = if (!block) GONE else VISIBLE
-    }
-
     private fun runSubmitQuestTask(questToSubmit: QuestToSubmit) {
         var success = false
 
         APIAsyncTask<Boolean>()
-            .doBefore { blockSaveButton(true) }
+            .doBefore { viewProgressController.showProgress() }
             .request {
                 DefaultAPI.questAPI.submitNewQuest(questToSubmit)
                 success = true
@@ -102,10 +97,10 @@ class CreateQuestActivity : AppCompatActivity() {
                 .messageOnAPIFail(R.string.error_submit_failed)
                 .create())
             .doAfter {
-                blockSaveButton(false)
                 if (success) {
                     finish()
                 }
+                viewProgressController.hideProgress()
             }
             .execute()
     }

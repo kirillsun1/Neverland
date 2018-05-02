@@ -8,13 +8,14 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.yalantis.ucrop.UCrop
@@ -25,23 +26,30 @@ import knk.ee.neverland.models.Proof
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
+import knk.ee.neverland.utils.ViewProgressController
 import java.io.File
 import java.util.logging.Logger
 
 class QuestDetailsActivity : AppCompatActivity() {
     private val logger = Logger.getLogger(QuestDetailsActivity::class.java.simpleName)
 
-    private var droppingQuest: Boolean = false
+    @BindView(R.id.drop_quest)
+    lateinit var dropQuestButton: Button
 
-    private lateinit var dropQuestButton: Button
-    private lateinit var droppingProgress: ProgressBar
+    @BindView(R.id.submit_proof)
+    lateinit var submitProofButton: Button
+
+    @BindView(R.id.dropping_progress)
+    lateinit var droppingProgress: ProgressBar
+
     private lateinit var simpleProofsListAdapter: SimpleProofsListAdapter
-
+    private lateinit var buttonsProgressController: ViewProgressController
     private var questID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quest_details)
+        ButterKnife.bind(this)
 
         simpleProofsListAdapter = SimpleProofsListAdapter(this)
 
@@ -57,18 +65,8 @@ class QuestDetailsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.quest_created_date).text = questCreatedDate
         findViewById<ListView>(R.id.quest_proofs).adapter = simpleProofsListAdapter
 
-        dropQuestButton = findViewById(R.id.drop_quest)
-        droppingProgress = findViewById(R.id.dropping_progress)
-
-        dropQuestButton.setOnClickListener {
-            askConfirmationAndDropQuest(questID)
-        }
-
-        findViewById<Button>(R.id.submit_proof).setOnClickListener {
-            openSelectingImageActivity()
-        }
-
-        changeDroppingQuestProperty(false)
+        buttonsProgressController =
+                ViewProgressController(droppingProgress, dropQuestButton, submitProofButton)
 
         runGetProofsTask(questID)
     }
@@ -92,6 +90,16 @@ class QuestDetailsActivity : AppCompatActivity() {
         }
     }
 
+    @OnClick(R.id.drop_quest)
+    fun onDropQuestButtonClick() {
+        askConfirmationAndDropQuest(questID)
+    }
+
+    @OnClick(R.id.submit_proof)
+    fun onSubmitProofButtonClick() {
+        openSelectingImageActivity()
+    }
+
     private fun askConfirmationAndDropQuest(questID: Int) {
         AlertDialog.Builder(this)
             .setMessage(getString(R.string.dropping_quest_confirmation))
@@ -105,14 +113,6 @@ class QuestDetailsActivity : AppCompatActivity() {
             })
             .create()
             .show()
-    }
-
-    private fun changeDroppingQuestProperty(dropping: Boolean) {
-        droppingQuest = dropping
-
-        dropQuestButton.isEnabled = !dropping
-        dropQuestButton.visibility = if (dropping) GONE else VISIBLE
-        droppingProgress.visibility = if (!dropping) GONE else VISIBLE
     }
 
     private fun openSelectingImageActivity() {
@@ -181,31 +181,27 @@ class QuestDetailsActivity : AppCompatActivity() {
     }
 
     private fun runDropQuestTask(questID: Int) {
-        if (!droppingQuest) {
-            var success = false
+        var success = false
 
-            APIAsyncTask<Boolean>()
-                .doBefore {
-                    droppingQuest = true
-                    changeDroppingQuestProperty(true)
+        APIAsyncTask<Boolean>()
+            .doBefore {
+                buttonsProgressController.showProgress()
+            }
+            .request {
+                DefaultAPI.questAPI.dropQuest(questID)
+                success = true
+                true
+            }
+            .uiErrorView(UIErrorView.Builder().with(this)
+                .messageOnAPIFail(R.string.error_failed_dropping_quest)
+                .create())
+            .doAfter {
+                if (success) {
+                    finish()
                 }
-                .request {
-                    DefaultAPI.questAPI.dropQuest(questID)
-                    success = true
-                    true
-                }
-                .uiErrorView(UIErrorView.Builder().with(this)
-                    .messageOnAPIFail(R.string.error_failed_dropping_quest)
-                    .create())
-                .doAfter {
-                    if (success) {
-                        finish()
-                    }
-                    changeDroppingQuestProperty(false)
-                    droppingQuest = false
-                }
-                .execute()
-        }
+                buttonsProgressController.hideProgress()
+            }
+            .execute()
     }
 
     private fun runGetProofsTask(questID: Int) {
