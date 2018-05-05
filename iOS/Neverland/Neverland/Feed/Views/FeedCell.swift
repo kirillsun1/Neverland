@@ -10,8 +10,8 @@ import UIKit
 
 class FeedCell: UITableViewCell {
 
-    @IBOutlet weak var userNameLbl: UILabel!
-    @IBOutlet weak var questTitleLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var commentLbl: UILabel!
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var userAvatarView: UIImageView!
     @IBOutlet weak var ratingProgr: UIProgressView!
@@ -26,8 +26,8 @@ class FeedCell: UITableViewCell {
     }
     
     func fillWith(_ proof: Proof) {
-        self.userNameLbl.text = proof.proofer.nickname
-        self.questTitleLbl.text = proof.quest?.title ?? "Quest Title"
+        self.titleLbl.text = "\(proof.proofer.nickname) - \(proof.quest?.title ?? "Quest Title")"
+        self.commentLbl.text = proof.comment
         self.photoView.uploadImageFrom(url: proof.picPath)
         if let btn = self.segueButton {
             btn.tag = proof.proofer.id

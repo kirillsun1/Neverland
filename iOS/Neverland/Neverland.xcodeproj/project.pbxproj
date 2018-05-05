@@ -34,7 +34,6 @@
 		176E63312035C71F00DCAC3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */; };
 		177882B5207D5A7C0088AF95 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177882B4207D5A7C0088AF95 /* Group.swift */; };
 		177882B8207D5B0D0088AF95 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177882B7207D5B0D0088AF95 /* GroupCell.swift */; };
-		178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EEC812053E9B800D9EBCC /* FloatingButton.swift */; };
 		179F4C3B2059A2C10084E095 /* ProofSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */; };
 		17A56BE82034640A00A4FC72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A56BE72034640A00A4FC72 /* AppDelegate.swift */; };
 		17A56BEF2034640A00A4FC72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A56BED2034640A00A4FC72 /* Main.storyboard */; };
@@ -117,7 +116,6 @@
 		176E63302035C71F00DCAC3F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		177882B4207D5A7C0088AF95 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		177882B7207D5B0D0088AF95 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		178EEC812053E9B800D9EBCC /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		179F4C3A2059A2C10084E095 /* ProofSubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProofSubmitViewController.swift; sourceTree = "<group>"; };
 		17A56BE42034640A00A4FC72 /* Neverland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neverland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A56BE72034640A00A4FC72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 		17A56C19203464A500A4FC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				178EEC812053E9B800D9EBCC /* FloatingButton.swift */,
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
@@ -866,7 +863,6 @@
 				177882B8207D5B0D0088AF95 /* GroupCell.swift in Sources */,
 				1735D219207A7CD60011A095 /* UserInfo.swift in Sources */,
 				17E15A8B20382A2500027634 /* QuestInfoCell.swift in Sources */,
-				178EEC822053E9B800D9EBCC /* FloatingButton.swift in Sources */,
 				17FD09CD207D579700B4A2C7 /* SearchGroupViewController.swift in Sources */,
 				17ADF27820402FCE0061BA47 /* String+Extension.swift in Sources */,
 				17E6B5F4204585CC002EC1D2 /* BorderedTextView.swift in Sources */,
