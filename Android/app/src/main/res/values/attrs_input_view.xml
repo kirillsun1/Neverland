@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="InputView">
+        <attr name="inputBoxIcon" format="reference" />
+        <attr name="inputBoxFontColor" format="color" />
+        <attr name="inputBoxText" format="string" />
+        <attr name="inputBoxHint" format="string" />
+    </declare-styleable>
+</resources>
