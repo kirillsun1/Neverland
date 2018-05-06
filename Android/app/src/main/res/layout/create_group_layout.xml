@@ -43,6 +43,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="end">
 
                 <Button
@@ -57,6 +58,8 @@
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:text="Create" />
 
             </LinearLayout>

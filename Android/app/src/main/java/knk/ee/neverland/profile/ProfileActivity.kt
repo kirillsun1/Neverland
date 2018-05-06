@@ -16,7 +16,8 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.mindorks.placeholderview.PlaceHolderView
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
@@ -115,8 +116,9 @@ class ProfileActivity : AppCompatActivity() {
     private fun loadUserAvatar(user: User) {
         Glide.with(applicationContext)
             .load(user.avatarLink)
-            .transition(DrawableTransitionOptions.withCrossFade(resources.getInteger(
-                R.integer.feed_fade_animation_duration)))
+            .apply(RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.no_avatar))
             .into(findViewById(R.id.profile_user_avatar))
     }
 

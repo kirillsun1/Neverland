@@ -18,10 +18,12 @@ import com.mindorks.placeholderview.annotations.View
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Proof
+import knk.ee.neverland.models.Rating
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.profile.ProfileActivity
+import knk.ee.neverland.utils.UIErrorView
 
-@Layout(R.layout.feed_element)
+@Layout(R.layout.proof_card)
 class ProofCard(private val context: Context, private val proof: Proof) {
     @View(R.id.user_avatar)
     lateinit var userAvatar: CircularImageView
@@ -55,7 +57,7 @@ class ProofCard(private val context: Context, private val proof: Proof) {
         proofComment.visibility = shouldCommentBeVisible()
         proofComment.text = proof.comment
 
-        // ratingBar.progress = proof.rating.intValue() // TODO: rating
+        updateRating(proof.rating)
 
         loadAvatar()
         loadProofImage()
@@ -73,21 +75,29 @@ class ProofCard(private val context: Context, private val proof: Proof) {
 
     @Click(R.id.feed_rating_plus)
     fun voteForProof() {
-        APIAsyncTask<Boolean>()
-            .request {
-                DefaultAPI.voteAPI.voteFor(proof.id)
-                true
-            }
+        APIAsyncTask<Rating>()
+            .doBefore { blockRatingButtons() }
+            .request { DefaultAPI.voteAPI.voteFor(proof.id) }
+            .handleResult { updateRating(it) }
+            .uiErrorView(UIErrorView.Builder()
+                .messageOnAPIFail(R.string.failed_to_update_rating)
+                .with(context)
+                .create())
+            .doAfter { blockRatingButtons() }
             .execute()
     }
 
     @Click(R.id.feed_rating_minus)
     fun voteAgainstProof() {
-        APIAsyncTask<Boolean>()
-            .request {
-                DefaultAPI.voteAPI.voteAgainst(proof.id)
-                true
-            }
+        APIAsyncTask<Rating>()
+            .doBefore { blockRatingButtons() }
+            .request { DefaultAPI.voteAPI.voteAgainst(proof.id) }
+            .handleResult { updateRating(it) }
+            .uiErrorView(UIErrorView.Builder()
+                .messageOnAPIFail(R.string.failed_to_update_rating)
+                .with(context)
+                .create())
+            .doAfter { blockRatingButtons() }
             .execute()
     }
 
@@ -104,7 +114,7 @@ class ProofCard(private val context: Context, private val proof: Proof) {
         Glide.with(context)
             .load(proof.sender.avatarLink)
             .apply(RequestOptions()
-                .placeholder(R.drawable.logo)
+                .placeholder(R.drawable.no_avatar)
                 .diskCacheStrategy(DiskCacheStrategy.ALL))
             .into(userAvatar)
     }
@@ -117,5 +127,17 @@ class ProofCard(private val context: Context, private val proof: Proof) {
                 R.integer.feed_fade_animation_duration)))
             .thumbnail(0.1f)
             .into(proofImage)
+    }
+
+    private fun blockRatingButtons() {
+        voteForButton.isEnabled = false
+        voteAgainstButton.isEnabled = false
+    }
+
+    private fun updateRating(rating: Rating) {
+        ratingBar.progress = rating.intValue()
+
+        voteForButton.isEnabled = rating.myVoteIsAgainst()
+        voteAgainstButton.isEnabled = rating.myVoteIsFor()
     }
 }

@@ -72,7 +72,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
                 android:padding="10dp"
-                android:text="hhk"
                 android:textColor="@color/background" />
 
             <LinearLayout

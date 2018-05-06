@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Group
@@ -71,9 +70,7 @@ class GroupsListAdapter(val context: Context) : BaseAdapter() {
                 .load(group.admin.avatarLink)
                 .apply(RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.logo))
-                .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
-                    R.integer.feed_fade_animation_duration)))
+                    .placeholder(R.drawable.no_avatar))
                 .into(groupAvatar)
         }
     }

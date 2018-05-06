@@ -106,7 +106,7 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
             Glide.with(context)
                 .load(quest.author.avatarLink)
                 .apply(RequestOptions()
-                    .placeholder(R.drawable.logo)
+                    .placeholder(R.drawable.no_avatar)
                     .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade(context.resources.getInteger(
                     R.integer.feed_fade_animation_duration)))

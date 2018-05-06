@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import knk.ee.neverland.models.Group
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
+import knk.ee.neverland.models.Rating
 
 class NeverlandAPIResponses {
     data class IsKeyActiveResponse(
@@ -45,5 +46,10 @@ class NeverlandAPIResponses {
         val code: Int,
         @SerializedName("elements")
         val groups: List<Group>
+    )
+
+    data class VoteAPIResponse(
+        val code: Int,
+        val rating: Rating = Rating(1, 2, 0)
     )
 }

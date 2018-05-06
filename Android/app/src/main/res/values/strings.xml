@@ -121,5 +121,6 @@
     <string name="title_activity_create_group">Create group</string>
     <string name="creating_group_confirmation">Are you sure you want to create group?</string>
     <string name="groups_fragment_title">Groups</string>
+    <string name="failed_to_update_rating">Failed to update rating</string>
 
 </resources>
