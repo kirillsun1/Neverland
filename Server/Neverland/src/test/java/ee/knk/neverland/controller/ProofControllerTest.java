@@ -1,10 +1,8 @@
 package ee.knk.neverland.controller;
 
 import ee.knk.neverland.entity.Quest;
-import ee.knk.neverland.entity.Token;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.ProofService;
-import ee.knk.neverland.service.QuestService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +27,7 @@ public class ProofControllerTest {
     @Mock
     private ProofService proofService;
     @Mock
-    private QuestService questService;
+    private QuestController questController;
     @Mock
     private TakenQuestController takenQuestController;
     @Mock
@@ -43,14 +40,14 @@ public class ProofControllerTest {
     @Mock
     private User user;
     @Mock
-    Quest quest;
+    private Quest quest;
     private String token = "dummy";
 
     @Before
     public void before() {
-        when(questService.getQuestById(0L)).thenReturn(quest);
+        when(questController.getQuestById(0L)).thenReturn(quest);
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
-        when(proofService.getUsersProofs(user)).thenReturn(new ArrayList());
+        when(proofService.getUsersProofs(user)).thenReturn(new ArrayList<>());
         when(userController.getUserById(0L)).thenReturn(user);
         when(proofService.getProofById(0L)).thenReturn(Optional.empty());
     }
@@ -59,7 +56,7 @@ public class ProofControllerTest {
     @Test
     public void addProofAsksForQuest() {
         proofController.addProof(0L, user, "dummy", "dummy");
-        verify(questService).getQuestById(0L);
+        verify(questController).getQuestById(0L);
     }
 
     @Test
@@ -107,7 +104,7 @@ public class ProofControllerTest {
     @Test
     public void getQuestsProofsAsksForQuest() {
         proofController.getQuestsProofs(token, 0L);
-        verify(questService).getQuestById(0L);
+        verify(questController).getQuestById(0L);
     }
 
     @Test
