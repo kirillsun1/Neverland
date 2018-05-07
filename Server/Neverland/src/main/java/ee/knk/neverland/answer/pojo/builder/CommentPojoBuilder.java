@@ -4,6 +4,7 @@ import ee.knk.neverland.answer.pojo.CommentPojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CommentPojoBuilder {
     private CommentPojo commentPojo = new CommentPojo();
@@ -24,7 +25,8 @@ public class CommentPojoBuilder {
     }
 
     public CommentPojoBuilder withCreateTime(LocalDateTime time) {
-        commentPojo.setCreateTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        commentPojo.setCreateTime(time.format(formatter));
         return this;
     }
 

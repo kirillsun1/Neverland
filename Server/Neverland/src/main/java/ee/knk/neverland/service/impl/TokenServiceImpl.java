@@ -42,11 +42,6 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public boolean isValid(String tokenValue) {
-        return tokenRepository.isValid(tokenValue).isPresent();
-    }
-
-    @Override
     public Optional<User> getTokenUser(String value) {
         return tokenRepository.getTokenUser(value);
     }

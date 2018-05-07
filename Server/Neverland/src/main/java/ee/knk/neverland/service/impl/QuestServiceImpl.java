@@ -45,4 +45,5 @@ public class QuestServiceImpl implements QuestService {
     public List<Quest> getAuthorsQuests(User author) {
         return questRepository.getAuthorsQuests(author);
     }
+
 }

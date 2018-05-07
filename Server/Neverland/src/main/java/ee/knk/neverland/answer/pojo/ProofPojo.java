@@ -14,7 +14,7 @@ public class ProofPojo implements Pojo {
     private QuestPojo quest;
     private UserPojo proofer;
     @SerializedName("add_time")
-    private LocalDateTime time;
+    private String time;
     @SerializedName("rating")
     private RatingPojo rating;
     @SerializedName("my_vote")

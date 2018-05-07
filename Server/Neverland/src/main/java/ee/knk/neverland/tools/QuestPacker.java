@@ -12,7 +12,7 @@ import java.util.List;
 
 public class QuestPacker {
 
-    QuestPojo packQuest(Quest pointer) {
+    QuestPojoBuilder packQuest(Quest pointer) {
         UserPacker userPacker = new UserPacker();
         UserPojo author = userPacker.packUser(pointer.getUser());
         QuestPojoBuilder builder = new QuestPojoBuilder();
@@ -20,18 +20,16 @@ public class QuestPacker {
                 .withId(pointer.getId())
                 .withTitle(pointer.getTitle())
                 .withDescription(pointer.getDescription())
-                .withAuthor(author)
-                .withAddingTime(pointer.getTime())
-                .getQuestPojo();
+                .withAuthor(author);
     }
 
     public List<Pojo> packMyQuests(List<TakenQuest> takenQuests) {
         List<Pojo> packedQuests = new ArrayList<>();
         for (TakenQuest pointer : takenQuests) {
             Quest quest = pointer.getQuest();
-            QuestPojo neededData = packQuest(quest);
-            neededData.setTakenTime(pointer.getTimeQuestTaken());
-            packedQuests.add(neededData);
+            QuestPojoBuilder neededData = packQuest(quest);
+            neededData.withAddingTime(pointer.getTimeQuestTaken());
+            packedQuests.add(neededData.getQuestPojo());
         }
         return packedQuests;
     }
@@ -39,7 +37,7 @@ public class QuestPacker {
     public List<Pojo> packAllQuests(List<Quest> quests) {
         List<Pojo> packedQuests = new ArrayList<>();
         for (Quest quest : quests) {
-            packedQuests.add(packQuest(quest));
+            packedQuests.add(packQuest(quest).getQuestPojo());
         }
         return packedQuests;
     }

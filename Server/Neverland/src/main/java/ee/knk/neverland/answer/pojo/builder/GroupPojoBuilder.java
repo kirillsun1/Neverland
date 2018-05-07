@@ -5,6 +5,7 @@ import ee.knk.neverland.answer.pojo.GroupPojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class GroupPojoBuilder {
     private GroupPojo groupPojo = new GroupPojo();
@@ -35,7 +36,8 @@ public class GroupPojoBuilder {
     }
 
     public GroupPojoBuilder withTime(LocalDateTime time) {
-        groupPojo.setCreateTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        groupPojo.setCreateTime(time.format(formatter));
         return this;
     }
 

@@ -6,6 +6,7 @@ import ee.knk.neverland.answer.pojo.RatingPojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ProofPojoBuilder {
     private ProofPojo proofPojo = new ProofPojo();
@@ -36,20 +37,17 @@ public class ProofPojoBuilder {
     }
 
     public ProofPojoBuilder withTime(LocalDateTime time) {
-        proofPojo.setTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        proofPojo.setTime(time.format(formatter));
         return this;
     }
 
-    public ProofPojoBuilder withRating(int positiveRating, int  negativeRating) {
-        RatingPojo rating = new RatingPojo(positiveRating, negativeRating);
+    public ProofPojoBuilder withRating(int positiveRating, int  negativeRating, int myVote) {
+        RatingPojo rating = new RatingPojo(positiveRating, negativeRating, myVote);
         proofPojo.setRating(rating);
         return this;
     }
 
-    public ProofPojoBuilder withMyVote(int vote) {
-        proofPojo.setMyVote(vote);
-        return this;
-    }
     public ProofPojo getProofPojo() {
         return proofPojo;
     }

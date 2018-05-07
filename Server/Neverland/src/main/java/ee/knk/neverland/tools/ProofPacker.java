@@ -26,7 +26,7 @@ public class ProofPacker {
 
     public ProofPojo packProof(Proof pointer) {
         UserPojo proofer = userPacker.packUser(pointer.getUser());
-        QuestPojo quest = questPacker.packQuest(pointer.getQuest());
+        QuestPojo quest = questPacker.packQuest(pointer.getQuest()).getQuestPojo();
         ProofPojoBuilder builder = new ProofPojoBuilder();
         return builder
                 .withId(pointer.getId())
@@ -35,8 +35,9 @@ public class ProofPacker {
                 .withPicturePath(pointer.getPicturePath())
                 .withQuest(quest)
                 .withTime(pointer.getTime())
-                .withRating(voteController.getProofPositiveRating(pointer), voteController.getProofNegativeRating(pointer))
-                .withMyVote(voteController.getUsersVote(me, pointer))
+                .withRating(voteController.getProofPositiveRating(pointer),
+                        voteController.getProofNegativeRating(pointer),
+                        voteController.getUsersVote(me, pointer))
                 .getProofPojo();
     }
 

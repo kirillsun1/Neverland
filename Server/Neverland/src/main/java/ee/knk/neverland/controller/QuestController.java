@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ee.knk.neverland.constants.Constants;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Stream;
 
 @RestController
 public class QuestController {
@@ -106,6 +106,15 @@ public class QuestController {
         return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getGroupQuests(group.get()))));
     }
 
+    List<Quest> getQuestsFromGroups(List<PeopleGroup> groups) {
+        List<Quest> quests = new ArrayList<>();
+        groups.forEach(group -> quests.addAll(questService.getGroupQuests(group)));
+        if (quests.size() > 0) {
+            quests.sort(Comparator.comparingLong(Quest::getId));
+            Collections.reverse(quests);
+        }
+        return quests;
+    }
 
     List<Quest> getQuests() {
         return questService.getQuests();

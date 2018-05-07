@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SubscriptionRepository  extends JpaRepository<Subscription, Long> {
     @Query("DELETE FROM Subscription subscription WHERE subscription.user = :user AND subscription.peopleGroup = :peopleGroup")
@@ -21,4 +22,8 @@ public interface SubscriptionRepository  extends JpaRepository<Subscription, Lon
 
     @Query("SELECT Count(ALL subsription) FROM Subscription subsription WHERE subsription.peopleGroup = :peopleGroup")
     int countGroupSubscribers(@Param("peopleGroup") PeopleGroup peopleGroup);
+
+    @Query("SELECT subscription FROM Subscription subscription WHERE subscription.user = :user AND subscription.peopleGroup = :peopleGroup")
+    Optional<Object> getUsersSubscription(@Param("user") User user, @Param("peopleGroup") PeopleGroup peopleGroup);
+
 }

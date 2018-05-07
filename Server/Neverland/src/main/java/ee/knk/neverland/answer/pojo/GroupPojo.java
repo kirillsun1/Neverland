@@ -17,6 +17,6 @@ public class GroupPojo implements Pojo {
     @SerializedName("quantity")
     private int quantity;
     @SerializedName("creation_time")
-    private LocalDateTime createTime;
+    private String createTime;
 
 }

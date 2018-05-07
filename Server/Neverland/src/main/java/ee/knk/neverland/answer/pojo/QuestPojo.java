@@ -14,7 +14,7 @@ public class QuestPojo implements Pojo {
     @SerializedName("author")
     private UserPojo author;
     @SerializedName("time_created")
-    private LocalDateTime addingTime;
+    private String addingTime;
     @SerializedName("time_taken")
-    private LocalDateTime takenTime;
+    private String takenTime;
 }

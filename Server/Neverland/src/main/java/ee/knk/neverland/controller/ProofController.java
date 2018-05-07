@@ -4,47 +4,52 @@ import com.google.gson.Gson;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.ProofService;
 import ee.knk.neverland.tools.ProofPacker;
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import javax.lang.model.element.PackageElement;
+import java.util.*;
 
 @RestController
 public class ProofController {
     private final TokenController tokenController;
     private final ProofService proofService;
-    private final QuestService questService;
+    private final QuestController questController;
     private final TakenQuestController takenQuestController;
     private final UserController userController;
     private final VoteController voteController;
+    private final SubscriptionController subscriptionController;
     private Gson gson = new Gson();
 
     @Autowired
     public ProofController(TokenController tokenController,
                            ProofService proofService,
-                           QuestService questService,
+                           QuestController questService,
                            UserController userController,
                            TakenQuestController takenQuestController,
-                           VoteController voteController) {
+                           VoteController voteController,
+                           SubscriptionController subscriptionController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
-        this.questService = questService;
+        this.questController = questService;
         this.takenQuestController = takenQuestController;
         this.userController = userController;
         this.voteController = voteController;
+        this.subscriptionController = subscriptionController;
     }
 
     void addProof(Long questId, User user, String path, String comment) {
-        Quest quest = questService.getQuestById(questId);
+        Quest quest = questController.getQuestById(questId);
         proofService.addProof(new Proof(user, quest, path, comment));
         takenQuestController.archiveTakenQuest(quest, user);
     }
@@ -79,7 +84,7 @@ public class ProofController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<Proof> proofs = proofService.getQuestsProofs(questService.getQuestById(questId));
+        List<Proof> proofs = proofService.getQuestsProofs(questController.getQuestById(questId));
         ProofPacker packer = new ProofPacker(voteController, user.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
@@ -108,6 +113,24 @@ public class ProofController {
         }
         ProofPacker packer = new ProofPacker(voteController, user.get());
         return gson.toJson(packer.packProof(proof.get()));
+    }
+
+    @RequestMapping(value = "/getMyGroupsProofs")
+    public String getMyGroupsProofs(@RequestParam(value = "token") String token) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        List<PeopleGroup> myGroups = subscriptionController.findUsersGroups(user.get());
+        List<Quest> quests = questController.getQuestsFromGroups(myGroups);
+        List<Proof> proofs = new ArrayList<>();
+        quests.forEach(quest -> proofs.addAll(proofService.getQuestsProofs(quest)));
+        if (proofs.size() > 0) {
+            proofs.sort(Comparator.comparingLong(Proof::getId));
+            Collections.reverse(proofs);
+        }
+        ProofPacker packer = new ProofPacker(voteController, user.get());
+        return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
     Optional<Proof> getProofById(Long id) {

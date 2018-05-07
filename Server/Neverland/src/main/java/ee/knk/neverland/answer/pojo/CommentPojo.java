@@ -13,6 +13,6 @@ public class CommentPojo implements Pojo {
     @SerializedName("author")
     private UserPojo author;
     @SerializedName("creation_time")
-    private LocalDateTime createTime;
+    private String createTime;
 
 }

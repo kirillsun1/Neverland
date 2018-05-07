@@ -20,8 +20,8 @@ class TokenController {
         this.tokenService = tokenService;
     }
 
-    boolean isValid(String token) {
-        return tokenService.isValid(token);
+    Optional<User> isValid(String token) {
+        return tokenService.getTokenUser(token);
 
     }
 

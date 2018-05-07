@@ -1,5 +1,6 @@
 package ee.knk.neverland.repository;
 
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;

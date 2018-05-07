@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class TakenQuestController {
@@ -83,22 +84,11 @@ public class TakenQuestController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<Quest> quests = questController.getQuests();
+        List<Quest> allQuests = questController.getQuests();
         QuestPacker packer = new QuestPacker();
-        List<Quest> needed = getNewQuests(quests, user.get());
-        return gson.toJson(new ListAnswer(packer.packAllQuests(needed)));
-    }
-
-    private List<Quest> getNewQuests(List<Quest> allQuests, User user) {
-        List<Quest> questsITook = takenQuestsService.getAllQuestsUserTook(user);
-        List<Quest> notMyQuests = new ArrayList<>();
-        for(Quest quest : allQuests) {
-            if (questsITook.contains(quest) ) {
-                continue;
-            }
-            notMyQuests.add(quest);
-        }
-        return notMyQuests;
+        List<Quest> questsITook = takenQuestsService.getAllQuestsUserTook(user.get());
+        List<Quest> notMyQuests = allQuests.stream().filter(quest -> !questsITook.contains(quest)).collect(Collectors.toList());
+        return gson.toJson(new ListAnswer(packer.packAllQuests(notMyQuests)));
     }
 
     void archiveTakenQuest(Quest quest, User user) {

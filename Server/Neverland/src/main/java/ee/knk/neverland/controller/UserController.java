@@ -64,10 +64,8 @@ public class UserController {
 
     @RequestMapping(value="/tokenCheck")
     public StandardAnswer checkToken(@RequestParam(value="token") String token) {
-        if (tokenController.isValid(token)) {
-            return new StandardAnswer(Constants.SUCCEED);
-        }
-        return new StandardAnswer(Constants.FAILED);
+        Optional<User> user = tokenController.isValid(token);
+        return user.map(user1 -> new StandardAnswer(Constants.SUCCEED, user1.getId())).orElseGet(() -> new StandardAnswer(Constants.FAILED));
     }
 
     @RequestMapping(value="/getUsersInfo")

@@ -4,6 +4,7 @@ import ee.knk.neverland.answer.pojo.QuestPojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class QuestPojoBuilder {
     private QuestPojo questPojo = new QuestPojo();
@@ -29,12 +30,14 @@ public class QuestPojoBuilder {
     }
 
     public QuestPojoBuilder withAddingTime(LocalDateTime time) {
-        questPojo.setAddingTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        questPojo.setAddingTime(time.format(formatter));
         return this;
     }
 
     public QuestPojoBuilder withTakenTime(LocalDateTime time) {
-        questPojo.setTakenTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        questPojo.setTakenTime(time.format(formatter));
         return this;
     }
 

@@ -18,5 +18,5 @@ public class UserPojo implements Pojo {
     @SerializedName("avatar")
     public String avatar;
     @SerializedName("reg_time")
-    public LocalDateTime time;
+    public String time;
 }

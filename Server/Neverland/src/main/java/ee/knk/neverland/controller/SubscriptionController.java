@@ -40,8 +40,8 @@ public class SubscriptionController {
     }
 
     @RequestMapping(value = "/subscribe")
-    public String handleSubscribtion(@RequestParam(value = "token") String token,
-                            @RequestParam(value = "gid") Long groupId) {
+    public String handleSubscription(@RequestParam(value = "token") String token,
+                                     @RequestParam(value = "gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
@@ -80,7 +80,7 @@ public class SubscriptionController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<PeopleGroup> groups = subscriptionService.getUserGroups(user.get());
+        List<PeopleGroup> groups = findUsersGroups(user.get());
         GroupPacker packer = new GroupPacker(this);
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
     }
@@ -93,7 +93,7 @@ public class SubscriptionController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         User user = userController.getUserById(userId);
-        List<PeopleGroup> groups = subscriptionService.getUserGroups(user);
+        List<PeopleGroup> groups = findUsersGroups(user);
         GroupPacker packer = new GroupPacker(this);
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
     }
@@ -113,6 +113,7 @@ public class SubscriptionController {
         List<User> subscribers = subscriptionService.getGroupSubscribers(group.get());
         return gson.toJson(new ListAnswer(userPacker.packAllUsers(subscribers), Constants.SUCCEED));
     }
+    List<PeopleGroup> findUsersGroups(User me) { return subscriptionService.getUserGroups(me); }
 
     private Optional<PeopleGroup> findGroupById(Long id) {
         return groupService.findGroupById(id);

@@ -4,6 +4,7 @@ package ee.knk.neverland.answer.pojo.builder;
 import ee.knk.neverland.answer.pojo.UserPojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class UserPojoBuilder {
     private UserPojo userPojo = new UserPojo();
@@ -34,7 +35,8 @@ public class UserPojoBuilder {
     }
 
     public UserPojoBuilder withRegistrationTime(LocalDateTime time) {
-        userPojo.setTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        userPojo.setTime(time.format(formatter));
         return this;
     }
 
