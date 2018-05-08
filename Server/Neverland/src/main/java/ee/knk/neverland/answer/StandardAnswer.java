@@ -8,7 +8,7 @@ import lombok.Data;
 public class StandardAnswer {
     private Pojo body;
     private int code = Constants.SUCCEED;
-    private Long userId;
+    private Long uid;
 
     public StandardAnswer(Pojo body) {
         this.body = body;
@@ -25,7 +25,7 @@ public class StandardAnswer {
 
     public StandardAnswer(int code, Long userId) {
         this.code = code;
-        this.userId = userId;
+        this.uid = userId;
     }
 
     public boolean isSuccessful() {
