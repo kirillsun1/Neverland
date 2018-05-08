@@ -20,7 +20,8 @@ public class QuestPacker {
                 .withId(pointer.getId())
                 .withTitle(pointer.getTitle())
                 .withDescription(pointer.getDescription())
-                .withAuthor(author).withAddingTime(pointer.getTime());
+                .withAuthor(author)
+                .withAddingTime(pointer.getTime());
     }
 
     public List<Pojo> packMyQuests(List<TakenQuest> takenQuests) {
