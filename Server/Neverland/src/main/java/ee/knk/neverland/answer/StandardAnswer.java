@@ -27,8 +27,4 @@ public class StandardAnswer {
         this.code = code;
         this.uid = userId;
     }
-
-    public boolean isSuccessful() {
-        return code > 0;
-    }
 }

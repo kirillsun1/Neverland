@@ -59,7 +59,7 @@ public class UserController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         String token = tokenController.addKey(user.get());
-        return gson.toJson(new RegistrationAnswer(token));
+        return gson.toJson(new RegistrationAnswer(token, user.get().getId()));
     }
 
     @RequestMapping(value="/tokenCheck")
