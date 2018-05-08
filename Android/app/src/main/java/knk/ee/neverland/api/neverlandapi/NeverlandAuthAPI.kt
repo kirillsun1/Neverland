@@ -11,8 +11,8 @@ import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 import java.nio.charset.StandardCharsets
 
-class NeverlandAuthAPI : AuthAPI {
-    override fun attemptLogin(login: String, password: String): String {
+class NeverlandAuthAPI(private val gson: Gson) : AuthAPI {
+    override fun attemptLogin(login: String, password: String): Pair<String, Int> {
         val data = URLLinkBuilder(API_LINK, "login")
             .addParam("username", login)
             .addParam("password", encodePassword(password))
@@ -20,17 +20,17 @@ class NeverlandAuthAPI : AuthAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.AttemptLoginResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
         }
 
-        return responseObject.token
+        return Pair(responseObject.token, responseObject.id!!)
     }
 
-    override fun registerAccount(registrationData: RegistrationData): String {
+    override fun registerAccount(registrationData: RegistrationData): Pair<String, Int> {
         val data = URLLinkBuilder(API_LINK, "register")
             .addParam("username", registrationData.login)
             .addParam("password", encodePassword(registrationData.password))
@@ -41,27 +41,31 @@ class NeverlandAuthAPI : AuthAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.RegistrationResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
         }
 
-        return responseObject.token
+        return Pair(responseObject.token, responseObject.userID)
     }
 
-    override fun isTokenActive(token: String): Boolean {
+    override fun getUserID(token: String): Int {
         val data = URLLinkBuilder(API_LINK, "tokenCheck")
             .addParam("token", token)
             .finish()
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(data)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.IsKeyActiveResponse::class.java)
 
-        return responseObject.code == Constants.SUCCESS_CODE
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.userID
     }
 
     private fun encodePassword(password: String): String {

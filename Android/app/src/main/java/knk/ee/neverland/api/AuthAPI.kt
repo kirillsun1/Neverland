@@ -5,10 +5,10 @@ import knk.ee.neverland.exceptions.APIException
 
 interface AuthAPI {
     @Throws(APIException::class)
-    fun attemptLogin(login: String, password: String): String
+    fun attemptLogin(login: String, password: String): Pair<String, Int>
 
     @Throws(APIException::class)
-    fun registerAccount(registrationData: RegistrationData): String
+    fun registerAccount(registrationData: RegistrationData): Pair<String, Int>
 
-    fun isTokenActive(token: String): Boolean
+    fun getUserID(token: String): Int
 }

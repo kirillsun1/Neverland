@@ -9,7 +9,7 @@ import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 
-class NeverlandVoteAPI : VoteAPI {
+class NeverlandVoteAPI(private val gson: Gson) : VoteAPI {
     override var token: String = ""
 
     override fun voteFor(proofID: Int): Rating = vote(proofID, true)
@@ -27,13 +27,14 @@ class NeverlandVoteAPI : VoteAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.VoteAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
         }
 
+        println(responseObject.rating)
         return responseObject.rating
     }
 }

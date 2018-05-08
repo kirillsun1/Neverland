@@ -1,7 +1,7 @@
 package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
-import knk.ee.neverland.datetime.DateTime
+import org.joda.time.LocalDateTime
 
 data class Group(
     val id: Int,
@@ -13,5 +13,5 @@ data class Group(
     val quantity: Int,
 
     @SerializedName("creation_time")
-    val created: DateTime
+    val created: LocalDateTime
 )

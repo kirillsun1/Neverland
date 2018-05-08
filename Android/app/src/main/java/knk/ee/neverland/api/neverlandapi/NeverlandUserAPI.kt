@@ -13,7 +13,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-class NeverlandUserAPI : UserAPI {
+class NeverlandUserAPI(private val gson: Gson) : UserAPI {
     override var token: String = ""
 
     override fun getMyData(): User {
@@ -24,7 +24,7 @@ class NeverlandUserAPI : UserAPI {
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
         // TODO: ask to change api response
-        val responseObject = Gson().fromJson(responseBody, User::class.java)
+        val responseObject = gson.fromJson(responseBody, User::class.java)
 
         return responseObject
     }
@@ -38,7 +38,7 @@ class NeverlandUserAPI : UserAPI {
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
         // TODO: ask to change api response
-        val responseObject = Gson().fromJson(responseBody, User::class.java)
+        val responseObject = gson.fromJson(responseBody, User::class.java)
 
         return responseObject
     }
@@ -58,7 +58,7 @@ class NeverlandUserAPI : UserAPI {
 
         val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
 
-        val responseObj = Gson().fromJson(
+        val responseObj = gson.fromJson(
             responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java
         )

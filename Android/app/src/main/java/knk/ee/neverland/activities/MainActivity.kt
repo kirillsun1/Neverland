@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
+import knk.ee.neverland.auth.RegistrationActivity
+import knk.ee.neverland.auth.TokenChecker
 import knk.ee.neverland.feed.FeedFragment
 import knk.ee.neverland.groups.GroupsFragment
+import knk.ee.neverland.profile.ProfileActivity
 import knk.ee.neverland.quests.TakenQuestsFragment
 import knk.ee.neverland.search.SearchFragment
-import knk.ee.neverland.profile.ProfileActivity
 
 class MainActivity : AppCompatActivity() {
     enum class FragmentType {
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initializeBottomNavigationBar()
+
     }
 
     private fun initializeBottomNavigationBar() {

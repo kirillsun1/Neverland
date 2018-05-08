@@ -9,7 +9,7 @@ import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 
-class NeverlandGroupAPI : GroupAPI {
+class NeverlandGroupAPI(private val gson: Gson) : GroupAPI {
     override var token: String = ""
 
     override fun createGroup(groupName: String) {
@@ -20,7 +20,7 @@ class NeverlandGroupAPI : GroupAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -35,7 +35,7 @@ class NeverlandGroupAPI : GroupAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetGroupsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {

@@ -1,7 +1,7 @@
 package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
-import knk.ee.neverland.datetime.Date
+import org.joda.time.LocalDateTime
 
 data class Proof(
     val id: Int,
@@ -17,9 +17,8 @@ data class Proof(
     val sender: User,
 
     @SerializedName("add_time")
-    val dateSent: Date,
+    val dateSent: LocalDateTime,
 
-    @SerializedName("reting")
     var rating: Rating,
 
     @SerializedName("my_vote")

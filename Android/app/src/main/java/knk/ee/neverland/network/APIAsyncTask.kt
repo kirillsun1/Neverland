@@ -20,6 +20,8 @@ class APIAsyncTask<Result> {
 
     private var apiTask: APITask<Result>? = null
 
+    private var shouldStopIfRunning: Boolean = true
+
     fun doBefore(doBeforeMethod: SimpleMethod): APIAsyncTask<Result> {
         this.doBeforeMethod = doBeforeMethod
         return this
@@ -50,8 +52,15 @@ class APIAsyncTask<Result> {
         return this
     }
 
+    fun stopIfRunning(stopIfRunningValue: Boolean): APIAsyncTask<Result> {
+        this.shouldStopIfRunning = stopIfRunningValue
+        return this
+    }
+
     fun execute() {
-        stopIfRunning()
+        if (shouldStopIfRunning) {
+            stopIfRunning()
+        }
 
         doBeforeMethod?.invoke()
 

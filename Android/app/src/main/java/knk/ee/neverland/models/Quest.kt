@@ -1,7 +1,7 @@
 package knk.ee.neverland.models
 
 import com.google.gson.annotations.SerializedName
-import knk.ee.neverland.datetime.DateTime
+import org.joda.time.LocalDateTime
 
 data class Quest(
     val id: Int,
@@ -16,12 +16,10 @@ data class Quest(
     val author: User,
 
     @SerializedName("time_created")
-    val timeCreated: DateTime,
+    val timeCreated: LocalDateTime,
 
     @SerializedName("time_taken")
-    var timeTaken: DateTime?,
+    var timeTaken: LocalDateTime?,
 
     val groupID: Int
-) {
-    fun isTaken() = timeTaken != null
-}
+)

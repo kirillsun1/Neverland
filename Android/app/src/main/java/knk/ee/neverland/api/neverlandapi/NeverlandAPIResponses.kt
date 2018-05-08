@@ -8,17 +8,23 @@ import knk.ee.neverland.models.Rating
 
 class NeverlandAPIResponses {
     data class IsKeyActiveResponse(
-        val code: Int
+        val code: Int,
+        @SerializedName("uid")
+        val userID: Int
     )
 
     data class RegistrationResponse(
         val code: Int,
-        val token: String
+        val token: String,
+        @SerializedName("uid")
+        val userID: Int
     )
 
     data class AttemptLoginResponse(
         val code: Int,
-        val token: String
+        val token: String,
+        @SerializedName("uid")
+        val id: Int?
     )
 
     data class SimpleResponse(
@@ -50,6 +56,6 @@ class NeverlandAPIResponses {
 
     data class VoteAPIResponse(
         val code: Int,
-        val rating: Rating = Rating(1, 2, 0)
+        val rating: Rating
     )
 }

@@ -1,8 +1,8 @@
 package knk.ee.neverland.feed
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -15,6 +15,7 @@ import com.mindorks.placeholderview.annotations.Click
 import com.mindorks.placeholderview.annotations.Layout
 import com.mindorks.placeholderview.annotations.Resolve
 import com.mindorks.placeholderview.annotations.View
+import com.varunest.sparkbutton.SparkButton
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Proof
@@ -43,11 +44,17 @@ class ProofCard(private val context: Context, private val proof: Proof) {
     @View(R.id.rating_bar)
     lateinit var ratingBar: ProgressBar
 
-    @View(R.id.feed_rating_plus)
-    lateinit var voteForButton: Button
+    @View(R.id.vote_for)
+    lateinit var voteForButton: SparkButton
 
-    @View(R.id.feed_rating_minus)
-    lateinit var voteAgainstButton: Button
+    @View(R.id.vote_against)
+    lateinit var voteAgainstButton: SparkButton
+
+    @View(R.id.votes_for)
+    lateinit var votesFor: TextView
+
+    @View(R.id.votes_against)
+    lateinit var votesAgainst: TextView
 
     @Resolve
     fun onResolve() {
@@ -61,6 +68,9 @@ class ProofCard(private val context: Context, private val proof: Proof) {
 
         loadAvatar()
         loadProofImage()
+
+        // voteForButton.pressOnTouch(false)
+        // voteAgainstButton.pressOnTouch(false)
     }
 
     @Click(R.id.user_avatar)
@@ -73,31 +83,50 @@ class ProofCard(private val context: Context, private val proof: Proof) {
         openUserProfile()
     }
 
-    @Click(R.id.feed_rating_plus)
+    @Click(R.id.vote_for)
     fun voteForProof() {
-        APIAsyncTask<Rating>()
-            .doBefore { blockRatingButtons() }
-            .request { DefaultAPI.voteAPI.voteFor(proof.id) }
-            .handleResult { updateRating(it) }
-            .uiErrorView(UIErrorView.Builder()
-                .messageOnAPIFail(R.string.failed_to_update_rating)
-                .with(context)
-                .create())
-            .doAfter { blockRatingButtons() }
-            .execute()
+        AlertDialog.Builder(context)
+            .setTitle("Confirmation")
+            .setMessage("Are you sure you want to vote for the proof? The choice cannot be changed later!")
+            .setNegativeButton("No", { dialogInterface, _ ->
+                dialogInterface.cancel()
+            })
+            .setPositiveButton("Yes", { dialogInterface, _ ->
+                runChangeVoteTask { DefaultAPI.voteAPI.voteFor(proof.id) }
+                dialogInterface.dismiss()
+            })
+            .create()
+            .show()
     }
 
-    @Click(R.id.feed_rating_minus)
+    @Click(R.id.vote_against)
     fun voteAgainstProof() {
+        AlertDialog.Builder(context)
+            .setTitle("Confirmation")
+            .setMessage("Are you sure you want to vote against the proof? The choice cannot be changed later!")
+            .setNegativeButton("No", { dialogInterface, _ ->
+                dialogInterface.cancel()
+            })
+            .setPositiveButton("Yes", { dialogInterface, _ ->
+                runChangeVoteTask { DefaultAPI.voteAPI.voteAgainst(proof.id) }
+                dialogInterface.dismiss()
+            })
+            .create()
+            .show()
+    }
+
+    private fun runChangeVoteTask(changeVoteMethod: () -> Rating) {
         APIAsyncTask<Rating>()
             .doBefore { blockRatingButtons() }
-            .request { DefaultAPI.voteAPI.voteAgainst(proof.id) }
-            .handleResult { updateRating(it) }
+            .request(changeVoteMethod)
+            .handleResult {
+                updateRating(it)
+                proof.rating = it
+            }
             .uiErrorView(UIErrorView.Builder()
                 .messageOnAPIFail(R.string.failed_to_update_rating)
                 .with(context)
                 .create())
-            .doAfter { blockRatingButtons() }
             .execute()
     }
 
@@ -134,10 +163,26 @@ class ProofCard(private val context: Context, private val proof: Proof) {
         voteAgainstButton.isEnabled = false
     }
 
-    private fun updateRating(rating: Rating) {
+    private fun updateRating(rating: Rating, playVoteButtonAnimations: Boolean = true) {
         ratingBar.progress = rating.intValue()
 
-        voteForButton.isEnabled = rating.myVoteIsAgainst()
-        voteAgainstButton.isEnabled = rating.myVoteIsFor()
+        votesFor.text = rating.votesFor.toString()
+        votesAgainst.text = rating.votesAgainst.toString()
+
+        voteForButton.isEnabled = !rating.iVoted()
+        voteAgainstButton.isEnabled = !rating.iVoted()
+
+        voteForButton.isChecked = rating.myVoteIsFor()
+        voteAgainstButton.isChecked = rating.myVoteIsAgainst()
+
+        if (rating.iVoted() && playVoteButtonAnimations) {
+            if (rating.myVoteIsFor()) {
+                voteForButton.playAnimation()
+            }
+
+            if (rating.myVoteIsAgainst()) {
+                voteAgainstButton.playAnimation()
+            }
+        }
     }
 }

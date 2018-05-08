@@ -9,7 +9,7 @@ import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
 
-class NeverlandQuestAPI : QuestAPI {
+class NeverlandQuestAPI(private val gson: Gson) : QuestAPI {
     override var token: String = ""
 
     private val API_LINK = "http://vrot.bounceme.net:8080"
@@ -24,7 +24,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -40,7 +40,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -56,7 +56,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -72,7 +72,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetQuestAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -89,7 +89,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -106,7 +106,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -124,7 +124,7 @@ class NeverlandQuestAPI : QuestAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {

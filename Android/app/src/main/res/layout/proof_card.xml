@@ -1,5 +1,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp">
@@ -74,39 +75,86 @@
                 android:padding="10dp"
                 android:textColor="@color/background" />
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="40dp">
 
-                <Button
-                    android:id="@+id/feed_rating_plus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="That's it!"
-                    android:theme="@style/PrimaryFlatButton" />
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/vote_for"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sparkbutton_activeImage="@drawable/ic_thumb_up_clicked"
+                    app:sparkbutton_iconSize="24dp"
+                    app:sparkbutton_inActiveImage="@drawable/ic_thumb_up"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/darkBackground" />
 
-                <Button
-                    android:id="@+id/feed_rating_minus"
+                <TextView
+                    android:id="@+id/votes_for"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="It's fake!"
-                    android:theme="@style/PrimaryFlatButton" />
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="10K"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/vote_for"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/vote_against"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0"
+                    android:minWidth="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/votes_for"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sparkbutton_activeImage="@drawable/ic_thumb_down_clicked"
+                    app:sparkbutton_iconSize="24dp"
+                    app:sparkbutton_inActiveImage="@drawable/ic_thumb_down"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/darkBackground" />
+
+                <TextView
+                    android:id="@+id/votes_against"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/vote_against"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/rating_bar"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:progress="79"
                     android:progressDrawable="@drawable/feed_progress"
-                    android:visibility="visible" />
-
-            </LinearLayout>
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/votes_against"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
 

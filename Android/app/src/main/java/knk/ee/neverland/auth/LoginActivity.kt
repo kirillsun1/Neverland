@@ -53,7 +53,8 @@ class LoginActivity : AppCompatActivity() {
         if (resultCode == Constants.SUCCESS_CODE) {
             val token = data!!.getStringExtra("token")
             val login = data.getStringExtra("login")
-            saveUserdataToTheSystemSettings(login, token)
+            val userID = data.getIntExtra("uid", Int.MIN_VALUE)
+            saveUserdataToTheSystemSettings(login, token, userID)
             openMainActivityAndFinishThisActivity()
         }
     }
@@ -130,8 +131,8 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveUserdataToTheSystemSettings(login: String, token: String) {
-        DefaultAPI.setUserData(login, token)
+    private fun saveUserdataToTheSystemSettings(login: String, token: String, userId: Int) {
+        DefaultAPI.setUserData(login, token, userId)
 
         val sharedPreferences = getSharedPreferences(resources.getString(R.string.shared_pref_name),
             Context.MODE_PRIVATE)
@@ -148,11 +149,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun runUserLoginTask(login: String, password: String) {
-        APIAsyncTask<String>()
+        APIAsyncTask<Pair<String, Int>>()
             .doBefore { showProgress(true) }
             .request { DefaultAPI.authAPI.attemptLogin(login, password) }
             .handleResult {
-                saveUserdataToTheSystemSettings(login, it)
+                saveUserdataToTheSystemSettings(login, it.first, it.second)
                 openMainActivityAndFinishThisActivity()
             }
             .uiErrorView(UIErrorView.Builder().with(this)

@@ -1,39 +1,21 @@
 package knk.ee.neverland.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import knk.ee.neverland.R
-import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.auth.LoginActivity
-import knk.ee.neverland.network.APIAsyncTask
-import knk.ee.neverland.utils.UIErrorView
-import java.util.concurrent.atomic.AtomicBoolean
+import knk.ee.neverland.auth.TokenChecker
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        setUserDataFromSystemPreferences()
-
-        if (DefaultAPI.isKeySet()) {
-            runCheckTokenTask(DefaultAPI.userToken!!)
-        } else {
-            openLoginActivity()
-        }
-    }
-
-    private fun setUserDataFromSystemPreferences() {
-        val sharedPreferences = getSharedPreferences(resources
-            .getString(R.string.shared_pref_name), Context.MODE_PRIVATE)
-
-        val login = sharedPreferences.getString(resources.getString(R.string.auth_login_address), "")
-        val key = sharedPreferences.getString(resources.getString(R.string.auth_key_address), "")
-
-        DefaultAPI.setUserData(login, key)
+        TokenChecker(this)
+            .doIfTokenIsActive { openMainActivity() }
+            .doIfTokenIsNotActive { openLoginActivity() }
+            .checkToken()
     }
 
     private fun openLoginActivity() {
@@ -46,32 +28,5 @@ class SplashActivity : AppCompatActivity() {
         val mainIntent = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainIntent)
         finish()
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
-
-    private fun runCheckTokenTask(userToken: String) {
-        val tokenIsOK = AtomicBoolean(false)
-
-        APIAsyncTask<Boolean>()
-            .request {
-                tokenIsOK.set(DefaultAPI.authAPI.isTokenActive(userToken))
-                true
-            }
-            .doAfter {
-                if (!tokenIsOK.get()) {
-                    openLoginActivity()
-                    showToast(getString(R.string.error_invalid_token))
-                } else {
-                    openMainActivity()
-                }
-            }
-            .onError { openLoginActivity() }
-            .uiErrorView(UIErrorView.Builder()
-                .with(this)
-                .create())
-            .execute()
     }
 }

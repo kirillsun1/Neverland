@@ -184,13 +184,13 @@ class RegistrationActivity : AppCompatActivity() {
     private fun runRegisterTask(registrationData: RegistrationData) {
         var success = false
 
-        APIAsyncTask<String>()
+        APIAsyncTask<Pair<String, Int>>()
             .request {
-                val token = DefaultAPI.authAPI.registerAccount(registrationData)
+                val tokenAndID = DefaultAPI.authAPI.registerAccount(registrationData)
                 success = true
-                token
+                tokenAndID
             }
-            .handleResult { DefaultAPI.setUserData(registrationData.login, it) }
+            .handleResult { DefaultAPI.setUserData(registrationData.login, it.first, it.second) }
             .uiErrorView(UIErrorView.Builder().with(this)
                 .messageOnAPIFail(R.string.error_incorrect_fields)
                 .create())

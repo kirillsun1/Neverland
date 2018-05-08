@@ -13,7 +13,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class NeverlandProofAPI : ProofAPI {
+class NeverlandProofAPI(private val gson: Gson) : ProofAPI {
     override var token: String = ""
 
     override fun submitProof(proof: ProofToSubmit) {
@@ -31,7 +31,7 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -46,7 +46,7 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetProofsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -64,7 +64,7 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetProofsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
@@ -82,7 +82,7 @@ class NeverlandProofAPI : ProofAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = Gson().fromJson(responseBody,
+        val responseObject = gson.fromJson(responseBody,
             NeverlandAPIResponses.GetProofsAPIResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
