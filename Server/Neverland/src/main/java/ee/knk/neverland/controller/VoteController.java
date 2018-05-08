@@ -42,6 +42,9 @@ public class VoteController {
         if (!proof.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
+        if (!voteService.ifUserCanVoteForProof(user.get(), proof.get())) {
+            return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
+        }
         Vote vote = new Vote(user.get(), proof.get(), value);
         voteService.addVote(vote);
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
