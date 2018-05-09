@@ -43,6 +43,7 @@ public class QuestControllerTest {
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
         when(groupController.findGroupById(1L)).thenReturn(Optional.empty());
         when(groupController.findGroupById(0L)).thenReturn(Optional.empty());
+        when(userController.getUserById(0L)).thenReturn(Optional.empty());
     }
 
     @Test
