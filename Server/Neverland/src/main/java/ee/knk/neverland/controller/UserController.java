@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.RegistrationAnswer;
 import ee.knk.neverland.entity.User;
+import ee.knk.neverland.service.FollowingService;
 import ee.knk.neverland.service.TokenService;
 import ee.knk.neverland.service.UserService;
 import ee.knk.neverland.tools.UserPacker;
@@ -22,13 +23,15 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
     private final TokenController tokenController;
+    private final FollowingController followingController;
     private Validator validator = new Validator();
     private Gson gson = new Gson();
 
     @Autowired
-    public UserController(UserService userService, TokenService tokenService) {
+    public UserController(UserService userService, TokenService tokenService, FollowingService  followingService) {
         this.userService = userService;
         this.tokenController = new TokenController(tokenService);
+        this.followingController = new FollowingController(followingService, this, tokenController);
     }
 
     @RequestMapping(value="/register")
@@ -39,12 +42,6 @@ public class UserController {
                            @RequestParam(value="secondname") String secondName) {
         if (!(validator.loginIsCorrect(username) && validator.emailIsCorrect(email) && validator.nameIsCorrect(firstName) && validator.nameIsCorrect(secondName))
                 || userService.existsWithUsernameOrEmail(username, email)) {
-            System.out.println(userService.existsWithUsernameOrEmail(username, email));
-            System.out.println(validator.loginIsCorrect(username));
-            System.out.println(validator.emailIsCorrect(email));
-            System.out.println(validator.nameIsCorrect(firstName));
-            System.out.println(validator.nameIsCorrect(secondName));
-
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         User user = userService.addUser(new User(username, password, email, firstName, secondName));
@@ -76,7 +73,11 @@ public class UserController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         UserPacker packer = new UserPacker();
-        return gson.toJson(packer.packUser(getUserById(id)));
+        Optional<User> toFind = getUserById(id);
+        if (!toFind.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+        }
+        return gson.toJson(packer.packDetailedUser(toFind.get(), followingController));
     }
 
     @RequestMapping(value="/getMyInfo")
@@ -86,14 +87,14 @@ public class UserController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         UserPacker packer = new UserPacker();
-        return gson.toJson(packer.packUser(user.get()));
+        return gson.toJson(packer.packDetailedUser(user.get(), followingController));
     }
 
     void setAvatar(Long id, String path) {
         userService.setAvatar(id, path);
     }
 
-    User getUserById(Long id) {
+    Optional<User> getUserById(Long id) {
         return userService.findUser(id);
     }
 }

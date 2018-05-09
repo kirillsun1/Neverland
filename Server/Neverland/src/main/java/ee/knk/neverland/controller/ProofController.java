@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.constants.Constants;
-import ee.knk.neverland.entity.PeopleGroup;
-import ee.knk.neverland.entity.Quest;
-import ee.knk.neverland.entity.Proof;
-import ee.knk.neverland.entity.User;
+import ee.knk.neverland.entity.*;
 import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.ProofService;
 import ee.knk.neverland.tools.ProofPacker;
@@ -29,6 +26,7 @@ public class ProofController {
     private final UserController userController;
     private final VoteController voteController;
     private final SubscriptionController subscriptionController;
+    private final FollowingController followingController;
     private Gson gson = new Gson();
 
     @Autowired
@@ -38,7 +36,8 @@ public class ProofController {
                            UserController userController,
                            TakenQuestController takenQuestController,
                            VoteController voteController,
-                           SubscriptionController subscriptionController) {
+                           SubscriptionController subscriptionController,
+                           FollowingController followingController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
         this.questController = questService;
@@ -46,6 +45,7 @@ public class ProofController {
         this.userController = userController;
         this.voteController = voteController;
         this.subscriptionController = subscriptionController;
+        this.followingController = followingController;
     }
 
     void addProof(Long questId, User user, String path, String comment) {
@@ -68,12 +68,16 @@ public class ProofController {
     @RequestMapping(value = "/getUsersProofs")
     public String getUsersProofs(@RequestParam(name = "token") String token,
                                  @RequestParam(name = "uid") Long id) {
-        Optional<User> user = tokenController.getTokenUser(token);
-        if (!user.isPresent()) {
+        Optional<User> me = tokenController.getTokenUser(token);
+        if (!me.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<Proof> proofs = proofService.getUsersProofs(userController.getUserById(id));
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        Optional<User> user = userController.getUserById(id);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+        }
+        List<Proof> proofs = proofService.getUsersProofs(user.get());
+        ProofPacker packer = new ProofPacker(voteController, me.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -130,6 +134,25 @@ public class ProofController {
             Collections.reverse(proofs);
         }
         ProofPacker packer = new ProofPacker(voteController, user.get());
+        return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
+    }
+
+    @RequestMapping(value = "/getMyFollowingsProofs")
+    public String getMyFollowingsProofs(@RequestParam(value = "token") String token) {
+        Optional<User> me = tokenController.getTokenUser(token);
+        if (!me.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        List<User> myFollowings = followingController.findUsersFollowings(me.get());
+        List<Quest> quests = questController.getQuestsFromUsers(myFollowings);
+        List<Proof> proofs = new ArrayList<>();
+        System.out.println(quests);
+        quests.forEach(quest -> proofs.addAll(proofService.getQuestsProofs(quest)));
+        if (proofs.size() > 0) {
+            proofs.sort(Comparator.comparingLong(Proof::getId));
+            Collections.reverse(proofs);
+        }
+        ProofPacker packer = new ProofPacker(voteController, me.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 

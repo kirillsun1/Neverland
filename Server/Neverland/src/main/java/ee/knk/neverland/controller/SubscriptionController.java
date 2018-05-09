@@ -5,6 +5,7 @@ import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.PeopleGroup;
+import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.Subscription;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.GroupService;
@@ -92,8 +93,11 @@ public class SubscriptionController {
         if (!me.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        User user = userController.getUserById(userId);
-        List<PeopleGroup> groups = findUsersGroups(user);
+        Optional<User> user = userController.getUserById(userId);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+        }
+        List<PeopleGroup> groups = findUsersGroups(user.get());
         GroupPacker packer = new GroupPacker(this);
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
     }
@@ -113,6 +117,10 @@ public class SubscriptionController {
         List<User> subscribers = subscriptionService.getGroupSubscribers(group.get());
         return gson.toJson(new ListAnswer(userPacker.packAllUsers(subscribers), Constants.SUCCEED));
     }
+
+
+
+
     List<PeopleGroup> findUsersGroups(User me) { return subscriptionService.getUserGroups(me); }
 
     private Optional<PeopleGroup> findGroupById(Long id) {

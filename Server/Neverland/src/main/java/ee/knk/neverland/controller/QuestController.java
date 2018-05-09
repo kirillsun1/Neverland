@@ -25,17 +25,23 @@ public class QuestController {
     private final TokenController tokenController;
     private final UserController userController;
     private final GroupController groupController;
+    private final SubscriptionController subscriptionController;
+    private final FollowingController followingController;
     private Gson gson = new Gson();
 
     @Autowired
     public QuestController(QuestService questService,
                            TokenController tokenController,
                            UserController userController,
-                           GroupController groupController) {
+                           GroupController groupController,
+                           SubscriptionController subscriptionController,
+                           FollowingController followingController) {
         this.questService = questService;
         this.tokenController = tokenController;
         this.userController = userController;
         this.groupController = groupController;
+        this.subscriptionController = subscriptionController;
+        this.followingController = followingController;
     }
 
     @RequestMapping(value="/submitQuest")
@@ -76,9 +82,12 @@ public class QuestController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        User author = userController.getUserById(userId);
+        Optional<User> author = userController.getUserById(userId);
+        if (!author.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
+        }
         QuestPacker packer = new QuestPacker();
-        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(author))));
+        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(author.get()))));
     }
 
     @RequestMapping(value="/getMySuggestedQuests")
@@ -106,6 +115,29 @@ public class QuestController {
         return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getGroupQuests(group.get()))));
     }
 
+    @RequestMapping(value = "/getMyGroupsQuests")
+    public String getMyGroupsQuests(@RequestParam(value = "token")String token) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        List<PeopleGroup> groups = subscriptionController.findUsersGroups(user.get());
+        List<Quest> quests = getQuestsFromGroups(groups);
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(new ListAnswer(packer.packAllQuests(quests)));
+    }
+
+    @RequestMapping(value = "/getMyFollowingsQuests")
+    public String getMyFollowingsQuests(@RequestParam(value = "token")String token) {
+        Optional<User> user = tokenController.getTokenUser(token);
+        if (!user.isPresent()) {
+            return gson.toJson(new StandardAnswer(Constants.FAILED));
+        }
+        List<Quest> quests = getQuestsFromUsers(followingController.findUsersFollowings(user.get()));
+        QuestPacker packer = new QuestPacker();
+        return gson.toJson(new ListAnswer(packer.packAllQuests(quests)));
+    }
+
     List<Quest> getQuestsFromGroups(List<PeopleGroup> groups) {
         List<Quest> quests = new ArrayList<>();
         groups.forEach(group -> quests.addAll(questService.getGroupQuests(group)));
@@ -116,6 +148,7 @@ public class QuestController {
         return quests;
     }
 
+
     List<Quest> getQuests() {
         return questService.getQuests();
     }
@@ -125,4 +158,13 @@ public class QuestController {
         return questService.getQuestById(id);
     }
 
+    public List<Quest> getQuestsFromUsers(List<User> users) {
+        List<Quest> quests = new ArrayList<>();
+        users.forEach(user -> quests.addAll(questService.getAuthorsQuests(user)));
+        if (quests.size() > 0) {
+            quests.sort(Comparator.comparingLong(Quest::getId));
+            Collections.reverse(quests);
+        }
+        return quests;
+    }
 }

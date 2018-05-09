@@ -8,15 +8,19 @@ import java.time.LocalDateTime;
 @Data
 public class UserPojo implements Pojo {
     @SerializedName("user_name")
-    public String username;
+    private String username;
     @SerializedName("first_name")
-    public String firstName;
+    private String firstName;
     @SerializedName("second_name")
-    public String secondName;
+    private String secondName;
     @SerializedName("u_id")
-    public Long id;
+    private Long id;
     @SerializedName("avatar")
-    public String avatar;
+    private String avatar;
     @SerializedName("reg_time")
-    public String time;
+    private String time;
+    @SerializedName("followers")
+    private int followers;
+    @SerializedName("followings")
+    private int followings;
 }

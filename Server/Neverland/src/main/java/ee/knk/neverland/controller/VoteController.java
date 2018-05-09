@@ -2,6 +2,8 @@ package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
 import ee.knk.neverland.answer.StandardAnswer;
+import ee.knk.neverland.answer.pojo.Pojo;
+import ee.knk.neverland.answer.pojo.RatingPojo;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.User;
@@ -31,7 +33,7 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/vote")
-    public String getAllProofs(@RequestParam(name = "token") String token,
+    public String vote(@RequestParam(name = "token") String token,
                                @RequestParam(name = "pid") Long proofId,
                                @RequestParam(name = "value") boolean value) {
         Optional<User> user = tokenController.getTokenUser(token);
@@ -47,7 +49,10 @@ public class VoteController {
         }
         Vote vote = new Vote(user.get(), proof.get(), value);
         voteService.addVote(vote);
-        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
+        RatingPojo rating = new RatingPojo(getProofPositiveRating(proof.get()),
+                getProofNegativeRating(proof.get()),
+                getUsersVote(user.get(), proof.get()));
+        return gson.toJson(new StandardAnswer(rating));
     }
 
     private Optional<Proof> getProofById(Long proofId) {

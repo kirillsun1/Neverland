@@ -48,7 +48,7 @@ public class ProofControllerTest {
         when(questController.getQuestById(0L)).thenReturn(quest);
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
         when(proofService.getUsersProofs(user)).thenReturn(new ArrayList<>());
-        when(userController.getUserById(0L)).thenReturn(user);
+        when(userController.getUserById(0L)).thenReturn(Optional.of(user));
         when(proofService.getProofById(0L)).thenReturn(Optional.empty());
     }
 

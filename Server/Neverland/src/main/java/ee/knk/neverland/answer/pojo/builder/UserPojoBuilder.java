@@ -40,6 +40,16 @@ public class UserPojoBuilder {
         return this;
     }
 
+    public UserPojoBuilder withFollowersAmount(int followersAmount) {
+        userPojo.setFollowers(followersAmount);
+        return this;
+    }
+
+    public UserPojoBuilder withFollowingsAmount(int followingsAmount) {
+        userPojo.setFollowings(followingsAmount);
+        return this;
+    }
+
     public UserPojo getUserPojo() {
         return userPojo;
     }

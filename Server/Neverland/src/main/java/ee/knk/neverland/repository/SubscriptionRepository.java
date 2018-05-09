@@ -4,13 +4,17 @@ import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Subscription;
 import ee.knk.neverland.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface SubscriptionRepository  extends JpaRepository<Subscription, Long> {
+    @Transactional
+    @Modifying
     @Query("DELETE FROM Subscription subscription WHERE subscription.user = :user AND subscription.peopleGroup = :peopleGroup")
     void unsubscribe(@Param("user") User user, @Param("peopleGroup") PeopleGroup peopleGroup);
 

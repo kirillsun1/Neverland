@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class RatingPojo {
+public class RatingPojo implements Pojo {
     public RatingPojo(int positiveRating, int negativeRating, int myVote) {
         this.positiveRating = positiveRating;
         this.negativeRating = negativeRating;
@@ -16,4 +16,9 @@ public class RatingPojo {
     private int negativeRating;
     @SerializedName("my_vote")
     private int myVote;
+
+    @Override
+    public Long getId() {
+        return 0L;
+    }
 }
