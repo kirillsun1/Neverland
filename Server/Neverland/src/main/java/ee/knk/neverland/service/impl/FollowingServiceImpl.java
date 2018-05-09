@@ -19,6 +19,9 @@ public class FollowingServiceImpl implements FollowingService {
     }
     @Override
     public Following follow(Following following) {
+        if (followingRepository.getUsersFollowing(following.getFollower(), following.getUser()).isPresent()) {
+            return following;
+        }
         return followingRepository.saveAndFlush(following);
     }
 
@@ -47,8 +50,4 @@ public class FollowingServiceImpl implements FollowingService {
         return followingRepository.countUserFollowings(user);
     }
 
-    @Override
-    public boolean ifExistsFollowing(User follower, User user) {
-        return false;
-    }
 }
