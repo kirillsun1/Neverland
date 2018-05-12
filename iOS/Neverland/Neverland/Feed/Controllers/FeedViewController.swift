@@ -71,7 +71,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // todo: Make that there are no space above&below pic
-        return self.view.frame.size.width + 25 + 45 + 6 + 4*2
+        let s = self.view.frame.size.width
+        return s + 40 + 45 + 6 + 4*2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

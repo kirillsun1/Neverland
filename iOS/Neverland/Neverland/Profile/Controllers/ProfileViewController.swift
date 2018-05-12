@@ -112,7 +112,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.mode == .proofs ? self.view.frame.size.width + 25 + 45 + 6 + 4*2 : 70
+        var  s = self.view.frame.size.width
+        s += 40 + 45 + 6 + 4*2
+        return self.mode == .proofs ? s : 70
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

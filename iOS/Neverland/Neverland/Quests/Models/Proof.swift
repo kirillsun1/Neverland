@@ -16,6 +16,7 @@ struct Proof {
     var comment: String
     var addTime: Time
     var quest: Quest?
+    var rating: Rating
     
     static func createProofsArray(from jsonArr: [NSDictionary]) -> [Proof] {
         var proofs = [Proof]()
@@ -24,9 +25,11 @@ struct Proof {
                 let comment = $0.value(forKey: "comment") as? String,
                 let id = $0.value(forKey: "id") as? Int,
                 let questJSON = $0.value(forKey: "quest") as? NSDictionary,
-                let proofer = Person(creatorData: ($0.value(forKey: "proofer") as? NSDictionary)) {
+                let proofer = Person(creatorData: ($0.value(forKey: "proofer") as? NSDictionary)),
+                let rating = Rating(json: $0.value(forKey: "rating") as? NSDictionary)
+                {
                     let time = Time(from: (($0.value(forKey: "add_time") as? NSDictionary)?.value(forKey: "date") as? NSDictionary))
-                    proofs.append(Proof(id: id, proofer: proofer, picPath: picPath, comment: comment, addTime: time, quest: Quest(fromJSON: questJSON)))
+                    proofs.append(Proof(id: id, proofer: proofer, picPath: picPath, comment: comment, addTime: time, quest: Quest(fromJSON: questJSON), rating: rating))
             }
         }
         return proofs
