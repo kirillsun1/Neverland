@@ -56,6 +56,7 @@ class NeverlandAPIResponses {
 
     data class VoteAPIResponse(
         val code: Int,
+        @SerializedName("body")
         val rating: Rating
     )
 }

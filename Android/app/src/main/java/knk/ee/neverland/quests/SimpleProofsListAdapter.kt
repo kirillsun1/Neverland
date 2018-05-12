@@ -68,6 +68,8 @@ class SimpleProofsListAdapter(val context: Context) : BaseAdapter() {
         fun loadFromProof(context: Context, proof: Proof) {
             questName.text = proof.quest.title
 
+            rating.progress = proof.rating.intValue()
+
             Glide.with(context)
                 .load(proof.imageLink)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))

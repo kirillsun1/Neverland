@@ -3,15 +3,17 @@ package knk.ee.neverland.feed
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Spinner
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mindorks.placeholderview.PlaceHolderView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
+import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
@@ -26,6 +28,8 @@ class FeedFragment : Fragment() {
 
     private var getProofsTask: APIAsyncTask<List<Proof>>? = null
 
+    private var selectedFeedScope: FeedScope = FeedScope.WORLD
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ButterKnife.bind(this, view)
@@ -38,9 +42,21 @@ class FeedFragment : Fragment() {
             runGetProofsTask(true)
         })
 
-        view.findViewById<Toolbar>(R.id.toolbar).title = getString(R.string.feed_fragment_title)
+        view.findViewById<Spinner>(R.id.feed_spinner)
+            .onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
 
-        runGetProofsTask(false)
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, p3: Long) {
+                selectedFeedScope = when (pos) {
+                    0 -> FeedScope.WORLD
+                    1 -> FeedScope.GROUPS
+                    2 -> FeedScope.FOLLOWING
+                    else -> FeedScope.WORLD
+                }
+                runGetProofsTask(false)
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +73,7 @@ class FeedFragment : Fragment() {
         if (getProofsTask == null) {
             getProofsTask = APIAsyncTask<List<Proof>>()
                 .doBefore { feedListSwipeLayout.isRefreshing = true && updating }
-                .request { DefaultAPI.proofAPI.getProofs() }
+                .request { DefaultAPI.proofAPI.getProofs(selectedFeedScope) }
                 .handleResult { result ->
                     feedList.removeAllViews()
                     result.forEach {

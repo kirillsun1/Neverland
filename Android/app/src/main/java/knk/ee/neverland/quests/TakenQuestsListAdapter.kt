@@ -8,6 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import knk.ee.neverland.R
 import knk.ee.neverland.models.Quest
+import org.joda.time.Interval
+import org.joda.time.LocalDateTime
+import org.joda.time.format.DateTimeFormat
 import java.util.*
 
 class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
@@ -56,7 +59,7 @@ class TakenQuestsListAdapter(val context: Context) : BaseAdapter() {
         fun loadFromQuest(context: Context, quest: Quest) {
             questName.text = quest.title
             questTimeTaken.text = context.getString(R.string.quest_taken_time_string)
-                .format(quest.timeTaken.toString())
+                .format(quest.timeTaken!!.toString(DateTimeFormat.longDateTime()))
         }
     }
 }

@@ -18,7 +18,7 @@ object DefaultAPI {
     var userLogin: String? = null
         private set
     var userID: Int? = null
-
+        private set
 
     val authAPI: AuthAPI
     val questAPI: QuestAPI
@@ -47,7 +47,7 @@ object DefaultAPI {
     fun isKeySet(): Boolean = userToken != null && userLogin != null
 
     fun setUserData(login: String, token: String, id: Int) {
-        if (!token.isEmpty() && !login.isEmpty()) {
+        if (!token.isEmpty() && !login.isEmpty() && userID == null) {
             userToken = token
             userLogin = login
             userID = id

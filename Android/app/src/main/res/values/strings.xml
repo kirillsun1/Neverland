@@ -42,6 +42,7 @@
 
     <string name="quest_author">Author: %s %s</string>
     <string name="quest_taken_time_string">Taken: %s</string>
+    <string name="quest_taken_time_from_now">(%d days ago)</string>
 
     <!-- Main menu options -->
     <string-array name="main_dropdown_menu_items">
@@ -122,5 +123,24 @@
     <string name="creating_group_confirmation">Are you sure you want to create group?</string>
     <string name="groups_fragment_title">Groups</string>
     <string name="failed_to_update_rating">Failed to update rating</string>
+    <string name="profile_completed_button">Completed</string>
+    <string name="profile_suggested_button">Suggested</string>
+    <string name="quest_author_label">Author:</string>
+    <string name="quest_created_date_label">Created:</string>
+    <string name="quest_description_label">Description:</string>
+    <string name="create_group_dialog_title">Create group</string>
+    <string name="create_group_dialog_length">Length should be between 10 and 40.</string>
+    <string name="create_group_dialog_cancel_button">Cancel</string>
+    <string name="create_group_dialog_confirm_button">Create</string>
+    <string name="quest_window_suggest_quest_button">Suggest quest</string>
+    <string name="quest_window_find_quest_button">Find quest</string>
+    <string name="profile_follow_button">Follow</string>
+    <string name="profile_rating_label">Rating</string>
+    <string name="profile_following_button">Following</string>
+    <string name="profile_followers_button">Followers</string>
+    <string name="profile_change_avatar_button">Change avatar</string>
+    <string name="vote_confirmation">Confirmation</string>
+    <string name="vote_for_confirmation_text">Are you sure you want to vote for the proof? The choice cannot be changed later!</string>
+    <string name="vote_against_confirmation_text">Are you sure you want to vote against the proof? The choice cannot be changed later!</string>
 
 </resources>

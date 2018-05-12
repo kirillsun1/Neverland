@@ -1,11 +1,8 @@
 package knk.ee.neverland.quests
 
-import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
@@ -16,9 +13,8 @@ import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.vansuita.pickimage.bundle.PickSetup
-import com.vansuita.pickimage.dialog.PickImageDialog
-import com.yalantis.ucrop.UCrop
+import com.tangxiaolv.telegramgallery.GalleryActivity
+import com.tangxiaolv.telegramgallery.GalleryConfig
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.SubmitProofActivity
 import knk.ee.neverland.api.DefaultAPI
@@ -27,11 +23,12 @@ import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.ViewProgressController
-import java.io.File
-import java.util.logging.Logger
+import pub.devrel.easypermissions.EasyPermissions
 
-class QuestDetailsActivity : AppCompatActivity() {
-    private val logger = Logger.getLogger(QuestDetailsActivity::class.java.simpleName)
+class QuestDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
+    private val SELECTING_IMAGE_REQUEST_CODE = 1200
+    private val REQUEST_PERMISSION_REQUEST_CODE = 1201
+    private val SELECTING_IMAGE_SUCCESS_RESULT_CODE = -1
 
     @BindView(R.id.drop_quest)
     lateinit var dropQuestButton: Button
@@ -73,20 +70,33 @@ class QuestDetailsActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (croppingProofSuccessful(resultCode, requestCode)) {
-            val resultUri = UCrop.getOutput(data!!)
-            openSubmittingProofActivity(resultUri!!.path)
-            logger.fine("Cropping successful: ${resultUri.path}")
-        }
-
-        if (croppingProofFailed(requestCode, resultCode)) {
-            showToast("${getString(R.string.crop_image_error)}: $resultCode")
-            logger.severe("Cropping failed with code [$resultCode]: ${UCrop.getError(data!!)}")
+        if (requestCode == SELECTING_IMAGE_REQUEST_CODE && resultCode == SELECTING_IMAGE_SUCCESS_RESULT_CODE) {
+            val photos = data!!.getSerializableExtra(GalleryActivity.PHOTOS) as List<*>
+            openSubmittingProofActivity(photos[0] as String)
         }
 
         if (proofIsSubmitted(requestCode, resultCode)) {
             showToast(getString(R.string.proof_submitted_message))
             finish()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        showToast("Permissions are not granted.")
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        if (requestCode == REQUEST_PERMISSION_REQUEST_CODE) {
+            println(perms)
+            openSelectingImageActivity()
+        } else {
+            showToast("Some permissions are not granted.")
         }
     }
 
@@ -115,47 +125,25 @@ class QuestDetailsActivity : AppCompatActivity() {
             .show()
     }
 
+
     private fun openSelectingImageActivity() {
-        val pickSetup = PickSetup()
+        if (EasyPermissions.hasPermissions(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        ) {
 
-        PickImageDialog
-            .build(pickSetup)
-            .setOnPickResult {
-                if (it.error == null) {
-                    startCroppingProof(it.path)
-                }
-            }
-            .setOnPickCancel { }
-            .show(this)
-    }
+            val galleryConfig = GalleryConfig.Build()
+                .singlePhoto(true)
+                .build()
 
-    private fun startCroppingProof(path: String) {
-        val options = UCrop.Options()
-
-        options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-
-        val colorPrimary = ContextCompat.getColor(this, R.color.colorPrimary)
-        options.setToolbarColor(colorPrimary)
-        options.setActiveWidgetColor(colorPrimary)
-        options.setToolbarTitle(getString(R.string.crop_image_title))
-
-        val proofImageFile = File(path)
-
-        val croppedImageFileName = getCroppedImagePath(path)
-        val croppedImageFile = File(croppedImageFileName)
-
-        logger.info("Trying to crop image [$path] to [$croppedImageFileName]")
-
-        UCrop.of(Uri.fromFile(proofImageFile), Uri.fromFile(croppedImageFile))
-            .withAspectRatio(1F, 1F)
-            .withOptions(options)
-            .start(this)
-    }
-
-    private fun getCroppedImagePath(path: String): String {
-        val pathToDir = path.substring(0, path.lastIndexOf("/") + 1)
-        val pathFormat = path.substring(path.lastIndexOf(".") + 1)
-        return "${pathToDir}neverland_proof${System.nanoTime()}.$pathFormat"
+            GalleryActivity.openActivity(this, SELECTING_IMAGE_REQUEST_CODE, galleryConfig)
+        } else {
+            EasyPermissions.requestPermissions(this,
+                "We need them to save cropped images",
+                REQUEST_PERMISSION_REQUEST_CODE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
     }
 
     private fun openSubmittingProofActivity(pathToImage: String) {
@@ -166,12 +154,6 @@ class QuestDetailsActivity : AppCompatActivity() {
 
         startActivityForResult(intent, Constants.SUBMITTING_PROOF_REQUEST_CODE)
     }
-
-    private fun croppingProofSuccessful(resultCode: Int, requestCode: Int) =
-        resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP
-
-    private fun croppingProofFailed(requestCode: Int, resultCode: Int) =
-        requestCode == UCrop.REQUEST_CROP && resultCode == UCrop.RESULT_ERROR
 
     private fun proofIsSubmitted(requestCode: Int, resultCode: Int): Boolean =
         requestCode == Constants.SUBMITTING_PROOF_REQUEST_CODE && resultCode == Constants.SUCCESS_CODE

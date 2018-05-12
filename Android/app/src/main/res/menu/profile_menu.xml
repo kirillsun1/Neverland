@@ -4,6 +4,6 @@
     <item
         android:id="@+id/change_avatar"
         android:icon="@drawable/ic_camera_24dp"
-        android:title="Change avatar"
+        android:title="@string/profile_change_avatar_button"
         app:showAsAction="always" />
 </menu>

@@ -20,6 +20,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
                 android:maxLines="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView

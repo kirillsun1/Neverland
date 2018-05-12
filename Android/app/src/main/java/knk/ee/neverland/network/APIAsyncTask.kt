@@ -9,6 +9,9 @@ typealias RequestMethod<T> = () -> T
 typealias HandleResultMethod<T> = (T) -> Unit
 
 class APIAsyncTask<Result> {
+    private var name: String? = null
+    private var group: String? = null
+
     private var doBeforeMethod: SimpleMethod? = null
     private var doAfterMethod: SimpleMethod? = null
     private var onErrorMethod: OnErrorMethod? = null
@@ -21,6 +24,12 @@ class APIAsyncTask<Result> {
     private var apiTask: APITask<Result>? = null
 
     private var shouldStopIfRunning: Boolean = true
+
+    fun toPool(name: String, group: String): APIAsyncTask<Result> {
+        this.name = name
+        this.group = group
+        return this
+    }
 
     fun doBefore(doBeforeMethod: SimpleMethod): APIAsyncTask<Result> {
         this.doBeforeMethod = doBeforeMethod

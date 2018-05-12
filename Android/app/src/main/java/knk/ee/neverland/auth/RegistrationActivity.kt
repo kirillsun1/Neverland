@@ -28,9 +28,9 @@ class RegistrationActivity : AppCompatActivity() {
     lateinit var firstNameBox: EditText
     @BindView(R.id.registration_second_name)
     lateinit var secondNameBox: EditText
-    @BindView(R.id.registration_agree_check)
-    lateinit var emailBox: EditText
     @BindView(R.id.registration_email)
+    lateinit var emailBox: EditText
+    @BindView(R.id.registration_agree_check)
     lateinit var agreeBox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {

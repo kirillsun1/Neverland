@@ -19,7 +19,7 @@
             android:background="@drawable/profile_follow_button"
             android:minHeight="30dp"
             android:padding="0dp"
-            android:text="Follow"
+            android:text="@string/profile_follow_button"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:visibility="visible" />
@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Rating"
+                    android:text="@string/profile_rating_label"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
@@ -45,7 +45,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Following"
+                    android:text="@string/profile_following_button"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
@@ -54,7 +54,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Followers"
+                    android:text="@string/profile_followers_button"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"

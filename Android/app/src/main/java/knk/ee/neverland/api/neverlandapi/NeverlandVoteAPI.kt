@@ -34,7 +34,6 @@ class NeverlandVoteAPI(private val gson: Gson) : VoteAPI {
             throw APIException(responseObject.code)
         }
 
-        println(responseObject.rating)
         return responseObject.rating
     }
 }

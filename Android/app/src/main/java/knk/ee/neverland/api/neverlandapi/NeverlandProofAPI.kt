@@ -1,6 +1,7 @@
 package knk.ee.neverland.api.neverlandapi
 
 import com.google.gson.Gson
+import knk.ee.neverland.api.FeedScope
 import knk.ee.neverland.api.ProofAPI
 import knk.ee.neverland.api.models.ProofToSubmit
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
@@ -39,8 +40,8 @@ class NeverlandProofAPI(private val gson: Gson) : ProofAPI {
         }
     }
 
-    override fun getProofs(): List<Proof> {
-        val link = URLLinkBuilder(API_LINK, "getAllProofs")
+    override fun getProofs(feedScope: FeedScope): List<Proof> {
+        val link = URLLinkBuilder(API_LINK, getProofURLForFeedScope(feedScope))
             .addParam("token", token)
             .finish()
 
@@ -55,6 +56,14 @@ class NeverlandProofAPI(private val gson: Gson) : ProofAPI {
 
         return responseObject.proofs
     }
+
+    private fun getProofURLForFeedScope(feedScope: FeedScope): String =
+        when (feedScope) {
+            FeedScope.WORLD -> "getAllProofs"
+            FeedScope.GROUPS -> "getMyGroupsProofs"
+            FeedScope.FOLLOWING -> "getMyFollowingsProofs"
+            else -> "getAllProofs"
+        }
 
     override fun getProofsByUserID(userID: Int): List<Proof> {
         val link = URLLinkBuilder(API_LINK, "getUsersProofs")
@@ -93,6 +102,19 @@ class NeverlandProofAPI(private val gson: Gson) : ProofAPI {
     }
 
     override fun getMyProofs(): List<Proof> {
-        return getProofs()
+        val link = URLLinkBuilder(API_LINK, "getMyProofs")
+            .addParam("token", token)
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetProofsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.proofs
     }
 }

@@ -4,12 +4,13 @@ object Constants {
     const val FAIL_CODE = -1
     const val SUCCESS_CODE = 1
 
+    const val QUEST_ALREADY_TAKEN_CODE = -2
+
     const val NETWORK_ERROR_CODE = -100
     const val BAD_REQUEST_TO_API_CODE = -101
     const val NETWORK_TIMEOUT: Int = -102
 
     const val SUBMITTING_PROOF_REQUEST_CODE = 1
-    const val SELECTING_PICTURE_REQUEST_CODE: Int = 2
 
     const val ELEMENT_NUMBER_TO_START_RECYCLING_FROM = 20
 

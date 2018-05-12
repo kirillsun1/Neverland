@@ -19,7 +19,8 @@ data class User(
     val avatarLink: String,
     val rating: Double,
     val following: Int,
-    val followers: Int
+    val followers: Int,
+    var iFollow: Boolean
 ) {
 
     override fun toString(): String {

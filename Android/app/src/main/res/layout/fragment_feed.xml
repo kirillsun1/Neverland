@@ -15,6 +15,13 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+        <Spinner
+            android:id="@+id/feed_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/main_dropdown_menu_items"
+            android:theme="@style/FeedSpinnerStyle"/>
+
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.SwipeRefreshLayout

@@ -11,4 +11,8 @@ interface UserAPI {
     fun getUserData(userID: Int): User
 
     fun uploadAvatar(file: File)
+
+    fun follow(userID: Int)
+
+    fun unfollow(userID: Int)
 }

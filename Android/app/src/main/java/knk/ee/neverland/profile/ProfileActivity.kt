@@ -1,11 +1,8 @@
 package knk.ee.neverland.profile
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -13,34 +10,50 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.mindorks.placeholderview.PlaceHolderView
-import com.vansuita.pickimage.bundle.PickSetup
-import com.vansuita.pickimage.dialog.PickImageDialog
-import com.yalantis.ucrop.UCrop
+import com.tangxiaolv.telegramgallery.GalleryActivity
+import com.tangxiaolv.telegramgallery.GalleryConfig
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
-import knk.ee.neverland.feed.ProofCard
+import knk.ee.neverland.feed.UserProofCard
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.User
 import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.quests.SuggestedQuestElement
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
+import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 
-class ProfileActivity : AppCompatActivity() {
-    private var userID: Int? = null
+class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
+    private var userID: Int = Int.MIN_VALUE
+
+    private val SELECTING_IMAGE_REQUEST_CODE = 1200
+    private val REQUEST_PERMISSION_REQUEST_CODE = 1201
+    private val SELECTING_IMAGE_SUCCESS_RESULT_CODE = -1
 
     @BindView(R.id.user_proofs)
     lateinit var userProofList: PlaceHolderView
 
     @BindView(R.id.user_quests)
     lateinit var userQuestsList: PlaceHolderView
+
+    @BindView(R.id.completed_quests_tab_button)
+    lateinit var completedQuestsTab: Button
+
+    @BindView(R.id.suggested_quests_tab_button)
+    lateinit var suggestedQuestsTab: Button
+
+    @BindView(R.id.profile_follow_button)
+    lateinit var followButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +63,10 @@ class ProfileActivity : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        followButton.visibility = GONE
         switchToCompletedQuestsTab()
 
         getUserIDFromIntent()
-        hideFollowButtonIfOwnProfile()
 
         runLoadUserDataTask()
         runLoadQuestTask()
@@ -63,18 +76,31 @@ class ProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (croppingAvatarFailed(requestCode, resultCode)) {
-            throw UCrop.getError(data!!)!!
+        if (requestCode == SELECTING_IMAGE_REQUEST_CODE && resultCode == SELECTING_IMAGE_SUCCESS_RESULT_CODE) {
+            val photos = data!!.getSerializableExtra(GalleryActivity.PHOTOS) as List<*>
+            runUploadAvatarTask(photos[0] as String)
         }
+    }
 
-        if (croppingAvatarSuccessful(requestCode, resultCode)) {
-            runUploadAvatarTask(UCrop.getOutput(data!!)!!.path!!)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        showToast("Permissions are not granted.")
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        if (requestCode != REQUEST_PERMISSION_REQUEST_CODE) {
+            showToast("Some permissions are not granted.")
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.profile_menu, menu)
-        menu!!.findItem(R.id.change_avatar).isVisible = userID == null
+        menu!!.findItem(R.id.change_avatar).isVisible = isMyProfile()
         return true
     }
 
@@ -89,17 +115,33 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    // @Click(R.id.completed_quests_tab_button)
+    @OnClick(R.id.completed_quests_tab_button)
     fun switchToCompletedQuestsTab() {
         userProofList.visibility = VISIBLE
         userQuestsList.visibility = GONE
     }
 
-    // @Click(R.id.suggested_quests_tab_button)
+    @OnClick(R.id.suggested_quests_tab_button)
     fun switchToSuggestedQuestsTab() {
         userQuestsList.visibility = VISIBLE
         userProofList.visibility = GONE
     }
+
+    @OnClick(R.id.profile_follow_button)
+    fun onFollowButtonClicked() {
+        if (isMyProfile()) {
+            return
+        }
+
+        val following = followButton.tag as Boolean
+        if (following) {
+            runChangeFollowingTask(false)
+        } else {
+            runChangeFollowingTask(true)
+        }
+    }
+
+    private fun isMyProfile(): Boolean = userID == DefaultAPI.userID
 
     private fun setUserData(user: User) {
         findViewById<TextView>(R.id.profile_user_name).text = user.toString()
@@ -110,6 +152,7 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.profile_user_following).text = Utils.compactHugeNumber(user.following)
         findViewById<TextView>(R.id.profile_user_followers).text = Utils.compactHugeNumber(user.followers)
 
+        initializeFollowingButton(user.iFollow)
         loadUserAvatar(user)
     }
 
@@ -122,27 +165,31 @@ class ProfileActivity : AppCompatActivity() {
             .into(findViewById(R.id.profile_user_avatar))
     }
 
-    private fun hideFollowButtonIfOwnProfile() {
-        val followButton = findViewById<Button>(R.id.profile_follow_button)
+    private fun initializeFollowingButton(following: Boolean) {
+        if (!isMyProfile()) {
+            followButton.visibility = VISIBLE
+            followButton.isEnabled = true
 
-        followButton.visibility = if (userID == null) GONE else VISIBLE
-        followButton.isEnabled = userID != null
-        // TODO: Following
+            followButton.text = if (following) "Unfollow" else "Follow"
+            followButton.tag = following
+        } else {
+            followButton.visibility = GONE
+            followButton.isEnabled = false
+        }
     }
 
     private fun getUserIDFromIntent() {
         if (intent.extras != null) {
             userID = intent.extras.getInt("userID")
+        } else {
+            userID = DefaultAPI.userID!!
         }
     }
 
     private fun runLoadUserDataTask() {
         APIAsyncTask<User>()
             .request {
-                if (userID == null)
-                    DefaultAPI.userAPI.getMyData()
-                else
-                    DefaultAPI.userAPI.getUserData(userID!!)
+                DefaultAPI.userAPI.getUserData(userID)
             }
             .handleResult {
                 setUserData(it)
@@ -154,59 +201,33 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun startUploadingAvatar() {
-        if (userID == null) {
-            val pickSetup = PickSetup()
+        if (isMyProfile()) {
+            if (EasyPermissions.hasPermissions(this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            ) {
 
-            PickImageDialog
-                .build(pickSetup)
-                .setOnPickResult {
-                    if (it.error == null) {
-                        startCroppingAvatar(it.path)
-                    }
-                }
-                .setOnPickCancel { }
-                .show(this)
+                val galleryConfig = GalleryConfig.Build()
+                    .singlePhoto(true)
+                    .build()
+
+                GalleryActivity.openActivity(this, SELECTING_IMAGE_REQUEST_CODE, galleryConfig)
+            } else {
+                EasyPermissions.requestPermissions(this,
+                    "We need them to save cropped images",
+                    REQUEST_PERMISSION_REQUEST_CODE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
         }
     }
-
-    private fun startCroppingAvatar(path: String) {
-        val options = UCrop.Options()
-
-        options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-
-        val colorPrimary = ContextCompat.getColor(this, R.color.colorPrimary)
-        options.setToolbarColor(colorPrimary)
-        options.setActiveWidgetColor(colorPrimary)
-        options.setToolbarTitle(getString(R.string.crop_image_title))
-
-        val proofImageFile = File(path)
-
-        val croppedImageFileName = getCroppedImagePath(path)
-        val croppedImageFile = File(croppedImageFileName)
-
-        UCrop.of(Uri.fromFile(proofImageFile), Uri.fromFile(croppedImageFile))
-            .withAspectRatio(1F, 1F)
-            .withOptions(options)
-            .start(this)
-    }
-
-    private fun getCroppedImagePath(path: String): String {
-        val pathToDir = path.substring(0, path.lastIndexOf("/") + 1)
-        val pathFormat = path.substring(path.lastIndexOf(".") + 1)
-        return "${pathToDir}neverland_proof${System.nanoTime()}.$pathFormat"
-    }
-
-    private fun croppingAvatarSuccessful(requestCode: Int, resultCode: Int) =
-        resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP
-
-    private fun croppingAvatarFailed(requestCode: Int, resultCode: Int) =
-        requestCode == UCrop.REQUEST_CROP && resultCode == UCrop.RESULT_ERROR
 
     private fun runUploadAvatarTask(avatarPath: String) {
         val avatarFile = File(avatarPath)
 
         var success = false
         APIAsyncTask<Boolean>()
+            .doBefore { showToast("Uploading new avatar") }
             .request {
                 DefaultAPI.userAPI.uploadAvatar(avatarFile)
                 success = true
@@ -217,6 +238,7 @@ class ProfileActivity : AppCompatActivity() {
                 .create())
             .doAfter {
                 if (success) {
+                    showToast("Avatar uploaded")
                     runLoadUserDataTask()
                 }
             }
@@ -226,12 +248,9 @@ class ProfileActivity : AppCompatActivity() {
     private fun runGetProofsTask() {
         APIAsyncTask<List<Proof>>()
             .request {
-                if (userID == null)
-                    DefaultAPI.proofAPI.getMyProofs()
-                else
-                    DefaultAPI.proofAPI.getProofsByUserID(userID!!)
+                DefaultAPI.proofAPI.getProofsByUserID(userID)
             }
-            .handleResult { it.forEach { userProofList.addView(ProofCard(this, it)) } }
+            .handleResult { it.forEach { userProofList.addView(UserProofCard(this, it)) } }
             .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
     }
@@ -239,13 +258,34 @@ class ProfileActivity : AppCompatActivity() {
     private fun runLoadQuestTask() {
         APIAsyncTask<List<Quest>>()
             .request {
-                if (userID == null)
-                    DefaultAPI.questAPI.getSuggestedByMeQuests()
-                else
-                    DefaultAPI.questAPI.getSuggestedByUserQuests(userID!!)
+                DefaultAPI.questAPI.getSuggestedByUserQuests(userID)
             }
             .handleResult { it.forEach { userQuestsList.addView(SuggestedQuestElement(this, it)) } }
             .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
+    }
+
+    private fun runChangeFollowingTask(follow: Boolean) {
+        APIAsyncTask<Boolean>()
+            .request {
+                if (follow) {
+                    DefaultAPI.userAPI.follow(userID)
+                } else {
+                    DefaultAPI.userAPI.unfollow(userID)
+                }
+                true
+            }
+            .uiErrorView(UIErrorView.Builder()
+                .with(this)
+                .create())
+            .doAfter {
+                runLoadUserDataTask()
+                initializeFollowingButton(follow)
+            }
+            .execute()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

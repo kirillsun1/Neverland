@@ -63,4 +63,27 @@
         <item name="android:padding">0dp</item>
         <item name="android:textSize">22sp</item>
     </style>
+
+    <style name="FeedSpinnerStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:spinnerItemStyle">
+            @style/FeedSpinnerItemStyle
+        </item>
+
+        <item name="android:spinnerDropDownItemStyle">
+            @style/FeedSpinnerDropDownItemStyle
+        </item>
+    </style>
+
+    <style name="FeedSpinnerItemStyle">
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FeedSpinnerDropDownItemStyle">
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>

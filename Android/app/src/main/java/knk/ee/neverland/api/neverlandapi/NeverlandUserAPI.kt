@@ -23,7 +23,6 @@ class NeverlandUserAPI(private val gson: Gson) : UserAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        // TODO: ask to change api response
         val responseObject = gson.fromJson(responseBody, User::class.java)
 
         return responseObject
@@ -65,6 +64,36 @@ class NeverlandUserAPI(private val gson: Gson) : UserAPI {
 
         if (responseObj.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObj.code)
+        }
+    }
+
+    override fun follow(userID: Int) {
+        val link = URLLinkBuilder(API_LINK, "follow")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody, NeverlandAPIResponses.SimpleResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+    }
+
+    override fun unfollow(userID: Int) {
+        val link = URLLinkBuilder(API_LINK, "unfollow")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody, NeverlandAPIResponses.SimpleResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
         }
     }
 }

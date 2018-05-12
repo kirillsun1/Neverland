@@ -71,7 +71,7 @@
                     android:drawableLeft="@drawable/ic_note_add_black_24dp"
                     android:drawableStart="@drawable/ic_note_add_black_24dp"
                     android:selectAllOnFocus="false"
-                    android:text="Suggest quest" />
+                    android:text="@string/quest_window_suggest_quest_button" />
 
                 <TextView
                     android:id="@+id/fab_sheet_item_find_quest"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_search_black_24dp"
                     android:drawableStart="@drawable/ic_search_black_24dp"
-                    android:text="Find quest" />
+                    android:text="@string/quest_window_find_quest_button" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
