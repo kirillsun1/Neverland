@@ -23,4 +23,8 @@ public class UserPojo implements Pojo {
     private int followers;
     @SerializedName("followings")
     private int followings;
+    @SerializedName("do_i_follow")
+    private boolean iFollow;
+    @SerializedName("does_follow_me")
+    private boolean followsMe;
 }

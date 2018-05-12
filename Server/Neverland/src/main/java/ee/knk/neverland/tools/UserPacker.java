@@ -11,21 +11,23 @@ import java.util.List;
 
 public class UserPacker {
 
-    public UserPojo packDetailedUser(User user, FollowingController followingController) {
-        UserPojoBuilder builder = new UserPojoBuilder();
-        return builder
-                .withId(user.getId())
-                .withUsername(user.getUsername())
-                .withFirstName(user.getFirstName())
-                .withSecondName(user.getSecondName())
-                .withAvatar(user.getAvatar())
-                .withRegistrationTime(user.getRegisterTime())
+    public UserPojo packDetailedAnotherUser(User user, FollowingController followingController, User me) {
+        return pack(user)
                 .withFollowersAmount(followingController.getUsersFollowersQuantity(user))
                 .withFollowingsAmount(followingController.getUsersFollowingsQuantity(user))
+                .withIfIFollow(followingController.ifOneFollowsAnother(me, user))
+                .withIfFollowsMe(followingController.ifOneFollowsAnother(user, me))
                 .getUserPojo();
     }
 
-    public UserPojo packUser(User user) {
+    public UserPojo packDetailedMe(User me, FollowingController followingController) {
+        return pack(me)
+                .withFollowersAmount(followingController.getUsersFollowersQuantity(me))
+                .withFollowingsAmount(followingController.getUsersFollowingsQuantity(me))
+                .getUserPojo();
+    }
+
+    private UserPojoBuilder pack(User user) {
         UserPojoBuilder builder = new UserPojoBuilder();
         return builder
                 .withId(user.getId())
@@ -33,8 +35,13 @@ public class UserPacker {
                 .withFirstName(user.getFirstName())
                 .withSecondName(user.getSecondName())
                 .withAvatar(user.getAvatar())
-                .withRegistrationTime(user.getRegisterTime())
-                .getUserPojo();
+                .withRegistrationTime(user.getRegisterTime());
+    }
+
+
+
+    public UserPojo packUser(User user) {
+        return pack(user).getUserPojo();
     }
 
     public List<Pojo> packAllUsers(List<User> users)  {

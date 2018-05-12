@@ -33,4 +33,6 @@ public interface FollowingRepository extends JpaRepository<Following, Long> {
     @Query("SELECT Count(ALL following) FROM Following following WHERE following.follower = :follower")
     int countUserFollowings(@Param("follower") User follower);
 
+    @Query("SELECT following FROM Following following WHERE following.follower = :follower AND following.user = :followed")
+    Optional<Following> getFollowingByUsers(@Param("follower") User follower, @Param("followed") User followed);
 }

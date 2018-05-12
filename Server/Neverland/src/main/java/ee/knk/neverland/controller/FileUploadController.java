@@ -1,6 +1,7 @@
 package ee.knk.neverland.controller;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import com.google.gson.Gson;
@@ -44,7 +45,7 @@ public class FileUploadController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String pathEnding = user.get().getUsername() + "_" + questId + ".jpg";
+        String pathEnding = LocalDateTime.now().toString() +  user.get().getUsername() + "_" + questId + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             proofController.addProof(questId, user.get(), dbPath + pathEnding, comment);
@@ -62,7 +63,7 @@ public class FileUploadController {
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String pathEnding = user.get().getUsername() + ".jpg";
+        String pathEnding = LocalDateTime.now().toString() +  user.get().getUsername() + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             userController.setAvatar(user.get().getId(), dbPath + pathEnding);
@@ -80,7 +81,7 @@ public class FileUploadController {
         }
         String realPath = "/var/www/html/never_pictures/group_avatars/";
         String dbPath = "http://vrot.bounceme.net:8081/never_pictures/group_avatars/";
-        String pathEnding = groupId + ".jpg";
+        String pathEnding = LocalDateTime.now().toString() +  groupId + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             groupController.setAvatar(groupId, dbPath + pathEnding);

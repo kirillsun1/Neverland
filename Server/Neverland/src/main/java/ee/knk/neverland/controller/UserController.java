@@ -77,7 +77,7 @@ public class UserController {
         if (!toFind.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
-        return gson.toJson(packer.packDetailedUser(toFind.get(), followingController));
+        return gson.toJson(packer.packDetailedAnotherUser(toFind.get(), followingController, user.get()));
     }
 
     @RequestMapping(value="/getMyInfo")
@@ -87,7 +87,7 @@ public class UserController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         UserPacker packer = new UserPacker();
-        return gson.toJson(packer.packDetailedUser(user.get(), followingController));
+        return gson.toJson(packer.packDetailedMe(user.get(), followingController));
     }
 
     void setAvatar(Long id, String path) {

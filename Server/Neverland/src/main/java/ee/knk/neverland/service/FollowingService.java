@@ -17,4 +17,6 @@ public interface FollowingService {
     int getUserFollowersAmount(User user);
 
     int getUserFollowingsAmount(User user);
+
+    boolean ifOneFollowsAnother(User follower, User followed);
 }

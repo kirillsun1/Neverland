@@ -53,4 +53,14 @@ public class UserPojoBuilder {
     public UserPojo getUserPojo() {
         return userPojo;
     }
+
+    public UserPojoBuilder withIfIFollow(boolean ifIFollow) {
+        userPojo.setIFollow(ifIFollow);
+        return this;
+    }
+
+    public UserPojoBuilder withIfFollowsMe(boolean ifFollowsMe) {
+        userPojo.setFollowsMe(ifFollowsMe);
+        return this;
+    }
 }

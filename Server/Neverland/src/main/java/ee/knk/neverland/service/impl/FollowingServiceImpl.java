@@ -50,4 +50,9 @@ public class FollowingServiceImpl implements FollowingService {
         return followingRepository.countUserFollowings(user);
     }
 
+    @Override
+    public boolean ifOneFollowsAnother(User follower, User followed) {
+        return followingRepository.getFollowingByUsers(follower, followed).isPresent();
+    }
+
 }

@@ -138,4 +138,7 @@ public class FollowingController {
     }
 
 
+    public boolean ifOneFollowsAnother(User follower, User followed) {
+        return followingService.ifOneFollowsAnother(follower, followed);
+    }
 }
