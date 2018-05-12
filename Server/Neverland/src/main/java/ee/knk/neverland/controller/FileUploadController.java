@@ -68,6 +68,7 @@ public class FileUploadController {
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             userController.setAvatar(user.get().getId(), dbPath + pathEnding);
         }
+        standardAnswer.setAvatar(dbPath + pathEnding);
         return gson.toJson(standardAnswer);
     }
 
@@ -86,7 +87,7 @@ public class FileUploadController {
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             groupController.setAvatar(groupId, dbPath + pathEnding);
         }
-
+        standardAnswer.setAvatar(dbPath + pathEnding);
         return gson.toJson(standardAnswer);
     }
 

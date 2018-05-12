@@ -9,6 +9,7 @@ public class StandardAnswer {
     private Pojo body;
     private int code = Constants.SUCCEED;
     private Long uid;
+    private String avatar;
 
     public StandardAnswer(Pojo body) {
         this.body = body;
