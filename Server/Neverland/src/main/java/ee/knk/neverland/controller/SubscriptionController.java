@@ -71,6 +71,9 @@ public class SubscriptionController {
         if (!group.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
+        if (groupService.checkAdminRights(groupId, user.get())) {
+            return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
+        }
         subscriptionService.unsubscribe(user.get(), group.get());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }

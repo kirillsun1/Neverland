@@ -46,4 +46,9 @@ public class QuestServiceImpl implements QuestService {
         return questRepository.getAuthorsQuests(author);
     }
 
+    @Override
+    public List<Quest> getQuestsWithoutGroups() {
+        return questRepository.getQuestsWithoutGroup();
+    }
+
 }

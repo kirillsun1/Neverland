@@ -221,7 +221,7 @@ public class QuestController {
 
 
     private List<Quest> getQuests() {
-        return questService.getQuests();
+        return questService.getQuestsWithoutGroups();
     }
 
 
@@ -239,7 +239,8 @@ public class QuestController {
         return quests;
     }
 
-    public Optional<LocalDateTime> getTimeUserTookQuest(User me, Quest quest) {
-        return takenQuestService.getTimeUserTookQuest(me, quest);
+    public Optional<TakenQuest> getTakenQuestByUserAndQuest(User me, Quest quest) {
+        return takenQuestService.getQuestTakenByUser(me, quest);
     }
+
 }

@@ -18,4 +18,7 @@ public interface QuestRepository extends JpaRepository<Quest, Long> {
 
     @Query("SELECT quest FROM Quest quest WHERE quest.peopleGroup = :peopleGroup ORDER BY quest.id ASC")
     List<Quest> getGroupQuests(@Param("peopleGroup") PeopleGroup peopleGroup);
+
+    @Query("SELECT quest FROM Quest quest WHERE quest.peopleGroup = null")
+    List<Quest> getQuestsWithoutGroup();
 }

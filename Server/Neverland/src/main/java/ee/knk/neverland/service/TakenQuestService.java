@@ -17,5 +17,4 @@ public interface TakenQuestService {
     void archive(Long takenQuestId);
     void delete(Long takenQuestId);
 
-    Optional<LocalDateTime> getTimeUserTookQuest(User me, Quest pointer);
 }

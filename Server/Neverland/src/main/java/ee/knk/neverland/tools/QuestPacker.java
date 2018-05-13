@@ -25,7 +25,7 @@ public class QuestPacker {
         this.me = me;
     }
     QuestPojo packQuest(Quest pointer) {
-        Optional<LocalDateTime> timeTaken = questController.getTimeUserTookQuest(me, pointer);
+        Optional<TakenQuest> takenQuest = questController.getTakenQuestByUserAndQuest(me, pointer);
 
         UserPacker userPacker = new UserPacker();
         UserPojo author = userPacker.packUser(pointer.getUser());
@@ -35,7 +35,7 @@ public class QuestPacker {
                 .withDescription(pointer.getDescription())
                 .withAuthor(author)
                 .withAddingTime(pointer.getTime());
-        timeTaken.ifPresent(builder::withTakenTime);
+        takenQuest.ifPresent(takenQuest1 -> builder.withTakenTime(takenQuest1.getTimeQuestTaken()));
         return builder.getQuestPojo();
     }
 

@@ -14,4 +14,6 @@ public interface QuestService {
 
     List<Quest> getGroupQuests(PeopleGroup group);
     List<Quest> getAuthorsQuests(User author);
+
+    List<Quest> getQuestsWithoutGroups();
 }

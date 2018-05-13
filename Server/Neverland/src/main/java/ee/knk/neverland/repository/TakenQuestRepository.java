@@ -31,7 +31,4 @@ public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
 
     @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.quest = :quest AND takenQuest.user = :user")
     Optional<TakenQuest> getIfExists(@Param("quest") Quest quest, @Param("user") User user);
-
-    @Query("SELECT takenQuest.timeQuestTaken FROM TakenQuest takenQuest WHERE takenQuest.user = :user AND takenQuest.quest = :quest")
-    Optional<LocalDateTime> getTimeUserTookQuest(@Param("user") User user, @Param("quest") Quest quest);
 }

@@ -65,8 +65,4 @@ public class TakenQuestServiceImpl implements TakenQuestService {
         takenQuestsRepository.delete(takenQuestId);
     }
 
-    @Override
-    public Optional<LocalDateTime> getTimeUserTookQuest(User user, Quest quest) {
-        return takenQuestsRepository.getTimeUserTookQuest(user, quest);
-    }
 }
