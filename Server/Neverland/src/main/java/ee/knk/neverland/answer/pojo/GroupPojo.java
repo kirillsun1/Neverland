@@ -18,5 +18,7 @@ public class GroupPojo implements Pojo {
     private int quantity;
     @SerializedName("creation_time")
     private String createTime;
+    @SerializedName("did_i_subscribe")
+    private boolean ifSubscribed;
 
 }

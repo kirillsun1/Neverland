@@ -41,6 +41,11 @@ public class GroupPojoBuilder {
         return this;
     }
 
+    public GroupPojoBuilder withIfSubscribed(boolean ifSubscribed) {
+        groupPojo.setIfSubscribed(ifSubscribed);
+        return this;
+    }
+
     public GroupPojo getGroupPojo() {
         return groupPojo;
     }

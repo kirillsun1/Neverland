@@ -30,4 +30,6 @@ public interface SubscriptionRepository  extends JpaRepository<Subscription, Lon
     @Query("SELECT subscription FROM Subscription subscription WHERE subscription.user = :user AND subscription.peopleGroup = :peopleGroup")
     Optional<Object> getUsersSubscription(@Param("user") User user, @Param("peopleGroup") PeopleGroup peopleGroup);
 
+    @Query("SELECT subscription FROM Subscription subscription WHERE subscription.user = :user AND subscription.peopleGroup = :peopleGroup")
+    Optional<Subscription> getUsersSubscriptionToGroup(@Param("user") User user, @Param("peopleGroup") PeopleGroup group);
 }

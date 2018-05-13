@@ -4,6 +4,7 @@ import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,6 @@ public interface TakenQuestService {
     List<TakenQuest> getActiveQuestsUserTook(User user);
     void archive(Long takenQuestId);
     void delete(Long takenQuestId);
+
+    Optional<LocalDateTime> getTimeUserTookQuest(User me, Quest pointer);
 }

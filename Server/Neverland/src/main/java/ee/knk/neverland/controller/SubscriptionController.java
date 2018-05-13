@@ -77,12 +77,12 @@ public class SubscriptionController {
 
     @RequestMapping(value = "/getMyGroups")
     public String getMyGroups(@RequestParam(value = "token") String token) {
-        Optional<User> user = tokenController.getTokenUser(token);
-        if (!user.isPresent()) {
+        Optional<User> me = tokenController.getTokenUser(token);
+        if (!me.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        List<PeopleGroup> groups = findUsersGroups(user.get());
-        GroupPacker packer = new GroupPacker(this);
+        List<PeopleGroup> groups = findUsersGroups(me.get());
+        GroupPacker packer = new GroupPacker(this, me.get());
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
     }
 
@@ -98,7 +98,7 @@ public class SubscriptionController {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         List<PeopleGroup> groups = findUsersGroups(user.get());
-        GroupPacker packer = new GroupPacker(this);
+        GroupPacker packer = new GroupPacker(this, me.get());
         return gson.toJson(new ListAnswer(packer.packAllGroups(groups), Constants.SUCCEED));
     }
 
@@ -129,5 +129,9 @@ public class SubscriptionController {
 
     public int getGroupQuantity(PeopleGroup pointer) {
         return subscriptionService.getSubscribersAmount(pointer);
+    }
+
+    public boolean isUserSubscribed(User me, PeopleGroup group) {
+        return subscriptionService.isUserSubscribed(me, group);
     }
 }

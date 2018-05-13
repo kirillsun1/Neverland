@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,4 +31,7 @@ public interface TakenQuestRepository extends JpaRepository<TakenQuest, Long> {
 
     @Query("SELECT takenQuest FROM TakenQuest takenQuest WHERE takenQuest.quest = :quest AND takenQuest.user = :user")
     Optional<TakenQuest> getIfExists(@Param("quest") Quest quest, @Param("user") User user);
+
+    @Query("SELECT takenQuest.timeQuestTaken FROM TakenQuest takenQuest WHERE takenQuest.user = :user AND takenQuest.quest = :quest")
+    Optional<LocalDateTime> getTimeUserTookQuest(@Param("user") User user, @Param("quest") Quest quest);
 }

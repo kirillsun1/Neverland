@@ -22,7 +22,6 @@ public class ProofController {
     private final TokenController tokenController;
     private final ProofService proofService;
     private final QuestController questController;
-    private final TakenQuestController takenQuestController;
     private final UserController userController;
     private final VoteController voteController;
     private final SubscriptionController subscriptionController;
@@ -34,14 +33,12 @@ public class ProofController {
                            ProofService proofService,
                            QuestController questService,
                            UserController userController,
-                           TakenQuestController takenQuestController,
                            VoteController voteController,
                            SubscriptionController subscriptionController,
                            FollowingController followingController) {
         this.tokenController = tokenController;
         this.proofService = proofService;
         this.questController = questService;
-        this.takenQuestController = takenQuestController;
         this.userController = userController;
         this.voteController = voteController;
         this.subscriptionController = subscriptionController;
@@ -51,7 +48,7 @@ public class ProofController {
     void addProof(Long questId, User user, String path, String comment) {
         Quest quest = questController.getQuestById(questId);
         proofService.addProof(new Proof(user, quest, path, comment));
-        takenQuestController.archiveTakenQuest(quest, user);
+        questController.archiveTakenQuest(quest, user);
     }
 
     @RequestMapping(value = "/getMyProofs")
@@ -61,7 +58,7 @@ public class ProofController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getUsersProofs(user.get());
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, user.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -77,7 +74,7 @@ public class ProofController {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         List<Proof> proofs = proofService.getUsersProofs(user.get());
-        ProofPacker packer = new ProofPacker(voteController, me.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, me.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -89,7 +86,7 @@ public class ProofController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getQuestsProofs(questController.getQuestById(questId));
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, user.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -100,7 +97,7 @@ public class ProofController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<Proof> proofs = proofService.getAllProofs();
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, user.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -115,7 +112,7 @@ public class ProofController {
         if (!proof.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, user.get());
         return gson.toJson(packer.packProof(proof.get()));
     }
 
@@ -133,7 +130,7 @@ public class ProofController {
             proofs.sort(Comparator.comparingLong(Proof::getId));
             Collections.reverse(proofs);
         }
-        ProofPacker packer = new ProofPacker(voteController, user.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, user.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 
@@ -144,15 +141,13 @@ public class ProofController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         List<User> myFollowings = followingController.findUsersFollowings(me.get());
-        List<Quest> quests = questController.getQuestsFromUsers(myFollowings);
         List<Proof> proofs = new ArrayList<>();
-        System.out.println(quests);
-        quests.forEach(quest -> proofs.addAll(proofService.getQuestsProofs(quest)));
+        myFollowings.forEach(user -> proofs.addAll(proofService.getUsersProofs(user)));
         if (proofs.size() > 0) {
             proofs.sort(Comparator.comparingLong(Proof::getId));
             Collections.reverse(proofs);
         }
-        ProofPacker packer = new ProofPacker(voteController, me.get());
+        ProofPacker packer = new ProofPacker(voteController, questController, me.get());
         return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
     }
 

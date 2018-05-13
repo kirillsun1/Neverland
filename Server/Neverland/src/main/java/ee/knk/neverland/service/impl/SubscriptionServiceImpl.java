@@ -47,4 +47,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public int getSubscribersAmount(PeopleGroup group) {
         return subscriptionRepository.countGroupSubscribers(group);
     }
+
+    @Override
+    public boolean isUserSubscribed(User user, PeopleGroup group) {
+        return subscriptionRepository.getUsersSubscriptionToGroup(user, group).isPresent();
+    }
 }
