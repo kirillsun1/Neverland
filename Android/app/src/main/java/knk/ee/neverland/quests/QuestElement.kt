@@ -38,7 +38,6 @@ class QuestElement(private val context: Context, private val quest: Quest) {
     fun takeQuest() {
         var success = false
         APIAsyncTask<Boolean>()
-            .toPool("takeQuest", "profileTasks")
             .doBefore { blockTakeQuestButton() }
             .request {
                 DefaultAPI.questAPI.takeQuest(quest.id)

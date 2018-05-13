@@ -1,5 +1,6 @@
 package knk.ee.neverland.groups
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
@@ -34,6 +35,10 @@ class GroupsFragment : Fragment() {
             openCreateGroupDialog()
             true
         }
+        toolbar.menu.findItem(R.id.find_group).setOnMenuItemClickListener {
+            openFindGroupActivity()
+            true
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +66,11 @@ class GroupsFragment : Fragment() {
         }
 
         createGroupDialog.show()
+    }
+
+    private fun openFindGroupActivity() {
+        val intent = Intent(view!!.context.applicationContext, FindGroupActivity::class.java)
+        startActivity(intent)
     }
 
     private fun runGetMyGroupsTask() {

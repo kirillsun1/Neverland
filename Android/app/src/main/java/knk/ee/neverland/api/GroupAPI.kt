@@ -13,4 +13,10 @@ interface GroupAPI {
     fun uploadAvatar(groupID: Int, avatar: File)
 
     fun getGroup(groupID: Int): Group
+
+    fun subscribe(groupID: Int)
+
+    fun unsubscribe(groupID: Int)
+
+    fun getGroupsToJoin(): List<Group>
 }

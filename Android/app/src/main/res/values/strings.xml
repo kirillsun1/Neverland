@@ -164,5 +164,6 @@
     <string name="group_administrator_label">Creator</string>
     <string name="group_open_quests_button">Open quests list</string>
     <string name="group_suggest_quest_button">Suggest new quest</string>
+    <string name="find_group">Find group</string>
 
 </resources>

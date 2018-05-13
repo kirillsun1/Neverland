@@ -8,9 +8,7 @@ typealias OnErrorMethod = (Exception) -> Unit
 typealias RequestMethod<T> = () -> T
 typealias HandleResultMethod<T> = (T) -> Unit
 
-class APIAsyncTask<Result> {
-    private var name: String? = null
-    private var group: String? = null
+class APIAsyncTask<Result>() {
 
     private var doBeforeMethod: SimpleMethod? = null
     private var doAfterMethod: SimpleMethod? = null
@@ -22,14 +20,6 @@ class APIAsyncTask<Result> {
     private var resultHandlerMethod: (HandleResultMethod<Result>)? = null
 
     private var apiTask: APITask<Result>? = null
-
-    private var shouldStopIfRunning: Boolean = true
-
-    fun toPool(name: String, group: String): APIAsyncTask<Result> {
-        this.name = name
-        this.group = group
-        return this
-    }
 
     fun doBefore(doBeforeMethod: SimpleMethod): APIAsyncTask<Result> {
         this.doBeforeMethod = doBeforeMethod
@@ -61,16 +51,7 @@ class APIAsyncTask<Result> {
         return this
     }
 
-    fun stopIfRunning(stopIfRunningValue: Boolean): APIAsyncTask<Result> {
-        this.shouldStopIfRunning = stopIfRunningValue
-        return this
-    }
-
     fun execute() {
-        if (shouldStopIfRunning) {
-            stopIfRunning()
-        }
-
         doBeforeMethod?.invoke()
 
         apiTask = APITask(requestMethod,

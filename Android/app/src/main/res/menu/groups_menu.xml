@@ -5,5 +5,11 @@
         android:id="@+id/create_group"
         android:icon="@drawable/ic_add_24dp"
         android:title="@string/create_group_dialog_title"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/find_group"
+        android:icon="@drawable/search_icon_24dp"
+        android:title="@string/find_group"
+        app:showAsAction="ifRoom" />
 </menu>

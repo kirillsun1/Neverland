@@ -18,6 +18,9 @@ import knk.ee.neverland.utils.UIErrorView
 import java.io.File
 
 class SubmitProofActivity : AppCompatActivity() {
+
+    private val tasksGroup = "SumbitProofActivityTasks"
+
     @BindView(R.id.proof_image)
     lateinit var proofImage: ImageView
 

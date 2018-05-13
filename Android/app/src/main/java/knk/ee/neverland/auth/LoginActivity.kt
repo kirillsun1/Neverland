@@ -26,6 +26,7 @@ import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
+
     @BindView(R.id.registration_login)
     lateinit var mLoginView: AutoCompleteTextView
     @BindView(R.id.registration_password)

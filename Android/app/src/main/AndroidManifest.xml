@@ -88,6 +88,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="knk.ee.neverland.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".groups.FindGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

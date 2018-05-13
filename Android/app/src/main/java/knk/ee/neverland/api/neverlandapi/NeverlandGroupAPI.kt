@@ -93,5 +93,52 @@ class NeverlandGroupAPI(private val gson: Gson) : GroupAPI {
         }
     }
 
+    override fun subscribe(groupID: Int) {
+        val link = URLLinkBuilder(API_LINK, "subscribe")
+            .addParam("token", token)
+            .addParam("gid", groupID.toString())
+            .finish()
 
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.SimpleResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+    }
+
+    override fun unsubscribe(groupID: Int) {
+        val link = URLLinkBuilder(API_LINK, "unsubscribe")
+            .addParam("token", token)
+            .addParam("gid", groupID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.SimpleResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+    }
+
+    override fun getGroupsToJoin(): List<Group> {
+        val link = URLLinkBuilder(API_LINK, "getNewGroups")
+            .addParam("token", token)
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetGroupsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.groups
+    }
 }

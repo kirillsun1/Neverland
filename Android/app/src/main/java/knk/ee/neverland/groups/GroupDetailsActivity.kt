@@ -1,6 +1,7 @@
 package knk.ee.neverland.groups
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -58,8 +59,8 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
     @BindView(R.id.group_subscribers)
     lateinit var subscribers: TextView
 
-    @BindView(R.id.group_join)
-    lateinit var groupJoin: Button
+    @BindView(R.id.group_leave)
+    lateinit var groupLeave: Button
 
     @BindView(R.id.group_admin_layout)
     lateinit var groupAdminLayout: ConstraintLayout
@@ -141,9 +142,24 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
         startActivityForResult(intent, Constants.SUBMIT_NEW_QUEST_REQUEST_CODE)
     }
 
+    @OnClick(R.id.group_leave)
+    fun onLeaveGroupClick() {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmation")
+            .setMessage("Are you sure you want to leave this group?")
+            .setPositiveButton(R.string.yes, { dialogInterface, i ->
+                runLeaveGroupTask()
+                dialogInterface.dismiss()
+            })
+            .setNegativeButton(R.string.no, { dialogInterface, i ->
+                dialogInterface.cancel()
+            })
+            .create()
+            .show()
+    }
+
     private fun runLoadGroupQuestsTask() {
         APIAsyncTask<List<Quest>>()
-            .toPool("loadQuests", "GroupDetail")
             .request {
                 DefaultAPI.questAPI.getGroupQuests(group.id)
             }
@@ -226,7 +242,6 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
 
         var success = false
         APIAsyncTask<Boolean>()
-            .toPool("uploadAvatar", "GroupDetail")
             .doBefore { showToast(getString(R.string.group_uploading_avatar)) }
             .request {
                 DefaultAPI.groupAPI.uploadAvatar(group.id, avatarFile)
@@ -259,5 +274,24 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
                 .create())
             .execute()
 
+    }
+
+    private fun runLeaveGroupTask() {
+        var left = false
+        APIAsyncTask<Boolean>()
+            .request {
+                DefaultAPI.groupAPI.unsubscribe(group.id)
+                left = true
+                true
+            }
+            .uiErrorView(UIErrorView.Builder()
+                .with(this)
+                .create())
+            .doAfter {
+                if (left) {
+                    finish()
+                }
+            }
+            .execute()
     }
 }
