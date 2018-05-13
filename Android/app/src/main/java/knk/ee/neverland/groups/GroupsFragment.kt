@@ -6,7 +6,9 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
+import butterknife.BindView
+import butterknife.ButterKnife
+import com.mindorks.placeholderview.PlaceHolderView
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Group
@@ -15,13 +17,15 @@ import knk.ee.neverland.utils.UIErrorView
 
 class GroupsFragment : Fragment() {
 
-    private lateinit var groupsListAdapter: GroupsListAdapter
+    @BindView(R.id.groups_list)
+    lateinit var groupsList: PlaceHolderView
 
     private var getMyGroupsTask: APIAsyncTask<List<Group>>? = null
     private var createGroupTask: APIAsyncTask<Boolean>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ButterKnife.bind(this, view)
 
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = getString(R.string.groups_fragment_title)
@@ -30,9 +34,6 @@ class GroupsFragment : Fragment() {
             openCreateGroupDialog()
             true
         }
-
-        groupsListAdapter = GroupsListAdapter(view.context!!)
-        view.findViewById<ListView>(R.id.groups_list).adapter = groupsListAdapter
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +70,7 @@ class GroupsFragment : Fragment() {
                 .with(view!!.context)
                 .create())
             .handleResult {
-                groupsListAdapter.refreshGroups(it)
+                it.forEach { groupsList.addView(GroupElement(view!!.context, it)) }
             }
         getMyGroupsTask!!.execute()
     }

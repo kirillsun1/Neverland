@@ -50,5 +50,5 @@ class CreateGroupDialog(context: Context) : Dialog(context) {
         createButton.isEnabled = groupNameIsCorrect()
     }
 
-    private fun groupNameIsCorrect(): Boolean = !groupName.isBlank() // TODO: Normal validator
+    private fun groupNameIsCorrect(): Boolean = groupName.length in 10..40
 }

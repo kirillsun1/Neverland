@@ -1,5 +1,6 @@
 package knk.ee.neverland.quests
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +14,8 @@ import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.tangxiaolv.telegramgallery.GalleryActivity
-import com.tangxiaolv.telegramgallery.GalleryConfig
+import com.esafirm.imagepicker.features.ImagePicker
+import com.esafirm.imagepicker.features.ReturnMode
 import knk.ee.neverland.R
 import knk.ee.neverland.activities.SubmitProofActivity
 import knk.ee.neverland.api.DefaultAPI
@@ -70,9 +71,9 @@ class QuestDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SELECTING_IMAGE_REQUEST_CODE && resultCode == SELECTING_IMAGE_SUCCESS_RESULT_CODE) {
-            val photos = data!!.getSerializableExtra(GalleryActivity.PHOTOS) as List<*>
-            openSubmittingProofActivity(photos[0] as String)
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+            val image = ImagePicker.getFirstImageOrNull(data)
+            openSubmittingProofActivity(image.path)
         }
 
         if (proofIsSubmitted(requestCode, resultCode)) {
@@ -132,11 +133,15 @@ class QuestDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ) {
 
-            val galleryConfig = GalleryConfig.Build()
-                .singlePhoto(true)
-                .build()
+            ImagePicker.create(this)
+                .returnMode(ReturnMode.ALL)
+                .folderMode(true)
+                .single()
+                .showCamera(true)
+                .imageDirectory("Neverland")
+                .enableLog(true)
+                .start()
 
-            GalleryActivity.openActivity(this, SELECTING_IMAGE_REQUEST_CODE, galleryConfig)
         } else {
             EasyPermissions.requestPermissions(this,
                 "We need them to save cropped images",

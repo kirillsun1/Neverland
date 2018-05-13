@@ -15,11 +15,10 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.esafirm.imagepicker.features.ImagePicker
+import com.esafirm.imagepicker.features.ReturnMode
 import com.mindorks.placeholderview.PlaceHolderView
-import com.tangxiaolv.telegramgallery.GalleryActivity
-import com.tangxiaolv.telegramgallery.GalleryConfig
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.feed.UserProofCard
@@ -55,6 +54,21 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     @BindView(R.id.profile_follow_button)
     lateinit var followButton: Button
 
+    @BindView(R.id.profile_user_name)
+    lateinit var userName: TextView
+
+    @BindView(R.id.profile_collapsing_toolbar)
+    lateinit var toolBar: CollapsingToolbarLayout
+
+    @BindView(R.id.profile_user_rating)
+    lateinit var userRating: TextView
+
+    @BindView(R.id.profile_user_following)
+    lateinit var userFolliwings: TextView
+
+    @BindView(R.id.profile_user_followers)
+    lateinit var userFollowers: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -76,9 +90,9 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == SELECTING_IMAGE_REQUEST_CODE && resultCode == SELECTING_IMAGE_SUCCESS_RESULT_CODE) {
-            val photos = data!!.getSerializableExtra(GalleryActivity.PHOTOS) as List<*>
-            runUploadAvatarTask(photos[0] as String)
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+            val image = ImagePicker.getFirstImageOrNull(data)
+            runUploadAvatarTask(image.path)
         }
     }
 
@@ -132,7 +146,6 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         if (isMyProfile()) {
             return
         }
-
         val following = followButton.tag as Boolean
         if (following) {
             runChangeFollowingTask(false)
@@ -144,13 +157,12 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     private fun isMyProfile(): Boolean = userID == DefaultAPI.userID
 
     private fun setUserData(user: User) {
-        findViewById<TextView>(R.id.profile_user_name).text = user.toString()
-        findViewById<CollapsingToolbarLayout>(R.id.profile_collapsing_toolbar).title = user.userName
+        userName.text = user.toString()
+        toolBar.title = user.userName
 
-        val ratingString = "%.0f%%".format(user.rating * 100)
-        findViewById<TextView>(R.id.profile_user_rating).text = ratingString
-        findViewById<TextView>(R.id.profile_user_following).text = Utils.compactHugeNumber(user.following)
-        findViewById<TextView>(R.id.profile_user_followers).text = Utils.compactHugeNumber(user.followers)
+        userRating.text = "%.0f%%".format(user.rating * 100)
+        userFolliwings.text = Utils.compactHugeNumber(user.following)
+        userFollowers.text = Utils.compactHugeNumber(user.followers)
 
         initializeFollowingButton(user.iFollow)
         loadUserAvatar(user)
@@ -160,7 +172,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         Glide.with(applicationContext)
             .load(user.avatarLink)
             .apply(RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .skipMemoryCache(true)
                 .placeholder(R.drawable.no_avatar))
             .into(findViewById(R.id.profile_user_avatar))
     }
@@ -207,11 +219,14 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             ) {
 
-                val galleryConfig = GalleryConfig.Build()
-                    .singlePhoto(true)
-                    .build()
-
-                GalleryActivity.openActivity(this, SELECTING_IMAGE_REQUEST_CODE, galleryConfig)
+                ImagePicker.create(this)
+                    .returnMode(ReturnMode.ALL)
+                    .folderMode(true)
+                    .single()
+                    .showCamera(true)
+                    .imageDirectory("Neverland")
+                    .enableLog(true)
+                    .start()
             } else {
                 EasyPermissions.requestPermissions(this,
                     "We need them to save cropped images",

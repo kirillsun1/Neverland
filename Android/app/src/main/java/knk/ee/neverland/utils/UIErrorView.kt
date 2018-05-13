@@ -12,10 +12,12 @@ class UIErrorView private constructor(private val context: Context,
     fun handleError(exception: Exception) {
         if (exception is NetworkException) {
             showErrorMessage(exception.code, networkErrorMessages)
+            return
         }
 
         if (exception is APIException) {
             showErrorMessage(exception.code, apiErrorMessages)
+            return
         }
 
         showToast(exception.message.orEmpty())

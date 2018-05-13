@@ -1,7 +1,5 @@
 package knk.ee.neverland.utils
 
-import java.text.DecimalFormat
-
 object Utils {
     fun loginIsCorrect(login: String): Boolean = login.matches(Constants.LOGIN_REGEX)
 
