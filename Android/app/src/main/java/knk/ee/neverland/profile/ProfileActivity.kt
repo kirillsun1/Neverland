@@ -1,5 +1,6 @@
 package knk.ee.neverland.profile
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
@@ -26,14 +27,14 @@ import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.User
 import knk.ee.neverland.network.APIAsyncTask
-import knk.ee.neverland.quests.SuggestedQuestElement
+import knk.ee.neverland.quests.QuestElement
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 
 class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
-    private var userID: Int = Int.MIN_VALUE
+    private var user: User? = null
 
     private val REQUEST_PERMISSION_REQUEST_CODE = 1201
 
@@ -101,12 +102,12 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        showToast("Permissions are not granted.")
+        showToast(getString(R.string.no_permissions_granted))
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         if (requestCode != REQUEST_PERMISSION_REQUEST_CODE) {
-            showToast("Some permissions are not granted.")
+            showToast(getString(R.string.some_permission_are_not_granted))
         }
     }
 
@@ -152,8 +153,9 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         }
     }
 
-    private fun isUserProfile(): Boolean = userID == DefaultAPI.userID
+    private fun isUserProfile(): Boolean = user == null || user!!.id == DefaultAPI.userID
 
+    @SuppressLint("SetTextI18n")
     private fun setUserData(user: User) {
         userName.text = user.toString()
         toolBar.title = user.userName
@@ -180,7 +182,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
             followButton.visibility = VISIBLE
             followButton.isEnabled = true
 
-            followButton.text = if (following) "Unfollow" else "Follow"
+            followButton.text = getString(if (following) R.string.profile_unfollow else R.string.profile_follow)
             followButton.tag = following
         } else {
             followButton.visibility = GONE
@@ -190,16 +192,16 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
 
     private fun getUserIDFromIntent() {
         if (intent.extras != null) {
-            userID = intent.extras.getInt("userID")
-        } else {
-            userID = DefaultAPI.userID!!
+            user = intent.extras.get("user") as User
         }
     }
+
+    private fun getUserID(): Int = if (user != null) user!!.id else DefaultAPI.userID!!
 
     private fun runLoadUserDataTask() {
         APIAsyncTask<User>()
             .request {
-                DefaultAPI.userAPI.getUserData(userID)
+                DefaultAPI.userAPI.getUserData(getUserID())
             }
             .handleResult {
                 setUserData(it)
@@ -227,7 +229,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
                     .start()
             } else {
                 EasyPermissions.requestPermissions(this,
-                    "We need them to save cropped images",
+                    getString(R.string.permission_ask),
                     REQUEST_PERMISSION_REQUEST_CODE,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -240,7 +242,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
 
         var success = false
         APIAsyncTask<Boolean>()
-            .doBefore { showToast("Uploading new avatar") }
+            .doBefore { showToast(getString(R.string.user_uploading_avatar)) }
             .request {
                 DefaultAPI.userAPI.uploadAvatar(avatarFile)
                 success = true
@@ -251,7 +253,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
                 .create())
             .doAfter {
                 if (success) {
-                    showToast("Avatar uploaded")
+                    showToast(getString(R.string.user_avatar_uploaded))
                     runLoadUserDataTask()
                 }
             }
@@ -261,9 +263,12 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     private fun runGetProofsTask() {
         APIAsyncTask<List<Proof>>()
             .request {
-                DefaultAPI.proofAPI.getProofsByUserID(userID)
+                DefaultAPI.proofAPI.getProofsByUserID(getUserID())
             }
-            .handleResult { it.forEach { userProofList.addView(UserProofCard(this, it)) } }
+            .handleResult {
+                userProofList.removeAllViews()
+                it.forEach { userProofList.addView(UserProofCard(this, it)) }
+            }
             .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
     }
@@ -271,9 +276,12 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     private fun runLoadQuestTask() {
         APIAsyncTask<List<Quest>>()
             .request {
-                DefaultAPI.questAPI.getSuggestedByUserQuests(userID)
+                DefaultAPI.questAPI.getSuggestedByUserQuests(getUserID())
             }
-            .handleResult { it.forEach { userQuestsList.addView(SuggestedQuestElement(this, it)) } }
+            .handleResult {
+                userQuestsList.removeAllViews()
+                it.forEach { userQuestsList.addView(QuestElement(this, it)) }
+            }
             .uiErrorView(UIErrorView.Builder().with(this).create())
             .execute()
     }
@@ -282,9 +290,9 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         APIAsyncTask<Boolean>()
             .request {
                 if (follow) {
-                    DefaultAPI.userAPI.follow(userID)
+                    DefaultAPI.userAPI.follow(getUserID())
                 } else {
-                    DefaultAPI.userAPI.unfollow(userID)
+                    DefaultAPI.userAPI.unfollow(getUserID())
                 }
                 true
             }

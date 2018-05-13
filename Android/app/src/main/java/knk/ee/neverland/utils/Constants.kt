@@ -11,6 +11,7 @@ object Constants {
     const val NETWORK_TIMEOUT: Int = -102
 
     const val SUBMITTING_PROOF_REQUEST_CODE = 1
+    const val SUBMIT_NEW_QUEST_REQUEST_CODE: Int = 22
 
     const val ELEMENT_NUMBER_TO_START_RECYCLING_FROM = 20
 

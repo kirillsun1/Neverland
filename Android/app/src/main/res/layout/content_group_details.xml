@@ -38,7 +38,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
-                    android:text="asdgasdgasdg"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -66,45 +65,61 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/group_admin_avatar"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/group_join" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout5"
-                    android:layout_width="wrap_content"
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/group_admin_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/group_admin_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/group_join">
 
-                    <TextView
-                        android:id="@+id/group_admin"
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/group_admin_avatar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="asdg"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/group_admin_avatar"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.461">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Administrator"
-                        android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/group_admin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/group_administrator_label"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -122,7 +137,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
-                    android:text="20K"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
                     app:layout_constraintTop_toBottomOf="@+id/group_name" />
 
@@ -138,31 +152,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/group_open_quests_list"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Open quests list" />
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/group_suggest_quest"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Suggest new quest" />
+                    android:text="@string/group_suggest_quest_button" />
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <com.mindorks.placeholderview.PlaceHolderView
-            android:id="@+id/group_proofs"
+            android:id="@+id/group_quests"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

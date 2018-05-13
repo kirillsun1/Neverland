@@ -80,11 +80,7 @@
         <activity
             android:name=".profile.ProfileActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="knk.ee.neverland.activities.MainActivity" />
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".groups.GroupDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar">

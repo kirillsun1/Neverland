@@ -18,6 +18,7 @@ import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.network.APIAsyncTask
+import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.views.CustomFloatingActionButton
 
@@ -101,7 +102,7 @@ class TakenQuestsFragment : Fragment() {
 
     private fun openSuggestQuestActivity() {
         val suggestIntent = Intent(activity!!.applicationContext, CreateQuestActivity::class.java)
-        startActivity(suggestIntent)
+        startActivityForResult(suggestIntent, Constants.SUBMIT_NEW_QUEST_REQUEST_CODE)
         materialSheetFab.hideSheet()
     }
 

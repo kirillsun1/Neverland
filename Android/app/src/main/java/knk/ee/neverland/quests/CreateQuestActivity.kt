@@ -1,22 +1,29 @@
 package knk.ee.neverland.quests
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import knk.ee.neverland.R
 import knk.ee.neverland.api.DefaultAPI
 import knk.ee.neverland.api.models.QuestToSubmit
+import knk.ee.neverland.models.Group
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.ViewProgressController
 
 class CreateQuestActivity : AppCompatActivity() {
+    private var groupID: Int? = null
+
     @BindView(R.id.create_quest_title)
     lateinit var questTitleView: EditText
 
@@ -29,6 +36,12 @@ class CreateQuestActivity : AppCompatActivity() {
     @BindView(R.id.submitting_progress)
     lateinit var submittingProgress: ProgressBar
 
+    @BindView(R.id.group_name)
+    lateinit var groupName: TextView
+
+    @BindView(R.id.group_name_label)
+    lateinit var groupNameLabel: TextView
+
     lateinit var viewProgressController: ViewProgressController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +50,8 @@ class CreateQuestActivity : AppCompatActivity() {
         ButterKnife.bind(this)
 
         viewProgressController = ViewProgressController(submittingProgress, saveButton)
+
+        getGroupID()
     }
 
     @OnClick(R.id.create_quest_save)
@@ -72,7 +87,7 @@ class CreateQuestActivity : AppCompatActivity() {
 
     private fun getQuestToSubmit(): QuestToSubmit {
         return QuestToSubmit(questTitleView.text.toString(),
-            questDescView.text.toString(), 0) // TODO: groupID!
+            questDescView.text.toString(), groupID)
     }
 
     private fun isQuestNameCorrect(name: String) =
@@ -97,11 +112,27 @@ class CreateQuestActivity : AppCompatActivity() {
                 .messageOnAPIFail(R.string.error_submit_failed)
                 .create())
             .doAfter {
+                viewProgressController.hideProgress()
                 if (success) {
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }
-                viewProgressController.hideProgress()
             }
             .execute()
+    }
+
+    private fun getGroupID() {
+        if (intent.extras != null && intent.extras.containsKey("group")) {
+            val group = intent.extras.get("group") as Group
+            groupID = group.id
+
+            groupName.text = group.name
+
+            groupName.visibility = VISIBLE
+            groupNameLabel.visibility = VISIBLE
+        } else {
+            groupName.visibility = GONE
+            groupNameLabel.visibility = GONE
+        }
     }
 }

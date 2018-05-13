@@ -13,9 +13,10 @@ import knk.ee.neverland.models.Quest
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
+import org.joda.time.LocalDateTime
 
-@Layout(R.layout.suggested_by_user_quest)
-class SuggestedQuestElement(private val context: Context, private val quest: Quest) {
+@Layout(R.layout.quest_element)
+class QuestElement(private val context: Context, private val quest: Quest) {
     @View(R.id.quest_title)
     lateinit var questTitle: TextView
 
@@ -29,22 +30,31 @@ class SuggestedQuestElement(private val context: Context, private val quest: Que
     fun onResolve() {
         questTitle.text = quest.title
         questDescription.text = quest.description
+
+        changeTakeQuestIsEnabledProperty()
     }
 
     @Click(R.id.take_quest_button)
     fun takeQuest() {
+        var success = false
         APIAsyncTask<Boolean>()
             .toPool("takeQuest", "profileTasks")
             .doBefore { blockTakeQuestButton() }
             .request {
                 DefaultAPI.questAPI.takeQuest(quest.id)
+                success = true
                 true
             }
             .uiErrorView(UIErrorView.Builder()
                 .messageWhenAPIError(Constants.QUEST_ALREADY_TAKEN_CODE, R.string.error_quest_is_already_taken)
                 .with(context)
                 .create())
-            .doAfter { unblockTakeQuestButton() }
+            .doAfter {
+                if (success) {
+                    quest.timeTaken = LocalDateTime.now()
+                }
+                changeTakeQuestIsEnabledProperty()
+            }
             .execute()
     }
 
@@ -52,7 +62,7 @@ class SuggestedQuestElement(private val context: Context, private val quest: Que
         takeQuest.isEnabled = false
     }
 
-    private fun unblockTakeQuestButton() {
-        takeQuest.isEnabled = true
+    private fun changeTakeQuestIsEnabledProperty() {
+        takeQuest.isEnabled = quest.timeTaken == null // TODO: quest is taken?
     }
 }

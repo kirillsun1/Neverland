@@ -15,11 +15,12 @@ class NeverlandQuestAPI(private val gson: Gson) : QuestAPI {
     private val API_LINK = "http://vrot.bounceme.net:8080"
 
     override fun submitNewQuest(quest: QuestToSubmit) {
+        val gid = if (quest.groupID == null) 0 else quest.groupID
         val link = URLLinkBuilder(API_LINK, "submitQuest")
             .addParam("token", token)
             .addParam("title", quest.title)
             .addParam("desc", quest.description)
-            .addParam("gid", quest.groupID.toString())
+            .addParam("gid", gid.toString())
             .finish()
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
@@ -134,7 +135,21 @@ class NeverlandQuestAPI(private val gson: Gson) : QuestAPI {
         return responseObject.quests
     }
 
-    override fun getSuggestedByMeQuests(): List<Quest> {
-        return getQuestsToTake()
+    override fun getGroupQuests(groupID: Int): List<Quest> {
+        val link = URLLinkBuilder(API_LINK, "getGroupQuests")
+            .addParam("token", token)
+            .addParam("gid", groupID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetQuestsAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.quests
     }
 }

@@ -20,5 +20,5 @@ interface QuestAPI {
 
     fun getSuggestedByUserQuests(userID: Int): List<Quest>
 
-    fun getSuggestedByMeQuests(): List<Quest>
+    fun getGroupQuests(groupID: Int): List<Quest>
 }

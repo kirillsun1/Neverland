@@ -70,6 +70,7 @@ class GroupsFragment : Fragment() {
                 .with(view!!.context)
                 .create())
             .handleResult {
+                groupsList.removeAllViews()
                 it.forEach { groupsList.addView(GroupElement(view!!.context, it)) }
             }
         getMyGroupsTask!!.execute()

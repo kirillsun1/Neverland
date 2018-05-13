@@ -129,7 +129,7 @@ class ProofCard(private val context: Context, private val proof: Proof) {
 
     private fun openUserProfile() {
         val intent = Intent(context, ProfileActivity::class.java)
-        intent.putExtra("userID", proof.sender.id)
+        intent.putExtra("user", proof.sender)
         context.startActivity(intent)
     }
 

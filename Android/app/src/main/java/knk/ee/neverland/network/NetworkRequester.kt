@@ -13,7 +13,7 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 object NetworkRequester {
-    private const val MAXIMUM_TIMEOUT_IN_MS = 10000
+    private const val MAXIMUM_TIMEOUT_IN_MS = 30000
 
     fun makeGetRequestAndGetResponseBody(
         urlString: String,

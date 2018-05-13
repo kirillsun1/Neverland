@@ -69,7 +69,7 @@ class TakeQuestListAdapter(val context: Context) : BaseAdapter(), Filterable {
         val viewHolder: ViewHolder
 
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.quest_element, viewGroup, false)
+            convertView = layoutInflater.inflate(R.layout.take_quest_element, viewGroup, false)
 
             viewHolder = ViewHolder()
             viewHolder.questName = convertView.findViewById(R.id.quests_quest_name)

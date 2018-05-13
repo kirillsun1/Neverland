@@ -18,6 +18,25 @@
         app:layout_constraintTop_toBottomOf="@+id/image_logo"
         app:layout_constraintVertical_bias="0.307" />
 
+    <TextView
+        android:id="@+id/errorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        android:text="It looks like there are problems with connection... \n\n\nWe are sorry! :("
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_logo" />
+
     <ImageView
         android:id="@+id/image_logo"
         android:layout_width="142dp"

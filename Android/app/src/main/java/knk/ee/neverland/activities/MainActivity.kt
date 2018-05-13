@@ -1,23 +1,23 @@
 package knk.ee.neverland.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import knk.ee.neverland.R
-import knk.ee.neverland.auth.RegistrationActivity
-import knk.ee.neverland.auth.TokenChecker
 import knk.ee.neverland.feed.FeedFragment
 import knk.ee.neverland.groups.GroupsFragment
 import knk.ee.neverland.profile.ProfileActivity
 import knk.ee.neverland.quests.TakenQuestsFragment
-import knk.ee.neverland.search.SearchFragment
+import knk.ee.neverland.utils.Constants
 
 class MainActivity : AppCompatActivity() {
     enum class FragmentType {
-        FEED, QUESTS, SEARCH, GROUPS
+        FEED, QUESTS, GROUPS
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initializeBottomNavigationBar()
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == Constants.SUBMIT_NEW_QUEST_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            showToast("Quest created")
+        }
     }
 
     private fun initializeBottomNavigationBar() {
@@ -41,8 +47,6 @@ class MainActivity : AppCompatActivity() {
                         R.id.navigation_feed -> setMainFragment(FragmentType.FEED)
 
                         R.id.navigation_quests -> setMainFragment(FragmentType.QUESTS)
-
-                        R.id.navigation_search -> setMainFragment(FragmentType.SEARCH)
 
                         R.id.navigation_groups -> setMainFragment(FragmentType.GROUPS)
 
@@ -80,9 +84,11 @@ class MainActivity : AppCompatActivity() {
 
             FragmentType.QUESTS -> TakenQuestsFragment()
 
-            FragmentType.SEARCH -> SearchFragment()
-
             FragmentType.GROUPS -> GroupsFragment()
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
