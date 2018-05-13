@@ -10,7 +10,6 @@ import ee.knk.neverland.entity.TakenQuest;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.TakenQuestService;
-import ee.knk.neverland.service.TokenService;
 import ee.knk.neverland.tools.QuestPacker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ee.knk.neverland.constants.Constants;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 public class QuestController {
@@ -186,7 +183,7 @@ public class QuestController {
         if (!takenQuest.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.QUEST_IS_NOT_TAKEN));
         }
-        takenQuestService.delete(takenQuest.get().getId());
+        takenQuestService.drop(takenQuest.get().getId());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
 

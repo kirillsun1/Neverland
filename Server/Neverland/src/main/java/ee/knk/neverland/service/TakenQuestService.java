@@ -15,6 +15,6 @@ public interface TakenQuestService {
     Optional<TakenQuest> getQuestTakenByUser(User user, Quest quest);
     List<TakenQuest> getActiveQuestsUserTook(User user);
     void archive(Long takenQuestId);
-    void delete(Long takenQuestId);
+    void drop(Long takenQuestId);
 
 }

@@ -61,7 +61,7 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     }
 
     @Override
-    public void delete(Long takenQuestId) {
+    public void drop(Long takenQuestId) {
         takenQuestsRepository.delete(takenQuestId);
     }
 

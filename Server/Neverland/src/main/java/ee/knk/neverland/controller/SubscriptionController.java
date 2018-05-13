@@ -4,12 +4,11 @@ import com.google.gson.Gson;
 import ee.knk.neverland.answer.StandardAnswer;
 import ee.knk.neverland.answer.ListAnswer;
 import ee.knk.neverland.constants.Constants;
-import ee.knk.neverland.entity.PeopleGroup;
-import ee.knk.neverland.entity.Quest;
-import ee.knk.neverland.entity.Subscription;
-import ee.knk.neverland.entity.User;
+import ee.knk.neverland.entity.*;
 import ee.knk.neverland.service.GroupService;
+import ee.knk.neverland.service.QuestService;
 import ee.knk.neverland.service.SubscriptionService;
+import ee.knk.neverland.service.TakenQuestService;
 import ee.knk.neverland.tools.GroupPacker;
 import ee.knk.neverland.tools.UserPacker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +27,19 @@ public class SubscriptionController {
     private final TokenController tokenController;
     private final Gson gson = new Gson();
     private final UserController userController;
+    private final TakenQuestService takenQuestService;
 
     @Autowired
     public SubscriptionController(GroupService groupService,
                                   SubscriptionService subscriptionService,
                                   UserController userController,
-                                  TokenController tokenController) {
+                                  TokenController tokenController,
+                                  TakenQuestService takenQuestService) {
         this.groupService = groupService;
         this.subscriptionService = subscriptionService;
         this.userController = userController;
         this.tokenController = tokenController;
+        this.takenQuestService = takenQuestService;
     }
 
     @RequestMapping(value = "/subscribe")
@@ -74,6 +76,7 @@ public class SubscriptionController {
         if (groupService.checkAdminRights(groupId, user.get())) {
             return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
         }
+        dropAllQuestsFromGroup(group.get(), user.get());
         subscriptionService.unsubscribe(user.get(), group.get());
         return gson.toJson(new StandardAnswer(Constants.SUCCEED));
     }
@@ -136,5 +139,11 @@ public class SubscriptionController {
 
     public boolean isUserSubscribed(User me, PeopleGroup group) {
         return subscriptionService.isUserSubscribed(me, group);
+    }
+
+    private void dropAllQuestsFromGroup(PeopleGroup group, User user) {
+        List<TakenQuest> takenQuests =takenQuestService.getActiveQuestsUserTook(user);
+        takenQuests.stream().filter(takenQuest -> takenQuest.getQuest().getPeopleGroup().equals(group))
+                .forEach(takenQuest -> takenQuestService.drop(takenQuest.getQuest().getId()));
     }
 }
