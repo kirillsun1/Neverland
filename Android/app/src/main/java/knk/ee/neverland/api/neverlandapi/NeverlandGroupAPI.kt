@@ -8,6 +8,10 @@ import knk.ee.neverland.models.Group
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class NeverlandGroupAPI(private val gson: Gson) : GroupAPI {
     override var token: String = ""
@@ -43,5 +47,49 @@ class NeverlandGroupAPI(private val gson: Gson) : GroupAPI {
         }
 
         return responseObject.groups
+    }
+
+    override fun getGroup(groupID: Int): Group {
+        val link = URLLinkBuilder(API_LINK, "getGroupInfo")
+            .addParam("token", token)
+            .addParam("gid", groupID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetGroupAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.group
+    }
+
+    override fun uploadAvatar(groupID: Int, avatar: File) {
+        val requestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("token", token)
+            .addFormDataPart(
+                "file", avatar.name,
+                RequestBody.create(MediaType.parse("image"), avatar)
+            )
+            .addFormDataPart("gid", groupID.toString())
+            .build()
+
+        val link = URLLinkBuilder(API_LINK, "uploadGroupAvatar")
+            .finish()
+
+        val responseBody = NetworkRequester.makePostRequestAndGetResponseBody(link, requestBody)
+
+        val responseObj = gson.fromJson(
+            responseBody,
+            NeverlandAPIResponses.SimpleResponse::class.java
+        )
+
+        if (responseObj.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObj.code)
+        }
     }
 }

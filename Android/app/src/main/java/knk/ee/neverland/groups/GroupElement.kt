@@ -33,7 +33,7 @@ class GroupElement(private val context: Context, private val group: Group) {
     @Resolve
     fun onResolve() {
         groupName.text = group.name
-        groupInfo.text = "Created by ${group.admin}"
+        groupInfo.text = "${group.quantity} subscriber(s)"
         loadAvatar(context, group)
     }
 
@@ -46,7 +46,7 @@ class GroupElement(private val context: Context, private val group: Group) {
 
     private fun loadAvatar(context: Context, group: Group) {
         Glide.with(context)
-            .load(group.admin.avatarLink)
+            .load(group.avatarLink)
             .apply(RequestOptions()
                 .placeholder(R.drawable.no_avatar_group)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))

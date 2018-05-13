@@ -35,9 +35,7 @@ import java.io.File
 class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     private var userID: Int = Int.MIN_VALUE
 
-    private val SELECTING_IMAGE_REQUEST_CODE = 1200
     private val REQUEST_PERMISSION_REQUEST_CODE = 1201
-    private val SELECTING_IMAGE_SUCCESS_RESULT_CODE = -1
 
     @BindView(R.id.user_proofs)
     lateinit var userProofList: PlaceHolderView
@@ -114,7 +112,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.profile_menu, menu)
-        menu!!.findItem(R.id.change_avatar).isVisible = isMyProfile()
+        menu!!.findItem(R.id.change_avatar).isVisible = isUserProfile()
         return true
     }
 
@@ -143,7 +141,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
 
     @OnClick(R.id.profile_follow_button)
     fun onFollowButtonClicked() {
-        if (isMyProfile()) {
+        if (isUserProfile()) {
             return
         }
         val following = followButton.tag as Boolean
@@ -154,7 +152,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         }
     }
 
-    private fun isMyProfile(): Boolean = userID == DefaultAPI.userID
+    private fun isUserProfile(): Boolean = userID == DefaultAPI.userID
 
     private fun setUserData(user: User) {
         userName.text = user.toString()
@@ -178,7 +176,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     }
 
     private fun initializeFollowingButton(following: Boolean) {
-        if (!isMyProfile()) {
+        if (!isUserProfile()) {
             followButton.visibility = VISIBLE
             followButton.isEnabled = true
 
@@ -213,7 +211,7 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
     }
 
     private fun startUploadingAvatar() {
-        if (isMyProfile()) {
+        if (isUserProfile()) {
             if (EasyPermissions.hasPermissions(this,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE)

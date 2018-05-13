@@ -8,6 +8,6 @@ data class Group(val id: Int,
                  val name: String,
                  val admin: User,
                  val quantity: Int,
-                 val avatarLink: String?,
+                 @SerializedName("avatar") val avatarLink: String?,
                  @SerializedName("creation_time") val created: LocalDateTime
 ) : Serializable

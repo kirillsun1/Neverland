@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -29,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_add_24dp" />
+                            <entry key="outputName" value="ic_add_quest_24dp" />
                             <entry key="sourceFile" value="C:\Users\Kirill" />
                           </map>
                         </option>

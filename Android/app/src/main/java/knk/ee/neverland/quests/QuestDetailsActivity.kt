@@ -1,6 +1,5 @@
 package knk.ee.neverland.quests
 
-import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -140,6 +139,7 @@ class QuestDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
                 .showCamera(true)
                 .imageDirectory("Neverland")
                 .enableLog(true)
+                .theme(R.style.AppTheme_NoActionBar)
                 .start()
 
         } else {

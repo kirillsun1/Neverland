@@ -7,6 +7,7 @@ import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.Rating
 
 class NeverlandAPIResponses {
+
     data class IsKeyActiveResponse(
         val code: Int,
         @SerializedName("uid")
@@ -52,6 +53,12 @@ class NeverlandAPIResponses {
         val code: Int,
         @SerializedName("elements")
         val groups: List<Group>
+    )
+
+    data class GetGroupAPIResponse(
+        val code: Int,
+        @SerializedName("body")
+        val group: Group
     )
 
     data class VoteAPIResponse(
