@@ -37,6 +37,20 @@ class NLProfileApi {
         }
     }
     
+    enum FollowOption: String { case follow, unfollow }
+    func toggleFollowing(uid: Int, _ opt: FollowOption, onComplete: @escaping ()->()) {
+        let request = Alamofire.request(urlBase + "/\(opt.rawValue)", method: .get, parameters: ["uid": uid, "token": User.sharedInstance.token ?? ""])
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+        request.responseJSON(queue: queue) { response in
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                if let code = JSON.value(forKey: "code") as? Int {
+                    if code == 1 { onComplete() }
+                }
+            }
+        }
+    }
+    
     func getMySuggestedQuests(onComplete: @escaping ([NSDictionary]) -> ()) {
         getQuestsLogic(url: urlBase + "/getMySuggestedQuests", params: ["token": User.sharedInstance.token ?? "", "uid": 1], onComplete: onComplete)
     }

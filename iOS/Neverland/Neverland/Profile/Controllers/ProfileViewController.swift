@@ -14,16 +14,58 @@ class ProfileViewController: UIViewController {
         case proofs, quests
     }
     
+    @IBOutlet weak var actionButton: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var followersLbl: UILabel!
+    @IBOutlet weak var followingLbl: UILabel!
+    @IBOutlet weak var proofLbl: UILabel!
    
+    @IBAction func actionButtonPressed(_ sender: Any) {
+        if uid == nil {
+            performSegue(withIdentifier: "SettingsSegue", sender: nil)
+        } else {
+            guard let person = person else {
+                fatalError("This should not happen")
+            }
+            
+            profileApi.toggleFollowing(uid: uid!, person.isFollowedByMe ? .unfollow : .follow) {
+                DispatchQueue.main.sync {
+                    person.isFollowedByMe = !person.isFollowedByMe
+                    let delta = person.isFollowedByMe ? 1 : -1
+                    let oldValue = Int(self.followersLbl.text!) ?? 0
+                    self.followersLbl.text = "\(oldValue + delta)"
+                    self.actionButton.title = person.isFollowedByMe ? "Unfollow" : "Follow"
+                }
+            }
+        }
+    }
+    
+    var uid: Int?
     private let questApi = NLQuestApi()
     private let profileApi = NLProfileApi()
     private var mode = ProfileFeedMode.proofs
     private var proofs = [Proof]() {
         didSet {
             tableView.reloadData()
+            self.proofLbl.text = String(proofs.count)
+        }
+    }
+    
+    private var person: Person? {
+        didSet {
+            guard let person = person else { return }
+    
+            if let imgLink = person.photoURLString {
+                avatarView.uploadImageFrom(url: imgLink)
+            }
+            followersLbl.text = "\(person.followers)"
+            followingLbl.text = "\(person.followings)"
+            if uid != nil { actionButton.title = person.isFollowedByMe ? "Unfollow" : "Follow" }
+            navigationItem.title = person.nickname
+            nameLbl.text = "\(person.firstName) \(person.secondName)"
         }
     }
     
@@ -33,13 +75,18 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    var uid: Int?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if uid == nil {
+            actionButton.image = UIImage(named: "settings")
+            actionButton.title = nil
+        } else {
+            actionButton.image = nil
+        }
         
     }
     
@@ -70,11 +117,9 @@ class ProfileViewController: UIViewController {
     func fetchInfo() {
         let completionHandler: (Person) -> () = {
             userInfo in
-            if let imgLink = userInfo.photoURLString {
-                self.avatarView.uploadImageFrom(url: imgLink)
-            }
-            self.navigationItem.title = userInfo.nickname
-            self.nameLbl.text = "\(userInfo.firstName) \(userInfo.secondName)"
+            
+            self.person = userInfo
+            
         }
         
         uid != nil ? profileApi.getUserInfo(uid: uid!, onComplete: completionHandler) : profileApi.getMyInfo(onComplete: completionHandler)

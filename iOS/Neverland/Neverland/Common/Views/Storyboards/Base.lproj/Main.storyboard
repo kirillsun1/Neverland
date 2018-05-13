@@ -1052,7 +1052,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIV-0e-5Rf">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proofs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIV-0e-5Rf">
                                                                 <rect key="frame" x="0.0" y="18" width="75" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                                 <nil key="textColor"/>
@@ -1361,19 +1361,24 @@
                     <navigationItem key="navigationItem" id="IGX-vt-VYe">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="fFe-B8-Sqh">
                             <connections>
-                                <segue destination="8O0-zC-a1V" kind="show" id="nv6-6s-MxI"/>
+                                <action selector="actionButtonPressed:" destination="g49-S0-QLx" id="AO7-jn-TJ2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="fFe-B8-Sqh" id="gjx-I9-Xwj"/>
                         <outlet property="avatarView" destination="zwC-Y2-2l5" id="jpu-NE-SlB"/>
+                        <outlet property="followersLbl" destination="VkJ-lg-g9R" id="cc4-4A-rQd"/>
+                        <outlet property="followingLbl" destination="3lH-LO-9AM" id="kRD-Di-1OG"/>
                         <outlet property="nameLbl" destination="VPQ-ue-716" id="xBM-LR-CUP"/>
+                        <outlet property="proofLbl" destination="tBf-SD-idD" id="WT7-rh-otQ"/>
                         <outlet property="tableView" destination="MJg-WF-YGo" id="5m5-0K-hqS"/>
+                        <segue destination="8O0-zC-a1V" kind="show" identifier="SettingsSegue" id="DbB-pS-QlO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtu-V8-yU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3861" y="771"/>
+            <point key="canvasLocation" x="3932" y="768"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ock-hn-yYr">

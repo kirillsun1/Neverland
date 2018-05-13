@@ -51,7 +51,7 @@ class FeedCell: UITableViewCell {
         self.pid = proof.id
         self.titleLbl.text = "\(proof.proofer.nickname) - \(proof.quest?.title ?? "Quest Title")"
         self.commentLbl.text = proof.comment
-        setRatingBar(rating: proof.rating)
+        self.setRatingBar(rating: proof.rating)
         self.photoView.uploadImageFrom(url: proof.picPath)
         if let btn = self.segueButton {
             btn.tag = proof.proofer.id
