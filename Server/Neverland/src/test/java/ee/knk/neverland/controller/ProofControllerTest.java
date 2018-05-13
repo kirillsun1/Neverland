@@ -29,8 +29,6 @@ public class ProofControllerTest {
     @Mock
     private QuestController questController;
     @Mock
-    private TakenQuestController takenQuestController;
-    @Mock
     private UserController userController;
     @Mock
     private VoteController voteController;
@@ -62,7 +60,7 @@ public class ProofControllerTest {
     @Test
     public void addProofArchivesTakenQuest() {
         proofController.addProof(0L, user, "dummy", "dummy");
-        verify(takenQuestController).archiveTakenQuest(quest, user);
+        verify(questController).archiveTakenQuest(quest, user);
     }
 
     @Test

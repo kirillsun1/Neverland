@@ -67,7 +67,7 @@ public class QuestControllerTest {
     @Test
     public void getQuestsAsksForQuests() {
         questController.getQuests(token);
-        verify(questService).getQuests();
+        verify(questService).getQuestsWithoutGroups();
     }
 
     @Test
