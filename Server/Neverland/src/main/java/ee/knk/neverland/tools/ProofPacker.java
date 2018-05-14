@@ -44,6 +44,16 @@ public class ProofPacker {
                 .getProofPojo();
     }
 
+    public List<Pojo> packNonPrivateProofs(List<Proof> proofs) {
+        List<Pojo> packedProofs = new ArrayList<>();
+        for (Proof pointer : proofs) {
+            if(pointer.getQuest().getPeopleGroup() == null) {
+                packedProofs.add(packProof(pointer));
+            }
+        }
+        return packedProofs;
+    }
+
     public List<Pojo> packAllProofs(List<Proof> proofs) {
         List<Pojo> packedProofs = new ArrayList<>();
         for (Proof pointer : proofs) {

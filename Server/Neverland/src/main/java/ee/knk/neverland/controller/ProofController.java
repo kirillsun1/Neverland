@@ -98,7 +98,7 @@ public class ProofController {
         }
         List<Proof> proofs = proofService.getAllProofs();
         ProofPacker packer = new ProofPacker(voteController, questController, user.get());
-        return gson.toJson(new ListAnswer(packer.packAllProofs(proofs)));
+        return gson.toJson(new ListAnswer(packer.packNonPrivateProofs(proofs)));
     }
 
     @RequestMapping(value = "/getProofById")
@@ -153,5 +153,10 @@ public class ProofController {
 
     Optional<Proof> getProofById(Long id) {
         return proofService.getProofById(id);
+    }
+
+    public boolean proofExists(Long questId, User user) {
+
+        return proofService.existsProofWithUserAndQuest(user, questController.getQuestById(questId));
     }
 }

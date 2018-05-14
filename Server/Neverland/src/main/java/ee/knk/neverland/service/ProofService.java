@@ -16,4 +16,6 @@ public interface ProofService {
 
     List<Proof> getAllProofs();
     Optional<Proof> getProofById(Long id);
+
+    boolean existsProofWithUserAndQuest(User user, Quest questById);
 }

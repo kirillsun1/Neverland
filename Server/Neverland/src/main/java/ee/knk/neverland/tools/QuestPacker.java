@@ -55,4 +55,14 @@ public class QuestPacker {
         }
         return packedQuests;
     }
+
+    public List<Pojo> packNonPrivateQuests(List<Quest> quests) {
+        List<Pojo> packedQuests = new ArrayList<>();
+        for (Quest quest : quests) {
+            if(quest.getPeopleGroup() == null) {
+                packedQuests.add(packQuest(quest));
+            }
+        }
+        return packedQuests;
+    }
 }

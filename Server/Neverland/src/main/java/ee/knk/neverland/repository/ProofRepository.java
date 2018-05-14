@@ -23,4 +23,7 @@ public interface ProofRepository extends JpaRepository<Proof, Long> {
 
     @Query("SELECT proof FROM Proof proof ORDER BY proof.id DESC")
     List<Proof> findAllAndSort();
+
+    @Query("SELECT proof FROM Proof proof WHERE proof.user = :user AND proof.quest = :quest")
+    Optional<Proof> findProofByUserAndQuest(@Param("user") User user, @Param("quest") Quest questById);
 }

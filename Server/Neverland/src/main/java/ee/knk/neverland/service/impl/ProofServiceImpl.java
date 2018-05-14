@@ -46,4 +46,9 @@ public class ProofServiceImpl implements ProofService {
         return proofRepository.findOneIfExists(id) ;
     }
 
+    @Override
+    public boolean existsProofWithUserAndQuest(User user, Quest questById) {
+        return proofRepository.findProofByUserAndQuest(user, questById).isPresent();
+    }
+
 }

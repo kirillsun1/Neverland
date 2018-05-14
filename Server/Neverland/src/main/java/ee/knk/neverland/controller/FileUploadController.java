@@ -42,7 +42,7 @@ public class FileUploadController {
         String realPath = "/var/www/html/never_pictures/proofs/";
         String dbPath = "http://vrot.bounceme.net:8081/never_pictures/proofs/";
         Optional<User> user = tokenController.getTokenUser(token);
-        if (!user.isPresent()) {
+        if (!user.isPresent() || proofController.proofExists(questId, user.get())) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         String pathEnding = LocalDateTime.now().toString() +  user.get().getUsername() + "_" + questId + ".jpg";

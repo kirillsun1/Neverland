@@ -91,7 +91,7 @@ public class QuestController {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
         QuestPacker packer = new QuestPacker(this, me.get());
-        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(author.get()))));
+        return gson.toJson(new ListAnswer(packer.packNonPrivateQuests(questService.getAuthorsQuests(author.get()))));
     }
 
     @RequestMapping(value="/getMySuggestedQuests")
@@ -101,7 +101,7 @@ public class QuestController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         QuestPacker packer = new QuestPacker(this, me.get());
-        return gson.toJson(new ListAnswer(packer.packAllQuests(questService.getAuthorsQuests(me.get()))));
+        return gson.toJson(new ListAnswer(packer.packNonPrivateQuests(questService.getAuthorsQuests(me.get()))));
     }
 
     @RequestMapping(value="/getGroupQuests")
@@ -239,5 +239,4 @@ public class QuestController {
     public Optional<TakenQuest> getTakenQuestByUserAndQuest(User me, Quest quest) {
         return takenQuestService.getQuestTakenByUser(me, quest);
     }
-
 }
