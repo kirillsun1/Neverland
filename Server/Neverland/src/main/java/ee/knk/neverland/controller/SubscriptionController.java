@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 public class SubscriptionController {
@@ -144,9 +143,10 @@ public class SubscriptionController {
 
     private void dropAllQuestsFromGroup(PeopleGroup group, User user) {
         List<TakenQuest> takenQuests = takenQuestService.getActiveQuestsUserTook(user);
-        List<TakenQuest> toDrop = takenQuests.stream()
-                .filter(takenQuest -> group.equals(takenQuest.getQuest().getPeopleGroup()))
-                .collect(Collectors.toList());
+        if (takenQuests.size() > 0) {
+            takenQuests.stream().filter(takenQuest -> group.equals(takenQuest.getQuest().getPeopleGroup()))
+                    .forEach(takenQuest -> takenQuestService.drop(takenQuest.getQuest().getId()));
+        }
 
     }
 }
