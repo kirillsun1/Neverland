@@ -16,6 +16,6 @@ public interface TokenRepository extends JpaRepository<Token, Long> {
     @Query("SELECT token FROM Token token WHERE token.value = :value")
     Optional<Token> exists(@Param("value") String value);
 
-    @Query("SELECT user FROM Token token WHERE token.value = :value")
+    @Query("SELECT user FROM Token token WHERE token.value = :value AND token.active = true")
     Optional<User> getTokenUser(@Param("value") String value);
 }

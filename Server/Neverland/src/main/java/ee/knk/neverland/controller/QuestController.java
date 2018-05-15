@@ -237,6 +237,6 @@ public class QuestController {
     }
 
     public Optional<TakenQuest> getTakenQuestByUserAndQuest(User me, Quest quest) {
-        return takenQuestService.getQuestTakenByUser(me, quest);
+        return takenQuestService.getActiveQuestTakenByUser(me, quest);
     }
 }

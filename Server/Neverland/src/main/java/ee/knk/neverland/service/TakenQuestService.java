@@ -13,6 +13,7 @@ public interface TakenQuestService {
     List<Quest> getAllQuestsUserTook(User user);
     boolean checkIfQuestIsTaken(User user, Quest quest);
     Optional<TakenQuest> getQuestTakenByUser(User user, Quest quest);
+    Optional<TakenQuest> getActiveQuestTakenByUser(User user, Quest quest);
     List<TakenQuest> getActiveQuestsUserTook(User user);
     void archive(Long takenQuestId);
     void drop(Long takenQuestId);

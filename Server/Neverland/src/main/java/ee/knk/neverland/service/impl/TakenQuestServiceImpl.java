@@ -56,6 +56,11 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     }
 
     @Override
+    public Optional<TakenQuest> getActiveQuestTakenByUser(User user, Quest quest) {
+        return takenQuestsRepository.getIfExists(quest, user);
+    }
+
+    @Override
     public void archive(Long takenQuestId) {
         takenQuestsRepository.archive(takenQuestId);
     }
