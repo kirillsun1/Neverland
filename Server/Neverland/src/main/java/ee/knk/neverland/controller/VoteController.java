@@ -81,13 +81,13 @@ public class VoteController {
 
     public double getUsersRating(User user) {
         List<Proof> proofs = proofService.getUsersProofs(user);
-        int positive = proofs.stream()
+        double positive = proofs.stream()
                 .mapToInt(voteService::getProofPositiveRating)
                 .sum();
-        int negative = proofs.stream()
+        double negative = proofs.stream()
                 .mapToInt(voteService::getProofNegativeRating)
                 .sum();
 
-        return positive + negative == 0 ? 0 : positive / (positive + negative);
+        return ((positive + negative) == 0) ? 0 : (positive / (positive + negative));
     }
 }

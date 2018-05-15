@@ -9,10 +9,7 @@ public interface UserService {
     User addUser(User user);
     Optional<User> findUser(long userId);
     boolean existsWithUsernameOrEmail(String username, String email);
-    User editUser(User user);
     Optional<User> findMatch(String username, String password);
-    void delete(Long userId);
-    List<User> getAll();
 
     void setAvatar(Long id, String path);
 }

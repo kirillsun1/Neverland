@@ -28,7 +28,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void cleanOutByUser(User user) {
-        tokenRepository.clearUpOutOfDateKeys(user);
+        tokenRepository.cleanOutOutOfDateKeys(user);
     }
 
     @Override

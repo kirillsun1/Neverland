@@ -27,6 +27,9 @@ public class VoteServiceImpl implements VoteService {
     }
     @Override
     public Vote addVote(Vote vote) {
+        if(getUsersVote(vote.getUser(), vote.getProof()).isPresent()) {
+            return vote;
+        }
         return voteRepository.saveAndFlush(vote);
     }
 

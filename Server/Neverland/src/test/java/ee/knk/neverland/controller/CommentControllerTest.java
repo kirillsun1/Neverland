@@ -24,9 +24,6 @@ import static org.mockito.Mockito.when;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CommentControllerTest {
-
-    @Autowired
-    private CommentRepository commentRepository;
     @Mock
     private Comment comment;
     private CommentController commentController;
@@ -47,7 +44,6 @@ public class CommentControllerTest {
 
     @Before
     public void before() {
-        commentRepository.deleteAll();
         this.commentController = new CommentController(tokenController, commentService, proofController);
         Optional<User> userOp = Optional.of(author);
         Optional<Proof> proofOp = Optional.of(proof);

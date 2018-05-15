@@ -33,23 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User editUser(User user) {
-        return userRepository.saveAndFlush(user);
-    }
-
-    @Override
     public Optional<User> findMatch(String username, String password) {
         return userRepository.passwordMatches(username, password);
-    }
-
-    @Override
-    public void delete(Long userId) {
-        userRepository.delete(userId);
-    }
-
-    @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
     }
 
     @Override
