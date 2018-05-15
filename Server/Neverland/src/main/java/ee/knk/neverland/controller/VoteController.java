@@ -87,6 +87,7 @@ public class VoteController {
         int negative = proofs.stream()
                 .mapToInt(voteService::getProofNegativeRating)
                 .sum();
-        return positive / (positive + negative);
+
+        return positive + negative == 0 ? 0 : positive / (positive + negative);
     }
 }
