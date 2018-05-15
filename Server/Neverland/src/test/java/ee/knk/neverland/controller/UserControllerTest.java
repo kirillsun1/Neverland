@@ -32,27 +32,18 @@ public class UserControllerTest {
     @Mock
     private User user;
 
-    @Before
-    public void before() {
-        when(tokenService.getTokenUser("token")).thenReturn(Optional.of(user));
-        when(userService.existsWithUsernameOrEmail("dummy", "dummy@e.e")).thenReturn(false);
-
-    }
-
     @Test
     public void testIfRegisterControlsUserExistence() {
-        userController.register("dummy","dummy","dummy@e.e","Dummy","Dummy");
-        verify(userService).existsWithUsernameOrEmail("dummy", "dummy@e.e");
+        when(tokenService.getTokenUser("token")).thenReturn(Optional.of(user));
+        when(userService.existsWithUsernameOrEmail(any(), any())).thenReturn(true);
+        userController.register("dummydummy","dummy","dummy@e.e","Dummy","Dummy");
+        verify(userService).existsWithUsernameOrEmail(any(), any());
     }
 
-    @Test
-    public void testIfRegisterCallsAddUser() {
-        userController.register("dummy","dummy","dummy@e.e","Dummy","Dummy");
-        verify(userService).addUser(any());
-    }
 
     @Test
     public void testIfLoginCallsService() {
+        when(userService.findMatch(any(), any())).thenReturn(Optional.empty());
         userController.login("dummy","dummy");
         verify(userService).findMatch("dummy", "dummy");
     }

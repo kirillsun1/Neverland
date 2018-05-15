@@ -37,25 +37,23 @@ public class FileUploadControllerTest {
     private FileUploadController fileUploadController;
     private final String token = "dummy";
 
-
-    @Before
-    public void before() {
-        when(tokenController.getTokenUser(token)).thenReturn(Optional.empty());
-    }
     @Test
     public void handleProofUploadControlsToken() {
+        when(tokenController.getTokenUser(token)).thenReturn(Optional.empty());
         fileUploadController.handleProofUpload(token, 0L, mock(MultipartFile.class), "dummy");
         verify(tokenController).getTokenUser(token);
     }
 
     @Test
     public void handleUserAvatarUploadControlsToken() {
+        when(tokenController.getTokenUser(token)).thenReturn(Optional.empty());
         fileUploadController.handleUserAvatarUpload(token, mock(MultipartFile.class));
         verify(tokenController).getTokenUser(token);
     }
 
     @Test
     public void handleGroupAvatarUploadControlsToken() {
+        when(tokenController.getTokenUser(token)).thenReturn(Optional.empty());
         fileUploadController.handleGroupAvatarUpload(token, mock(MultipartFile.class), 0L);
         verify(tokenController).getTokenUser(token);
     }
