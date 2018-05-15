@@ -27,4 +27,6 @@ public class UserPojo implements Pojo {
     private boolean iFollow;
     @SerializedName("does_follow_me")
     private boolean followsMe;
+    @SerializedName("rating")
+    private double rating;
 }

@@ -4,6 +4,7 @@ import ee.knk.neverland.answer.pojo.Pojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
 import ee.knk.neverland.answer.pojo.builder.UserPojoBuilder;
 import ee.knk.neverland.controller.FollowingController;
+import ee.knk.neverland.controller.VoteController;
 import ee.knk.neverland.entity.User;
 
 import java.util.ArrayList;
@@ -11,19 +12,21 @@ import java.util.List;
 
 public class UserPacker {
 
-    public UserPojo packDetailedAnotherUser(User user, FollowingController followingController, User me) {
+    public UserPojo packDetailedAnotherUser(User user, FollowingController followingController, VoteController voteController, User me) {
         return pack(user)
                 .withFollowersAmount(followingController.getUsersFollowersQuantity(user))
                 .withFollowingsAmount(followingController.getUsersFollowingsQuantity(user))
                 .withIfIFollow(followingController.ifOneFollowsAnother(me, user))
                 .withIfFollowsMe(followingController.ifOneFollowsAnother(user, me))
+                .withRating(voteController.getUsersRating(user))
                 .getUserPojo();
     }
 
-    public UserPojo packDetailedMe(User me, FollowingController followingController) {
+    public UserPojo packDetailedMe(User me, FollowingController followingController, VoteController voteController) {
         return pack(me)
                 .withFollowersAmount(followingController.getUsersFollowersQuantity(me))
                 .withFollowingsAmount(followingController.getUsersFollowingsQuantity(me))
+                .withRating(voteController.getUsersRating(me))
                 .getUserPojo();
     }
 

@@ -24,14 +24,19 @@ public class UserController {
     private final UserService userService;
     private final TokenController tokenController;
     private final FollowingController followingController;
+    private final VoteController voteController;
     private Validator validator = new Validator();
     private Gson gson = new Gson();
 
     @Autowired
-    public UserController(UserService userService, TokenService tokenService, FollowingService  followingService) {
+    public UserController(UserService userService,
+                          TokenService tokenService,
+                          FollowingService  followingService,
+                          VoteController voteController) {
         this.userService = userService;
         this.tokenController = new TokenController(tokenService);
         this.followingController = new FollowingController(followingService, this, tokenController);
+        this.voteController = voteController;
     }
 
     @RequestMapping(value="/register")
@@ -77,7 +82,7 @@ public class UserController {
         if (!toFind.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
-        return gson.toJson(packer.packDetailedAnotherUser(toFind.get(), followingController, user.get()));
+        return gson.toJson(packer.packDetailedAnotherUser(toFind.get(), followingController, voteController, user.get()));
     }
 
     @RequestMapping(value="/getMyInfo")
@@ -87,7 +92,7 @@ public class UserController {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
         UserPacker packer = new UserPacker();
-        return gson.toJson(packer.packDetailedMe(user.get(), followingController));
+        return gson.toJson(packer.packDetailedMe(user.get(), followingController, voteController));
     }
 
     void setAvatar(Long id, String path) {

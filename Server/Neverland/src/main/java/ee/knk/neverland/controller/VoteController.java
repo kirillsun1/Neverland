@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -76,5 +77,16 @@ public class VoteController {
             return Constants.USER_AGREED;
         }
         return Constants.USER_DISAGREED;
+    }
+
+    public double getUsersRating(User user) {
+        List<Proof> proofs = proofService.getUsersProofs(user);
+        int positive = proofs.stream()
+                .mapToInt(voteService::getProofPositiveRating)
+                .sum();
+        int negative = proofs.stream()
+                .mapToInt(voteService::getProofNegativeRating)
+                .sum();
+        return positive / (positive + negative);
     }
 }
