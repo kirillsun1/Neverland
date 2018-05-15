@@ -75,7 +75,8 @@ class NeverlandUserAPI(private val gson: Gson) : UserAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = gson.fromJson(responseBody, NeverlandAPIResponses.SimpleResponse::class.java)
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
@@ -90,10 +91,47 @@ class NeverlandUserAPI(private val gson: Gson) : UserAPI {
 
         val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
 
-        val responseObject = gson.fromJson(responseBody, NeverlandAPIResponses.SimpleResponse::class.java)
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.SimpleResponse::class.java)
 
         if (responseObject.code != Constants.SUCCESS_CODE) {
             throw APIException(responseObject.code)
         }
+    }
+
+    override fun getFollowers(userID: Int): List<User> {
+        val link = URLLinkBuilder(API_LINK, "/getUsersFollowers")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetUsersAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.users
+    }
+
+    override fun getFollowings(userID: Int): List<User> {
+        val link = URLLinkBuilder(API_LINK, "/getUsersFollowings")
+            .addParam("token", token)
+            .addParam("uid", userID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetUsersAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.users
     }
 }

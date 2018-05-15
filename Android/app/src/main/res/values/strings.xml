@@ -165,5 +165,6 @@
     <string name="group_open_quests_button">Open quests list</string>
     <string name="group_suggest_quest_button">Suggest new quest</string>
     <string name="find_group">Find group</string>
+    <string name="failed_to_leave_group_creator">Creator cannot leave group</string>
 
 </resources>

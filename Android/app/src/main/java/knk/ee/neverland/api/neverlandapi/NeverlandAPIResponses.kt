@@ -5,8 +5,14 @@ import knk.ee.neverland.models.Group
 import knk.ee.neverland.models.Proof
 import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.Rating
+import knk.ee.neverland.models.User
 
 class NeverlandAPIResponses {
+    data class GetUsersAPIResponse(
+        val code: Int,
+        @SerializedName("elements")
+        val users: List<User>
+    )
 
     data class IsKeyActiveResponse(
         val code: Int,

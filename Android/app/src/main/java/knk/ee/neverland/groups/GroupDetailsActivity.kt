@@ -28,6 +28,7 @@ import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.profile.ProfileActivity
 import knk.ee.neverland.quests.CreateQuestActivity
 import knk.ee.neverland.quests.QuestElement
+import knk.ee.neverland.user.UserListActivity
 import knk.ee.neverland.utils.Constants
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
@@ -56,9 +57,6 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
     @BindView(R.id.group_quests)
     lateinit var groupQuestsList: PlaceHolderView
 
-    @BindView(R.id.group_subscribers)
-    lateinit var subscribers: TextView
-
     @BindView(R.id.group_leave)
     lateinit var groupLeave: Button
 
@@ -67,6 +65,9 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
 
     @BindView(R.id.group_suggest_quest)
     lateinit var suggestQuest: Button
+
+    @BindView(R.id.group_subscribers)
+    lateinit var groupSubscribers: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,6 +159,14 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
             .show()
     }
 
+    @OnClick(R.id.group_subscribers)
+    fun onGroupSubscribersClick() {
+        val intent = Intent(applicationContext, UserListActivity::class.java)
+        intent.putExtra("userLoadTask", "groupSubscribers")
+        intent.putExtra("groupID", group.id)
+        startActivity(intent)
+    }
+
     private fun runLoadGroupQuestsTask() {
         APIAsyncTask<List<Quest>>()
             .request {
@@ -169,6 +178,8 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
             }
             .uiErrorView(UIErrorView.Builder()
                 .with(this)
+                .messageWhenAPIError(Constants.CREATOR_CANNOT_LEAVE_GROUP_CODE,
+                    R.string.failed_to_leave_group_creator)
                 .create())
             .execute()
     }
@@ -177,7 +188,7 @@ class GroupDetailsActivity : AppCompatActivity(), EasyPermissions.PermissionCall
         title = group.name
         groupName.text = group.name
         groupAdminName.text = getString(R.string.group_admin_text).format(group.admin, group.admin.userName)
-        subscribers.text = getString(R.string.group_subscribers).format(Utils.compactHugeNumber(group.quantity))
+        groupSubscribers.text = getString(R.string.group_subscribers).format(Utils.compactHugeNumber(group.quantity))
 
         if (loadAvatar) {
             loadGroupAvatar()

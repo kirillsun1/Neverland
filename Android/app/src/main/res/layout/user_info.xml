@@ -67,8 +67,7 @@
                     android:id="@+id/profile_user_rating"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:visibility="invisible" />
+                    android:textColor="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/profile_user_following"

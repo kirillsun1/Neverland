@@ -1,6 +1,7 @@
 package knk.ee.neverland.api
 
 import knk.ee.neverland.models.Group
+import knk.ee.neverland.models.User
 import java.io.File
 
 interface GroupAPI {
@@ -19,4 +20,6 @@ interface GroupAPI {
     fun unsubscribe(groupID: Int)
 
     fun getGroupsToJoin(): List<Group>
+
+    fun getSubscribers(groupID: Int): List<User>
 }

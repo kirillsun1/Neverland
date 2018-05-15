@@ -91,6 +91,14 @@
         <activity
             android:name=".groups.FindGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6edd5e9c3fce31c97646e3ad008e05b868dc81b6" />
+
+        <activity
+            android:name=".user.UserListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

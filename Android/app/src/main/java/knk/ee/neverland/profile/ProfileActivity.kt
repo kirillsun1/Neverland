@@ -28,6 +28,7 @@ import knk.ee.neverland.models.Quest
 import knk.ee.neverland.models.User
 import knk.ee.neverland.network.APIAsyncTask
 import knk.ee.neverland.quests.QuestElement
+import knk.ee.neverland.user.UserListActivity
 import knk.ee.neverland.utils.UIErrorView
 import knk.ee.neverland.utils.Utils
 import pub.devrel.easypermissions.EasyPermissions
@@ -151,6 +152,22 @@ class ProfileActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks
         } else {
             runChangeFollowingTask(true)
         }
+    }
+
+    @OnClick(R.id.profile_user_following)
+    fun onUserFollowingsClick() {
+        val intent = Intent(applicationContext, UserListActivity::class.java)
+        intent.putExtra("userLoadTask", "userFollowings")
+        intent.putExtra("userID", getUserID())
+        startActivity(intent)
+    }
+
+    @OnClick(R.id.profile_user_followers)
+    fun onUserFollowersClick() {
+        val intent = Intent(applicationContext, UserListActivity::class.java)
+        intent.putExtra("userLoadTask", "userFollowers")
+        intent.putExtra("userID", getUserID())
+        startActivity(intent)
     }
 
     private fun isUserProfile(): Boolean = user == null || user!!.id == DefaultAPI.userID

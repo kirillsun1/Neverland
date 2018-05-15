@@ -5,6 +5,7 @@ import knk.ee.neverland.api.GroupAPI
 import knk.ee.neverland.api.neverlandapi.NeverlandAPIConstants.API_LINK
 import knk.ee.neverland.exceptions.APIException
 import knk.ee.neverland.models.Group
+import knk.ee.neverland.models.User
 import knk.ee.neverland.network.NetworkRequester
 import knk.ee.neverland.network.URLLinkBuilder
 import knk.ee.neverland.utils.Constants
@@ -140,5 +141,23 @@ class NeverlandGroupAPI(private val gson: Gson) : GroupAPI {
         }
 
         return responseObject.groups
+    }
+
+    override fun getSubscribers(groupID: Int): List<User> {
+        val link = URLLinkBuilder(API_LINK, "/getGroupSubscribers")
+            .addParam("token", token)
+            .addParam("gid", groupID.toString())
+            .finish()
+
+        val responseBody = NetworkRequester.makeGetRequestAndGetResponseBody(link)
+
+        val responseObject = gson.fromJson(responseBody,
+            NeverlandAPIResponses.GetUsersAPIResponse::class.java)
+
+        if (responseObject.code != Constants.SUCCESS_CODE) {
+            throw APIException(responseObject.code)
+        }
+
+        return responseObject.users
     }
 }

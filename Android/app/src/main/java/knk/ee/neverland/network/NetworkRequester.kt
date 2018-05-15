@@ -10,15 +10,9 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
 import java.net.UnknownHostException
-import java.util.concurrent.TimeUnit
 
 object NetworkRequester {
-    private const val MAXIMUM_TIMEOUT_IN_MS = 30000
-
-    fun makeGetRequestAndGetResponseBody(
-        urlString: String,
-        defaultTimeoutInMilliSeconds: Int = MAXIMUM_TIMEOUT_IN_MS
-    ): String {
+    fun makeGetRequestAndGetResponseBody(urlString: String): String {
         try {
             val request = Request.Builder()
                 .url(URL(urlString))
@@ -26,8 +20,6 @@ object NetworkRequester {
                 .build()
 
             val client = OkHttpClient.Builder()
-                .connectTimeout(defaultTimeoutInMilliSeconds.toLong(), TimeUnit.MILLISECONDS)
-                .readTimeout(defaultTimeoutInMilliSeconds.toLong(), TimeUnit.MILLISECONDS)
                 .build()
 
             val response = client.newCall(request).execute()
@@ -43,9 +35,7 @@ object NetworkRequester {
     }
 
     fun makePostRequestAndGetResponseBody(
-        urlString: String, requestBody: RequestBody,
-        defaultTimeoutInMilliSeconds: Int = MAXIMUM_TIMEOUT_IN_MS
-    ): String {
+        urlString: String, requestBody: RequestBody): String {
         try {
             val request = Request.Builder()
                 .url(urlString)
@@ -53,8 +43,6 @@ object NetworkRequester {
                 .build()
 
             val client = OkHttpClient.Builder()
-                .connectTimeout(defaultTimeoutInMilliSeconds.toLong(), TimeUnit.MILLISECONDS)
-                .readTimeout(defaultTimeoutInMilliSeconds.toLong(), TimeUnit.MILLISECONDS)
                 .build()
 
             val response = client.newCall(request).execute()

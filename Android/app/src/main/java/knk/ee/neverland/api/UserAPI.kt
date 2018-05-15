@@ -15,4 +15,6 @@ interface UserAPI {
     fun follow(userID: Int)
 
     fun unfollow(userID: Int)
+    fun getFollowers(userID: Int): List<User>
+    fun getFollowings(userID: Int): List<User>
 }
