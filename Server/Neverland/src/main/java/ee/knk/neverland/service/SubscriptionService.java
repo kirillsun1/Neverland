@@ -17,4 +17,6 @@ public interface SubscriptionService {
     List<User> getGroupSubscribers(PeopleGroup peopleGroup);
 
     int getSubscribersAmount(PeopleGroup group);
+
+    boolean isUserSubscribed(User user, PeopleGroup group);
 }

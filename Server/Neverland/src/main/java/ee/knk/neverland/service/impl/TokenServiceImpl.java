@@ -28,7 +28,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void cleanOutByUser(User user) {
-        tokenRepository.clearUpOutOfDateKeys(user);
+        tokenRepository.cleanOutOutOfDateKeys(user);
     }
 
     @Override
@@ -39,11 +39,6 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public List<Token> getAll() {
         return tokenRepository.findAll();
-    }
-
-    @Override
-    public boolean isValid(String tokenValue) {
-        return tokenRepository.isValid(tokenValue).isPresent();
     }
 
     @Override

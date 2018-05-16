@@ -8,6 +8,8 @@ import lombok.Data;
 public class StandardAnswer {
     private Pojo body;
     private int code = Constants.SUCCEED;
+    private Long uid;
+    private String avatar;
 
     public StandardAnswer(Pojo body) {
         this.body = body;
@@ -20,5 +22,10 @@ public class StandardAnswer {
 
     public StandardAnswer(int code) {
         this.code = code;
+    }
+
+    public StandardAnswer(int code, Long userId) {
+        this.code = code;
+        this.uid = userId;
     }
 }

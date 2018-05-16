@@ -12,6 +12,5 @@ public interface TokenService {
     void cleanOutByUser(User user);
     boolean exists(String tokenValue);
     List<Token> getAll();
-    boolean isValid(String tokenValue);
     Optional<User> getTokenUser(String value);
 }

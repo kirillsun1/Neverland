@@ -19,9 +19,15 @@ public class VoteServiceImpl implements VoteService {
     public VoteServiceImpl(VoteRepository voteRepository) {
         this.voteRepository = voteRepository;
     }
+
+
+    @Override
+    public boolean ifUserCanVoteForProof(User user, Proof proof) {
+        return !voteRepository.getUsersVote(user, proof).isPresent();
+    }
     @Override
     public Vote addVote(Vote vote) {
-        if (voteRepository.getUsersVote(vote.getUser(), vote.getProof()).isPresent()) {
+        if(getUsersVote(vote.getUser(), vote.getProof()).isPresent()) {
             return vote;
         }
         return voteRepository.saveAndFlush(vote);

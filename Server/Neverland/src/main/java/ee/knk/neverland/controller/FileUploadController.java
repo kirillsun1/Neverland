@@ -1,13 +1,16 @@
 package ee.knk.neverland.controller;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import com.google.gson.Gson;
 import ee.knk.neverland.answer.StandardAnswer;
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.init.ScriptStatementFailedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ee.knk.neverland.constants.Constants;
@@ -21,23 +24,28 @@ public class FileUploadController {
     private Gson gson = new Gson();
 
     @Autowired
-    public FileUploadController(TokenController tokenController, UserController userController, ProofController proofController, GroupController groupController) {
+    public FileUploadController(TokenController tokenController,
+                                UserController userController,
+                                ProofController proofController,
+                                GroupController groupController) {
         this.tokenController = tokenController;
         this.proofController = proofController;
         this.groupController = groupController;
         this.userController = userController;
     }
 
-    @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleProofUpload(@RequestParam("token") String token, @RequestParam("qid") Long questId,
-                                                 @RequestParam("file") MultipartFile file, @RequestParam("comment") String comment){
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String handleProofUpload(@RequestParam("token") String token,
+                             @RequestParam("qid") Long questId,
+                             @RequestParam("file") MultipartFile file,
+                             @RequestParam("comment") String comment) {
         String realPath = "/var/www/html/never_pictures/proofs/";
         String dbPath = "http://vrot.bounceme.net:8081/never_pictures/proofs/";
         Optional<User> user = tokenController.getTokenUser(token);
-        if (!user.isPresent()) {
+        if (!user.isPresent() || proofController.proofExists(questId, user.get())) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String pathEnding = user.get().getUsername() + "_" + questId + ".jpg";
+        String pathEnding = LocalDateTime.now().toString() +  user.get().getUsername() + "_" + questId + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             proofController.addProof(questId, user.get(), dbPath + pathEnding, comment);
@@ -46,35 +54,40 @@ public class FileUploadController {
 
     }
 
-    @RequestMapping(value="/uploadAvatar", method=RequestMethod.POST)
-    public @ResponseBody String handleUserAvatarUpload(@RequestParam("token") String token, @RequestParam("file") MultipartFile file){
+    @RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST)
+    public String handleUserAvatarUpload(@RequestParam("token") String token,
+                                  @RequestParam("file") MultipartFile file) {
         String realPath = "/var/www/html/never_pictures/user_avatars/";
         String dbPath = "http://vrot.bounceme.net:8081/never_pictures/user_avatars/";
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String pathEnding = user.get().getUsername() + ".jpg";
+        String pathEnding = LocalDateTime.now().toString() +  user.get().getUsername() + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
             userController.setAvatar(user.get().getId(), dbPath + pathEnding);
         }
+        standardAnswer.setAvatar(dbPath + pathEnding);
         return gson.toJson(standardAnswer);
-        }
+    }
 
-    @RequestMapping(value="/uploadGroupAvatar", method=RequestMethod.POST)
-    public @ResponseBody String handleGroupAvatarUpload(@RequestParam("token") String token, @RequestParam("file") MultipartFile file, @RequestParam("gid") Long groupId){
-        String realPath = "/var/www/html/never_pictures/group_avatars/";
-        String dbPath = "http://vrot.bounceme.net:8081/never_pictures/group_avatars/";
+    @RequestMapping(value = "/uploadGroupAvatar", method = RequestMethod.POST)
+    public String handleGroupAvatarUpload(@RequestParam("token") String token,
+                                          @RequestParam("file") MultipartFile file,
+                                          @RequestParam("gid") Long groupId) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.FAILED));
         }
-        String pathEnding = user.get().getUsername() + ".jpg";
+        String realPath = "/var/www/html/never_pictures/group_avatars/";
+        String dbPath = "http://vrot.bounceme.net:8081/never_pictures/group_avatars/";
+        String pathEnding = LocalDateTime.now().toString() +  groupId + ".jpg";
         StandardAnswer standardAnswer = writeFile(file, realPath + pathEnding);
         if (standardAnswer.getCode() == Constants.SUCCEED) {
-            groupController.setAvatar(user.get().getId(), dbPath + pathEnding);
+            groupController.setAvatar(groupId, dbPath + pathEnding);
         }
+        standardAnswer.setAvatar(dbPath + pathEnding);
         return gson.toJson(standardAnswer);
     }
 
@@ -89,7 +102,7 @@ public class FileUploadController {
                 stream.close();
                 return new StandardAnswer(Constants.SUCCEED);
             } catch (Exception e) {
-                return new StandardAnswer(Constants.FAILED);
+                return new StandardAnswer(Constants.FILE_UPLOAD_FAILED);
             }
         } else {
             return new StandardAnswer(Constants.FILE_IS_EMPTY);

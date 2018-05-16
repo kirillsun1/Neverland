@@ -2,9 +2,10 @@ package ee.knk.neverland.tools;
 
 import ee.knk.neverland.answer.pojo.Pojo;
 import ee.knk.neverland.answer.pojo.ProofPojo;
-import ee.knk.neverland.answer.pojo.ProofPojo.ProofPojoBuilder;
 import ee.knk.neverland.answer.pojo.QuestPojo;
 import ee.knk.neverland.answer.pojo.UserPojo;
+import ee.knk.neverland.answer.pojo.builder.ProofPojoBuilder;
+import ee.knk.neverland.controller.QuestController;
 import ee.knk.neverland.controller.VoteController;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.User;
@@ -15,12 +16,14 @@ import java.util.List;
 public class ProofPacker {
     private final VoteController voteController;
     private final User me;
-    private UserPacker userPacker = new UserPacker();
-    private QuestPacker questPacker = new QuestPacker();
+    private final QuestPacker questPacker;
+    private UserPacker userPacker;
 
 
-    public ProofPacker(VoteController voteController, User me) {
+    public ProofPacker(VoteController voteController, QuestController questController, User me) {
         this.voteController = voteController;
+        this.questPacker = new QuestPacker(questController, me);
+        this.userPacker = new UserPacker();
         this.me = me;
     }
 
@@ -29,16 +32,26 @@ public class ProofPacker {
         QuestPojo quest = questPacker.packQuest(pointer.getQuest());
         ProofPojoBuilder builder = new ProofPojoBuilder();
         return builder
-                .setId(pointer.getId())
-                .setComment(pointer.getComment())
-                .setProofer(proofer)
-                .setPicturePath(pointer.getPicturePath())
-                .setQuest(quest)
-                .setTime(pointer.getTime())
-                .setPositiveRating(voteController.getProofPositiveRating(pointer))
-                .setNegativeRating(voteController.getProofNegativeRating(pointer))
-                .setMyVote(voteController.getUsersVote(me, pointer))
+                .withId(pointer.getId())
+                .withComment(pointer.getComment())
+                .withProofer(proofer)
+                .withPicturePath(pointer.getPicturePath())
+                .withQuest(quest)
+                .withTime(pointer.getTime())
+                .withRating(voteController.getProofPositiveRating(pointer),
+                        voteController.getProofNegativeRating(pointer),
+                        voteController.getUsersVote(me, pointer))
                 .getProofPojo();
+    }
+
+    public List<Pojo> packNonPrivateProofs(List<Proof> proofs) {
+        List<Pojo> packedProofs = new ArrayList<>();
+        for (Proof pointer : proofs) {
+            if(pointer.getQuest().getPeopleGroup() == null) {
+                packedProofs.add(packProof(pointer));
+            }
+        }
+        return packedProofs;
     }
 
     public List<Pojo> packAllProofs(List<Proof> proofs) {

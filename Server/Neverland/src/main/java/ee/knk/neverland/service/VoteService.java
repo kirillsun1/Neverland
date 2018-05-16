@@ -7,6 +7,8 @@ import ee.knk.neverland.entity.Vote;
 import java.util.Optional;
 
 public interface VoteService {
+    boolean ifUserCanVoteForProof(User user, Proof proof);
+
     Vote addVote(Vote vote);
 
     int getProofPositiveRating(Proof proof);

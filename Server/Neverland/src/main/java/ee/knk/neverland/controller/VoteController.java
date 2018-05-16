@@ -2,6 +2,8 @@ package ee.knk.neverland.controller;
 
 import com.google.gson.Gson;
 import ee.knk.neverland.answer.StandardAnswer;
+import ee.knk.neverland.answer.pojo.Pojo;
+import ee.knk.neverland.answer.pojo.RatingPojo;
 import ee.knk.neverland.constants.Constants;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.User;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,7 +34,8 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/vote")
-    public String getAllProofs(@RequestParam(name = "token") String token, @RequestParam(name = "pid") Long proofId,
+    public String vote(@RequestParam(name = "token") String token,
+                               @RequestParam(name = "pid") Long proofId,
                                @RequestParam(name = "value") boolean value) {
         Optional<User> user = tokenController.getTokenUser(token);
         if (!user.isPresent()) {
@@ -41,9 +45,15 @@ public class VoteController {
         if (!proof.isPresent()) {
             return gson.toJson(new StandardAnswer(Constants.ELEMENT_DOES_NOT_EXIST));
         }
+        if (!voteService.ifUserCanVoteForProof(user.get(), proof.get())) {
+            return gson.toJson(new StandardAnswer(Constants.PERMISSION_DENIED));
+        }
         Vote vote = new Vote(user.get(), proof.get(), value);
         voteService.addVote(vote);
-        return gson.toJson(new StandardAnswer(Constants.SUCCEED));
+        RatingPojo rating = new RatingPojo(getProofPositiveRating(proof.get()),
+                getProofNegativeRating(proof.get()),
+                getUsersVote(user.get(), proof.get()));
+        return gson.toJson(new StandardAnswer(rating));
     }
 
     private Optional<Proof> getProofById(Long proofId) {
@@ -67,5 +77,17 @@ public class VoteController {
             return Constants.USER_AGREED;
         }
         return Constants.USER_DISAGREED;
-     }
+    }
+
+    public double getUsersRating(User user) {
+        List<Proof> proofs = proofService.getUsersProofs(user);
+        double positive = proofs.stream()
+                .mapToInt(voteService::getProofPositiveRating)
+                .sum();
+        double negative = proofs.stream()
+                .mapToInt(voteService::getProofNegativeRating)
+                .sum();
+
+        return ((positive + negative) == 0) ? 0 : (positive / (positive + negative));
+    }
 }

@@ -2,59 +2,59 @@ package ee.knk.neverland.service.impl;
 
 import ee.knk.neverland.entity.Comment;
 import ee.knk.neverland.entity.Proof;
-import ee.knk.neverland.entity.Quest;
-import ee.knk.neverland.entity.User;
 import ee.knk.neverland.repository.CommentRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import java.util.ArrayList;
+import java.util.Optional;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-
 public class CommentServiceImplTest {
-
-    @Autowired
-    CommentRepository commentRepository;
+    @Mock
+    private CommentRepository commentRepository;
+    @InjectMocks
     private CommentServiceImpl commentService;
 
-    private User user = new User("dummy", "dummy", "dummy", "dummy", "dummy");
-    private Proof proof = new Proof(user, new Quest(), "dummy", "dummy");
+    @Mock
+    private Comment comment;
 
-
-    @Before
-    public void before() {
-        when(proof.getId()).thenReturn(1L);
-        when(user.getId()).thenReturn(1L);
-        commentRepository.deleteAll();
-        commentService = new CommentServiceImpl(commentRepository);
-    }
+    @Mock
+    private Proof proof;
 
     @Test
-    public void addComment() {
-        Comment comment = new Comment(user, proof, "dummy");
+    public void testIfAddCommentCallsRepo() {
+        when(commentRepository.saveAndFlush(any())).thenReturn(comment);
         commentService.addComment(comment);
-        assert(1 == commentService.getProofComments(proof).size());
+        verify(commentRepository).saveAndFlush(comment);
     }
 
     @Test
-    public void getCommentById() {
+    public void testIfGetCommentByIdCallsRepo() {
+        when(commentRepository.findOneIfExists(0L)).thenReturn(Optional.empty());
+        commentService.getCommentById(0L);
+        verify(commentRepository).findOneIfExists(0L);
     }
 
     @Test
-    public void editComment() {
+    public void testIfEditCommentCallsRepo() {
+        commentService.editComment("", 0L);
+        verify(commentRepository).editComment("", 0L);
     }
 
     @Test
-    public void getProofComments() {
+    public void testIfGetProofCommentsCallsRepo() {
+        when(commentRepository.getProofComments(proof)).thenReturn(new ArrayList<>());
+        commentService.editComment("", 0L);
+        verify(commentRepository).editComment("", 0L);
     }
+
 }

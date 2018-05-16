@@ -7,19 +7,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class QuestControllerTest {
 
     @Mock
@@ -30,7 +25,6 @@ public class QuestControllerTest {
     private UserController userController;
     @Mock
     private GroupController groupController;
-
     @InjectMocks
     private QuestController questController;
 
@@ -43,6 +37,8 @@ public class QuestControllerTest {
     public void before() {
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
         when(groupController.findGroupById(1L)).thenReturn(Optional.empty());
+        when(groupController.findGroupById(0L)).thenReturn(Optional.empty());
+        when(userController.getUserById(0L)).thenReturn(Optional.empty());
     }
 
     @Test
@@ -66,7 +62,7 @@ public class QuestControllerTest {
     @Test
     public void getQuestsAsksForQuests() {
         questController.getQuests(token);
-        verify(questService).getQuests();
+        verify(questService).getQuestsWithoutGroups();
     }
 
     @Test

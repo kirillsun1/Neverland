@@ -4,6 +4,7 @@ import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface QuestService {
@@ -13,4 +14,6 @@ public interface QuestService {
 
     List<Quest> getGroupQuests(PeopleGroup group);
     List<Quest> getAuthorsQuests(User author);
+
+    List<Quest> getQuestsWithoutGroups();
 }

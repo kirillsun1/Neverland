@@ -23,4 +23,8 @@ public class ListAnswer {
     public ListAnswer(List<Pojo> elements) {
         this.elements = elements;
     }
+
+    public boolean isSuccessful() {
+        return code > 0;
+    }
 }

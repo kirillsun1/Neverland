@@ -22,6 +22,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public Subscription subscribe(Subscription subscription) {
+        if (subscriptionRepository.getUsersSubscription(subscription.getUser(), subscription.getPeopleGroup()).isPresent()) {
+            return subscription;
+        }
         return subscriptionRepository.saveAndFlush(subscription);
     }
 
@@ -43,5 +46,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public int getSubscribersAmount(PeopleGroup group) {
         return subscriptionRepository.countGroupSubscribers(group);
+    }
+
+    @Override
+    public boolean isUserSubscribed(User user, PeopleGroup group) {
+        return subscriptionRepository.getUsersSubscriptionToGroup(user, group).isPresent();
     }
 }

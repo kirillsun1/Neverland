@@ -1,5 +1,6 @@
 package ee.knk.neverland.service.impl;
 
+import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
@@ -44,4 +45,10 @@ public class ProofServiceImpl implements ProofService {
     public Optional<Proof> getProofById(Long id) {
         return proofRepository.findOneIfExists(id) ;
     }
+
+    @Override
+    public boolean existsProofWithUserAndQuest(User user, Quest questById) {
+        return proofRepository.findProofByUserAndQuest(user, questById).isPresent();
+    }
+
 }

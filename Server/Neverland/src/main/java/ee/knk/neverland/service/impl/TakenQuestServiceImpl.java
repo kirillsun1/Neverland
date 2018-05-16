@@ -8,6 +8,7 @@ import ee.knk.neverland.service.TakenQuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,12 +56,18 @@ public class TakenQuestServiceImpl implements TakenQuestService {
     }
 
     @Override
+    public Optional<TakenQuest> getActiveQuestTakenByUser(User user, Quest quest) {
+        return takenQuestsRepository.getIfExists(quest, user);
+    }
+
+    @Override
     public void archive(Long takenQuestId) {
         takenQuestsRepository.archive(takenQuestId);
     }
 
     @Override
-    public void delete(Long takenQuestId) {
+    public void drop(Long takenQuestId) {
         takenQuestsRepository.delete(takenQuestId);
     }
+
 }
