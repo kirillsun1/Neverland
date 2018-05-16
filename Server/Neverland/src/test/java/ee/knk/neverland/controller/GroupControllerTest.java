@@ -1,6 +1,5 @@
 package ee.knk.neverland.controller;
 
-import ee.knk.neverland.entity.Token;
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.GroupService;
 import org.junit.Before;
@@ -8,21 +7,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class GroupControllerTest {
     @Mock
     private TokenController tokenController;
@@ -41,8 +34,9 @@ public class GroupControllerTest {
         when(tokenController.getTokenUser(token)).thenReturn(Optional.of(user));
         when(groupService.findGroupById(0L)).thenReturn(Optional.empty());
         when(user.getId()).thenReturn(0L);
-        when(groupService.checkAdminRights(0L,user)).thenReturn(true);
+        when(groupService.checkAdminRights(0L, user)).thenReturn(true);
     }
+
     @Test
     public void addGroupControlsToken() {
         when(tokenController.getTokenUser(token)).thenReturn(Optional.empty());

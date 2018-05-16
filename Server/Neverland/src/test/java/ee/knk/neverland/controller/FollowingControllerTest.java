@@ -2,13 +2,10 @@ package ee.knk.neverland.controller;
 
 import ee.knk.neverland.entity.User;
 import ee.knk.neverland.service.FollowingService;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
@@ -18,8 +15,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FollowingControllerTest {
     @Mock
     private FollowingService followingService;
@@ -129,7 +124,6 @@ public class FollowingControllerTest {
         followingController.getUsersFollowingsQuantity(user);
         verify(followingService).getUserFollowingsAmount(user);
     }
-
 
 
 }

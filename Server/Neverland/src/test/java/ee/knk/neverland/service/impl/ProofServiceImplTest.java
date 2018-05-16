@@ -1,17 +1,13 @@
 package ee.knk.neverland.service.impl;
 
-import ee.knk.neverland.entity.PeopleGroup;
 import ee.knk.neverland.entity.Proof;
 import ee.knk.neverland.entity.Quest;
 import ee.knk.neverland.entity.User;
-import ee.knk.neverland.repository.GroupRepository;
 import ee.knk.neverland.repository.ProofRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -21,8 +17,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProofServiceImplTest {
 
     @Mock
@@ -69,12 +63,12 @@ public class ProofServiceImplTest {
     @Test
     public void testIfExistsProofWithUserAndQuestReturnsFalseIfRepoGivesEmptyOptional() {
         when(proofRepository.findProofByUserAndQuest(user, quest)).thenReturn(Optional.empty());
-        assert(!proofService.existsProofWithUserAndQuest(user, quest));
+        assert (!proofService.existsProofWithUserAndQuest(user, quest));
     }
 
     @Test
     public void testIfExistsProofWithUserAndQuestReturnsTrueIfRepoGivesObjectInOptional() {
         when(proofRepository.findProofByUserAndQuest(user, quest)).thenReturn(Optional.of(proof));
-        assert(proofService.existsProofWithUserAndQuest(user, quest));
+        assert (proofService.existsProofWithUserAndQuest(user, quest));
     }
 }

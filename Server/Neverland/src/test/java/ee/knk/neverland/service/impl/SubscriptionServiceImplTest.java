@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -21,8 +19,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SubscriptionServiceImplTest {
 
     @Mock
@@ -85,13 +81,13 @@ public class SubscriptionServiceImplTest {
     @Test
     public void testIfIIsUserSubscribedReturnsFalseIfRepoGivesEmptyOptional() {
         when(subscriptionRepository.getUsersSubscriptionToGroup(any(), any())).thenReturn(Optional.empty());
-        assert(!subscriptionService.isUserSubscribed(user, group));
+        assert (!subscriptionService.isUserSubscribed(user, group));
     }
 
     @Test
     public void testIfIsUserSubscribedReturnsTrueIfRepoGivesNotEmptyOptional() {
         when(subscriptionRepository.getUsersSubscriptionToGroup(any(), any())).thenReturn(Optional.of(subscription));
-        assert(subscriptionService.isUserSubscribed(user, group));
+        assert (subscriptionService.isUserSubscribed(user, group));
     }
 
 }

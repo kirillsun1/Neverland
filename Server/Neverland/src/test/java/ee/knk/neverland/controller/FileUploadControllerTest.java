@@ -21,8 +21,6 @@ import static org.mockito.Mockito.when;
 
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FileUploadControllerTest {
 
     @Mock

@@ -9,8 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class VoteControllerTest {
 
     @Mock
@@ -53,42 +49,60 @@ public class VoteControllerTest {
 
     @Test
     public void testIfVoteCallsTokenCheck() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.empty());
         voteController.vote("token", 0L, true);
         verify(tokenController).getTokenUser("token");
     }
 
     @Test
     public void testIfVoteCallsGetProofById() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));
+        when(proofService.getProofById(0L)).thenReturn(Optional.empty());
         voteController.vote("token", 0L, true);
         verify(proofService).getProofById(0L);
     }
 
     @Test
     public void testIfVoteCheckUsersRightToVote() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));
+        when(proofService.getProofById(0L)).thenReturn(Optional.of(proof));
+        when(voteService.ifUserCanVoteForProof(any(), any())).thenReturn(false);
         voteController.vote("token", 0L, true);
         verify(voteService).ifUserCanVoteForProof(any(), any());
     }
 
     @Test
     public void testIfVoteAddsVote() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));
+        when(proofService.getProofById(0L)).thenReturn(Optional.of(proof));
+        when(voteService.ifUserCanVoteForProof(any(), any())).thenReturn(true);
         voteController.vote("token", 0L, true);
         verify(voteService).addVote(any());
     }
 
     @Test
     public void testIfVoteAsksForPositiveRating() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));        when(proofService.getProofById(0L)).thenReturn(Optional.of(proof));
+        when(voteService.ifUserCanVoteForProof(any(), any())).thenReturn(true);
+        when(voteService.getProofPositiveRating(any())).thenReturn(0);
         voteController.vote("token", 0L, true);
         verify(voteService).getProofPositiveRating(any());
     }
 
     @Test
     public void testIfVoteAsksForNegativeRating() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));        when(proofService.getProofById(0L)).thenReturn(Optional.of(proof));
+        when(voteService.ifUserCanVoteForProof(any(), any())).thenReturn(true);
+        when(voteService.getProofNegativeRating(any())).thenReturn(0);
         voteController.vote("token", 0L, true);
         verify(voteService).getProofNegativeRating(any());
     }
 
     @Test
     public void testIfVoteAsksForUsersVote() {
+        when(tokenController.getTokenUser("token")).thenReturn(Optional.of(user));        when(proofService.getProofById(0L)).thenReturn(Optional.of(proof));
+        when(voteService.ifUserCanVoteForProof(any(), any())).thenReturn(true);
+        when(voteService.getUsersVote(any(), any())).thenReturn(Optional.empty());
         voteController.vote("token", 0L, true);
         verify(voteService).getUsersVote(any(), any());
     }
@@ -96,7 +110,7 @@ public class VoteControllerTest {
     @Test
     public void testIfGetUsersRatingReturnsZeroIfGetsZeroSizeProofs() {
         when(proofService.getUsersProofs(any())).thenReturn(new ArrayList<>());
-        assertEquals(0, voteController.getUsersRating(user), 0.2);
+        assertEquals(0, voteController.getUsersRating(user), 0.01);
     }
 
     @Test
@@ -106,7 +120,7 @@ public class VoteControllerTest {
         when(voteService.getProofPositiveRating(proof)).thenReturn(10);
         when(voteService.getProofNegativeRating(proof)).thenReturn(10);
         when(proofService.getUsersProofs(any())).thenReturn(proofs);
-        assertEquals(0.5, voteController.getUsersRating(user));
+        assertEquals(0.5, voteController.getUsersRating(user), 0.01);
     }
 
 

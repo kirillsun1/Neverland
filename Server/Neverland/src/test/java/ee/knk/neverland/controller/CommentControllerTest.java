@@ -21,8 +21,6 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CommentControllerTest {
     @Mock
     private Comment comment;
