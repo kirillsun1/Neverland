@@ -51,6 +51,43 @@ class NLProfileApi {
         }
     }
     
+    func getUsersFollowers(uid: Int, onComplete: @escaping ([Person])->()) {
+        peopleFetchingLogic(url: urlBase + "/getUsersFollowers", params: ["uid": uid, "token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+    }
+    
+    func getMyFollowers(onComplete: @escaping ([Person])->()) {
+        peopleFetchingLogic(url: urlBase + "/getMyFollowers", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+    }
+    
+    func getUsersFollowings(uid: Int, onComplete: @escaping ([Person])->()) {
+        peopleFetchingLogic(url: urlBase + "/getUsersFollowings", params: ["uid": uid, "token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+        
+    }
+    
+    func getMyFollowings(onComplete: @escaping ([Person])->()) {
+        peopleFetchingLogic(url: urlBase + "/getMyFollowings", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+    }
+    
+    func peopleFetchingLogic(url: String, params: [String:Any], onComplete: @escaping ([Person]) -> ()) {
+        let request = Alamofire.request(url, method: .get, parameters: params)
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+        request.responseJSON(queue: queue) { response in
+            if let result = response.result.value {
+                if let JSON = result as? NSDictionary, let pjson = JSON.value(forKey: "elements") as? [NSDictionary] {
+                    var retArray = [Person]()
+                    for pData in pjson {
+                        let person = Person.init(creatorData: pData)
+                        if person != nil { retArray.append(person!) }
+                    }
+                    DispatchQueue.main.async {
+                        onComplete(retArray)
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     func getMySuggestedQuests(onComplete: @escaping ([NSDictionary]) -> ()) {
         getQuestsLogic(url: urlBase + "/getMySuggestedQuests", params: ["token": User.sharedInstance.token ?? "", "uid": 1], onComplete: onComplete)
     }

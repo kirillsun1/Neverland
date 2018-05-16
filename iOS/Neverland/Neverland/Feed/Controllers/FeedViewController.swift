@@ -17,16 +17,39 @@ class FeedViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    let scopes = ["World", "Follow", "Groups"]
     var dropDown: DropDown!
+    var scopeInd = 0 {
+        didSet {
+           self.scopeLbl.setTitle(scopes[scopeInd] + " ▾", for: .normal)
+            refreshProofs()
+        }
+    }
+    
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scopeLbl: UIButton!
+    
+    private var refreshCompletionParser: (([NSDictionary]) -> ())!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dropDown = DropDown()
         dropDown.anchorView = mainView // UIView or UIBarButtonItem
-        dropDown.dataSource = ["World", "Following", "Groups"]
+        dropDown.dataSource = scopes
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.scopeInd = index
+            self.refreshProofs()
+            
+        }
+        
+        
+        refreshCompletionParser = { arr in
+            self.proofs = Proof.createProofsArray(from: arr)
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -39,6 +62,10 @@ class FeedViewController: UIViewController {
             self.tableView.es.stopPullToRefresh(ignoreDate: true)
             self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refreshProofs()
     }
     
     @IBAction func segueButtonTapped(_ sender: UIButton!) {
@@ -57,11 +84,18 @@ class FeedViewController: UIViewController {
     }
     
     func refreshProofs() {
-        questApi.fetchAllProofs(onComplete: { arr in
-            self.proofs = Proof.createProofsArray(from: arr)
-        })
+        
+        switch scopeInd {
+        case 0:
+            questApi.fetchAllProofs(onComplete: refreshCompletionParser)
+        case 1:
+            questApi.fetchFollowingProofs(onComplete: refreshCompletionParser)
+        case 2:
+            questApi.fetchGroupsProofs(onComplete: refreshCompletionParser)
+        default:
+            self.proofs = []
+        }
     }
-
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {

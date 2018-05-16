@@ -17,9 +17,12 @@ class NLQuestApi: QuestApi {
     
     
     //MARK: - Fetching quests.
+    func fetchQuests(onComplete: @escaping ([NSDictionary]) -> ()) {
+         fetchingLogic(url: self.urlBase+"/getQuestsToTake", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+    }
     
-    func fetchQuests(inGroup: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
-        fetchingLogic(url: self.urlBase+"/getQuestsToTake", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete)
+    func fetchQuests(inGroup gid: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase+"/getGroupQuests", params: ["token": User.sharedInstance.token ?? "", "gid": gid], onComplete: onComplete)
     }
     
     func fetchMyQuests(onComplete: @escaping ([NSDictionary])->()) {
@@ -37,6 +40,14 @@ class NLQuestApi: QuestApi {
     
     func fetchAllProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
         fetchingLogic(url: self.urlBase + "/getAllProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchFollowingProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getMyFollowingsProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
+    }
+    
+    func fetchGroupsProofs(onComplete: @escaping ([NSDictionary]) -> ()) {
+        fetchingLogic(url: self.urlBase + "/getMyGroupsProofs", params: ["token": User.sharedInstance.token ?? ""], onComplete: onComplete, jsonKey: "proofs")
     }
     
     func fetchUserProofs(uid: Int, onComplete: @escaping ([NSDictionary]) -> ()) {
@@ -94,6 +105,7 @@ class NLQuestApi: QuestApi {
         questActionLogic(url: self.urlBase + "/dropQuest", params: ["token": User.sharedInstance.token ?? "",
                                                             "qid": qid], onComplete: onComplete)
     }
+    
     
     func questActionLogic(url: String, params:[String:Any], onComplete: @escaping (QuestApiResponse) -> ()) {
         let request = Alamofire.request(url, method: .get, parameters: params)

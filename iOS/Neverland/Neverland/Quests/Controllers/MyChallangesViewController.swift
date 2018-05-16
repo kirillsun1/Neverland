@@ -46,7 +46,7 @@ class MyChallangesViewController: UIViewController {
         }
         
         actionButton.addItem(title: "Suggest quest", image: UIImage(named: "add_btn")?.withRenderingMode(.alwaysTemplate)) { item in
-            self.performSegue(withIdentifier: "TakeQuestSegue", sender: nil)
+            self.performSegue(withIdentifier: "CreateQuestSegue", sender: nil)
         }
         
         actionButton.display(inViewController: self)

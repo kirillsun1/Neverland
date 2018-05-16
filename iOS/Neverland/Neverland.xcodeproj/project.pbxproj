@@ -16,6 +16,9 @@
 		1728CEDF2044378C005D9A63 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEDE2044378C005D9A63 /* ApiResponse.swift */; };
 		1728CEE1204437F9005D9A63 /* QuestApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */; };
 		1735D219207A7CD60011A095 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735D218207A7CD60011A095 /* UserInfo.swift */; };
+		174CB46420AB698100F20BA1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CB46320AB698100F20BA1 /* UIViewController+Extension.swift */; };
+		174CB46620AB769E00F20BA1 /* DudeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CB46520AB769E00F20BA1 /* DudeCell.swift */; };
+		174CB46820AB80CF00F20BA1 /* PeopleListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CB46720AB80CF00F20BA1 /* PeopleListController.swift */; };
 		1754BA9720378E91008B2C44 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754BA9620378E91008B2C44 /* CardView.swift */; };
 		1754DFC72067AB10006D4911 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754DFC62067AB10006D4911 /* Time.swift */; };
 		17579BDD20406177005F74B5 /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17579BDC20406177005F74B5 /* RegistrationField.swift */; };
@@ -59,7 +62,6 @@
 		17F93FD520488B9F0074D74A /* NLAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F93FD420488B9F0074D74A /* NLAuthApi.swift */; };
 		17FB6953203DF88E008F9057 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB6952203DF88E008F9057 /* User.swift */; };
 		17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */; };
-		17FD09C5207D3C7F00B4A2C7 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */; };
 		17FD09C8207D4DDB00B4A2C7 /* NLGroupApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09C7207D4DDB00B4A2C7 /* NLGroupApi.swift */; };
 		17FD09CB207D4E9600B4A2C7 /* GroupApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09CA207D4E9600B4A2C7 /* GroupApiResponse.swift */; };
 		17FD09CD207D579700B4A2C7 /* SearchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */; };
@@ -99,6 +101,9 @@
 		1728CEDE2044378C005D9A63 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		1728CEE0204437F9005D9A63 /* QuestApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestApiResponse.swift; sourceTree = "<group>"; };
 		1735D218207A7CD60011A095 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		174CB46320AB698100F20BA1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		174CB46520AB769E00F20BA1 /* DudeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DudeCell.swift; sourceTree = "<group>"; };
+		174CB46720AB80CF00F20BA1 /* PeopleListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListController.swift; sourceTree = "<group>"; };
 		1754BA9620378E91008B2C44 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1754DFC62067AB10006D4911 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		17579BDC20406177005F74B5 /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationField.swift; path = Neverland/AccountManagement/View/RegistrationField.swift; sourceTree = SOURCE_ROOT; };
@@ -148,7 +153,6 @@
 		17F93FD420488B9F0074D74A /* NLAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLAuthApi.swift; sourceTree = "<group>"; };
 		17FB6952203DF88E008F9057 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17FB695B203DFFEE008F9057 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		17FD09C7207D4DDB00B4A2C7 /* NLGroupApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLGroupApi.swift; sourceTree = "<group>"; };
 		17FD09CA207D4E9600B4A2C7 /* GroupApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupApiResponse.swift; sourceTree = "<group>"; };
 		17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupViewController.swift; sourceTree = "<group>"; };
@@ -308,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				176E631F2035BE8000DCAC3F /* GroupsViewController.swift */,
-				17FD09C4207D3C7F00B4A2C7 /* NewGroupViewController.swift */,
 				17FD09CC207D579700B4A2C7 /* SearchGroupViewController.swift */,
 			);
 			path = Controllers;
@@ -453,6 +456,7 @@
 				1754BA9620378E91008B2C44 /* CardView.swift */,
 				176635F320388B19003D76A8 /* RoundedImage.swift */,
 				176755442039FD0100490BEB /* Checkbox.swift */,
+				174CB46520AB769E00F20BA1 /* DudeCell.swift */,
 				17A56C1D203464D700A4FC72 /* Storyboards */,
 			);
 			path = Views;
@@ -462,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				176E631C2035BE6A00DCAC3F /* SeachScreenViewController.swift */,
+				174CB46720AB80CF00F20BA1 /* PeopleListController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				17ADF27720402FCE0061BA47 /* String+Extension.swift */,
 				17B96DFF204DC551001F22D2 /* Array+Extension.swift */,
 				17EC569C206807420011327D /* UIImageView+Extension.swift */,
+				174CB46320AB698100F20BA1 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -859,7 +865,6 @@
 				17CB3C4D203F6F0B006EF6D5 /* AuthApi.swift in Sources */,
 				17FB695C203DFFEE008F9057 /* UIColor+Extension.swift in Sources */,
 				17CB3C53203F7203006EF6D5 /* AuthApiResponse.swift in Sources */,
-				17FD09C5207D3C7F00B4A2C7 /* NewGroupViewController.swift in Sources */,
 				17E15A872038282000027634 /* NewQuestViewController.swift in Sources */,
 				176E631D2035BE6A00DCAC3F /* SeachScreenViewController.swift in Sources */,
 				176E63222035BE8900DCAC3F /* MyChallangesViewController.swift in Sources */,
@@ -896,7 +901,9 @@
 				17579BE0204083EE005F74B5 /* SwiftSpinner.swift in Sources */,
 				1728CEDD204434ED005D9A63 /* QuestApi.swift in Sources */,
 				17EC63122044755A008668FC /* SuggestQuestViewController.swift in Sources */,
+				174CB46620AB769E00F20BA1 /* DudeCell.swift in Sources */,
 				17EC569D206807420011327D /* UIImageView+Extension.swift in Sources */,
+				174CB46420AB698100F20BA1 /* UIViewController+Extension.swift in Sources */,
 				176E63172035BE2600DCAC3F /* AuthViewController.swift in Sources */,
 				175E4620206E20A800F67DB2 /* SettingsViewController.swift in Sources */,
 				176E631B2035BE5400DCAC3F /* FeedViewController.swift in Sources */,
@@ -907,6 +914,7 @@
 				17FD09C8207D4DDB00B4A2C7 /* NLGroupApi.swift in Sources */,
 				1728CED620442E69005D9A63 /* Quest.swift in Sources */,
 				17CB3C4B203F6D92006EF6D5 /* RegistrationData.swift in Sources */,
+				174CB46820AB80CF00F20BA1 /* PeopleListController.swift in Sources */,
 				1728CEDA204433EB005D9A63 /* Proof.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

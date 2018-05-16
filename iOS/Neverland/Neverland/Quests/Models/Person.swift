@@ -17,6 +17,7 @@ class Person {
     var photoURLString: String?
     var followers: Int
     var followings: Int
+    var rating: Int
     var isFollowedByMe: Bool
     
     init?(creatorData: NSDictionary?) {
@@ -33,5 +34,6 @@ class Person {
         followers = creatorData.value(forKey: "followers") as! Int
         followings = creatorData.value(forKey: "followings") as! Int
         isFollowedByMe = creatorData.value(forKey: "do_i_follow") as! Bool
+        rating = Int((creatorData.value(forKey: "rating") as! Double) * 100)
     }
 }

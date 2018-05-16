@@ -12,7 +12,8 @@ import Alamofire
 
 extension UIImageView {
     func uploadImageFrom(url: String) {
-        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+        //self.image = UIImage(named: "placeholder_02")
+        let queue = DispatchQueue(label: "com.cnoon.response-queue2", qos: .utility, attributes: [.concurrent])
         Alamofire.request(url).responseData(queue: queue) { (response) in
             if response.error == nil {
                 if let data = response.data {

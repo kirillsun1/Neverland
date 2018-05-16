@@ -8,17 +8,49 @@
 
 import UIKit
 import PopupDialog
+import CropViewController
+import ImagePicker
+import SCLAlertView
 
 class NewQuestViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var groupView: UIView!
+    @IBOutlet weak var groupAv: UIImageView!
+    @IBOutlet weak var adminAv: UIImageView!
+    @IBOutlet weak var groupName: UILabel!
+    @IBOutlet weak var adminName: UILabel!
+    @IBOutlet weak var subscribersLabel: UIButton!
+    @IBOutlet weak var changeAvButton: UIButton!
+    @IBOutlet weak var leaveButton: UIButton!
+    
+    let groupApi = NLGroupApi()
+    private let imagePickerController = ImagePickerController()
+    
+    @IBAction func showSubs() {
+        performSegue(withIdentifier: "ShowSubsSegue", sender: nil)
+    }
+    
+    @IBAction func unsubscripe() {
+        groupApi.dropGroup(gid: group!.id) { res in
+            print(res)
+            if res.code == .Successful {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    @IBAction func changeAvatar() {
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     private var quests = [Quest]() {
         didSet {
             tableView.reloadData()
         }
     }
     private let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
-    let groupId = 0 // get through segue.
+    var group: Group? = nil
 
     
     override func viewDidLoad() {
@@ -28,11 +60,17 @@ class NewQuestViewController: UIViewController {
         spinner.hidesWhenStopped = true
         spinner.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
         
+        imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = spinner
         
+        groupView.isHidden = group == nil
+        
+        changeAvButton.isHidden = group?.creator.nickname != User.sharedInstance.userName
+        leaveButton.isHidden = group?.creator.nickname == User.sharedInstance.userName
         
         fetchAllQuests()
         
@@ -46,12 +84,28 @@ class NewQuestViewController: UIViewController {
             self.tableView.es.stopPullToRefresh(ignoreDate: true)
             self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
         }
+        
+        if let group = group {
+            if let avlink = group.avatarURL {
+                groupAv.uploadImageFrom(url: avlink)
+            }
+            
+            if let adAvLink = group.creator.photoURLString {
+                adminAv.uploadImageFrom(url: adAvLink)
+            }
+            
+            groupName.text = group.title
+            adminName.text = "\(group.creator.nickname)"
+            subscribersLabel.setTitle("\(group.quantity) subscribers", for: .normal)
+        }
     }
     
     func confirmationPopup(for quest: Quest) {
-        NLConfirmationPopupService().presentPopup(forQuest: quest, into: self) {
-            NLQuestApi().takeQuest(qid: quest.id) { _ in
-                
+        NLConfirmationPopupService().presentPopup(type: "QUEST", into: self) {
+            NLQuestApi().takeQuest(qid: quest.id) { res in
+                if res.code == .Successful && self.group == nil {
+                    self.removeQuest(quest: quest)
+                }
             }
         }
     }
@@ -66,15 +120,33 @@ class NewQuestViewController: UIViewController {
     }
     
     func fetchAllQuests() {
-        NLQuestApi().fetchQuests(inGroup: 0) { questsDictionary in
-            for questJson in questsDictionary {
-                if let quest = Quest(fromJSON: questJson) {
-                    self.quests.append(quest)
+        if group == nil {
+            NLQuestApi().fetchQuests { questsDictionary in
+                for questJson in questsDictionary {
+                    if let quest = Quest(fromJSON: questJson) {
+                        self.quests.append(quest)
+                    }
+                }
+            }
+        } else {
+            NLQuestApi().fetchQuests(inGroup: group!.id) { questsDictionary in
+                for questJson in questsDictionary {
+                    if let quest = Quest(fromJSON: questJson) {
+                        self.quests.append(quest)
+                    }
                 }
             }
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NewQuestFromGroupSegue", let dest = segue.destination as? SuggestQuestViewController {
+            dest.groupId = group?.id ?? 0
+        } else if segue.identifier == "ShowSubsSegue", let vc = segue.destination as? PeopleListController {
+            vc.thisType = .subscriptions
+            vc.uid = group!.id
+        }
+    }
 }
 
 extension NewQuestViewController: UITableViewDataSource, UITableViewDelegate {
@@ -97,17 +169,43 @@ extension NewQuestViewController: UITableViewDataSource, UITableViewDelegate {
         confirmationPopup(for: quests[indexPath.row])
     }
 
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let threshold = scrollView.contentOffset.y + scrollView.frame.size.height
-//
-//        if threshold > scrollView.contentSize.height {
-//            spinner.startAnimating()
-//        }
-//
-//        if threshold == scrollView.contentSize.height {
-//            if !tableViewisUpdating {
-//                fetchNewQuests()
-//            }
-//        }
-//    }
 }
+
+extension NewQuestViewController: ImagePickerDelegate {
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        presentCropper(forImg: images[0])
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
+
+extension NewQuestViewController: CropViewControllerDelegate {
+    func presentCropper(forImg image: UIImage) {
+        let cropViewController = CropViewController(image: image)
+        cropViewController.aspectRatioPreset = .presetSquare
+        cropViewController.aspectRatioPickerButtonHidden = true
+        cropViewController.delegate = self
+        present(cropViewController, animated: true, completion: nil)
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        cropViewController.dismiss(animated: true, completion: nil)
+        groupApi.uploadAvatar(image, gid: group!.id) { response in
+            if response.code == .Successful && response.message != nil {
+                self.groupAv.uploadImageFrom(url: response.message as! String)
+            } else {
+                SCLAlertView().showError("Uploading error", subTitle: (response.message as? String) ?? "Avatar was not changed!")
+            }
+        }
+    }
+}
+

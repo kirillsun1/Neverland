@@ -67,7 +67,7 @@ class RegistrerViewController: UIViewController {
         
     }
     
-    func dismissKeyboard() {
+    override func dismissKeyboard() {
         textFields.forEach {
             $0.resignFirstResponder()
         }

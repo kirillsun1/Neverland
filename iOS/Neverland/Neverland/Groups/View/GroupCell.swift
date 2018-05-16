@@ -17,8 +17,10 @@ class GroupCell: UITableViewCell {
     
     func fillWith(_ group: Group) {
         self.cretorLbl.text = "Created by " + group.creator.nickname
-        if let lnk = group.creator.photoURLString {
+        if let lnk = group.avatarURL {
             self.av.uploadImageFrom(url: lnk)
+        } else {
+            self.av.image = UIImage(named: "placeholder_02")
         }
         self.name.text = group.title
     }

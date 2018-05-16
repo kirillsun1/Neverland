@@ -19,10 +19,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var avatarView: UIImageView!
-    @IBOutlet weak var followersLbl: UILabel!
-    @IBOutlet weak var followingLbl: UILabel!
-    @IBOutlet weak var proofLbl: UILabel!
+    @IBOutlet weak var followersLbl: UIButton!
+    @IBOutlet weak var followingLbl: UIButton!
+    @IBOutlet weak var ratingLbl: UILabel!
    
+    @IBAction func showFollowingPressed() {
+        performSegue(withIdentifier: "ShowFollSegue", sender: 1)
+    }
+    
+    @IBAction func showFollowersPressed() {
+        performSegue(withIdentifier: "ShowFollSegue", sender: 0)
+    }
+    
     @IBAction func actionButtonPressed(_ sender: Any) {
         if uid == nil {
             performSegue(withIdentifier: "SettingsSegue", sender: nil)
@@ -35,8 +43,8 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.sync {
                     person.isFollowedByMe = !person.isFollowedByMe
                     let delta = person.isFollowedByMe ? 1 : -1
-                    let oldValue = Int(self.followersLbl.text!) ?? 0
-                    self.followersLbl.text = "\(oldValue + delta)"
+                    let oldValue = Int(self.followersLbl.titleLabel!.text!) ?? 0
+                    self.followersLbl.titleLabel!.text = "\(oldValue + delta)"
                     self.actionButton.title = person.isFollowedByMe ? "Unfollow" : "Follow"
                 }
             }
@@ -50,7 +58,6 @@ class ProfileViewController: UIViewController {
     private var proofs = [Proof]() {
         didSet {
             tableView.reloadData()
-            self.proofLbl.text = String(proofs.count)
         }
     }
     
@@ -61,11 +68,13 @@ class ProfileViewController: UIViewController {
             if let imgLink = person.photoURLString {
                 avatarView.uploadImageFrom(url: imgLink)
             }
-            followersLbl.text = "\(person.followers)"
-            followingLbl.text = "\(person.followings)"
+
+            followersLbl.setTitle("\(person.followers)", for: .normal)
+            followingLbl.setTitle("\(person.followings)", for: .normal)
             if uid != nil { actionButton.title = person.isFollowedByMe ? "Unfollow" : "Follow" }
             navigationItem.title = person.nickname
             nameLbl.text = "\(person.firstName) \(person.secondName)"
+            ratingLbl.text = "\(person.rating)"
         }
     }
     
@@ -117,9 +126,7 @@ class ProfileViewController: UIViewController {
     func fetchInfo() {
         let completionHandler: (Person) -> () = {
             userInfo in
-            
             self.person = userInfo
-            
         }
         
         uid != nil ? profileApi.getUserInfo(uid: uid!, onComplete: completionHandler) : profileApi.getMyInfo(onComplete: completionHandler)
@@ -141,10 +148,17 @@ class ProfileViewController: UIViewController {
     }
 
     func confirmationPopup(for quest: Quest) {
-        NLConfirmationPopupService().presentPopup(forQuest: quest, into: self) {
+        NLConfirmationPopupService().presentPopup(type: "QUEST", into: self) {
             NLQuestApi().takeQuest(qid: quest.id) { _ in
                 
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFollSegue", let vc = segue.destination as? PeopleListController {
+            vc.thisType = (sender as! Int) == 0 ? .followers : .followings
+            vc.uid = uid
         }
     }
 

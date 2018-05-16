@@ -21,7 +21,7 @@ class SuggestQuestViewController: UIViewController {
     private let MIN_QUEST_TITLE_COUNT = 4
 
     private let questApi = NLQuestApi()
-    let groupId = 0 // get through segue.
+    var groupId = 0 // get through segue.
     
     private var questTitle: String?
     private var questDescription: String?
@@ -29,6 +29,8 @@ class SuggestQuestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         detailedTextView.delegate = self
+        
+        self.hideKeyboardWhenTappedAround()
     }
 
     @IBAction func inputInfoChanged() {

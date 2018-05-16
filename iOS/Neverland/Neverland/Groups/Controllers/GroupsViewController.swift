@@ -12,10 +12,23 @@ import SCLAlertView
 
 class GroupsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var groups = [Group]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initFloatButton()
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refresh()
     }
     
     func initFloatButton() {
@@ -31,6 +44,17 @@ class GroupsViewController: UIViewController {
         }
         
         actionButton.display(inViewController: self)
+    }
+    
+    func refresh() {
+        NLGroupApi().fetchMyGroups { dictArr in
+            self.groups = []
+            for json in dictArr {
+                if let group = Group.init(json: json) {
+                    self.groups.append(group)
+                }
+            }
+        }
     }
     
     
@@ -54,5 +78,35 @@ class GroupsViewController: UIViewController {
         }
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailedGroupSegue" {
+            guard let destvc = segue.destination as? NewQuestViewController, let group = sender as? Group else {
+                fatalError("ohohoh, this should not happen")
+            }
+            
+            destvc.group = group
+        }
+    }
 }
+
+extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell") as? GroupCell {
+            cell.fillWith(groups[indexPath.row])
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "DetailedGroupSegue", sender: groups[indexPath.row])
+    }
+}
+

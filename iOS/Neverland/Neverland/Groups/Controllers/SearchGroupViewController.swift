@@ -11,6 +11,8 @@ import UIKit
 class SearchGroupViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    let groupApi = NLGroupApi()
+    let questApi = NLQuestApi()
     
     var groups = [Group]() {
         didSet {
@@ -26,12 +28,24 @@ class SearchGroupViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        NLGroupApi().fetchGroups { dictArr in
+        refresh()
+    }
+    
+    func refresh() {
+        groupApi.fetchGroups { dictArr in
             self.groups = []
             for json in dictArr {
                 if let group = Group.init(json: json) {
                     self.groups.append(group)
                 }
+            }
+        }
+    }
+    
+    func confirmationPopup(for group: Group) {
+        NLConfirmationPopupService().presentPopup(type: "GROUP", into: self) {
+            self.groupApi.takeGroup(gid: group.id) { res in
+                print(res)
             }
         }
     }
@@ -51,5 +65,9 @@ extension SearchGroupViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        confirmationPopup(for: groups[indexPath.row])
     }
 }
