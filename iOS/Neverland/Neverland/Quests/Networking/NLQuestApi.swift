@@ -59,6 +59,17 @@ class NLQuestApi: QuestApi {
         }
     }
     
+    func voteForProof(pid: Int, value: Int, onComplete: @escaping (Rating)->()) {
+        let request = Alamofire.request(self.urlBase + "/vote", method: .get, parameters: ["pid": pid, "value": value, "token": User.sharedInstance.token ?? ""])
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+        request.responseJSON(queue: queue) { response in
+            print(response.result.value)
+            if let rat = Rating(json: (response.result.value as? NSDictionary)?.value(forKey: "body") as? NSDictionary) {
+                onComplete(rat)
+            }
+        }
+    }
+    
     //MARK: - Action with quests
 
     func registerQuest(title: String, description: String, groupId: Int, onComplete: @escaping (QuestApiResponse) -> ()) {

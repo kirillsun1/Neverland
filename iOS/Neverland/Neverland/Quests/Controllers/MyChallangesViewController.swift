@@ -21,7 +21,7 @@ class MyChallangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        FloatingButton().add(intoViewController: self, type: .quest)
+        initFloatingButton()
         fetchMyQuests()
         
         self.tableView.es.addPullToRefresh {
@@ -35,6 +35,21 @@ class MyChallangesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         fetchMyQuests()
+    }
+    
+    func initFloatingButton() {
+        let actionButton = JJFloatingActionButton()
+        actionButton.buttonColor = UIColor.neverlandDarkColor
+        
+        actionButton.addItem(title: "Take quest", image: UIImage(named: "search_btn")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.performSegue(withIdentifier: "TakeQuestSegue", sender: nil)
+        }
+        
+        actionButton.addItem(title: "Suggest quest", image: UIImage(named: "add_btn")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.performSegue(withIdentifier: "TakeQuestSegue", sender: nil)
+        }
+        
+        actionButton.display(inViewController: self)
     }
 
     

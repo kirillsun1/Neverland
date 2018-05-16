@@ -15,14 +15,12 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var cretorLbl: UILabel!
     
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+    func fillWith(_ group: Group) {
+        self.cretorLbl.text = "Created by " + group.creator.nickname
+        if let lnk = group.creator.photoURLString {
+            self.av.uploadImageFrom(url: lnk)
+        }
+        self.name.text = group.title
     }
 
 }

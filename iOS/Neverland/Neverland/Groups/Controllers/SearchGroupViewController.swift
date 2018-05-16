@@ -29,7 +29,9 @@ class SearchGroupViewController: UIViewController {
         NLGroupApi().fetchGroups { dictArr in
             self.groups = []
             for json in dictArr {
-                self.groups.append(Group(title: json.value(forKey: "name") as! String, creator: Person.init(creatorData: json.value(forKey: "admin") as? NSDictionary)!))
+                if let group = Group.init(json: json) {
+                    self.groups.append(group)
+                }
             }
         }
     }
@@ -44,13 +46,7 @@ extension SearchGroupViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell") as? GroupCell {
-            let group = groups[indexPath.row]
-            
-            cell.cretorLbl.text = "Created by " + group.creator.nickname
-            if let lnk = group.creator.photoURLString {
-                cell.av.uploadImageFrom(url: lnk)
-            }
-            cell.name.text = group.title
+            cell.fillWith(groups[indexPath.row])
             return cell
         }
         
